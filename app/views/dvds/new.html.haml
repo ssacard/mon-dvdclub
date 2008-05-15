@@ -3,11 +3,13 @@
     Search for DVD Title
   = flash[:notice]
   %br/
-  - form_remote_for(:dvd, :url => {:action => :search}, :method => :post) do |f|
+  - form_remote_for(:dvd, :url => {:action => :search}, :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')") do |f|
     = text_field_tag :title
     %br/ 
     %br/
     = submit_tag 'search'
+#indicator{:style=> "display: none;"}
+  =image_tag('/images/indicator.gif')
 %br/
 %br/
 #search-results
@@ -15,7 +17,7 @@
 %h4
   = link_to_function 'Manually Add a DVD', "Element.show('dvd-form')"
 #dvd-form{:style => "display:none;"}
-  - form_remote_for(:dvd, :url => {:action => :create}) do |f|
+  - form_remote_for(:dvd, :url => {:action => :create}, :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')") do |f|
     %p
       %label
         Title

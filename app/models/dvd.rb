@@ -5,7 +5,7 @@ class Dvd < ActiveRecord::Base
 	validates_presence_of :title
 
   def self.create_record(attrs)
-    dvd = Dvd.create(:asin => attrs['asin'], :details_url => attrs['url'], :title => attrs['title'])
+    dvd = Dvd.create!(:asin => attrs['asin'], :details_url => attrs['url'], :title => attrs['title'])
     if attrs['manufacturer']
       manufacturer = Manufacturer.find_or_create_by_name(attrs['manufacturer']) 
       dvd.manufacturers << manufacturer

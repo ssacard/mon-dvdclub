@@ -11,8 +11,12 @@ class DvdsController < ApplicationController
   end
 
   def create
-    Dvd.create_record(params)
-    flash[:notice] = "DVD Created Successfully"
+    if Dvd.create_record(params)
+      flash[:notice] = "DVD Created Successfully"
+    else
+      flash[:notice] = "Invalid Information"
+    end
+
     render :update do |page|
       page.redirect_to '/dvds/new'
     end
