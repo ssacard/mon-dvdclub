@@ -20,9 +20,23 @@ class AmazonStore
     @aws_access_key
   end
 
+  def self.aws_secret_access_key
+    @aws_secret_access_key    
+  end
+
+  def self.country
+    @country   
+  end
+
+  def self.search_index
+    @search_index    
+  end
+
+
   # Returns an array of hash with search results
 
   def self.search(title)
+    return [] unless !title.blank?
     results = Array.new
     res = Amazon::Ecs.item_search(title, :AWS_access_key_id => @aws_access_key, :country => @country, :search_index => @search_index)
     res.items.each do |i|
