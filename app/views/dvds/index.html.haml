@@ -1,0 +1,25 @@
+%h3
+  Listing DVDs
+%br/
+%table
+  %th
+    Title
+  %th
+    Actors
+  %th
+    Director
+  %th
+    Manufacturer
+  - @dvds.each do |d|
+    %tr
+      %td
+        = link_to(d.title, d.details_url) rescue d.title
+      %td
+        = d.actors.collect{|a| a.name}.join(', ')
+      %td
+        = d.directors.first.name rescue "none"
+      %td
+        = d.manufacturers.first.name rescue "none"
+%h3
+  =link_to 'New DVD', :action => :new
+  

@@ -1,0 +1,46 @@
+#dvd-search
+  %h4
+    Search for DVD Title
+  = flash[:notice]
+  %br/
+  - form_remote_for(:dvd, :url => {:action => :search}, :method => :post) do |f|
+    = text_field_tag :title
+    %br/ 
+    %br/
+    = submit_tag 'search'
+%br/
+%br/
+#search-results
+%br/
+%h4
+  = link_to_function 'Manually Add a DVD', "Element.show('dvd-form')"
+#dvd-form{:style => "display:none;"}
+  - form_remote_for(:dvd, :url => {:action => :create}) do |f|
+    %p
+      %label
+        Title
+      %br/
+      = text_field_tag :title
+    %p
+      %label
+        Manufacturer
+      %br/
+      = text_field_tag :manufacturer
+    %p
+      %label
+        Director
+      %br/
+      = text_field_tag :director
+    %p
+      %label
+        Actors 
+        = link_to_function('Add more') do |page|
+          - page.insert_html :bottom, 'actors-div', "<br />" + text_field_tag('actors[]')
+      %br/
+      #actors-div
+        = text_field_tag 'actors[]'
+    %p
+      = submit_tag 'Create'
+%h4
+  =link_to 'View All DVDs', :action => :index
+    
