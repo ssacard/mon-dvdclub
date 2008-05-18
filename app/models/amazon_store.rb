@@ -1,55 +1,41 @@
 class AmazonStore
+ cattr_accessor :options
 
   # Loads the configuration variables from application.yml file
-
   def self.init(config_file = 'config/application.yml')
-    config = File.open(config_file) { |f| YAML::load(f) }['AWS']
-    @aws_access_key = config['aws_access_key']
-    @aws_secret_access_key = config['aws_secret_access_key']
-    @country = config['country']
-    @search_index = config['search_index']
+    yaml = File.open(config_file) { |f| YAML::load(f) }['AWS']
+    @@options = {}
+    yaml.each {|key, value| @@options[key.to_sym] = value}
+    @@options.merge! :response_group => 'Medium'
   end
-
-  # call initializer by default
-
-  self.init
-
-  # Getter for aws_access_key
-
-  def self.aws_access_key
-    @aws_access_key
-  end
-
-  def self.aws_secret_access_key
-    @aws_secret_access_key    
-  end
-
-  def self.country
-    @country   
-  end
-
-  def self.search_index
-    @search_index    
-  end
-
 
   # Returns an array of hash with search results
-
-  def self.search(title)
-    return [] unless !title.blank?
+  def self.search(title, page = 1)
+    return [] if title.blank?
+    
+    # For development mode
+    self.init if options.nil?
+    
     results = Array.new
-    res = Amazon::Ecs.item_search(title, :AWS_access_key_id => @aws_access_key, :country => @country, :search_index => @search_index)
+    res = Amazon::Ecs.item_search(title, @@options.merge(:item_page => page))
+
     res.items.each do |i|
       item = Hash.new
+      item[:asin]         = i.get('asin').to_s
+      item[:url]          = i.get('detailpageurl').to_s
+      item[:image]        = i.get('smallimage/url')
+      
       attrs = i.search_and_convert('itemattributes')
-      item['asin']  = i.get('asin').to_s
-      item['url']   = i.get('detailpageurl').to_s
-      item['title'] = attrs.get('title')
-      item['actor'] = attrs.get_array('actor')
-      item['director'] = attrs.get('director')
-      item['manufacturer'] = attrs.get('manufacturer')
+      item[:title]        = attrs.get('title')
+      item[:actor]        = attrs.get_array('actor')
+      item[:director]     = attrs.get('director')
+      item[:manufacturer] = attrs.get('manufacturer')
       results << item
     end
-    results
+    
+    WillPaginate::Collection.create(page || 1, 10) do |pager|   
+      pager.replace results
+      pager.total_entries = res.total_pages * 10
+    end
   end
 end

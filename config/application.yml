@@ -1,6 +1,5 @@
 AWS:
-  aws_access_key: 1XH5RC1CT2M4WWJQXM02
-  aws_secret_access_key: kiStsotQVs+Joe035tP4NUrP7Uxcec4t3Euefl+D
+  aWS_access_key_id: 144X7G33QEC49F0K0NR2
   country: fr
   search_index: DVD
 

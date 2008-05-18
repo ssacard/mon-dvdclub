@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(:version => 1) do
     t.integer "dvd_id"
   end
 
-  add_index "directors_dvds", ["director_id"], :name => "directors_has_dvds_FKIndex1"
   add_index "directors_dvds", ["dvd_id"], :name => "directors_has_dvds_FKIndex2"
+  add_index "directors_dvds", ["director_id"], :name => "directors_has_dvds_FKIndex1"
 
   create_table "dvds", :force => true do |t|
     t.string "asin"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(:version => 1) do
     t.integer "dvd_id"
   end
 
-  add_index "dvds_actors", ["dvd_id"], :name => "dvds_has_actors_FKIndex1"
   add_index "dvds_actors", ["actor_id"], :name => "dvds_has_actors_FKIndex2"
+  add_index "dvds_actors", ["dvd_id"], :name => "dvds_has_actors_FKIndex1"
 
   create_table "manufacturers", :force => true do |t|
     t.string "name"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.integer "dvd_id"
   end
 
-  add_index "manufacturers_dvds", ["manufacturer_id"], :name => "manufacturers_has_dvds_FKIndex1"
   add_index "manufacturers_dvds", ["dvd_id"], :name => "manufacturers_has_dvds_FKIndex2"
+  add_index "manufacturers_dvds", ["manufacturer_id"], :name => "manufacturers_has_dvds_FKIndex1"
 
 end

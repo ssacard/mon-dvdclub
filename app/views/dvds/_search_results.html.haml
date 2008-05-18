@@ -11,25 +11,30 @@
       Director
     %th
       Manufacturer
+    %th
+      Image
   - @res.each_with_index do |i, index|
     %tr
       %td
         - form_remote_for(:dvd, :url => {:action => :create}, :html => {:id => index+1}) do |f|
-          = hidden_field_tag 'asin', i['asin'] 
-          = hidden_field_tag 'url', i['url']  
-          = hidden_field_tag 'title', i['title']  
-          - i['actor'].each do |a|
+          = hidden_field_tag 'asin', i[:asin] 
+          = hidden_field_tag 'url', i[:url]  
+          = hidden_field_tag 'title', i[:title]  
+          - i[:actor].each do |a|
             = hidden_field_tag 'actors[]', a
-          = hidden_field_tag 'director', i['director'] 
-          = hidden_field_tag 'manufacturer', i['manufacturer'] 
+          = hidden_field_tag 'director', i[:director] 
+          = hidden_field_tag 'manufacturer', i[:manufacturer] 
           = "<input type=\"checkbox\" onclick=\"document.forms[#{index+1}].onsubmit();\" />"
       %td
-        = i['asin']
+        = i[:asin]
       %td
-        = link_to i['title'], i['url']
+        = link_to i[:title], i[:url]
       %td
-        = i['actor'].join(',')
+        = i[:actor].join(', ')
       %td
-        = i['director']
+        = i[:director]
       %td
-        = i['manufacturer']
+        = i[:manufacturer]
+      %td
+        = image_tag i[:image] unless i[:image].nil?
+= will_paginate @res, :renderer => 'RemoteLinkRenderer'

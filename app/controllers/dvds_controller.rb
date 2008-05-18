@@ -1,7 +1,8 @@
 class DvdsController < ApplicationController
 
   def search
-    @res = AmazonStore.search(params[:title])
+    session[:search_title] ||= params[:title];
+    @res = AmazonStore.search(session[:search_title], params[:page])
     render :update do |page|
       page.replace_html 'search-results', :partial => 'search_results'
     end
@@ -12,13 +13,13 @@ class DvdsController < ApplicationController
 
   def create
     if Dvd.create_record(params)
-      flash[:notice] = "DVD Created Successfully"
+      flash[:notice] = 'DVD Created Successfully'
     else
-      flash[:notice] = "Invalid Information"
+      flash[:notice] = 'Invalid Information'
     end
 
     render :update do |page|
-      page.redirect_to '/dvds/new'
+      page.redirect_to new_dvd_url
     end
   end
 

@@ -1,5 +1,0 @@
-require File.dirname(__FILE__) + '/../test_helper'
-
-class DirectorTest < ActiveSupport::TestCase
-   should_require_unique_attributes :name
-end

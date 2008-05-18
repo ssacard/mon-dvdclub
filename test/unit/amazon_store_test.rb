@@ -4,7 +4,6 @@ class AmazonStoreTest < ActiveSupport::TestCase
   # Replace this with your real tests.
 
   context "An AmazonStore" do
-
     setup do
       config = File.open('config/application.yml') { |f| YAML::load(f) }['AWS']
       @aws_access_key = config['aws_access_key']

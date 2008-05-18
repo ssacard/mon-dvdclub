@@ -22,5 +22,4 @@ class Dvd < ActiveRecord::Base
     rescue
       false 
   end
-
 end
