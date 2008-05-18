@@ -1,5 +1,5 @@
 class AmazonStore
- cattr_accessor :options
+  cattr_accessor :options
 
   # Loads the configuration variables from application.yml file
   def self.init(config_file = 'config/application.yml')
@@ -11,10 +11,11 @@ class AmazonStore
 
   # Returns an array of hash with search results
   def self.search(title, page = 1)
-    return [] if title.blank?
-    
     # For development mode
     self.init if options.nil?
+
+    return [] if title.blank?
+    
     
     results = Array.new
     res = Amazon::Ecs.item_search(title, @@options.merge(:item_page => page))
