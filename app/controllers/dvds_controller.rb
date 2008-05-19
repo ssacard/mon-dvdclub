@@ -20,7 +20,7 @@ class DvdsController < ApplicationController
     end
 
     render :update do |page|
-      page.redirect_to new_dvd_url
+      page.redirect_to root_url
     end
   end
 
