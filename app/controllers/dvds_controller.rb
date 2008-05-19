@@ -1,7 +1,8 @@
 class DvdsController < ApplicationController
 
   def search
-    session[:search_title] ||= params[:title];
+    session[:search_title] = params[:title] if params[:title];
+    
     @res = AmazonStore.search(session[:search_title], params[:page])
     render :update do |page|
       page.replace_html 'search-results', :partial => 'search_results'
