@@ -1,7 +1,8 @@
 set :application, "dvdclub"
 
-set :scm,        :git
-set :deploy_via, :remote_cache
+set :scm,                   :git
+set :deploy_via,            :remote_cache
+set :git_enable_submodules, 1
 
 set :deploy_to, "/var/www/railsapp/#{application}" 
 set :use_sudo,  false

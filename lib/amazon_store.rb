@@ -6,16 +6,15 @@ class AmazonStore
     yaml = File.open(config_file) { |f| YAML::load(f) }['AWS']
     @@options = {}
     yaml.each {|key, value| @@options[key.to_sym] = value}
+    
+    # Response group meduim to get more information like images
     @@options.merge! :response_group => 'Medium'
   end
 
   # Returns an array of hash with search results
   def self.search(title, page = 1)
-    # For development mode
-    self.init if options.nil?
-
-    return [] if title.blank?
-    
+    return WillPaginate::Collection.new(1, 10) if title.blank?
+    self.init if options.nil? # Development mode only as Rails reloads classes
     
     results = Array.new
     res = Amazon::Ecs.item_search(title, @@options.merge(:item_page => page))
@@ -34,6 +33,7 @@ class AmazonStore
       results << item
     end
     
+    # Returns a Collection for pagination
     WillPaginate::Collection.create(page || 1, 10) do |pager|   
       pager.replace results
       pager.total_entries = res.total_pages * 10
