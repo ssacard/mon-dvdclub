@@ -2,9 +2,19 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  before_filter :authenticate
+  
   helper :all # include all helpers, all the time
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => '7d18b0ac5d9ddaa4e0910ee1167792c0'
+  
+
+private 
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "DVDclub" && password == "SACARD"
+    end if ENV['RAILS_ENV'] == 'production'
+  end
 end
