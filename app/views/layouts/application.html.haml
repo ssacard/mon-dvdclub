@@ -1,9 +1,15 @@
 !!! Strict
 %html{"xmlns" => "http://www.w3.org/1999/xhtml", "xml:lang" => "en"}
   %head
-    %title DVD Club
+    %title mondvdclub.fr
     %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
-    = javascript_include_tag :defaults
+    = stylesheet_link_tag 'master'
   %body
-    %div#container
-      = yield
+    #main
+      = render :partial => '/shared/header'
+      .site
+        = yield
+      .push
+    = render :partial => '/shared/footer'
+
+= javascript_include_tag :defaults

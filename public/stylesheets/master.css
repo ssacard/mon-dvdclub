@@ -1,0 +1,342 @@
+/* --------- /stylesheets/screen.css --------- */ 
+/*****************************************************************************/
+/*
+/* Common
+/*
+/*****************************************************************************/
+
+/* Global Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: white;
+  font: 13.34px helvetica, arial, clean, sans-serif;
+  *font-size: small;
+  text-align: center;
+}
+
+table {
+  font-size: inherit;
+  font: 100%;
+}
+
+select,
+input,
+textarea {
+  font: 99% helvetica, arial, sans-serif;
+}
+
+input.text {
+  padding: 1px 0;
+}
+
+optgroup {
+  margin-top: .5em;
+}
+
+pre,
+code {
+  font: 115% Monaco, "Courier New", monospace;
+  *font-size: 100%;
+/*  line-height: 1.5em;*/
+}
+
+body * {
+  line-height: 1.4em;
+}
+
+img {
+  border: 0;
+}
+
+/* links */
+
+a {
+  color: #4183c4; /* blue */
+  text-decoration: none;
+}
+
+a.action {
+  color: #d00; /* red */
+  text-decoration: underline;
+}
+
+a.action span {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.clear { 
+  clear: both;
+}
+
+.sparkline {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+img.help {
+  vertical-align: middle;
+}
+
+.notification {
+  background: #FFFBE2 none repeat scroll 0%;
+  border: 1px solid #FFE222;
+  padding: 1em;
+  margin: 1em;
+  font-weight: bold;
+}
+
+.error_box {
+  background: #FFEBE8 none repeat scroll 0%;
+  border: 1px solid #DD3C10;
+  padding: 1em;
+  font-weight: bold;
+}
+
+abbr {
+  border-bottom: none;
+}
+
+/*****************************************************************************/
+/*
+/* Common Layout
+/*
+/*****************************************************************************/
+
+body {
+  text-align: center;
+}
+
+.site {
+  width: 69em;
+  margin: 0 auto;
+  padding: 0 3em;
+  text-align: left;
+}
+
+/*****************************************************************************/
+/*
+/* Extra Syntax
+/*
+/*****************************************************************************/
+
+.syntax .gc {
+  color: #999;
+  background-color: #EAF2F5;
+}
+
+
+
+/*****************************************************************************/
+/*
+/* Header
+/*
+/*****************************************************************************/
+
+#header {
+  /*background: #fcfcfc url(/images/modules/header/header_bg.png) 0 100% repeat-x;*/
+  background-color: #FCFCFC;
+  height: 6.82em;
+}
+
+  #header a {
+    color: #fff; 
+  }
+
+  #header a:hover {
+    text-decoration: none;
+  }
+
+  #header .logo {
+    padding-top: 1em;
+    font-size: 2em;
+    float: left;
+    color: #444444;
+  }
+
+  /* actions */
+  
+  #header .actions {
+    float: right;
+    color: #444;
+    font-size: 110%;
+    margin-top: 2.3em;
+  }
+  
+    #header .actions a  {
+      color: #444;
+      margin-left: 1.5em;
+      padding: .4em;
+    }
+    
+    #header .actions a:hover {
+      text-decoration: none;
+      background-color: #dcdcdc;
+    }
+    
+  /* basic */
+  
+  #header.basic {
+    border-bottom: 5px solid #ddd;
+    margin-bottom: 1em;
+  }
+  
+  /* userbox */
+  
+  #header .userbox {
+    background: #EAF2F5;
+    border: 1px solid #ddd;
+    float: right;
+    margin-top: 1.6em;
+    width: 25em;
+  }
+  
+  #header .userbox .box {
+    margin: .25em .5em;
+  }
+  
+    #header .userbox .gravatar {
+      float: left;
+    }
+  
+      #header .userbox .gravatar img {
+        border: 1px solid #d0d0d0; /* gray */
+        padding: 2px;
+        background-color: white;
+        margin-right: .7em;
+      }
+      
+    #header .userbox .top {
+      overflow: hidden;
+    }
+      
+      #header .userbox .top .name {
+        float: left;
+        overflow: hidden;
+        font-weight: bold;
+        margin-right: .5em;
+      }
+
+      #header .userbox .top .name a {
+        color: #000;
+      }
+      
+      #header .userbox .top .links {
+        font-size: 85%;
+        margin-top: .2em;
+        float: right;
+        text-align: right;
+      }
+      
+        #header .userbox .top .links a {
+          color: #4183c4;
+        }
+        
+        #header .userbox .top .links a:hover {
+          text-decoration: underline;
+        }
+        
+    #header .userbox .bottom {
+      overflow: hidden;
+    }
+      #header .userbox .inbox {
+        float: left;
+        margin-top: .7em;
+        background: url(/images/modules/inbox/message.png) 0 .1em no-repeat;
+        padding-left: 20px;
+        cursor: pointer;
+      }
+
+        #header .userbox a {
+          color: #4183c4; /* blue */
+        }
+    
+      #header .userbox .bottom .select {
+        float: right;
+        margin-top: .5em;
+      }
+
+/*****************************************************************************/
+/*
+/* Main
+/*
+/*****************************************************************************/
+
+#main {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -8.6em;
+}
+
+.push {
+  height: 8.6em;
+  padding-bottom: 4em;
+}
+
+/*****************************************************************************/
+/*
+/* Footer
+/*
+/*****************************************************************************/
+
+#footer {
+  height: 8.4em;
+  /*background: #336699 url(/images/modules/footer/bg.png) 0 0 repeat-x;*/
+  background-color: #336699;
+  overflow: hidden;
+  color: #cadcea;
+  border-top: 0.2em solid #4488BB;
+}
+
+  #footer a {
+    color: white;
+    text-decoration: underline;
+  }
+
+  #footer .info {
+    padding: 2.9em 0 3.3em 0;
+    float: left;
+  }
+  
+    #footer .info .links {
+      padding-bottom: .4em;
+      border-bottom: 3px solid #5c8ab3;
+    }
+    
+    #footer .info .company {
+      padding-top: .4em;
+    }
+  
+  #footer .sponsor {
+    padding: 1.6em 0 1em 0;
+    float: right;
+  }
+  
+    #footer .sponsor a {
+      text-decoration: none;
+    }
+    
+      #footer .sponsor a:hover {
+        text-decoration: underline;
+      }
+
+    #footer .sponsor * {
+      vertical-align: middle;
+    }
+    

@@ -30,7 +30,7 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
-  map.root :controller => "dvds", :action => "new"
+  map.root :controller => "home", :action => "index"
   
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
