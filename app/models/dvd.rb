@@ -5,6 +5,7 @@ class Dvd < ActiveRecord::Base
 	validates_presence_of :title
   belongs_to :dvd_club
   belongs_to :format
+  belongs_to :dvd_category
   belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
   has_many :waiting_lists
   has_many :users, :through => :waiting_lists

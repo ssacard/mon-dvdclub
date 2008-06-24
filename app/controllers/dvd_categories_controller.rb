@@ -1,0 +1,2 @@
+class DvdCategoriesController < ApplicationController
+end

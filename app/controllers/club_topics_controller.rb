@@ -1,0 +1,2 @@
+class ClubTopicsController < ApplicationController
+end

@@ -1,8 +1,23 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
-  map.resource :session
-
+  map.resource :session  
+  map.resources :formats
+  
+  map.resources :dvd_categories do |dvd_category|
+    dvd_category.resources :dvds
+  end
+  map.resources :club_topics do |club_topic|
+    club_topic.resources :dvd_clubs
+  end
+  
+  map.resources :dvd_clubs do |dvd_club|
+    dvd_club.resources :dvds
+  end
+  
+  map.resources :user_dvd_clubs
+  map.resources :waiting_lists
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

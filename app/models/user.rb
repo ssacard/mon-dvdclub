@@ -14,8 +14,10 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
   has_many :user_dvd_clubs
   has_many :dvd_clubs, :through => :user_dvd_clubs
-  has_many :owned_dvds, :clas_name => 'DVD', :foreign_key => :owner_id
-  has_many :owned_clubs, :class_name => 'DVDClub', :foreign_key => :owner_id
+  has_many :owned_dvds, :class_name => 'Dvd', :foreign_key => :owner_id
+  has_many :owned_dvd_clubs, :class_name => 'DvdClub', :foreign_key => :owner_id
+  has_many :waiting_lists
+  has_many :dvds, :through => :waiting_lists
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.

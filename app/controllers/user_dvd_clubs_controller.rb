@@ -1,0 +1,2 @@
+class UserDvdClubsController < ApplicationController
+end

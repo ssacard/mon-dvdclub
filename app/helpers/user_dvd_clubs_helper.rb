@@ -1,0 +1,2 @@
+module UserDvdClubsHelper
+end

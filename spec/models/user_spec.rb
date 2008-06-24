@@ -7,6 +7,33 @@ include AuthenticatedTestHelper
 describe User do
   fixtures :users
 
+  describe "being associated with other models" do
+    
+    it "should have many waiting_lists" do
+      User.reflect_on_association(:waiting_lists).should_not be_nil  
+    end
+    
+    it "should have many user_dvd_clubs" do
+      User.reflect_on_association(:user_dvd_clubs).should_not be_nil  
+    end
+    
+    it "should have many dvd_clubs" do
+      User.reflect_on_association(:dvd_clubs).should_not be_nil  
+    end  
+    
+    it "should have many user_dvds" do
+      User.reflect_on_association(:dvds).should_not be_nil  
+    end
+    
+    it "should have many owned_dvd_clubs" do
+      User.reflect_on_association(:owned_dvd_clubs).should_not be_nil  
+    end
+    
+    it "should have many owned_dvds" do
+      User.reflect_on_association(:owned_dvds).should_not be_nil  
+    end
+  end
+  
   describe 'being created' do
     before do
       @user = nil
