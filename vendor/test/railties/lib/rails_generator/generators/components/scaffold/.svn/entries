@@ -1,0 +1,55 @@
+8
+
+dir
+87
+svn://87.252.3.150/a2l/trunk/vendor/rails/railties/lib/rails_generator/generators/components/scaffold
+svn://87.252.3.150/a2l
+
+
+
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ddeb1db-fa81-41b5-ba8c-6b93ff2db93b
+
+USAGE
+file
+
+
+
+
+2008-03-17T08:53:17.000000Z
+fcedba60a19e3d1576e9cf4bf1a5f44e
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+scaffold_generator.rb
+file
+
+
+
+
+2008-03-17T08:53:17.000000Z
+8a869af608dcaefff484a0952df11d0d
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+templates
+dir
+

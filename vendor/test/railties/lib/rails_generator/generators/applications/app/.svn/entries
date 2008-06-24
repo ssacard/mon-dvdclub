@@ -1,0 +1,52 @@
+8
+
+dir
+87
+svn://87.252.3.150/a2l/trunk/vendor/rails/railties/lib/rails_generator/generators/applications/app
+svn://87.252.3.150/a2l
+
+
+
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ddeb1db-fa81-41b5-ba8c-6b93ff2db93b
+
+USAGE
+file
+
+
+
+
+2008-03-17T08:53:28.000000Z
+50ee57ad5ab666da2872537ddc4f6bbc
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+app_generator.rb
+file
+
+
+
+
+2008-03-17T08:53:29.000000Z
+19b94585a458a587728b311200bfefc8
+2008-03-12T10:18:35.492400Z
+1
+vincent
+

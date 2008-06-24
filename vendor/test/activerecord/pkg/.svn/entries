@@ -1,0 +1,70 @@
+8
+
+dir
+87
+svn://87.252.3.150/a2l/trunk/vendor/rails/activerecord/pkg
+svn://87.252.3.150/a2l
+
+
+
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ddeb1db-fa81-41b5-ba8c-6b93ff2db93b
+
+activerecord-2.0.2
+dir
+
+activerecord-2.0.2.zip
+file
+
+
+
+
+2008-03-17T08:48:17.000000Z
+02f03e0514e0171efa35ea7199edbe39
+2008-03-12T10:18:35.492400Z
+1
+vincent
+has-props
+
+activerecord-2.0.2.tgz
+file
+
+
+
+
+2008-03-17T08:48:30.000000Z
+dbe4d9e27cc817153b43d90dd779653c
+2008-03-12T10:18:35.492400Z
+1
+vincent
+has-props
+
+activerecord-2.0.2.gem
+file
+
+
+
+
+2008-03-17T08:48:44.000000Z
+cd602d2aa71ce7d78403b2c1984e57da
+2008-03-12T10:18:35.492400Z
+1
+vincent
+has-props
+

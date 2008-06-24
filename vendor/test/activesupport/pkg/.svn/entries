@@ -1,0 +1,70 @@
+8
+
+dir
+87
+svn://87.252.3.150/a2l/trunk/vendor/rails/activesupport/pkg
+svn://87.252.3.150/a2l
+
+
+
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ddeb1db-fa81-41b5-ba8c-6b93ff2db93b
+
+activesupport-2.0.2
+dir
+
+activesupport-2.0.2.zip
+file
+
+
+
+
+2008-03-17T08:47:03.000000Z
+d23ea0df2dc3c1cb0dc1b28bf8214499
+2008-03-12T10:18:35.492400Z
+1
+vincent
+has-props
+
+activesupport-2.0.2.tgz
+file
+
+
+
+
+2008-03-17T08:47:11.000000Z
+8b48a6106a4bb5b5fabb34bbb8f5f7f3
+2008-03-12T10:18:35.492400Z
+1
+vincent
+has-props
+
+activesupport-2.0.2.gem
+file
+
+
+
+
+2008-03-17T08:47:18.000000Z
+61f090d1ad0bacd93e0130d2cf421387
+2008-03-12T10:18:35.492400Z
+1
+vincent
+has-props
+

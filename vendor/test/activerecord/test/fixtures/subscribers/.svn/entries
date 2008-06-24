@@ -1,0 +1,52 @@
+8
+
+dir
+87
+svn://87.252.3.150/a2l/trunk/vendor/rails/activerecord/test/fixtures/subscribers
+svn://87.252.3.150/a2l
+
+
+
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ddeb1db-fa81-41b5-ba8c-6b93ff2db93b
+
+first
+file
+
+
+
+
+2008-03-17T08:47:38.000000Z
+5147d588011512f42606012e83fd086b
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+second
+file
+
+
+
+
+2008-03-17T08:47:39.000000Z
+6fbe946df6bed7fbe9deb13c78de6dd6
+2008-03-12T10:18:35.492400Z
+1
+vincent
+

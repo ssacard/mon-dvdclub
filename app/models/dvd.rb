@@ -3,6 +3,11 @@ class Dvd < ActiveRecord::Base
 	has_and_belongs_to_many :manufacturers, :join_table => 'manufacturers_dvds'
 	has_and_belongs_to_many :actors, :join_table => 'dvds_actors'
 	validates_presence_of :title
+  belongs_to :dvd_club
+  belongs_to :format
+  belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
+  has_many :waiting_lists
+  has_many :users, :through => :waiting_lists
 
   def self.create_record(attrs)
     dvd = Dvd.create!(:asin => attrs['asin'], :details_url => attrs['url'], :title => attrs['title'])

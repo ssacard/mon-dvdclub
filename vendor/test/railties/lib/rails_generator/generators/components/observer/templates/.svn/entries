@@ -1,0 +1,52 @@
+8
+
+dir
+87
+svn://87.252.3.150/a2l/trunk/vendor/rails/railties/lib/rails_generator/generators/components/observer/templates
+svn://87.252.3.150/a2l
+
+
+
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ddeb1db-fa81-41b5-ba8c-6b93ff2db93b
+
+unit_test.rb
+file
+
+
+
+
+2008-03-17T08:53:19.000000Z
+b69ab40c71e7ccb0467b14ec4c8e445a
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+observer.rb
+file
+
+
+
+
+2008-03-17T08:53:19.000000Z
+4c895d9eb68003006e79b6e5e7619b37
+2008-03-12T10:18:35.492400Z
+1
+vincent
+

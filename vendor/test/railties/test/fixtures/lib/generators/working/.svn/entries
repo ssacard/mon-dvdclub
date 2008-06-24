@@ -1,0 +1,40 @@
+8
+
+dir
+87
+svn://87.252.3.150/a2l/trunk/vendor/rails/railties/test/fixtures/lib/generators/working
+svn://87.252.3.150/a2l
+
+
+
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ddeb1db-fa81-41b5-ba8c-6b93ff2db93b
+
+working_generator.rb
+file
+
+
+
+
+2008-03-17T08:52:15.000000Z
+20cbe5370af30c1a977fbecf9c88ece3
+2008-03-12T10:18:35.492400Z
+1
+vincent
+

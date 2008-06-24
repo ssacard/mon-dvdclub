@@ -1,0 +1,41 @@
+8
+
+dir
+87
+svn://87.252.3.150/a2l/trunk/vendor/rails/railties/pkg
+svn://87.252.3.150/a2l
+
+
+
+2008-03-12T10:18:35.492400Z
+1
+vincent
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ddeb1db-fa81-41b5-ba8c-6b93ff2db93b
+
+rails-2.0.2.gem
+file
+
+
+
+
+2008-03-17T08:52:43.000000Z
+3bfadab613a0b4b50a84c45ac21f3a4a
+2008-03-12T10:18:35.492400Z
+1
+vincent
+has-props
+
