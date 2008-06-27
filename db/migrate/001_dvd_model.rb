@@ -61,7 +61,7 @@ class DvdModel < ActiveRecord::Migration
     add_index "dvds_actors", ["dvd_id"], :name => "dvds_has_actors_FKIndex1"
     add_index "dvds_actors", ["actor_id"], :name => "dvds_has_actors_FKIndex2"
   
-    create_table "formats", :force => true do |t|
+    create_table "dvd_formats", :force => true do |t|
       t.string "name"
     end
   

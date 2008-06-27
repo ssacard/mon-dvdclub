@@ -1,5 +1,8 @@
 class DvdsController < ApplicationController
 
+  # TODO
+  # Use make_resourceful and move these functions in hookup calls
+  
   def search
     session[:search_title] = params[:title] if params[:title];
     

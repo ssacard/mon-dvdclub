@@ -46,6 +46,10 @@ ActiveRecord::Schema.define(:version => 1) do
 
   add_index "dvd_clubs", ["club_topic_id"], :name => "dvd_clubs_FKIndex1"
 
+  create_table "dvd_formats", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "dvds", :force => true do |t|
     t.integer  "dvd_category_id",     :limit => 11
     t.integer  "format_id",           :limit => 11
@@ -71,10 +75,6 @@ ActiveRecord::Schema.define(:version => 1) do
 
   add_index "dvds_actors", ["dvd_id"], :name => "dvds_has_actors_FKIndex1"
   add_index "dvds_actors", ["actor_id"], :name => "dvds_has_actors_FKIndex2"
-
-  create_table "formats", :force => true do |t|
-    t.string "name"
-  end
 
   create_table "manufacturers", :force => true do |t|
     t.string "name"
