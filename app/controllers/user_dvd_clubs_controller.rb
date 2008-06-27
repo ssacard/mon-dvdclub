@@ -1,8 +1,14 @@
 class UserDvdClubsController < ApplicationController
   
   make_resourceful do
-    belongs_to :user
     actions :create, :destroy
   end
   
+  def parent_object
+    self.current_user
+  end
+  
+  def parent_name
+    'user'
+  end
 end

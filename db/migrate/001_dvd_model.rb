@@ -109,6 +109,29 @@ class DvdModel < ActiveRecord::Migration
   
     add_index "waiting_lists", ["dvd_id"], :name => "waiting_lists_FKIndex1"
     add_index "waiting_lists", ["user_id"], :name => "waiting_lists_FKIndex2"
+    
+    create_table "roles", :force => true do |t|
+      t.string   "authorizable_type", :limit => 100
+      t.integer  "authorizable_id",   :limit => 10
+      t.string   "name",              :limit => 100
+      t.datetime "created_at"
+      t.datetime "updated_at"
+    end
+    
+    create_table "roles_users", :id => false, :force => true do |t|
+      t.integer "role_id", :limit => 10, :null => false
+      t.integer "user_id", :limit => 10, :null => false
+    end
+  
+    create_table "sessions", :force => true do |t|
+      t.string   "session_id", :default => "", :null => false
+      t.text     "data"
+      t.datetime "created_at"
+      t.datetime "updated_at"
+    end
+  
+    add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+    add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
   end
 
   def self.down

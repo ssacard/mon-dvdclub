@@ -1,2 +1,2 @@
-class Admin::DvdFormatsController < ApplicationController
+class Admin::DvdFormatsController < AdminController
 end
