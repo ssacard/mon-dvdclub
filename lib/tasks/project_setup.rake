@@ -1,7 +1,7 @@
 
 namespace :dvdclub do
   namespace :app do
-    task :create_admin_and_roles => :environment do
+    task :setup => :environment do
       admin = User.create!(:login => 'admin@dvdclub.com', 
                           :email => 'admin@dvdclub.com', 
                           :email_confirmation => 'admin@dvdclub.com', 
@@ -9,10 +9,9 @@ namespace :dvdclub do
                           :password_confirmation => 'password')
       role = Role.create(:name => 'admin')
       admin.roles << role
+      
       role = Role.create(:name => 'user')
-    end
     
-    task :create_default_data => :environment do
       ['Blue-Ray', 'DVD'].each do |dvd_format_name|
         DvdFormat.create(:name => dvd_format_name) 
       end
