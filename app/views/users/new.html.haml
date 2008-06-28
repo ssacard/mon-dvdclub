@@ -1,0 +1,54 @@
+%h4 Créez votre DVD Club
+%br
+- if flash[:notice]
+  #flash-notice
+    = flash[:notice]
+%br
+-form_for :user, :url => users_path do |f|
+  %p
+    %label
+      pseudo:
+    %br
+    = f.text_field :login
+  %p
+    %label
+      email:
+    %br
+    = f.text_field :email
+  %p
+    %label
+      confirmer email:
+    %br
+    = f.text_field :email
+  %p
+    %label
+      mot de passe:
+    %br
+    = f.text_field :password
+  %p
+    %label
+      confirmer mot de passe:
+    %br
+    = f.text_field :password_confirmation
+    
+  -fields_for :dvd_club do |fields|
+    %p
+      %label
+        type de club:
+      %br
+      = fields.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, :prompt => true
+    %p
+      %label
+        comment vous identifier dans ce club?:
+      %br
+      = fields.text_area :description
+    %p
+      = f.check_box :accept_offers
+      j'accepte de recevoir des offres des partenaires de mon DVD Club
+    %p
+      = check_box_tag 'accept_conditions', 1
+      j'accepte les conditions d'utilisations
+    %br   
+    %p
+      = submit_tag 'création'
+

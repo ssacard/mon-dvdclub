@@ -18,6 +18,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_dvd_clubs
   map.resources :waiting_lists
   
+  map.admin 'admin', :controller => 'admin', :action => 'index'
+  map.with_options :path_prefix => 'admin', :name_prefix => 'admin_' do |admin|
+    admin.resources :dvd_formats, :controller => 'admin/dvd_formats'
+    admin.resources :club_topics, :controller => 'admin/club_topics'
+  end
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -49,7 +54,7 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
-  map.root :controller => "home", :action => "index"
+  map.root :controller => "public", :action => "index"
   
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

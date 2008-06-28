@@ -13,13 +13,20 @@ class UsersController < ApplicationController
     # request forgery protection.
     # uncomment at your own risk
     # reset_session
+    notice = ""
     @user = User.new(params[:user])
     @user.save
     if @user.errors.empty?
+      @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])
+      @dvd_club.save
+      
       self.current_user = @user
       redirect_back_or_default('/')
       flash[:notice] = "Thanks for signing up!"
     else
+      @user.errors.each_full { |msg| notice += '<li>' + msg + '</li>' }
+      @dvd_club.errors.each_full { |msg| notice += '<li>' + msg + '</li>' } if @dvd_club
+      flash[:notice] = notice
       render :action => 'new'
     end
   end

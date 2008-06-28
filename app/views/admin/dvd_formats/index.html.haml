@@ -1,0 +1,19 @@
+%h3
+  DVD Formats
+%br
+%table
+  %tr
+    %th
+      Name
+    %th
+      Action
+  -current_objects.each do |object|
+    %tr
+      %td
+        = object.name
+      %td
+        = link_to 'Edit', edit_admin_dvd_format_path(object)
+        = link_to 'Delete', admin_dvd_format_path(object), :method => :delete
+%br
+= link_to 'New', new_admin_dvd_format_path
+  

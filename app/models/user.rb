@@ -2,7 +2,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password
-
+  
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?
@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates_length_of       :login,    :within => 3..40
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
+  validates_confirmation_of :email
   before_save :encrypt_password
   has_many :user_dvd_clubs
   has_many :dvd_clubs, :through => :user_dvd_clubs
@@ -28,7 +29,18 @@ class User < ActiveRecord::Base
     u = find_by_login(login) # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
-
+  
+  has_and_belongs_to_many :roles do
+    def include?(role)
+      role_name = case 
+        when role.respond_to?(:name) then role.name.downcase
+        else role.to_s.downcase
+      end
+      
+      count(:conditions => ["roles.name = ?", role_name]) != 0
+    end
+  end
+  
   # Encrypts some data with the salt.
   def self.encrypt(password, salt)
     Digest::SHA1.hexdigest("--#{salt}--#{password}--")
@@ -73,6 +85,10 @@ class User < ActiveRecord::Base
     @activated
   end
 
+  def is_admin?
+    self.roles.include?(:admin)
+  end
+  
   protected
     # before filter 
     def encrypt_password
@@ -85,5 +101,8 @@ class User < ActiveRecord::Base
       crypted_password.blank? || !password.blank?
     end
     
+    def email_required?
+      !email.blank?
+    end
     
 end

@@ -1,0 +1,10 @@
+-form_for :club_topic, current_object, :url => current_object.new_record? ? objects_path : object_path, :html => { :method => current_object.new_record? ? :post : :put } do |f|
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name 
+
+  %p
+    = f.submit current_object.new_record? ? "Add" : "Update"
+    or 
+    = link_to 'Cancel', objects_path

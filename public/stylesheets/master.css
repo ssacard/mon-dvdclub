@@ -26,6 +26,7 @@ body {
 table {
   font-size: inherit;
   font: 100%;
+  border: 1px #888;
 }
 
 select,
@@ -340,3 +341,13 @@ body {
       vertical-align: middle;
     }
     
+textarea{
+	width: 250px;
+	height: 100px;
+}
+
+#flash-notice{
+	background-color: #e3e3e3;
+	border: 1px dotted #999999;
+	padding-left: 20px;
+}

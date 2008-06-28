@@ -96,6 +96,7 @@ class DvdModel < ActiveRecord::Migration
       t.string    "remember_token"
       t.timestamp "created_at"
       t.timestamp "updated_at"
+      t.integer   "accept_offers", :limit => 3
       t.datetime  "remember_token_expires_at"
       t.timestamp "deleted_at"
     end
