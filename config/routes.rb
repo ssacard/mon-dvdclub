@@ -2,7 +2,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
   map.resource :session  
-  map.resources :formats
   
   map.resources :dvd_categories do |dvd_category|
     dvd_category.resources :dvds
