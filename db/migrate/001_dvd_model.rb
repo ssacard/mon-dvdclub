@@ -93,6 +93,7 @@ class DvdModel < ActiveRecord::Migration
       t.string    "email"
       t.string    "crypted_password",          :limit => 40
       t.string    "salt",                      :limit => 40
+      t.string    "password_secret",           :limit => 40
       t.string    "remember_token"
       t.timestamp "created_at"
       t.timestamp "updated_at"

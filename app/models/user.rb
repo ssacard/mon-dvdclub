@@ -89,6 +89,12 @@ class User < ActiveRecord::Base
     self.roles.include?(:admin)
   end
   
+  def request_password_reset
+    token = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--")
+    self.password_secret = token
+    save
+  end
+  
   protected
     # before filter 
     def encrypt_password

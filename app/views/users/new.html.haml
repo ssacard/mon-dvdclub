@@ -24,14 +24,19 @@
     %label
       mot de passe:
     %br
-    = f.text_field :password
+    = f.password_field :password
   %p
     %label
       confirmer mot de passe:
     %br
-    = f.text_field :password_confirmation
+    = f.password_field :password_confirmation
     
   -fields_for :dvd_club do |fields|
+    %p
+      %label
+        nom de votre club:
+      %br
+      = fields.text_field :name
     %p
       %label
         type de club:

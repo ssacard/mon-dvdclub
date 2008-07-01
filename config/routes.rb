@@ -1,6 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
 
+  map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
+  map.reset_request_done '/reset_request_done', :controller => 'users', :action => 'reset_request_done'
+  map.change_password '/change_password/:secret', :controller => 'users', :action => 'change_password'
+  
   map.resources :users
+  
   map.resource :session  
   
   map.resources :dvd_categories do |dvd_category|
