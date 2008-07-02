@@ -1,6 +1,14 @@
 #header.basic
   .site
     .logo
-      MonDVDClub.fr
+      = link_to 'MonDVDClub.fr', root_path
     .actions
-      = link_to "Home", root_url
+      - if logged_in?
+        = link_to "Se deconnecter", logout_path
+      - else 
+        = link_to "Créer un club", register_path
+        |  
+        = link_to "Rejoindre un Club", ''
+        |  
+        = link_to "Se connecter", login_path
+      

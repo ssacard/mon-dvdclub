@@ -1,6 +1,7 @@
 
 namespace :dvdclub do
   namespace :app do
+    desc 'init dvdclub'
     task :setup => :environment do
       admin = User.create!(:login => 'admin@dvdclub.com', 
                           :email => 'admin@dvdclub.com', 

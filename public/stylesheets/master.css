@@ -163,9 +163,9 @@ body {
     text-decoration: none;
   }
 
-  #header .logo {
-    padding-top: 0.5em;
-    font-size: 2em;
+  #header .logo, #header .logo a {
+    padding-top: 0.3em;
+    font-size: 1.5em;
     float: left;
     color: #444444;
   }
@@ -181,7 +181,6 @@ body {
   
     #header .actions a  {
       color: #444;
-      margin-left: 1.5em;
       padding: .4em;
     }
     

@@ -1,0 +1,26 @@
+#login.standard_form
+  %h1 Login 
+  
+  -if flash[:notice] 
+    #flash-notice= flash[:notice]
+
+  - form_tag session_path do
+    %label 
+      Login
+      %br
+      = text_field_tag 'login', '', :class => :text
+
+
+    %label 
+      Password
+      %br
+      = password_field_tag 'password', '', :class => :text
+
+    %label 
+      Remember me:  
+      = check_box_tag 'remember_me' 
+    
+    %label
+      = submit_tag 'Log in'
+    = link_to '(forgot password)' , '' 
+    

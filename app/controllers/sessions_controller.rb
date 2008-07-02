@@ -17,6 +17,7 @@ class SessionsController < AuthenticatedController
       redirect_to('/home')
       flash[:notice] = "Logged in successfully"
     else
+      flash[:notice] = "Login ou mot de passe inccorect"
       render :action => 'new'
     end
   end
