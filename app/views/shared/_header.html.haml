@@ -4,6 +4,11 @@
       = link_to 'MonDVDClub.fr', root_path
     .actions
       - if logged_in?
+        Bienvenu 
+        %strong= current_user.login
+        |
+        = link_to 'Mon Compte', dashboard_path
+        |
         = link_to "Se deconnecter", logout_path
       - else 
         = link_to "Créer un club", register_path
