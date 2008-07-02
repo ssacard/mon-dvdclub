@@ -1,0 +1,70 @@
+.buttons {
+  padding-top: 10px;
+}
+button {
+  font-family:"Lucida Grande",Tahoma,Arial,Verdana,sans-serif;
+  font-weight:bold;
+  overflow:visible;
+  padding:4px 10px 3px 7px;
+  width:auto;
+}
+.buttons a, button {
+  background-color:#F5F5F5;
+  border-color:#EEEEEE rgb(222, 222, 222) rgb(222, 222, 222) rgb(238, 238, 238);
+  border-style:solid;
+  border-width:1px;
+  color:#333333;
+  cursor:pointer;
+  display:block;
+  float:left;
+  font-size:100%;
+  font-weight:bold;
+  line-height:130%;
+  margin:0pt 7px 0pt 0pt;
+  padding:5px 10px 6px 7px;
+  text-decoration:none;
+}
+/* STANDARD */
+
+button:hover, .buttons a:hover{
+    background-color:#dff4ff;
+    border:1px solid #c2e1ef;
+    color:#336699;
+}
+.buttons a:active{
+    background-color:#6299c5;
+    border:1px solid #6299c5;
+    color:#fff;
+}
+
+/* POSITIVE */
+
+button.positive, .buttons a.positive{
+    color:#529214;
+}
+.buttons a.positive:hover, button.positive:hover{
+    background-color:#E6EFC2;
+    border:1px solid #C6D880;
+    color:#529214;
+}
+.buttons a.positive:active{
+    background-color:#529214;
+    border:1px solid #529214;
+    color:#fff;
+}
+
+/* NEGATIVE */
+
+.buttons a.negative, button.negative{
+    color:#d12f19;
+}
+.buttons a.negative:hover, button.negative:hover{
+    background:#fbe3e4;
+    border:1px solid #fbc2c4;
+    color:#d12f19;
+}
+.buttons a.negative:active{
+    background-color:#d12f19;
+    border:1px solid #d12f19;
+    color:#fff;
+}
