@@ -20,7 +20,5 @@
       Remember me:  
       = check_box_tag 'remember_me' 
     
-    %label
-      = submit_tag 'Log in'
-    = link_to '(forgot password)' , '' 
-    
+    - forgot =  link_to('(forgot password)' , forgot_password_path, :class => :forgot)
+    = render :partial => '/shared/submit_buttons', :locals => {:text => 'Créer', :more => forgot }

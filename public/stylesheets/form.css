@@ -111,7 +111,6 @@
   width: 31em;
 }
 
-
 /*****************************************************************************/
 /*
 /* Profile
@@ -122,3 +121,12 @@
   margin: 3em auto 0 auto;
   width: 60em;
 }
+
+#profile input.text, select{
+  width: 25em;
+}
+
+#profile textarea.text {
+  width: 54em;
+}
+
