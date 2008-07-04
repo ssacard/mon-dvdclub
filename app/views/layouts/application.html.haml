@@ -3,13 +3,14 @@
   %head
     %title mondvdclub.fr
     %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
-    = stylesheet_link_tag 'master', 'form', 'button'
+    = stylesheet_link_tag 'master', 'form', 'button', 'menu'
   %body
     #main
       = render :partial => '/shared/header'
+      = render :partial => '/shared/menu' if logged_in?
       .site
         = yield
       .push
     = render :partial => '/shared/footer'
 
-= javascript_include_tag :defaults
+    = javascript_include_tag :defaults

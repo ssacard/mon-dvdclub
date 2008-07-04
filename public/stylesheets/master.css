@@ -281,11 +281,11 @@ body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -8.6em;
+  margin: 0 auto -4.6em;
 }
 
 .push {
-  height: 8.6em;
+  height: 4.6em;
   padding-bottom: 4em;
 }
 
@@ -296,7 +296,7 @@ body {
 /*****************************************************************************/
 
 #footer {
-  height: 8.4em;
+  height: 4.4em;
   /*background: #336699 url(/images/modules/footer/bg.png) 0 0 repeat-x;*/
   background-color: #336699;
   overflow: hidden;
@@ -310,7 +310,7 @@ body {
   }
 
   #footer .info {
-    padding: 2.9em 0 3.3em 0;
+    padding: 0.2em 0 3.3em 0;
     float: left;
   }
   
