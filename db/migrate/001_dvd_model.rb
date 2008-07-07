@@ -80,7 +80,7 @@ class DvdModel < ActiveRecord::Migration
     create_table "user_dvd_clubs", :force => true do |t|
       t.integer   "dvd_club_id"
       t.integer   "user_id"
-      t.string    "subscription_status"
+      t.boolean   "subscription_status"
       t.timestamp "created_at"
       t.timestamp "updated_at"
     end

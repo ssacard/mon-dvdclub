@@ -20,9 +20,32 @@ namespace :dvdclub do
       ['Action', 'Comédie', 'Dessin Animé', 'Emotion', 'Famille & Enfant', 'Fantastique', 'Frisson', 'Grand Classique',
       'Guerre', 'Historique & Epoque', 'Hors Film & Documentaire', 'Manga', 'Romance', 'Science-fiction', 'Série TV', 'Sport',
       'Théâtre & Spectacle', 'Thriller', 'Western'].each do |club_type_name|
-        ClubTopic.create(:name => club_type_name)  
+        DvdCategory.create(:name => club_type_name) 
       end
       
-    end    
+      ["Club de voisins", "Club du bureau", "Club distant", "Autre"].each do |type_de_club|
+        ClubTopic.create(:name => type_de_club)  
+      end     
+      
+    end
+  end
+  
+  namespace :db do
+    desc 'database related tasks'
+    task :fixtures => :environment do
+      sql  = "SELECT * FROM %s"
+      skip_tables = ["schema_info"]
+      ActiveRecord::Base.establish_connection
+      (ActiveRecord::Base.connection.tables - skip_tables).each do |table_name|
+        i = "000"
+        File.open("#{RAILS_ROOT}/test/fixtures/#{table_name}.yml", 'w') do |file|
+          data = ActiveRecord::Base.connection.select_all(sql % table_name)
+          file.write data.inject({}) { |hash, record|
+            hash["#{table_name}_#{i.succ!}"] = record
+            hash
+          }.to_yaml
+        end
+      end      
+    end
   end
 end

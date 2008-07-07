@@ -1,0 +1,27 @@
+--- 
+users_001: 
+  salt: 1be713b745e5e21c2c89fff17078205f44283275
+  updated_at: 2008-07-07 07:57:39
+  crypted_password: d199163a3722c094d26368167feabe8e7a169725
+  deleted_at: 
+  accept_offers: 
+  remember_token_expires_at: 
+  id: "1"
+  remember_token: 
+  password_secret: 
+  login: admin@dvdclub.com
+  created_at: 2008-07-07 07:57:39
+  email: admin@dvdclub.com
+users_002: 
+  salt: 9f9923b2b1a6ac3ae5c0d7889aab114cc351c743
+  updated_at: 2008-07-07 08:02:26
+  crypted_password: 5d9e7fa2fe52dbdb7167e9c12d518513ad7c07ad
+  deleted_at: 
+  accept_offers: 
+  remember_token_expires_at: 
+  id: "2"
+  remember_token: 
+  password_secret: 
+  login: user
+  created_at: 2008-07-07 08:02:26
+  email: user@dvdclub.com

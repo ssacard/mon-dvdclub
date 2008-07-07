@@ -20,6 +20,7 @@ class UsersController < ApplicationController
       if @user
         @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])
         @dvd_club.save!
+        UserDvdClub.create(:user_id => @user.id, :dvd_club_id => @dvd_club.id, :subscription_status => true)
       end
     rescue
       @user.errors.each_full { |msg| notice += '<li>' + msg + '</li>' }
