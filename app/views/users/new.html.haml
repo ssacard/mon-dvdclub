@@ -21,7 +21,7 @@
       %label
         confirmer email:
         %br
-        = f.text_field :email, :class => :text
+        = f.text_field :email_confirmation, :class => :text
     %p
       %label
         mot de passe:
@@ -53,7 +53,7 @@
         = f.check_box :accept_offers
         j'accepte de recevoir des offres des partenaires de mon DVD Club
       %p
-        = check_box_tag 'accept_conditions', 1
+        = f.check_box :terms
         j'accepte les conditions d'utilisations
 
       = render :partial => '/shared/submit_buttons', :locals => {:text => 'Créer'}
