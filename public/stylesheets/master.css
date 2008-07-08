@@ -363,3 +363,8 @@ textarea{
 #clear{
 	clear :left;
 }
+
+#dvd{
+	width: 100%;
+	float:left;
+}

@@ -1,3 +1,4 @@
+%br
 #dvd
   %table
     %tr
@@ -8,7 +9,7 @@
           = dvd.title
         %br
         format:
-        = dvd.format.name rescue "none"
+        = dvd.dvd_format.name rescue "none"
         %br
         = dvd.description
       %td

@@ -1,0 +1,26 @@
+%h3
+  = link_to 'Créer un nouveau club', "#"
+%br
+%br
+%h2
+  Mes Clubs
+- self.current_user.dvd_clubs.each do |dvd_club|
+  %b
+    Club: 
+    = dvd_club.name
+  = link_to 'quitter ce club', "#"
+  = link_to 'inviter des amis', "#"
+  %br
+  %b
+    Les derniers membres de ce club (7 derniers jours)
+    %br
+    %br
+  - dvd_club.users.each do |user|
+    = user.login
+    %br
+    = link_to 'blacklister', '#'
+    %br
+    = link_to 'contacter', '#'
+  %br
+  = link_to 'Voir tous les membres', "#"
+  

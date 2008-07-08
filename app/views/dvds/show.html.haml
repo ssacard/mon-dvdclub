@@ -1,0 +1,32 @@
+#dvd
+  %h2
+    Accueil > 
+    = @dvd_category.name
+    > 
+    = @dvd.title 
+  %table
+    %tr
+      %td
+        = image_tag @dvd[:image] unless @dvd[:image].nil?
+      %td
+        %b
+          Propriétaire
+        %br
+        DVD Club (
+        = @dvd.dvd_club.name
+        )
+        %br
+        = @dvd.subscription_status
+        - if @dvd.is_available?
+          = link_to "<input type=\"button\" value=\"Réserver maintenant!\" />", "#"
+        - else
+          = link_to "<input type=\"button\" value=\"S'inscrire sur la liste!\" />", "#"
+        %br
+        %b
+          = @dvd.title
+        format:
+        = @dvd.dvd_format.name rescue "none"
+        %br
+        = @dvd.description
+  %br
+  %br

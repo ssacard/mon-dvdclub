@@ -1,4 +1,4 @@
-class DvdsController < ApplicationController
+class DvdsController < AuthenticatedController
 
   # TODO
   # Use make_resourceful and move these functions in hookup calls
@@ -27,7 +27,14 @@ class DvdsController < ApplicationController
     end
   end
 
+  def show
+    @dvd_category = DvdCategory.find(params[:dvd_category_id])
+    @dvd = Dvd.find(params[:id])  
+  end
+  
   def index
     @dvds = self.current_user.dvds_by_category(DvdCategory.find(params[:dvd_category_id])) rescue []
   end
+  
+  
 end

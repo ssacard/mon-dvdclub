@@ -1,0 +1,23 @@
+%table
+  %tr
+    %td
+      = image_tag dvd[:image] unless dvd[:image].nil?
+    %td
+      %b
+        Propriétaire
+      DVD Club (
+      = dvd.dvd_club.name
+      )
+      %br
+      = dvd.subscription_status
+      - if dvd.is_available?
+        = link_to "<input type=\"button\" value=\"Réserver maintenant!\" />", "#"
+      - else
+        = link_to "<input type=\"button\" value=\"S'inscrire sur la liste!\" />", "#"
+      %br
+      %b
+        = dvd.title
+      format:
+      = dvd.format.name
+      %br
+      = dvd.description

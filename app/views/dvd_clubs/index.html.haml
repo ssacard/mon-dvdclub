@@ -1,0 +1,6 @@
+%h2
+  Mes Clubs
+%br
+- self.current_user.dvd_clubs.each do |dvd_club|
+  = link_to dvd_club.name, dvd_club_path(dvd_club)
+  %br

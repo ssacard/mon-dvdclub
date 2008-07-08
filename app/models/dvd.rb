@@ -4,7 +4,7 @@ class Dvd < ActiveRecord::Base
 	has_and_belongs_to_many :actors, :join_table => 'dvds_actors'
 	validates_presence_of :title
   belongs_to :dvd_club
-  belongs_to :format
+  belongs_to :dvd_format
   belongs_to :dvd_category
   belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
   has_many :waiting_lists

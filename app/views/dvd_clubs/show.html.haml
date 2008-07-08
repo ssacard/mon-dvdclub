@@ -1,0 +1,12 @@
+%h2
+  = current_object.name
+%br
+%h3
+  tous les membres
+%br
+- current_object.users.each do |user|
+  = user.login
+  %br
+  = link_to 'blacklister', '#'
+  %br
+  = link_to 'contacter', '#'
