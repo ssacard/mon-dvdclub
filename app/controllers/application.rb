@@ -2,7 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  #before_filter :authenticate
+  before_filter :authenticate 
   include AuthenticatedSystem
   helper :all # include all helpers, all the time
 

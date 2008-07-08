@@ -8,8 +8,7 @@ development:
   adapter: mysql
   database: dvdclub
   username: root
-  password: password
-  socket: /var/run/mysqld/mysqld.sock
+  password: 
 # Warning: The database defined as 'test' will be erased and
 # re-generated from your development database when you run 'rake'.
 # Do not set this db to the same as development or production.
@@ -21,8 +20,8 @@ test:
   adapter: mysql
   database: dvdclub_test
   username: root
-  password: password
-  socket: /var/run/mysqld/mysqld.sock
+  password: 
+    
 production:
   adapter: sqlite3
   database: db/production.sqlite3

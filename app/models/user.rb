@@ -1,7 +1,7 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
-  attr_accessor :password
+  attr_accessor :password, :terms
   
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?
@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   validates_confirmation_of :email
+  validates_acceptance_of   :terms
+  
   before_save :encrypt_password
   has_many :user_dvd_clubs
   has_many :dvd_clubs, :through => :user_dvd_clubs
@@ -22,7 +24,8 @@ class User < ActiveRecord::Base
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :password, :password_confirmation, :email_confirmation
+  attr_accessible :login, :email, :password, :password_confirmation, :email_confirmation, :terms
+
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
