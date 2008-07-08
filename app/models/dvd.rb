@@ -11,7 +11,11 @@ class Dvd < ActiveRecord::Base
   has_many :users, :through => :waiting_lists
 
   def self.create_record(attrs)
-    dvd = Dvd.create!(:asin => attrs['asin'], :details_url => attrs['url'], :title => attrs['title'])
+    dvd = Dvd.create!(:asin => attrs['asin'], 
+    :details_url => attrs['url'], 
+    :title => attrs['title'],
+    :dvd_club_id => attrs[:dvd_club_id],
+    :owner_id => attrs[:owner_id])
     if attrs['manufacturer']
       manufacturer = Manufacturer.find_or_create_by_name(attrs['manufacturer']) 
       dvd.manufacturers << manufacturer
@@ -25,8 +29,8 @@ class Dvd < ActiveRecord::Base
       a = Actor.find_or_create_by_name(actor)
       dvd.actors << a
     end
-    rescue
-      false 
+    #rescue
+    #  false 
   end
 
    def is_available?

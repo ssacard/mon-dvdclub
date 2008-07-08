@@ -16,15 +16,21 @@
   - @res.each_with_index do |i, index|
     %tr
       %td
-        - form_remote_for(:dvd, :url => {:action => :create}, :html => {:id => index+1}) do |f|
+        - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :create}, :html => {:id => index+1}) do |f|
           = hidden_field_tag 'asin', i[:asin] 
           = hidden_field_tag 'url', i[:url]  
           = hidden_field_tag 'title', i[:title]  
           - i[:actor].each do |a|
             = hidden_field_tag 'actors[]', a
           = hidden_field_tag 'director', i[:director] 
-          = hidden_field_tag 'manufacturer', i[:manufacturer] 
-          = "<input type=\"checkbox\" onclick=\"document.forms[#{index+1}].onsubmit();\" />"
+          = hidden_field_tag 'manufacturer', i[:manufacturer]
+          = hidden_field_tag 'dvd_club_id', dvd_club_id 
+          %b
+            Dvd Category:
+          %br
+          = f.collection_select(:dvd_category_id, DvdCategory.find(:all), :id, :name, :prompt => true)
+          = "<input type=\"button\" onclick=\"document.forms[#{index+1}].onsubmit();\" value=\"c'est ça!\" />"
+          
       %td
         = i[:asin]
       %td

@@ -19,4 +19,8 @@ class DvdClubsController < AuthenticatedController
       redirect_to dvd_clubs_path
     end
   end
+  
+  def new_dvd
+    @dvd_club = DvdClub.find(params[:dvd_club_id])  
+  end
 end

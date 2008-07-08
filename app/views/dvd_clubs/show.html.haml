@@ -1,6 +1,13 @@
 %h2
   = current_object.name
 %br
+- current_object.dvds.each do |dvd|
+  = dvd.title
+  %br
+%h3
+  = link_to 'Add DVDs to this club', "/dvd_clubs/#{current_object.id}/new_dvd"
+%br
+
 %h3
   tous les membres
 %br

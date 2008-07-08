@@ -24,7 +24,7 @@ describe Dvd do
     end
     
     it "should belong to a format" do
-      Dvd.reflect_on_association(:format).should_not be_nil  
+      Dvd.reflect_on_association(:dvd_format).should_not be_nil  
     end
     
     it "should belong  to a dvd_club" do
