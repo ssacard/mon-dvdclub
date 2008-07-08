@@ -38,7 +38,7 @@ class DvdsController < AuthenticatedController
   
   private
   def is_valid
-    if params[:dvd_club_id].nil?
+    if params[:dvd_club_id].nil? && params[:dvd_category_id].nil?
       redirect_to '/sessions/new'
     end
   end
