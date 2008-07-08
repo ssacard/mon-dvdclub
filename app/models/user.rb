@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :password, :password_confirmation
+  attr_accessible :login, :email, :password, :password_confirmation, :email_confirmation
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
@@ -99,19 +99,16 @@ class User < ActiveRecord::Base
   # Using 2 sql queries approach to avoid the n+1 sql queries problem
   
   def dvds
-    dvd_club_ids = find_by_sql("select dvd.id from users user, user_dvd_clubs user_dvd_club, dvd_clubs dvd_club 
-                                where user.id=#{self.current_user.id} 
-                                AND user.id=user_dvd_club.user_id 
-                                AND user_dvd_club.dvd_club_id=dvd_club.id")  
-    Dvd.find_by_dvd_club_ids(dvd_club_ids.uniq!)
+    dvd_club_ids = dvd_clubs.collect{|c| c.id}
+    Dvd.find_all_by_dvd_club_id(dvd_club_ids)
   end
 
   # List all DvdCategories belonging to the subscribed DVD clubs
   # Using 2 sql queries approach to avoid the n+1 sql queries problem
   
   def dvd_categories
-    dvd_category_ids = find_by_sql("select dvd_club.id from users user, user_dvd_clubs user_dvd_club, dvd_clubs dvd_club, dvd_categories dvd_category  
-                                   where user.id=#{self.current_user.id} AND user.id=user_dvd_club.user_id 
+    dvd_category_ids = User.find_by_sql("select dvd_club.id from users user, user_dvd_clubs user_dvd_club, dvd_clubs dvd_club, dvd_categories dvd_category, dvds dvd   
+                                   where user.id=#{self.id} AND user.id=user_dvd_club.user_id 
                                    AND user_dvd_club.dvd_club_id=dvd_club.id 
                                    AND dvd.dvd_club_id=dvd_club.id 
                                    AND dvd.dvd_category_id=dvd_category.id")
@@ -122,13 +119,15 @@ class User < ActiveRecord::Base
   # Using 2 sql queries approach to avoid the n+1 sql queries problem
   
   def dvds_by_category(category)
-    dvd_club_ids = find_by_sql("select dvd_club.id from users user, user_dvd_clubs user_dvd_club, dvd_clubs dvd_club. dvds dvd
-                                where user.id=#{self.current_user.id} 
+    Dvd.find_by_sql("select dvd.* from users user, user_dvd_clubs user_dvd_club, dvd_clubs dvd_club, dvds dvd
+                                where user.id=2 
                                 AND user.id=user_dvd_club.user_id 
                                 AND user_dvd_club.dvd_club_id=dvd_club.id 
-                                AND dvd_club.id=dvd.id
-                                AND dvd_club.id=#{category.id}")  
-    Dvd.find(dvd_club_ids.uniq!)      
+                                AND dvd_club.id=dvd.dvd_club_id
+                                AND dvd.dvd_category_id=1")
+        
+    rescue
+    []
   end
   
   protected

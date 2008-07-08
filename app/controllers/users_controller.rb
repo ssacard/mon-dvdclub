@@ -20,13 +20,14 @@ class UsersController < ApplicationController
       if @user
         @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])
         @dvd_club.save!
-        UserDvdClub.create(:user_id => @user.id, :dvd_club_id => @dvd_club.id, :subscription_status => true)
+        @user_dvd_club = UserDvdClub.create(:user_id => @user.id, :dvd_club_id => @dvd_club.id, :subscription_status => true)
       end
     rescue
       @user.errors.each_full { |msg| notice += '<li>' + msg + '</li>' }
       @dvd_club.errors.each_full { |msg| notice += '<li>' + msg + '</li>' } if @dvd_club
       @user.destroy if @user
       @dvd_club.destroy if @dvd_club
+      @user_dvd_club.destroy if @user_dvd_club
       flash[:notice] = notice
       render :action => 'new'    
     else

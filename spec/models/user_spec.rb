@@ -47,7 +47,45 @@ describe User do
       @creating_user.should change(User, :count).by(1)
     end
   end
+  
+  describe 'the dvds method for a user' do
+    fixtures :users, :user_dvd_clubs, :dvd_clubs, :dvds, :dvd_categories
+    before do
+      @user = users(:quentin)
+      dvd_category_1 = dvd_categories(:dvd_categories_001)
+      dvd_category_2 = dvd_categories(:dvd_categories_002)
+      user_dvd_club_1 = user_dvd_clubs(:user_dvd_clubs_001)
+      user_dvd_club_2 = user_dvd_clubs(:user_dvd_clubs_002)
+      dvd_club_1 = dvd_clubs(:dvd_clubs_001)
+      dvd_club_2 = dvd_clubs(:dvd_clubs_002)
+      dvd_1 = dvds(:dvds_001)
+      dvd_2 = dvds(:dvds_002)
+      dvd_3 = dvds(:dvds_003)
+      dvd_4 = dvds(:dvds_004)
+      @dvds = [dvd_1, dvd_2, dvd_3, dvd_4]
+      @dvd_categories = [dvd_category_1, dvd_category_2]
+      @user_dvd_clubs = [user_dvd_club_1, user_dvd_club_2]
+      @dvd_clubs = [dvd_club_1, dvd_club_2]
+    end
+    
+    it "should return the dvds belonging to his clubs" do
+      @user.dvds.should == [@dvds[0], @dvds[1]]      
+    end
+    
+    it "should not return the dvds from the unsubscribed clubs" do
+      @user.dvds.should_not == @dvds   
+    end
 
+    it "should return the dvd_categories of dvds belonging to his clubs" do
+      @user.dvd_categories.should == [@dvd_categories[0]]  
+    end
+    
+    it "should not return the dvd_categories of dvds from the unsubscribed clubs" do
+      @user.dvd_categories.should_not == @dvd_categories  
+    end
+  end
+
+  
   it 'requires login' do
     lambda do
       u = create_user(:login => nil)
@@ -78,16 +116,16 @@ describe User do
 
   it 'resets password' do
     users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
-    User.authenticate('quentin', 'new password').should == users(:quentin)
+    User.authenticate('user', 'new password').should == users(:quentin)
   end
 
   it 'does not rehash password' do
     users(:quentin).update_attributes(:login => 'quentin2')
-    User.authenticate('quentin2', 'test').should == users(:quentin)
+    User.authenticate('quentin2', 'password').should == users(:quentin)
   end
 
   it 'authenticates user' do
-    User.authenticate('quentin', 'test').should == users(:quentin)
+    User.authenticate('user', 'password').should == users(:quentin)
   end
 
   it 'sets remember token' do
