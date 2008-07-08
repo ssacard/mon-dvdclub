@@ -1,25 +1,11 @@
-%h3
-  Listing DVDs
-%br/
-%table
-  %th
-    Title
-  %th
-    Actors
-  %th
-    Director
-  %th
-    Manufacturer
-  - @dvds.each do |d|
-    %tr
-      %td
-        = link_to(d.title, d.details_url) rescue d.title
-      %td
-        = d.actors.collect{|a| a.name}.join(', ')
-      %td
-        = d.directors.first.name rescue "none"
-      %td
-        = d.manufacturers.first.name rescue "none"
-%h3
-  =link_to 'New DVD', :action => :new
-  
+#rubrique
+  %h2
+    Rubriques
+  - self.current_user.dvd_categories.each do |dvd_category|
+    = link_to dvd_category.name, dvd_category_dvds_path(dvd_category)  
+#accueil
+  %h2
+    Accueil
+  - @dvds.each do |dvd|
+    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd}
+#clear

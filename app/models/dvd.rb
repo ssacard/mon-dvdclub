@@ -28,4 +28,9 @@ class Dvd < ActiveRecord::Base
     rescue
       false 
   end
+
+   def is_available?
+     # TODO: Use a DVD State model here 
+     subscription_status == 'available' ? false : true
+   end
 end

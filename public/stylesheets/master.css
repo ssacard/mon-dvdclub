@@ -350,3 +350,16 @@ textarea{
 	border: 1px dotted #999999;
 	padding-left: 20px;
 }
+
+#rubrique{
+	width: 200px;
+	float: left;	
+}
+
+#accueil{
+	width: 600px;
+	float:left;
+}
+#clear{
+	clear :left;
+}

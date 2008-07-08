@@ -28,6 +28,6 @@ class DvdsController < ApplicationController
   end
 
   def index
-    @dvds = Dvd.find(:all)
+    @dvds = self.current_user.dvds_by_category(DvdCategory.find(params[:dvd_category_id])) rescue []
   end
 end

@@ -123,11 +123,11 @@ class User < ActiveRecord::Base
   
   def dvds_by_category(category)
     Dvd.find_by_sql("select dvd.* from users user, user_dvd_clubs user_dvd_club, dvd_clubs dvd_club, dvds dvd
-                                where user.id=2 
+                                where user.id=#{self.id} 
                                 AND user.id=user_dvd_club.user_id 
                                 AND user_dvd_club.dvd_club_id=dvd_club.id 
                                 AND dvd_club.id=dvd.dvd_club_id
-                                AND dvd.dvd_category_id=1")
+                                AND dvd.dvd_category_id=#{category.id}")
         
     rescue
     []
