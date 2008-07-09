@@ -15,6 +15,17 @@ class DvdsController < AuthenticatedController
     
   end
 
+  def register
+    dvd = Dvd.find(params[:id])
+    dvd.update_attributes!(:booked_by => params[:booked_by])
+    dvd.register!
+  end
+  
+  def unregister
+    dvd = Dvd.find(params[:id])
+    dvd.unregister!
+  end
+  
   def create
     if Dvd.create_record(params.merge!(:owner_id => self.current_user.id))
       flash[:notice] = 'DVD Created Successfully'

@@ -19,8 +19,8 @@
         = dvd.dvd_club.name
         )
         %br
-        = dvd.subscription_status
-        - if dvd.is_available?
+        = dvd.state
+        - if dvd.state=='available'
           = link_to "<input type=\"button\" value=\"Réserver maintenant!\" />", "#"
         - else
           = link_to "<input type=\"button\" value=\"S'inscrire sur la liste!\" />", "#"

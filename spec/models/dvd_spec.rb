@@ -46,4 +46,51 @@ describe Dvd do
     end
   end
   
+  describe "while treated as a state model" do
+    
+    before(:each) do
+      @dvd = create_dvd
+    end
+    
+    it "should be available by default" do
+      @dvd.state.should == 'available'  
+    end
+    
+    it "should move to approval state when requested" do
+      @dvd.request!
+      @dvd.state.should == 'approval'
+    end
+    
+    it "should move to booked state when registered from approval state" do
+      @dvd.request!
+      @dvd.register!
+      @dvd.state.should == 'booked'
+    end
+    
+    it "should move to available state when the request is canceled" do
+      @dvd.request!
+      @dvd.cancel_request!
+      @dvd.state.should == 'available'
+    end
+    
+    it "should move to available state when unregistered from booked state" do
+      @dvd.request!
+      @dvd.register!
+      @dvd.unregister!
+      @dvd.state.should == 'available'
+    end
+  end
+ 
+  private
+  
+  def valid_attributes
+    {
+      :title => 'test dvd'
+    }
+  end
+  def create_dvd(options={})
+    returning Dvd.new(valid_attributes.merge(options)) do |record|
+      record.save
+    end    
+  end
 end

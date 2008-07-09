@@ -10,7 +10,7 @@ dvds_001:
   description: test dvd 1
   owner_id: "2"
   format_id: "1"
-  subscription_status: 
+  state: available
   created_at: 2008-07-07 08:10:20
 dvds_002: 
   details_url: 
@@ -23,7 +23,7 @@ dvds_002:
   description: test dvd 2
   owner_id: "2"
   format_id: "1"
-  subscription_status: 
+  state: available
   created_at: 2008-07-07 08:11:12
 dvds_003: 
   details_url: 
@@ -36,7 +36,7 @@ dvds_003:
   description: test dvd 3
   owner_id: "1"
   format_id: "1"
-  subscription_status: 
+  state: available
   created_at: 2008-07-07 08:15:25
 dvds_004: 
   details_url: 
@@ -49,5 +49,5 @@ dvds_004:
   description: test dvd 4
   owner_id: "1"
   format_id: "1"
-  subscription_status: 
+  state: available
   created_at: 2008-07-07 08:15:53

@@ -9,7 +9,27 @@ class Dvd < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
   has_many :waiting_lists
   has_many :users, :through => :waiting_lists
-
+  acts_as_state_machine :initial => :available
+  
+  state :available
+  state :approval
+  state :booked
+  
+  event :request do
+    transitions :from => :available, :to => :approval
+  end
+  event :register do
+    transitions :from => :approval, :to => :booked  
+  end
+  
+  event :cancel_request do
+    transitions :from => :approval, :to => :available
+  end
+  
+  event :unregister do
+    transitions :from => :booked, :to => :available
+  end
+  
   def self.create_record(attrs)
     dvd = Dvd.create!(:asin => attrs['asin'], 
     :details_url => attrs['url'], 
@@ -29,12 +49,8 @@ class Dvd < ActiveRecord::Base
       a = Actor.find_or_create_by_name(actor)
       dvd.actors << a
     end
-    #rescue
-    #  false 
+    rescue
+      false 
   end
 
-   def is_available?
-     # TODO: Use a DVD State model here 
-     subscription_status == 'available' ? false : true
-   end
 end
