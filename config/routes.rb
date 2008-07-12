@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   
   map.connect '/dvd_clubs/:dvd_club_id/new_dvd', :controller => 'dvd_clubs', :action => 'new_dvd'
-  
+  map.connect '/dvd_clubs/:id/invite', :controller => 'dvd_clubs', :action => 'invite'
   map.resources :dvd_categories do |dvd_category|
     dvd_category.resources :dvds
   end

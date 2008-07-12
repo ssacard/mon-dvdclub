@@ -1,0 +1,16 @@
+= render :partial => '/shared/menu', :locals => {:object => 'Mes DVD', :parent => 'Moi'} if logged_in?
+.site
+  %h2
+    My DVDs requested by others
+  - self.current_user.dvds.select{|d| d.state=='approval'}.each do |dvd|
+    = render :partial => 'dvds/partials/dvd_approval', :locals => {:dvd => dvd}
+  %h2
+    Les DVDs que j'ai prêtés    
+  - self.current_user.booked_dvds.each do |dvd|
+    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd}
+  %h2
+    Mes DVDs (Owned by me)
+  - @dvds.each do |dvd|
+    = render :partial => 'dvds/partials/mes_dvd', :locals => {:dvd => dvd}
+    %br
+#clear

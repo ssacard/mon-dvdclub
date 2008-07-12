@@ -1,16 +1,18 @@
-#rubrique
-  %h2
-    Rubriques
-  - self.current_user.dvd_categories.each do |dvd_category|
-    = link_to dvd_category.name, dvd_category_dvds_path(dvd_category)  
-#accueil
-  %h2
-    Accueil
-  - @dvds.each do |dvd|
-    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd}
+= render :partial => '/shared/menu', :locals => {:parent => false, :object => false} if logged_in?
+.site 
+  #rubrique
+    %h2
+      Rubriques
+    - self.current_user.dvd_categories.each do |dvd_category|
+      = link_to dvd_category.name, dvd_category_dvds_path(dvd_category)  
+  #accueil
+    %h2
+      Accueil
+    - @dvds.each do |dvd|
+      = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd}
+    %br
+    %br
+    = link_to 'Voir tous les ajouts', '#'
+  #clear
   %br
-  %br
-  = link_to 'Voir tous les ajouts', '#'
-#clear
-%br
 

@@ -49,6 +49,7 @@ class Dvd < ActiveRecord::Base
       a = Actor.find_or_create_by_name(actor)
       dvd.actors << a
     end
+    dvd
     rescue
       false 
   end

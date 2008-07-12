@@ -23,4 +23,26 @@ class DvdClubsController < AuthenticatedController
   def new_dvd
     @dvd_club = DvdClub.find(params[:dvd_club_id])  
   end
+  
+  def invite
+    @dvd_club = DvdClub.find(params[:id])
+    if params[:state] == 'done'
+      render :action => 'invited'  
+    else
+      render :action => 'invite'
+    end
+  end
+
+  def send_mails
+    @dvd_club = DvdClub.find(params[:dvd_club_id])
+    status = UserMailer.deliver_club_invitation(@dvd_club, params[:mail])       
+    if status 
+      #redirect_to "#{params[:return_url]}/invite?state=done"
+    
+      #redirect_to "#{params[:return_url]}/invite"
+      
+    end
+    @recipients = params[:mail][:recipients].split(',')
+    render :action => 'invited'
+  end
 end

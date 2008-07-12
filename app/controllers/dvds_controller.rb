@@ -35,15 +35,21 @@ class DvdsController < AuthenticatedController
   end
   
   def create
-    if Dvd.create_record(params.merge!(:owner_id => self.current_user.id))
+    dvd = Dvd.create_record(params.merge!(:owner_id => self.current_user.id))
+    if dvd
       flash[:notice] = 'DVD Created Successfully'
     else
       flash[:notice] = 'Invalid Information'
     end
 
     render :update do |page|
-      page.redirect_to dvd_club_path(params[:dvd_club_id])
+      #page.redirect_to dvd_club_path(params[:dvd_club_id])
+      page.redirect_to "/dvds/created/#{dvd.id}"
     end
+  end
+  
+  def created
+    @dvd =  Dvd.find(params[:id])
   end
 
   def show

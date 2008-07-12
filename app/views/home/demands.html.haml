@@ -1,0 +1,7 @@
+= render :partial => '/shared/menu', :locals => {:object => 'Mes demandes', :parent => 'Moi'} if logged_in?
+.site
+  %h3
+    My DVDs (requested by others for approval)
+  - @dvds.each do |dvd|
+    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd}
+    %br

@@ -2,6 +2,10 @@ class UserDvdClubsController < ApplicationController
   
   make_resourceful do
     actions :create, :destroy
+    
+    response_for :destroy do
+      redirect_to dvd_clubs_path
+    end
   end
   
   def parent_object

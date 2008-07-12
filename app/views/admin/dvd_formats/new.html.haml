@@ -1,4 +1,6 @@
-%h4
-  Add a DVD Format
-%br
-= render(:partial => 'admin/dvd_formats/partials/form')
+= render :partial => '/shared/menu' if logged_in?
+.site
+  %h4
+    Add a DVD Format
+  %br
+  = render(:partial => 'admin/dvd_formats/partials/form')

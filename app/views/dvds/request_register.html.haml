@@ -1,21 +1,23 @@
-%h3
-  Vous allez réserver 
-  = @dvd.title 
-  à 
-  = @dvd.owner.login
-%br
-%br
-- form_for :dvd, :url => {:action => :register} do |form|
-  = hidden_field_tag 'dvd_id', @dvd.id
-  = form.submit 'confirmer'
-%br
-= link_to '(annuler)', "#"
-%br
-%br
-%h3
-  Que va-t-il se passer ensuite ?
-%br
-%br
-1) "Prêteur" va recevoir un mail l'informant de votre demande.
-%br
-2) Vous recevez en retour un mail vous informant de sa décision.
+= render :partial => '/shared/menu' if logged_in?
+.site
+  %h3
+    Vous allez réserver 
+    = @dvd.title 
+    à 
+    = @dvd.owner.login
+  %br
+  %br
+  - form_for :dvd, :url => {:action => :register} do |form|
+    = hidden_field_tag 'dvd_id', @dvd.id
+    = form.submit 'confirmer'
+  %br
+  = link_to '(annuler)', "#"
+  %br
+  %br
+  %h3
+    Que va-t-il se passer ensuite ?
+  %br
+  %br
+  1) "Prêteur" va recevoir un mail l'informant de votre demande.
+  %br
+  2) Vous recevez en retour un mail vous informant de sa décision.

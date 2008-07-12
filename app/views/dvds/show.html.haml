@@ -1,36 +1,38 @@
-#dvd
-  %h2
-    Accueil > 
-    - if @dvd_category
-      = @dvd_category.name
-      > 
-    = @dvd.title 
-  %table
-    %tr
-      %td
-        = image_tag @dvd[:image] unless @dvd[:image].nil?
-      %td
-        %b
-          Propriétaire
-        %br
-        DVD Club (
-        = @dvd.dvd_club.name
-        )
-        %br
-        Status: 
-        = @dvd.state
-        - if @dvd.state=='available'
-          - form_for :dvd, :url => {:action => :request_register} do |form|
-            = hidden_field_tag 'dvd_id', @dvd.id
-            = form.submit "Réserver maintenant!"
-        - else
-          = link_to "<input type=\"button\" value=\"S'inscrire sur la liste!\" DISABLED />", "#"
-        %br
-        %b
-          = @dvd.title
-        format:
-        = @dvd.dvd_format.name rescue "none"
-        %br
-        = @dvd.description
-  %br
-  %br
+= render :partial => '/shared/menu' if logged_in?
+.site
+  #dvd
+    %h2
+      Accueil > 
+      - if @dvd_category
+        = @dvd_category.name
+        > 
+      = @dvd.title 
+    %table
+      %tr
+        %td
+          = image_tag @dvd[:image] unless @dvd[:image].nil?
+        %td
+          %b
+            Propriétaire
+          %br
+          DVD Club (
+          = @dvd.dvd_club.name
+          )
+          %br
+          Status: 
+          = @dvd.state
+          - if @dvd.state=='available'
+            - form_for :dvd, :url => {:action => :request_register} do |form|
+              = hidden_field_tag 'dvd_id', @dvd.id
+              = form.submit "Réserver maintenant!"
+          - else
+            = link_to "<input type=\"button\" value=\"S'inscrire sur la liste!\" DISABLED />", "#"
+          %br
+          %b
+            = @dvd.title
+          format:
+          = @dvd.dvd_format.name rescue "none"
+          %br
+          = @dvd.description
+    %br
+    %br

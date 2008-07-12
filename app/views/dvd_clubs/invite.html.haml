@@ -1,0 +1,39 @@
+= render :partial => '/shared/menu', :locals => {:object => 'Mes Clubs', :parent => 'Moi'} if logged_in?
+.site
+  %h3
+    Inviter des amis au club
+  %br
+  %br
+  - form_for :mail, :url => {:controller => 'dvd_clubs', :action => 'send_mails'} do |form|
+    %p
+      %label
+        au club:
+        %br
+        %b
+          = @dvd_club.name
+    %p
+      %label
+        de la part de:
+        %br
+        %b
+          = self.current_user.login
+    %p
+      %label
+        à:
+        %br
+        = form.text_field :recipients
+    %p
+      %label
+        message:
+        %br
+        = form.text_area :message
+    = hidden_field_tag 'return_url', dvd_club_path(@dvd_club)
+    = hidden_field_tag 'dvd_club_id', @dvd_club.id
+    %p
+      = form.submit :inviter
+  %br
+  %h3
+    Que va-t-il se passer ensuite ?
+  Vos amis vont recevoir un mail de votre part, les invitant à
+  rejoindre votre club. Ils pourront à leur tour rajouter leurs DVDs,
+  et les partager avec l'ensemble du club.

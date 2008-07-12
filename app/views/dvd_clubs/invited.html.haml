@@ -1,0 +1,14 @@
+= render :partial => '/shared/menu', :locals => {:parent => 'Mon Club', :object => 'Mes Clubs'} if logged_in?
+.site
+  %h3
+    Vous avez invité des amis à rejoindre votre club 
+  Les personnes suivantes vont recevoir un mail les invitant à rejoindre votre club:
+  %br
+  - @recipients.each do |r|    
+    = r
+    %br
+  %br
+  Une fois leur compte créé, leurs DVDs seront automatiquement disponibles dans votre DVD Club commun.
+  %br
+  Vous allez être redirigé vers la page d'ou vous avez faite votre demande dans les prochaines secondes, ou 
+  = link_to 'en cliquant ici.', dvd_club_path(@dvd_club)

@@ -13,4 +13,15 @@ class UserMailer < ActionMailer::Base
     subject "Password Change Confirmation:"
     body :body => {:secret => user.password_secret}       
   end
+  
+  def club_invitation(dvd_club, mail)
+    p dvd_club
+    p mail
+    mail_recipients = mail['recipients'].split(',')
+    recipients mail_recipients
+    from "noreply@mondvdclub.fr"
+    subject "DVD Club invitation"
+    body :body => {:sender => mail[:sender], :dvd_club => dvd_club.name}
+  end
+  
 end

@@ -1,18 +1,47 @@
 #menu.basic
   .site 
     %ul.menu
-      %li.active 
-        Mon Club
-      %li 
-        =link_to 'Moi', "/home/me"
-.site 
-  %ul.submenu
-    %li.active 
-      Mes Clubs
-    %li 
-      Mes DVD
-    %li 
-      Mes demandes
-    %li 
-      Mon compte
+      - if parent == 'Mon Club'
+        %li.active 
+          = link_to 'Mon Club', "/home"
+      - else
+        %li
+          = link_to 'Mon Club', "/home"
+          
+      - if parent == 'Moi'
+        %li.active 
+          = link_to 'Moi', "/dvd_clubs"
+      - else
+        %li
+          = link_to 'Moi', "/dvd_clubs"        
+
+.site
+  - if parent == 'Moi' 
+    %ul.submenu
+      - if object == 'Mes Clubs'
+        %li.active
+          = link_to 'Mes Clubs', "/dvd_clubs"
+      - else
+        %li
+          = link_to 'Mes Clubs', "/dvd_clubs"
+        
+      - if object == 'Mes DVD'
+        %li.active
+          = link_to 'Mes DVD', "/home/dvds"
+      - else
+        %li 
+          = link_to 'Mes DVD', "/home/dvds"
+         
+      - if object == 'Mes demandes'
+        %li.active
+          = link_to 'Mes demandes', "/home/demands"
+      - else
+        %li 
+          = link_to 'Mes demandes', "/home/demands"
+        
+      - if object == 'Mon compte'
+        %li.active
+      - else
+        %li 
+          Mon compte
       

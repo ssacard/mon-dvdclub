@@ -1,20 +1,22 @@
-%h2
-  = current_object.name
-%br
-- current_object.dvds.each do |dvd|
-  = link_to dvd.title, "/dvds/show/#{dvd.id}"
+= render :partial => '/shared/menu', :locals => {:object => 'Mes Clubs'} if logged_in?
+.site
+  %h2
+    = current_object.name
   %br
+  - current_object.dvds.each do |dvd|
+    = link_to dvd.title, "/dvds/show/#{dvd.id}"
+    %br
+    %br
+  %h3
+    = link_to 'Add DVDs to this club', "/dvd_clubs/#{current_object.id}/new_dvd"
   %br
-%h3
-  = link_to 'Add DVDs to this club', "/dvd_clubs/#{current_object.id}/new_dvd"
-%br
 
-%h3
-  tous les membres
-%br
-- current_object.users.each do |user|
-  = user.login
+  %h3
+    tous les membres
   %br
-  = link_to 'blacklister', '#'
-  %br
-  = link_to 'contacter', '#'
+  - current_object.users.each do |user|
+    = user.login
+    %br
+    = link_to 'blacklister', '#'
+    %br
+    = link_to 'contacter', '#'
