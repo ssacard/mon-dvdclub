@@ -1,0 +1,53 @@
+--- 
+dvds_001: 
+  details_url: 
+  dvd_club_id: "1"
+  title: DVD 1
+  logo: 
+  dvd_category_id: "1"
+  asin: 
+  id: "1"
+  description: test dvd 1
+  owner_id: "2"
+  format_id: "1"
+  state: available
+  created_at: 2008-07-07 08:10:20
+dvds_002: 
+  details_url: 
+  dvd_club_id: "1"
+  title: DVD 2
+  logo: 
+  dvd_category_id: "2"
+  asin: 
+  id: "2"
+  description: test dvd 2
+  owner_id: "2"
+  format_id: "1"
+  state: available
+  created_at: 2008-07-07 08:11:12
+dvds_003: 
+  details_url: 
+  dvd_club_id: "2"
+  title: DVD 3
+  logo: 
+  dvd_category_id: "1"
+  asin: 
+  id: "3"
+  description: test dvd 3
+  owner_id: "1"
+  format_id: "1"
+  state: available
+  created_at: 2008-07-07 08:15:25
+dvds_004: 
+  details_url: 
+  dvd_club_id: "2"
+  title: DVD 4
+  logo: 
+  dvd_category_id: "1"
+  asin: 
+  id: "4"
+  description: test dvd 4
+  owner_id: "1"
+  format_id: "1"
+  state: available
+  created_at: 2008-07-07 08:15:53

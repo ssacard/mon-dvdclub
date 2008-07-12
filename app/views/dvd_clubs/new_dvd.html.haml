@@ -28,6 +28,11 @@
         = text_field_tag :title
       %p
         %label
+          Dvd Category
+        %br
+        = f.collection_select :dvd_category_id, DvdCategory.find(:all), :id, :name
+      %p
+        %label
           Manufacturer
         %br/
         = text_field_tag :manufacturer

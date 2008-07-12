@@ -35,7 +35,8 @@ class Dvd < ActiveRecord::Base
     :details_url => attrs['url'], 
     :title => attrs['title'],
     :dvd_club_id => attrs[:dvd_club_id],
-    :owner_id => attrs[:owner_id])
+    :owner_id => attrs[:owner_id],
+    :dvd_category_id => attrs[:dvd][:dvd_category_id])
     if attrs['manufacturer']
       manufacturer = Manufacturer.find_or_create_by_name(attrs['manufacturer']) 
       dvd.manufacturers << manufacturer

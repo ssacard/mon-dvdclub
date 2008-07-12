@@ -114,8 +114,8 @@ class User < ActiveRecord::Base
                                    where user.id=#{self.id} AND user.id=user_dvd_club.user_id 
                                    AND user_dvd_club.dvd_club_id=dvd_club.id 
                                    AND dvd.dvd_club_id=dvd_club.id 
-                                   AND dvd.dvd_category_id=dvd_category.id")
-    DvdCategory.find(dvd_category_ids.uniq!)    
+                                   AND dvd.dvd_category_id=dvd_category.id").collect{|c| c.id}                             
+    DvdCategory.find(dvd_category_ids) rescue []   
   end
 
   # List all DvdCategories belonging to the subscribed DVD clubs

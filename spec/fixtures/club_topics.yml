@@ -1,7 +1,13 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+--- 
+club_topics_001: 
+  name: Club de voisins
+  id: "1"
+club_topics_002: 
+  name: Club du bureau
+  id: "2"
+club_topics_003: 
+  name: Club distant
+  id: "3"
+club_topics_004: 
+  name: Autre
+  id: "4"

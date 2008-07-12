@@ -1,7 +1,58 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+--- 
+dvd_categories_014: 
+  name: Science-fiction
+  id: "14"
+dvd_categories_003: 
+  name: "Dessin Anim\xC3\xA9"
+  id: "3"
+dvd_categories_015: 
+  name: "S\xC3\xA9rie TV"
+  id: "15"
+dvd_categories_004: 
+  name: Emotion
+  id: "4"
+dvd_categories_016: 
+  name: Sport
+  id: "16"
+dvd_categories_005: 
+  name: Famille & Enfant
+  id: "5"
+dvd_categories_017: 
+  name: "Th\xC3\xA9\xC3\xA2tre & Spectacle"
+  id: "17"
+dvd_categories_006: 
+  name: Fantastique
+  id: "6"
+dvd_categories_018: 
+  name: Thriller
+  id: "18"
+dvd_categories_007: 
+  name: Frisson
+  id: "7"
+dvd_categories_019: 
+  name: Western
+  id: "19"
+dvd_categories_008: 
+  name: Grand Classique
+  id: "8"
+dvd_categories_010: 
+  name: Historique & Epoque
+  id: "10"
+dvd_categories_009: 
+  name: Guerre
+  id: "9"
+dvd_categories_011: 
+  name: Hors Film & Documentaire
+  id: "11"
+dvd_categories_012: 
+  name: Manga
+  id: "12"
+dvd_categories_001: 
+  name: Action
+  id: "1"
+dvd_categories_013: 
+  name: Romance
+  id: "13"
+dvd_categories_002: 
+  name: "Com\xC3\xA9die"
+  id: "2"

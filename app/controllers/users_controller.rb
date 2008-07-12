@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     # reset_session
     notice = ""
     begin
-      @user = User.new(params[:user])
+      @user = User.new(params[:user])      
       @user.save!
       if @user
         @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])

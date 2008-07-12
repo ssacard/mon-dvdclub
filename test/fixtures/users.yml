@@ -1,8 +1,8 @@
 --- 
-admin: 
-  salt: 1be713b745e5e21c2c89fff17078205f44283275
-  updated_at: 2008-07-07 07:57:39
-  crypted_password: d199163a3722c094d26368167feabe8e7a169725
+users_001: 
+  salt: 1809251e340fdf3f395627fe9142955766003e3d
+  updated_at: 2008-07-12 12:38:53
+  crypted_password: b543dca78668fe5e8c881d3f383f44d2fb630e4e
   deleted_at: 
   accept_offers: 
   remember_token_expires_at: 
@@ -10,18 +10,18 @@ admin:
   remember_token: 
   password_secret: 
   login: admin@dvdclub.com
-  created_at: 2008-07-07 07:57:39
+  created_at: 2008-07-12 12:38:53
   email: admin@dvdclub.com
-quentin: 
-  salt: 9f9923b2b1a6ac3ae5c0d7889aab114cc351c743
-  updated_at: 2008-07-07 08:02:26
-  crypted_password: 5d9e7fa2fe52dbdb7167e9c12d518513ad7c07ad
+users_002: 
+  salt: ba6a7e9869bfce4f2d4069622283978ca81891b3
+  updated_at: 2008-07-12 12:40:18
+  crypted_password: 5f9f9960fd836c098e8953cbcfa8bd7afe6c293d
   deleted_at: 
   accept_offers: 
   remember_token_expires_at: 
   id: "2"
   remember_token: 
   password_secret: 
-  login: user
-  created_at: 2008-07-07 08:02:26
-  email: user@dvdclub.com
+  login: demo_user
+  created_at: 2008-07-12 12:40:18
+  email: demo_user@mondvdclub.com
