@@ -15,10 +15,18 @@ class DvdsController < AuthenticatedController
     
   end
 
+  def request_register
+    @dvd = Dvd.find(params[:dvd_id])
+  end
+  
+  def request_unregister
+    
+  end
+  
   def register
-    dvd = Dvd.find(params[:id])
-    dvd.update_attributes!(:booked_by => params[:booked_by])
-    dvd.register!
+    @dvd = Dvd.find(params[:dvd_id])
+    @dvd.update_attributes!(:booked_by => self.current_user.id)
+    @dvd.request!
   end
   
   def unregister
@@ -39,12 +47,16 @@ class DvdsController < AuthenticatedController
   end
 
   def show
-    @dvd_category = DvdCategory.find(params[:dvd_category_id])
+    @dvd_category = DvdCategory.find(params[:dvd_category_id]) rescue nil
     @dvd = Dvd.find(params[:id])  
   end
   
   def index
     @dvds = self.current_user.dvds_by_category(DvdCategory.find(params[:dvd_category_id])) rescue []
+  end
+  
+  def details
+    @dvd = Dvd.find(params[:id])  
   end
   
   private

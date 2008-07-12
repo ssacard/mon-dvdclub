@@ -1,8 +1,9 @@
 #dvd
   %h2
     Accueil > 
-    = @dvd_category.name
-    > 
+    - if @dvd_category
+      = @dvd_category.name
+      > 
     = @dvd.title 
   %table
     %tr
@@ -16,11 +17,14 @@
         = @dvd.dvd_club.name
         )
         %br
-        = @dvd.subscription_status
-        - if @dvd.is_available?
-          = link_to "<input type=\"button\" value=\"Réserver maintenant!\" />", "#"
+        Status: 
+        = @dvd.state
+        - if @dvd.state=='available'
+          - form_for :dvd, :url => {:action => :request_register} do |form|
+            = hidden_field_tag 'dvd_id', @dvd.id
+            = form.submit "Réserver maintenant!"
         - else
-          = link_to "<input type=\"button\" value=\"S'inscrire sur la liste!\" />", "#"
+          = link_to "<input type=\"button\" value=\"S'inscrire sur la liste!\" DISABLED />", "#"
         %br
         %b
           = @dvd.title

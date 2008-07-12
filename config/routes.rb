@@ -23,9 +23,7 @@ ActionController::Routing::Routes.draw do |map|
     club_topic.resources :dvd_clubs
   end
   
-  map.resources :dvd_clubs do |dvd_club|
-    dvd_club.resources :dvds
-  end
+  map.resources :dvd_clubs
   
   map.resources :user_dvd_clubs
   map.resources :waiting_lists
