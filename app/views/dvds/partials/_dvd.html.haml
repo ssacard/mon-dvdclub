@@ -29,9 +29,9 @@
               disponible
               = link_to_remote "<input type=\"button\" value=\"rendre indisponible\">", :url => {:controller => :dvds, :action => :book, :id => dvd.id}, :method => :post
         -elsif type=='approval'
-          = link_to_remote "<input type=\"button\" value=\"prêter\"/>", :url => {:controller => :dvds, :action => :approve, :id => dvd.id}, :method => :post
+          = link_to "<input type=\"button\" value=\"prêter\"/>", :controller => :dvds, :action => :approve_confirm, :id => dvd.id
           %br             
-          = link_to_remote "<input type=\"button\" value=\"refuser\">", :url => {:controller => :dvds, :action => :refuse, :id => dvd.id}, :method => :post
+          = link_to "<input type=\"button\" value=\"refuser\">", :controller => :dvds, :action => :refuse_confirm, :id => dvd.id
         -elsif type=='borrowed'
           %br
         -else

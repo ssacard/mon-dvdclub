@@ -8,6 +8,7 @@ class Dvd < ActiveRecord::Base
   belongs_to :dvd_category
   belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
   has_many :waiting_lists
+  belongs_to :booked_by_user, :class_name => 'User', :foreign_key => 'booked_by'
   has_many :users, :through => :waiting_lists
   acts_as_state_machine :initial => :available
   

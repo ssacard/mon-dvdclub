@@ -93,24 +93,38 @@ class DvdsController < AuthenticatedController
   
   # Approve/Refuse Story
   
-  def approve
-    Dvd.find(params[:id]).register!
-    redirect_to_home
-  end
-  
-  def approve_request
+  def approve_confirm
     @dvd = Dvd.find(params[:id])
   end
   
-  def refuse_request
+  def approve
+    @dvd = Dvd.find(params[:id])
+    @dvd.register!
+    render :update do |page|
+      page.redirect_to "/dvds/approved/#{@dvd.id}"
+    end
+  end
+  
+  def approved
+    @dvd = Dvd.find(params[:id])  
+  end
+  
+  def refuse_confirm
     @dvd = Dvd.find(params[:id])   
   end
   
   def refuse
-    Dvd.find(params[:id]).cancel_request!
-    redirect_to_home
+    @dvd = Dvd.find(params[:id])
+    @dvd.cancel_request!
+    render :update do |page|
+      page.redirect_to "/dvds/refused/#{@dvd.id}"
+    end
   end
 
+  def refused
+    @dvd = Dvd.find(params[:id])  
+  end
+  
   # ajax redirection
   
   def redirect_to_home

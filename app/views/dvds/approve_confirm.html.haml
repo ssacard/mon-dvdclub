@@ -1,0 +1,21 @@
+= render :partial => '/shared/menu', :locals => {:object => 'Mes DVD', :parent => 'Moi'} if logged_in?
+.site
+  %h3
+    Vous avez accepté de prêter un DVD:
+  %br
+  %br
+  %h4
+    Demanding User:
+    = @dvd.booked_by_user.login
+  %br
+  %h4
+    DVD Club:
+    = @dvd.dvd_club.name
+  %h4
+    DVD Title:
+    = @dvd.title
+  %br
+  %br
+  = link_to_remote "<input type=\"button\" value=\"confirmer le prêt\"/>", :url => {:controller => :dvds, :action => :approve, :id => @dvd.id}, :method => :post
+  %br
+  = link_to_remote "<input type=\"button\" value=\"je me suis trompé, je refuse!\"/>", :url => {:controller => :dvds, :action => :refuse, :id => @dvd.id}, :method => :post

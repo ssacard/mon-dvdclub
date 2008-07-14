@@ -1,0 +1,16 @@
+= render :partial => '/shared/menu', :locals => {:object => 'Mes DVD', :parent => 'Moi'} if logged_in?
+.site
+  %h3
+    Votre refus a été prise en compte
+  %br  
+  = @dvd.booked_by_user.login
+  va recevoir dans les prochaines minutes un mail
+  l'avertissant de votre décicision.
+  %br
+  Si vous souhaitez rendre disponible ce DVD à tout le DVD
+  Club, vous pouvez le faire à partir de votre liste de DVD, ou en
+  cliquant sur ce lien: 
+  = link_to_remote "<input type=\"button\" value=\"rendre disponible ce DVD.\"/>", :url => {:controller => :dvds, :action => :make_available, :id => @dvd.id}, :method => :post
+  %br
+  Vous allez être redirigé vers la page d'accueil de votre DVD Club
+  = link_to 'en cliquant ici. ', "home/dvds"
