@@ -14,7 +14,7 @@ class Dvd < ActiveRecord::Base
   state :available
   state :approval
   state :booked
-  
+    
   event :request do
     transitions :from => :available, :to => :approval
   end
@@ -28,6 +28,11 @@ class Dvd < ActiveRecord::Base
   
   event :unregister do
     transitions :from => :booked, :to => :available
+  end
+  
+  event :book do
+    transitions :from => :available, :to => :booked
+    transitions :from  => :approval, :to => :booked
   end
   
   def self.create_record(attrs)

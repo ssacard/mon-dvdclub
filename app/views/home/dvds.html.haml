@@ -3,14 +3,14 @@
   %h2
     My DVDs requested by others
   - self.current_user.dvds.select{|d| d.state=='approval'}.each do |dvd|
-    = render :partial => 'dvds/partials/dvd_approval', :locals => {:dvd => dvd}
+    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd, :type => 'approval'}
   %h2
     Les DVDs que j'ai prêtés    
-  - self.current_user.booked_dvds.each do |dvd|
-    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd}
+  - self.current_user.user_booked_dvds.each do |dvd|
+    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd, :type => 'borrowed'}
   %h2
     Mes DVDs (Owned by me)
   - @dvds.each do |dvd|
-    = render :partial => 'dvds/partials/mes_dvd', :locals => {:dvd => dvd}
+    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd, :type => 'owned'}
     %br
 #clear

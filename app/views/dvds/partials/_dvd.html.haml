@@ -18,11 +18,27 @@
         DVD Club (
         = dvd.dvd_club.name rescue "none"
         )
-        %br
-        = dvd.state
-        - if dvd.state=='available'
-          - form_for :dvd, :url => {:controller => :dvds, :action => :request_register} do |form|
-            = hidden_field_tag 'dvd_id', dvd.id
-            = form.submit "Réserver maintenant!"
-        - else
-          = link_to "<input type=\"button\" value=\"S'inscrire sur la liste!\" DISABLED />", "#"
+        %br        
+        - if type == 'owned'
+          -if dvd.state=='booked'
+            %b
+              indisponible
+              = link_to_remote "<input type=\"button\" value=\"rendre disponible\"/>", :url => {:controller => :dvds, :action => :make_available, :id => dvd.id}, :method => :post
+          -else
+            %b
+              disponible
+              = link_to_remote "<input type=\"button\" value=\"rendre indisponible\">", :url => {:controller => :dvds, :action => :book, :id => dvd.id}, :method => :post
+        -elsif type=='approval'
+          = link_to_remote "<input type=\"button\" value=\"prêter\"/>", :url => {:controller => :dvds, :action => :approve, :id => dvd.id}, :method => :post
+          %br             
+          = link_to_remote "<input type=\"button\" value=\"refuser\">", :url => {:controller => :dvds, :action => :refuse, :id => dvd.id}, :method => :post
+        -elsif type=='borrowed'
+          %br
+        -else
+          = dvd.state
+          - if dvd.state=='available'
+            - form_for :dvd, :url => {:controller => :dvds, :action => :request_register} do |form|
+              = hidden_field_tag 'dvd_id', dvd.id
+              = form.submit "Réserver maintenant!"
+          - else
+            = link_to "<input type=\"button\" value=\"S'inscrire sur la liste!\" DISABLED />", "#"

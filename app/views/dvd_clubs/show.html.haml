@@ -8,9 +8,12 @@
     %br
     %br
   %h3
-    = link_to 'Add DVDs to this club', "/dvd_clubs/#{current_object.id}/new_dvd"
+    = link_to 'Add DVDs to this club', "/dvd_clubs/#{current_object.id}/new_dvd" 
+  %h3
+    = link_to 'quitter ce club', user_dvd_club_path(UserDvdClub.find(:first, :conditions => ["user_id=? AND dvd_club_id=?", self.current_user.id, current_object.id])), :method => :delete, :confirm => 'Are you sure?'
+  %h3   
+    = link_to 'inviter des amis', "/dvd_clubs/#{current_object.id}/invite"
   %br
-
   %h3
     tous les membres
   %br

@@ -133,6 +133,10 @@ class User < ActiveRecord::Base
     []
   end
   
+  def user_booked_dvds
+    booked_dvds.select{|d| d.state=='booked'}  
+  end
+  
   protected
     # before filter 
     def encrypt_password

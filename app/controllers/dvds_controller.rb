@@ -65,10 +65,66 @@ class DvdsController < AuthenticatedController
     @dvd = Dvd.find(params[:id])  
   end
   
+  # Disponible/Indisponible Story
+  
+  def make_available
+    @dvd = Dvd.find(params[:id])
+    @dvd.unregister!
+      render :update do |page|
+        page.redirect_to "/dvds/available_confirmation/#{@dvd.id}"
+      end
+  end
+  
+  def available_confirmation
+    @dvd = Dvd.find(params[:id]) 
+  end
+  
+  def book_confirmation
+    @dvd = Dvd.find(params[:id])
+  end
+  
+  def book
+    @dvd = Dvd.find(params[:id])
+    @dvd.book!
+    render :update do |page|
+      page.redirect_to "/dvds/book_confirmation/#{@dvd.id}"
+    end
+  end
+  
+  # Approve/Refuse Story
+  
+  def approve
+    Dvd.find(params[:id]).register!
+    redirect_to_home
+  end
+  
+  def approve_request
+    @dvd = Dvd.find(params[:id])
+  end
+  
+  def refuse_request
+    @dvd = Dvd.find(params[:id])   
+  end
+  
+  def refuse
+    Dvd.find(params[:id]).cancel_request!
+    redirect_to_home
+  end
+
+  # ajax redirection
+  
+  def redirect_to_home
+    render :update do |page|
+      page.redirect_to "/home/dvds"
+    end
+  end
+  
   private
   def is_valid
     if params[:dvd_club_id].nil? && params[:dvd_category_id].nil?
       redirect_to '/sessions/new'
     end
   end
+  
+
 end
