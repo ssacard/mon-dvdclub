@@ -7,9 +7,8 @@
 .standard_form {
   margin: 3em auto 0 auto;
   width: 60em;
-  background-color: #eaf2f5;
   padding: 2em 2em 1em 2em;
-  border: 20px solid #ddd;
+  text-align:left;
 }
 
   .standard_form h1 {
@@ -93,11 +92,13 @@
 /*
 /*****************************************************************************/
 
-#login {
+#login_panel {
+  background-color: #eaf2f5;
+  border: 20px solid #ddd;
   width: 31em;
 }
 
-#login input.text {
+#login_panel input.text {
   width: 25em;
 }
 
@@ -108,6 +109,8 @@
 /*****************************************************************************/
 
 #forgot_password {
+  background-color: #eaf2f5;
+  border: 20px solid #ddd;
   width: 31em;
 }
 
@@ -118,6 +121,8 @@
 /*****************************************************************************/
 
 #profile {
+  background-color: #eaf2f5;
+  border: 20px solid #ddd;
   margin: 3em auto 0 auto;
   width: 60em;
 }
@@ -130,3 +135,7 @@
   width: 54em;
 }
 
+
+.error {
+  background: #996C8A;
+}

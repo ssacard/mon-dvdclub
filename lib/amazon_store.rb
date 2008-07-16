@@ -19,7 +19,8 @@ class AmazonStore
     results = Array.new
     res = Amazon::Ecs.item_search(title, @@options.merge(:item_page => page))
 
-    res.items.each do |i|
+    res.items.each_with_index do |i, index|
+      #puts i.inspect if index == 0
       item = Hash.new
       item[:asin]         = i.get('asin').to_s
       item[:url]          = i.get('detailpageurl').to_s

@@ -27,6 +27,7 @@ table {
   font-size: inherit;
   font: 100%;
   border: 1px #888;
+  width: 100%;
 }
 
 select,
@@ -92,6 +93,14 @@ a:hover {
 
 img.help {
   vertical-align: middle;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
 }
 
 .notification {
@@ -345,21 +354,23 @@ textarea{
 	height: 100px;
 }
 
-#flash-notice{
+#flash-notice {
 	background-color: #e3e3e3;
 	border: 1px dotted #999999;
 	padding-left: 20px;
 }
 
+
 #rubrique{
-	width: 200px;
+	width: 10em;
 	float: left;	
 }
 
 #accueil{
-	width: 600px;
+	width: 55em;
 	float:left;
 }
+
 #clear{
 	clear :left;
 }
@@ -367,4 +378,30 @@ textarea{
 #dvd{
 	width: 100%;
 	float:left;
+}
+
+table tr {
+  vertical-align: top;
+}
+
+th.image {
+  width: 5em;
+}
+  
+th.description {
+  width: 30em;
+}
+
+.even {
+  background-color: #C2E5FF;
+}
+
+th.action {
+  width: 10em;
+}
+
+.logo {
+  padding: 4px;
+  border: 1px solid #DDD;
+  background-color: #FFF;
 }

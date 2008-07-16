@@ -7,7 +7,7 @@
         Bienvenu 
         %strong= current_user.login
         |
-        = link_to 'Mon Compte', dashboard_path
+        = link_to 'Mon Compte', '/settings'
         |
         = link_to "Se deconnecter", logout_path
       - else 

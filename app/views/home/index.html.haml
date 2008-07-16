@@ -8,11 +8,15 @@
   #accueil
     %h2
       Accueil
-    - @dvds.each do |dvd|
-      = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd}
+    - if @dvds.empty?
+      Pas de DVD actuellement dans vos club
+    - else
+      = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
+      
+      
     %br
     %br
-    = link_to 'Voir tous les ajouts', '#'
+    =# link_to 'Voir tous les ajouts', '#'
   #clear
   %br
 

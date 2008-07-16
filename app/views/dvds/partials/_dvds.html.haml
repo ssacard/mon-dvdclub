@@ -1,0 +1,9 @@
+- if dvds.empty?
+  Aucun DVD
+- else
+  %table
+    %tr
+      %th.image Image
+      %th.description Description
+      %th.action Action
+    = render :partial => '/dvds/partials/dvd', :collection => dvds

@@ -1,3 +1,22 @@
+# == Schema Information
+# Schema version: 20080708191716
+#
+# Table name: users
+#
+#  id                        :integer(11)     not null, primary key
+#  login                     :string(255)     
+#  email                     :string(255)     
+#  crypted_password          :string(40)      
+#  salt                      :string(40)      
+#  password_secret           :string(40)      
+#  remember_token            :string(255)     
+#  created_at                :datetime        
+#  updated_at                :datetime        
+#  accept_offers             :integer(3)      
+#  remember_token_expires_at :datetime        
+#  deleted_at                :datetime        
+#
+
 require 'digest/sha1'
 class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
@@ -103,7 +122,7 @@ class User < ActiveRecord::Base
   
   def dvds
     dvd_club_ids = dvd_clubs.collect{|c| c.id}
-    Dvd.find_all_by_dvd_club_id(dvd_club_ids)
+    Dvd.all(:conditions => ['dvd_club_id in (?) and state != ? and owner_id != ?', dvd_club_ids, 'hidden', self.id])
   end
 
   # List all DvdCategories belonging to the subscribed DVD clubs
@@ -114,6 +133,8 @@ class User < ActiveRecord::Base
                                    where user.id=#{self.id} AND user.id=user_dvd_club.user_id 
                                    AND user_dvd_club.dvd_club_id=dvd_club.id 
                                    AND dvd.dvd_club_id=dvd_club.id 
+                                   AND dvd.state != 'hidden'
+                                   AND dvd.owner_id != #{self.id}
                                    AND dvd.dvd_category_id=dvd_category.id").collect{|c| c.id}                             
     DvdCategory.find(dvd_category_ids) rescue []   
   end

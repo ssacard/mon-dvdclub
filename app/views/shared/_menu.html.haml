@@ -1,3 +1,4 @@
+-parent  = false unless local_assigns[:parent]
 #menu.basic
   .site 
     %ul.menu
@@ -41,7 +42,8 @@
         
       - if object == 'Mon compte'
         %li.active
+          = link_to 'Mon compte', "/settings"
       - else
         %li 
-          Mon compte
+          = link_to 'Mon compte', "/settings"
       

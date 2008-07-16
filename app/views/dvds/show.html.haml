@@ -20,13 +20,7 @@
           )
           %br
           Status: 
-          = @dvd.state
-          - if @dvd.state=='available'
-            - form_for :dvd, :url => {:action => :request_register} do |form|
-              = hidden_field_tag 'dvd_id', @dvd.id
-              = form.submit "Réserver maintenant!"
-          - else
-            = link_to "<input type=\"button\" value=\"S'inscrire sur la liste!\" DISABLED />", "#"
+          = render :partial => '/dvds/partials/dvd_state', :locals => {:dvd => @dvd}
           %br
           %b
             = @dvd.title

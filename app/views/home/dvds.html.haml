@@ -1,16 +1,16 @@
 = render :partial => '/shared/menu', :locals => {:object => 'Mes DVD', :parent => 'Moi'} if logged_in?
 .site
-  %h2
-    My DVDs requested by others
-  - self.current_user.dvds.select{|d| d.state=='approval'}.each do |dvd|
-    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd, :type => 'approval'}
-  %h2
-    Les DVDs que j'ai prêtés    
-  - self.current_user.user_booked_dvds.each do |dvd|
-    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd, :type => 'borrowed'}
-  %h2
-    Mes DVDs (Owned by me)
-  - @dvds.each do |dvd|
-    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd, :type => 'owned'}
-    %br
+  %h2 Les DVDs que l'on veut m'emprunter
+  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => self.current_user.dvds.select{|d| d.state=='approval'}}
+  / - self.current_user.dvds.select{|d| d.state=='approval'}.each do |dvd|
+  /   = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd, :type => 'approval'}
+
+  %h2 Les DVDs que j'ai prêtés    
+  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => self.current_user.user_booked_dvds}
+  / - self.current_user.user_booked_dvds.each do |dvd|
+  /   = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd, :type => 'borrowed'}
+
+  %h2 Tous mes DVDs 
+  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
+    
 #clear

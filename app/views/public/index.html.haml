@@ -1,2 +1,15 @@
-.site
-  Public Index page
+= stylesheet_link_tag 'public'
+
+#public_home.site
+  %h1 Bienvenue sur Mon DVDClub
+  
+  #left
+    #create
+      =link_to 'Créer un club', register_path
+    
+    #join
+      Rejoindre un club
+
+  #right
+    #concept
+      Concept

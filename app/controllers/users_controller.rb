@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   # render new.rhtml
   def new
+    @user = User.new
   end
 
   def create
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
       @user.destroy if @user
       @dvd_club.destroy if @dvd_club
       @user_dvd_club.destroy if @user_dvd_club
-      flash[:notice] = notice
+      flash.now[:notice] = notice
       render :action => 'new'    
     else
       UserMailer.deliver_signup_notification(@user)
@@ -77,9 +78,22 @@ class UsersController < ApplicationController
   end
   
   def edit
+    @user = current_user
+    @user.email_confirmation = @user.email
   end
   
   def update
+    @user = current_user
+    if current_user.update_attributes params[:user]
+      flash[:notice] = "Mise à jour éffectué"
+      
+      redirect_to '/home'
+    else
+      notice = ""
+      @user.errors.each_full { |msg| notice += '<li>' + msg + '</li>' }
+      flash.now[:notice] = "<ul>#{notice}</ul>"
+      render :action => 'edit'
+    end
   end
   
 end

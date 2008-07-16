@@ -1,1 +1,8 @@
-%h1 Dashboard
+= render :partial => '/shared/menu', :locals => {:parent => 'Moi', :object => 'Mon compte'} if logged_in?
+.standard_form
+  %h1 
+  - if flash[:notice]
+    #flash-notice
+      .content 
+        = flash[:notice]
+  = render :partial => 'form'  

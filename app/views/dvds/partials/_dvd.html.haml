@@ -1,44 +1,35 @@
-%br
-#dvd
-  %table
-    %tr
-      %td
-        = image_tag dvd[:image] unless dvd[:image].nil?
-      %td
+%tr{:class => cycle('even', 'odd')}
+  %td.center
+    = image_tag dvd[:logo], :class => 'logo' unless dvd[:logo].nil?
+  %td
+    %b
+      = dvd.title
+    %br
+    format:
+    = dvd.dvd_format.name rescue "none"
+    %br
+    = dvd.description
+  %td
+    %span.bold Propriétaire
+    %br
+    DVD Club (
+    = dvd.dvd_club.name rescue "none"
+    )
+    %br        
+    - if type == 'owned'
+      -if dvd.state == 'booked'
         %b
-          = dvd.title
-        %br
-        format:
-        = dvd.dvd_format.name rescue "none"
-        %br
-        = dvd.description
-      %td
-        Propriétaire
-        %br
-        DVD Club (
-        = dvd.dvd_club.name rescue "none"
-        )
-        %br        
-        - if type == 'owned'
-          -if dvd.state=='booked'
-            %b
-              indisponible
-              = link_to_remote "<input type=\"button\" value=\"rendre disponible\"/>", :url => {:controller => :dvds, :action => :make_available, :id => dvd.id}, :method => :post
-          -else
-            %b
-              disponible
-              = link_to_remote "<input type=\"button\" value=\"rendre indisponible\">", :url => {:controller => :dvds, :action => :book, :id => dvd.id}, :method => :post
-        -elsif type=='approval'
-          = link_to "<input type=\"button\" value=\"prêter\"/>", :controller => :dvds, :action => :approve_confirm, :id => dvd.id
-          %br             
-          = link_to "<input type=\"button\" value=\"refuser\">", :controller => :dvds, :action => :refuse_confirm, :id => dvd.id
-        -elsif type=='borrowed'
-          %br
-        -else
-          = dvd.state
-          - if dvd.state=='available'
-            - form_for :dvd, :url => {:controller => :dvds, :action => :request_register} do |form|
-              = hidden_field_tag 'dvd_id', dvd.id
-              = form.submit "Réserver maintenant!"
-          - else
-            = link_to "<input type=\"button\" value=\"S'inscrire sur la liste!\" DISABLED />", "#"
+          indisponible
+          = link_to_remote "<input type=\"button\" value=\"rendre disponible\"/>", :url => {:controller => :dvds, :action => :make_available, :id => dvd.id}, :method => :post
+      -else
+        %b
+          disponible
+          = link_to_remote "<input type=\"button\" value=\"rendre indisponible\">", :url => {:controller => :dvds, :action => :book, :id => dvd.id}, :method => :post
+    -elsif type=='approval'
+      = link_to "<input type=\"button\" value=\"prêter\"/>", :controller => :dvds, :action => :approve_confirm, :id => dvd.id
+      %br             
+      = link_to "<input type=\"button\" value=\"refuser\">", :controller => :dvds, :action => :refuse_confirm, :id => dvd.id
+    -elsif type=='borrowed'
+      %br
+    -else
+      = render :partial => '/dvds/partials/dvd_state', :locals => {:dvd => dvd}

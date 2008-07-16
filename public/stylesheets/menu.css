@@ -22,7 +22,7 @@ ul.menu li, ul.submenu li{
   display: inline;
   line-height: 2em;
   font-size: 1.2em;
-  width: 7em;
+  width: 8em;
   float:left;
   text-align: center;
 }
@@ -31,8 +31,8 @@ ul.menu li.active{
   background-color:#DDDDDD;
 }
 
-ul.submenu li.active{
-  background-color:#336699;
+ul.submenu li.active, ul.submenu li.active a{
+  background-color:#4488BB;
   color: #FFF;
 }
 

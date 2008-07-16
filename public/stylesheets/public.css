@@ -1,0 +1,35 @@
+#public_home h1 {
+  text-align: center;
+}
+
+#left {
+  float:left;
+  width: 31em;
+}
+
+#right {
+  float:right;
+  width: 36em;
+}
+
+#create {
+  padding: 1em;
+  width:28em;
+  height: 10em;
+  border: 1px dotted #333;
+  margin-bottom: 1em;
+}
+
+#join {
+  padding: 1em;
+  width:28em;
+  height: 10em;
+  border: 1px dotted #333;
+}
+
+#concept {
+  padding: 1em;
+  width:33em;
+  height: 23.05em;
+  border: 1px dotted #333;
+}
