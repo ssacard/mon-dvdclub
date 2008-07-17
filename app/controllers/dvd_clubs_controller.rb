@@ -1,10 +1,11 @@
 class DvdClubsController < AuthenticatedController
-  before_filter :must_be_member, :only => [:show]
+  before_filter      :must_be_member, :only => [:show]
   skip_before_filter :login_required, :only => :join
   make_resourceful do
     actions :all
   end
 
+  
   def create
     before :create
     begin

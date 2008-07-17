@@ -1,12 +1,13 @@
 = render :partial => '/shared/menu', :locals => {:object => 'Mes DVD', :parent => 'Moi'} if logged_in?
-.site
+.site.center
   %h3
     = @dvd.title
     a été rendu indisponible:
   %br
+    = image_tag @dvd.logo
   %br
   Un DVD indisponible n'est plus visible par les autres membres du DVD Club.
   %br
   Si vous souhaitez rendre ce DVD à nouveau disponible, vous
   pouvez cliquer sur le lien suivant, ou à partir de vos DVDs:
-  = button_to_remote "rendre disponible", :url => {:controller => :dvds, :action => :unblock, :id => @dvd.id}, :method => :post
+  = button_to "rendre disponible", {:controller => :dvds, :action => :unblock, :id => @dvd.id}, :method => :post

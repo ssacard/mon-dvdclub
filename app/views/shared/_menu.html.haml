@@ -33,12 +33,12 @@
         %li 
           = link_to 'Mes DVD', "/home/dvds"
          
-      - if object == 'Mes demandes'
+      - if object == 'Mes emprunts'
         %li.active
-          = link_to 'Mes demandes', "/home/demands"
+          = link_to 'Mes emprunts', "/home/demands"
       - else
         %li 
-          = link_to 'Mes demandes', "/home/demands"
+          = link_to 'Mes emprunts', "/home/demands"
         
       - if object == 'Mon compte'
         %li.active

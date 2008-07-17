@@ -8,6 +8,6 @@ class HomeController < AuthenticatedController
   end
   
   def demands
-    @dvds = self.current_user.dvds.select{ |d| d.approval? }
+    @dvds = self.current_user.booked_dvds
   end
 end

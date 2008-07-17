@@ -11,6 +11,5 @@
     dans le DVDclub 
     %b= @dvd.dvd_club.name
   %br
-  = link_to "confirmer le prêt", {:controller => :dvds, :action => :approve, :id => @dvd.id}, :method => :post
-  %br
-  = link_to "je me suis trompé, je refuse!", {:controller => :dvds, :action => :refuse, :id => @dvd.id}, :method => :post
+  = button_to "confirmer le prêt", {:controller => :dvds, :action => :approve, :id => @dvd.id}, :method => :post
+  = button_to "je me suis trompé, je refuse!", {:controller => :dvds, :action => :refuse, :id => @dvd.id}, :method => :post

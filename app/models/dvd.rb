@@ -32,7 +32,8 @@ class Dvd < ActiveRecord::Base
   has_many :users, :through => :waiting_lists
   acts_as_state_machine :initial => :available
   
-  named_scope :booked, :conditions => {:state => 'booked'}
+  named_scope :booked,  :conditions => {:state => 'booked'}
+  named_scope :visible, :conditions => ['state != ?', 'blocked']
   
   ## STATE MACHINE ###########################################
   state :available

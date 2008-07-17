@@ -67,25 +67,11 @@ class DvdsController < AuthenticatedController
   def unblock
     @dvd = current_user.owned_dvds.find(params[:id])
     @dvd.unblock!
-      render :update do |page|
-        page.redirect_to "/dvds/unblock_confirmation/#{@dvd.id}"
-      end
-  end
-  
-  def unblock_confirmation
-    @dvd = current_user.owned_dvds.find(params[:id]) 
-  end
-  
-  def block_confirmation
-    @dvd = current_user.owned_dvds.find(params[:id])
   end
   
   def block
-    @dvd = current_user.owned_dvdsfind(params[:id])
+    @dvd = current_user.owned_dvds.find(params[:id])
     @dvd.block!
-    render :update do |page|
-      page.redirect_to "/dvds/block_confirmation/#{@dvd.id}"
-    end
   end
   
   # Approve/Refuse Story
