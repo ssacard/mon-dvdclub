@@ -4,35 +4,13 @@
     "
     = @dvd.title
     " 
-    has been added to the global database
+    a été ajouté à la base de données
   %br
   %br
   #dvd
-    %table
-      %tr
-        %td
-          = image_tag @dvd[:image] unless @dvd[:image].nil?
-        %td
-          %b
-            = @dvd.title
-          %br
-          format:
-          = @dvd.dvd_format.name rescue "none"
-          %br
-          = @dvd.description
-        %td
-          Propriétaire
-          %br
-          DVD Club (
-          = @dvd.dvd_club.name rescue "none"
-          )
+    = render :partial => 'dvds/partials/dvds', :locals => {:dvds => [@dvd], :type => :owned}
   %br
   %br
   %br
-  Une fois leur compte créé, leurs DVDs seront automatiquement
-  disponibles dans votre DVD Club commun.
-  %br
-  Vous allez être redirigé vers la page d'ou vous avez faite votre
-  demande dans les prochaines secondes, ou 
-  = link_to 'en cliquant ici.', "/dvd_clubs/#{@dvd.dvd_club_id}"
+  = link_to 'Voir le dvd club.', "/dvd_clubs/#{@dvd.dvd_club_id}"
   %br

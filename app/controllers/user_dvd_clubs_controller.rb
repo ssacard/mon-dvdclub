@@ -4,8 +4,13 @@ class UserDvdClubsController < ApplicationController
     actions :create, :destroy
     
     response_for :destroy do
-      redirect_to dvd_clubs_path
+      redirect_to dvd_club_path(current_object.dvd_club)
     end
+    
+    response_for :create do
+      redirect_to dvd_club_path(current_object.dvd_club)
+    end
+    
   end
   
   def parent_object

@@ -31,17 +31,17 @@
         %label
           nom de votre club:
           %br
-          = fields.text_field :name, :class => :text
+          = fields.text_field :name, :class => :text, :disabled => !@dvd_club.new_record? 
       %p
         %label
           type de club:
           %br
-          = fields.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, :prompt => true, :class => :text
+          = fields.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, {:prompt => true}, :class => :text, :disabled => !@dvd_club.new_record? 
       %p
         %label
           comment vous identifier dans ce club?:
           %br
-          = fields.text_area :description, :class => :text
+          = fields.text_area :description, :class => :text,  :disabled => !@dvd_club.new_record? 
       %p
         = f.check_box :accept_offers
         j'accepte de recevoir des offres des partenaires de mon DVD Club

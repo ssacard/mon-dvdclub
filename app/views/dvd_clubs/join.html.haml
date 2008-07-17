@@ -1,0 +1,11 @@
+.site
+  #profile.standard_form
+    %h1 
+      Rejoindre le DVDClub 
+      = @dvd_club.name 
+      = link_to '(Se connecter)', login_path
+    
+    - if flash[:notice]
+      #flash-notice
+        = flash[:notice]
+    = render :partial => '/users/form'

@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-  
+  before_filter :login_required, :only => [:edit, :udpate]
 
   # render new.rhtml
   def new
     @user = User.new
+    puts session[:dvd_club_id]
+    @dvd_club = session[:dvd_club_id] ? DvdClub.find(session[:dvd_club_id]) : DvdClub.new
   end
 
   def create
@@ -16,25 +18,30 @@ class UsersController < ApplicationController
     # reset_session
     notice = ""
     begin
+      @dvd_club = session[:dvd_club_id] ? DvdClub.find(session[:dvd_club_id]) : DvdClub.new
       @user = User.new(params[:user])      
       @user.save!
       if @user
-        @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])
-        @dvd_club.save!
+        if @dvd_club.new_record?
+          @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])
+          @dvd_club.save!
+        end
         @user_dvd_club = UserDvdClub.create(:user_id => @user.id, :dvd_club_id => @dvd_club.id, :subscription_status => true)
       end
     rescue
       @user.errors.each_full { |msg| notice += '<li>' + msg + '</li>' }
       @dvd_club.errors.each_full { |msg| notice += '<li>' + msg + '</li>' } if @dvd_club
       @user.destroy if @user
-      @dvd_club.destroy if @dvd_club
+      @dvd_club.destroy if @dvd_club && !session[:dvd_club_id]
       @user_dvd_club.destroy if @user_dvd_club
+      @user = User.new(params[:user])      
       flash.now[:notice] = notice
       render :action => 'new'    
     else
+      session[:dvd_club_id] = nil
       UserMailer.deliver_signup_notification(@user)
       self.current_user = @user
-      redirect_to('/home')
+      redirect_back_or_default(home_path)
     end
   end
 
@@ -43,12 +50,12 @@ class UsersController < ApplicationController
       if request.post?
         @user = User.find_by_email(params[:user][:email])
         @user.request_password_reset
-        UserMailer.deliver_request_password_change(@user)
-        flash[:notice] ="A link is sent to your email address"
+        UserMailer.deliver_request_password_change(@user, change_password_url(@user.password_secret))
+        flash[:notice] ="Un email vient de vous être envoyer avec un lien pour vous permettre de changer votre mot de passe."
         redirect_to('/reset_request_done')
       end
     rescue
-      flash[:notice] = "Invalid Email"
+      flash[:notice] = "Email non valide"
       render :action => 'forgot_password'
     end  
   end

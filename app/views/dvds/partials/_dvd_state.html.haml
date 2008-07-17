@@ -1,8 +1,0 @@
-=# dvd.state
-- if dvd.state=='available'
-  .bold Disponible!
-  - form_for :dvd, :url => {:controller => :dvds, :action => :request_register} do |form|
-    = hidden_field_tag 'dvd_id', dvd.id
-    = form.submit "Réserver maintenant!"
-- else
-  = 'Déjà pris'

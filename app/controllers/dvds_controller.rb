@@ -12,7 +12,6 @@ class DvdsController < AuthenticatedController
   end
 
   def new
-    
   end
 
   def request_register
@@ -20,7 +19,6 @@ class DvdsController < AuthenticatedController
   end
   
   def request_unregister
-    
   end
   
   def register
@@ -66,63 +64,57 @@ class DvdsController < AuthenticatedController
   end
   
   # Disponible/Indisponible Story
-  
-  def make_available
-    @dvd = Dvd.find(params[:id])
-    @dvd.unregister!
+  def unblock
+    @dvd = current_user.owned_dvds.find(params[:id])
+    @dvd.unblock!
       render :update do |page|
-        page.redirect_to "/dvds/available_confirmation/#{@dvd.id}"
+        page.redirect_to "/dvds/unblock_confirmation/#{@dvd.id}"
       end
   end
   
-  def available_confirmation
-    @dvd = Dvd.find(params[:id]) 
+  def unblock_confirmation
+    @dvd = current_user.owned_dvds.find(params[:id]) 
   end
   
-  def book_confirmation
-    @dvd = Dvd.find(params[:id])
+  def block_confirmation
+    @dvd = current_user.owned_dvds.find(params[:id])
   end
   
-  def book
-    @dvd = Dvd.find(params[:id])
-    @dvd.book!
+  def block
+    @dvd = current_user.owned_dvdsfind(params[:id])
+    @dvd.block!
     render :update do |page|
-      page.redirect_to "/dvds/book_confirmation/#{@dvd.id}"
+      page.redirect_to "/dvds/block_confirmation/#{@dvd.id}"
     end
   end
   
   # Approve/Refuse Story
-  
   def approve_confirm
-    @dvd = Dvd.find(params[:id])
+    @dvd = current_user.owned_dvds.find(params[:id])
   end
   
   def approve
-    @dvd = Dvd.find(params[:id])
+    @dvd = current_user.owned_dvds.find(params[:id])
     @dvd.register!
-    render :update do |page|
-      page.redirect_to "/dvds/approved/#{@dvd.id}"
-    end
+    redirect_to "/dvds/approved/#{@dvd.id}"
   end
   
   def approved
-    @dvd = Dvd.find(params[:id])  
+    @dvd = current_user.owned_dvds.find(params[:id])  
   end
   
   def refuse_confirm
-    @dvd = Dvd.find(params[:id])   
+    @dvd = current_user.owned_dvds.find(params[:id])   
   end
   
   def refuse
-    @dvd = Dvd.find(params[:id])
+    @dvd = current_user.owned_dvds.find(params[:id])
     @dvd.cancel_request!
-    render :update do |page|
-      page.redirect_to "/dvds/refused/#{@dvd.id}"
-    end
+    redirect_to "/dvds/refused/#{@dvd.id}"
   end
 
   def refused
-    @dvd = Dvd.find(params[:id])  
+    @dvd = current_user.owned_dvds.find(params[:id])  
   end
   
   # ajax redirection
@@ -133,7 +125,7 @@ class DvdsController < AuthenticatedController
     end
   end
   
-  private
+private
   def is_valid
     if params[:dvd_club_id].nil? && params[:dvd_category_id].nil?
       redirect_to '/sessions/new'

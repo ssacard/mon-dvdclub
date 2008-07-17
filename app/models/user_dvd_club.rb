@@ -14,4 +14,8 @@
 class UserDvdClub < ActiveRecord::Base
   belongs_to :user
   belongs_to :dvd_club
+  
+  def self.membership(dvd_club, user)
+    first :conditions => ["user_id=? AND dvd_club_id=?", user.id, dvd_club.id]
+  end
 end

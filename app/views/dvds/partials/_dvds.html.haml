@@ -6,4 +6,4 @@
       %th.image Image
       %th.description Description
       %th.action Action
-    = render :partial => '/dvds/partials/dvd', :collection => dvds
+    = render :partial => '/dvds/partials/dvd', :collection => dvds, :locals => {:type => type}

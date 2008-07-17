@@ -45,7 +45,6 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :password, :password_confirmation, :email_confirmation, :terms
 
-
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
     u = find_by_login(login) # need to get the salt
@@ -120,9 +119,9 @@ class User < ActiveRecord::Base
   # List all DVDs belonging to the subscribed DVD clubs
   # Using 2 sql queries approach to avoid the n+1 sql queries problem
   
-  def dvds
+  def dvds(without_mydvds = false)
     dvd_club_ids = dvd_clubs.collect{|c| c.id}
-    Dvd.all(:conditions => ['dvd_club_id in (?) and state != ? and owner_id != ?', dvd_club_ids, 'hidden', self.id])
+    Dvd.all(:conditions => ['dvd_club_id in (?) and state != ? and owner_id != ?', dvd_club_ids, 'hidden', without_mydvds ? self.id : 0])
   end
 
   # List all DvdCategories belonging to the subscribed DVD clubs

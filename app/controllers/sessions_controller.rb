@@ -15,9 +15,9 @@ class SessionsController < AuthenticatedController
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
       redirect_to('/home')
-      flash[:notice] = "Logged in successfully"
+      flash[:notice] = "Bienvenue #{current_user.login}"
     else
-      flash[:notice] = "Login ou mot de passe inccorect"
+      flash[:notice] = "Login ou mot de passe incorrect"
       render :action => 'new'
     end
   end

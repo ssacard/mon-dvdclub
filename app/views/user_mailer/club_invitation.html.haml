@@ -1,0 +1,21 @@
+Bonjour,
+
+%br
+%br
+
+Vous venez d'être invité par 
+= @body[:sender] 
+pour rejoindre le DVDClub: 
+= @body[:dvd_club]
+
+%br
+%br
+
+Clicker 
+= link_to 'ici', @body[:url]
+pour vous inscrire.
+
+%br
+%br
+= @body[:message].gsub(/\n/, '<br/>')
+

@@ -1,7 +1,9 @@
 = render :partial => '/shared/menu' if logged_in?
 .site
   #login_panel.standard_form
-    %h1 Login 
+    %h1 
+      Login 
+      = link_to '(register)', register_path
   
     -if flash[:notice] 
       #flash-notice= flash[:notice]

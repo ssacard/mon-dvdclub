@@ -1,6 +1,6 @@
 class HomeController < AuthenticatedController
   def index
-    @dvds = self.current_user.dvds  
+    @dvds = self.current_user.dvds.select{|d| d.available?}  
   end
   
   def dvds
@@ -8,6 +8,6 @@ class HomeController < AuthenticatedController
   end
   
   def demands
-    @dvds = self.current_user.dvds.select{|d| d.state=='approval'}
+    @dvds = self.current_user.dvds.select{ |d| d.approval? }
   end
 end

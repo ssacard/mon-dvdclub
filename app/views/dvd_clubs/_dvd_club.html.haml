@@ -1,0 +1,25 @@
+%h3
+  DVDClub : 
+  = dvd_club.name
+%br
+  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => dvd_club.dvds, :type => :owned}
+
+- if dvd_club.has_member?(current_user)
+  = link_to 'Ajouter un DVD', "/dvd_clubs/#{dvd_club.id}/new_dvd" 
+  |
+  = link_to 'Quitter ce club', user_dvd_club_path(UserDvdClub.membership(dvd_club, current_user)), :method => :delete, :confirm => 'Are you sure?'
+  |
+  = link_to 'Inviter des amis', "/dvd_clubs/#{dvd_club.id}/invite"
+- else
+  = link_to 'Rejoindre ce club', user_dvd_clubs_path(:user_dvd_club => {:dvd_club_id => dvd_club.id, :user_id => current_user.id}), :method => :post
+  
+%br
+%h3
+  Les derniers membres de ce club (7 derniers jours)
+= render :partial => 'user', :collection => dvd_club.recent_users
+
+.clear
+- if local_assigns[:all_members] && all_members
+  %h3
+    Tous les membres
+  = render :partial => 'user', :collection => dvd_club.users

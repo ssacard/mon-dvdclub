@@ -100,7 +100,7 @@ img.help {
 }
 
 .center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .notification {
@@ -393,7 +393,11 @@ th.description {
 }
 
 .even {
-  background-color: #C2E5FF;
+  background-color: #F4F4F4;
+}
+
+.odd {
+  background-color: #FAFAFA;
 }
 
 th.action {
@@ -404,4 +408,16 @@ th.action {
   padding: 4px;
   border: 1px solid #DDD;
   background-color: #FFF;
+}
+
+
+/*USER*/
+.user {
+  float:left;
+  margin: 0 10px 0 0;
+}
+
+.user img {
+  float:left;
+  margin: 0 5px 0 0;
 }

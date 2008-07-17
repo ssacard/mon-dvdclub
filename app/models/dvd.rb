@@ -32,34 +32,47 @@ class Dvd < ActiveRecord::Base
   has_many :users, :through => :waiting_lists
   acts_as_state_machine :initial => :available
   
+  named_scope :booked, :conditions => {:state => 'booked'}
+  
+  ## STATE MACHINE ###########################################
   state :available
   state :approval
   state :booked
-  state :hidden
+  state :blocked
     
+  # A user asked for getting this DVD    
   event :request do
     transitions :from => :available, :to => :approval
   end
   
+  # The request for getting this DVD has been accepted
   event :register do
     transitions :from => :approval, :to => :booked  
   end
   
+  # The request for getting this DVD has been refused
   event :cancel_request do
     transitions :from => :approval, :to => :available
   end
   
+  # This dvd is not booked anymore
   event :unregister do
     transitions :from => :booked, :to => :available
   end
   
-  event :book do
-    transitions :from => :available, :to => :booked
-    transitions :from  => :approval, :to => :booked
+  # # ????
+  # event :book do
+  #   transitions :from => :available, :to => :booked
+  #   transitions :from => :approval,  :to => :booked
+  # end
+  
+  # Block/Unblocked
+  event :block do
+    transitions :from => :available, :to => :blocked  
   end
   
-  event :hide do
-    transitions :from => :available, :to => :hidden  
+  event :unblock do
+    transitions :from => :blocked, :to => :available  
   end
   
   def self.create_record(attrs)

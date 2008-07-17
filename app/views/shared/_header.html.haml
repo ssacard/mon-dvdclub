@@ -2,6 +2,8 @@
   .site
     .logo
       = link_to 'MonDVDClub.fr', root_path
+    / = Dvd.count
+    / DVD à voir gratuitement
     .actions
       - if logged_in?
         Bienvenu 

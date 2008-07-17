@@ -10,26 +10,29 @@
     %br
     = dvd.description
   %td
-    %span.bold Propriétaire
+    %span.bold= dvd.owner.login
     %br
     DVD Club (
     = dvd.dvd_club.name rescue "none"
     )
     %br        
-    - if type == 'owned'
-      -if dvd.state == 'booked'
-        %b
-          indisponible
-          = link_to_remote "<input type=\"button\" value=\"rendre disponible\"/>", :url => {:controller => :dvds, :action => :make_available, :id => dvd.id}, :method => :post
+    - if dvd.owner == current_user && (dvd.available? || dvd.blocked?)
+      -if dvd.blocked?
+        %b indisponible
+        = button_to_remote "rendre disponible", :url => {:controller => :dvds, :action => :unblock, :id => dvd.id}, :method => :post
       -else
-        %b
-          disponible
-          = link_to_remote "<input type=\"button\" value=\"rendre indisponible\">", :url => {:controller => :dvds, :action => :book, :id => dvd.id}, :method => :post
-    -elsif type=='approval'
-      = link_to "<input type=\"button\" value=\"prêter\"/>", :controller => :dvds, :action => :approve_confirm, :id => dvd.id
-      %br             
-      = link_to "<input type=\"button\" value=\"refuser\">", :controller => :dvds, :action => :refuse_confirm, :id => dvd.id
-    -elsif type=='borrowed'
-      %br
-    -else
-      = render :partial => '/dvds/partials/dvd_state', :locals => {:dvd => dvd}
+        %b disponible
+        = button_to_remote "rendre indisponible", :url => {:controller => :dvds, :action => :block, :id => dvd.id}, :method => :post
+        
+    - elsif dvd.owner == current_user && dvd.approval?
+      = button_to "prêter",  {:controller => :dvds, :action => :approve_confirm, :id => dvd.id}
+      = button_to "refuser",  {:controller => :dvds, :action => :refuse_confirm, :id => dvd.id}
+   
+    - elsif dvd.booked?
+      Déja prété
+  
+    - else
+      %b Disponible!
+      - form_for :dvd, :url => {:controller => :dvds, :action => :request_register} do |form|
+        = hidden_field_tag 'dvd_id', dvd.id
+        = form.submit "Réserver maintenant!"

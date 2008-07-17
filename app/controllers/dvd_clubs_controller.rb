@@ -1,4 +1,6 @@
 class DvdClubsController < AuthenticatedController
+  before_filter :must_be_member, :only => [:show]
+  skip_before_filter :login_required, :only => :join
   make_resourceful do
     actions :all
   end
@@ -35,14 +37,20 @@ class DvdClubsController < AuthenticatedController
 
   def send_mails
     @dvd_club = DvdClub.find(params[:dvd_club_id])
-    status = UserMailer.deliver_club_invitation(@dvd_club, params[:mail])       
-    if status 
-      #redirect_to "#{params[:return_url]}/invite?state=done"
+    status = UserMailer.deliver_club_invitation(@dvd_club, params[:mail], join_dvd_club_url(@dvd_club))       
     
-      #redirect_to "#{params[:return_url]}/invite"
-      
-    end
     @recipients = params[:mail][:recipients].split(',')
     render :action => 'invited'
   end
+  
+  def join
+    session[:dvd_club_id] = params[:id]
+    redirect_to register_url
+  end
+  
+private
+  def must_be_member
+    redirect_to home_url unless UserDvdClub.membership(current_object, current_user)
+  end
+  
 end
