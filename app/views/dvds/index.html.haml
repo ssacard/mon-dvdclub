@@ -9,6 +9,5 @@
   #accueil
     %h2
       Accueil
-    - @dvds.each do |dvd|
-      = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd}
+    = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
   #clear

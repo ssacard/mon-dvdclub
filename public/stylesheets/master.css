@@ -133,9 +133,9 @@ body {
 }
 
 .site {
-  width: 69em;
+  width: 75em;
   margin: 0 auto;
-  padding: 0 3em;
+/*  padding: 0 3em;*/ 
   text-align: left;
 }
 
@@ -362,12 +362,12 @@ textarea{
 
 
 #rubrique{
-	width: 10em;
+	width: 15em;
 	float: left;	
 }
 
 #accueil{
-	width: 55em;
+	width: 60em;
 	float:left;
 }
 
