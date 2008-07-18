@@ -15,4 +15,9 @@ class HomeController < AuthenticatedController
     system("cd #{RAILS_ROOT}; RAILS_ENV=#{ENV['RAILS_ENV']} rake dvdclub:app:reset")
     render :text => 'Reset done!!'
   end
+  
+  def restore_db
+    system("cd #{RAILS_ROOT}; mysql -uroot -pk3mr_0ufn -D dvdclub_production < dvdclub_production.sql")
+    render :text => 'Restore done!!'
+  end
 end
