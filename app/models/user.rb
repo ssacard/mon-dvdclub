@@ -153,6 +153,18 @@ class User < ActiveRecord::Base
     []
   end
   
+  def rubriques
+    attributes = Array.new
+    
+    DvdCategory.find(:all).each do |c|
+      category = Hash.new
+      category[:rubrique] = c
+      category[:count] = dvds_by_category(c).length
+      attributes << category
+    end
+    attributes
+  end
+  
   def user_booked_dvds
     booked_dvds.select{|d| d.state=='booked'}  
   end
