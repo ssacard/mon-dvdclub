@@ -1,17 +1,10 @@
 = render :partial => '/shared/menu', :locals => {:object => 'Mes Clubs'} if logged_in?
 .site
-  %br
-  %br
-  %br
-
-  #profile.standard_form
+  .standard_form
     %h1 
       Créer un nouveau club
   
-    - if flash[:notice]
-      #flash-notice
-        = flash[:notice]
-    -form_for :dvd_club, :url => dvd_clubs_path do |f|
+    -form_for @dvd_club  do |f|
       %p
         %label
           nom de votre club:
@@ -28,7 +21,7 @@
           %br
           = f.text_area :description, :class => :text
       %p
-        = check_box_tag :terms
+        = f.check_box :terms
         j'accepte les conditions d'utilisations
 
       = render :partial => '/shared/submit_buttons', :locals => {:text => 'Créer'}
