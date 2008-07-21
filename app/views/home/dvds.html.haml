@@ -2,13 +2,13 @@
 .site
   %h2 Les DVDs que l'on veut m'emprunter
   = render :partial => 'dvds/partials/dvds', :locals => {:dvds => self.current_user.dvds.select{|d| d.approval?}, :type => :approval}
-  / - self.current_user.dvds.select{|d| d.state=='approval'}.each do |dvd|
-  /   = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd, :type => 'approval'}
+  - self.current_user.dvds.select{|d| d.state=='approval'}.each do |dvd|
+    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd, :type => 'approval'}
 
   %h2 Les DVDs que j'ai prêtés    
   = render :partial => 'dvds/partials/dvds', :locals => {:dvds => self.current_user.owned_dvds.booked}
-  / - self.current_user.user_booked_dvds.each do |dvd|
-  /   = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd, :type => 'borrowed'}
+  - self.current_user.user_booked_dvds.each do |dvd|
+    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd, :type => 'borrowed'}
 
   %h2 Tous mes DVDs 
   = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds, :type => :owned}

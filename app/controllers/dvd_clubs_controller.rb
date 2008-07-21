@@ -38,9 +38,17 @@ class DvdClubsController < AuthenticatedController
 
   def send_mails
     @dvd_club = DvdClub.find(params[:dvd_club_id])
-    status = UserMailer.deliver_club_invitation(@dvd_club, params[:mail], join_dvd_club_url(@dvd_club))       
     
     @recipients = params[:mail][:recipients].split(',')
+    @recipients.each do |r|
+      token = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{r}--")
+      Invitation.create!(:user_id => self.current_user.id, 
+                         :dvd_club_id => @dvd_club.id,
+                         :token => token,
+                         :active => true,
+                         :email => r)
+      status = UserMailer.deliver_club_invitation(@dvd_club, params[:mail], "/join/#{token}") 
+    end
     render :action => 'invited'
   end
   

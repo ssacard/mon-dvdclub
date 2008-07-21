@@ -9,10 +9,12 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :users
+  map.resources :user_dvd_clubs
   
   map.resource :session  
   map.login  '/login',  :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  map.join '/join/:token', :controller => 'public', :action => 'join_club'
   
   map.connect '/dvd_clubs/:dvd_club_id/new_dvd', :controller => 'dvd_clubs', :action => 'new_dvd'
   map.connect '/dvd_clubs/:id/invite', :controller => 'dvd_clubs', :action => 'invite'
