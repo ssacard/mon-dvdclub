@@ -13,6 +13,7 @@
 #
 
 class DvdClub < ActiveRecord::Base
+  attr_accessor :terms
   belongs_to :club_topic
   has_many :dvds
   has_many :user_dvd_clubs
@@ -21,6 +22,7 @@ class DvdClub < ActiveRecord::Base
   
   belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
   validates_presence_of :name, :description, :owner_id, :club_topic_id
+  validates_acceptance_of   :terms
 
   def recent_users(date = 1.week.ago)
     users.all :conditions => ["user_dvd_clubs.created_at > ?", date]

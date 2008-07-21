@@ -5,7 +5,6 @@ class DvdClubsController < AuthenticatedController
     actions :all
   end
 
-  
   def create
     before :create
     begin
@@ -13,10 +12,7 @@ class DvdClubsController < AuthenticatedController
       @dvd_club.owner_id = self.current_user.id
       @dvd_club.save!
     rescue
-      notice = ""
-      @dvd_club.errors.each_full{|msg| notice += '<li>' + msg + '</li>'}
-      flash[:notice] = notice
-      redirect_to new_dvd_club_path
+      render :action => 'new'
     else
       self.current_user.dvd_clubs << @dvd_club
       redirect_to dvd_clubs_path
