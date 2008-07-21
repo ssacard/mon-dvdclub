@@ -104,7 +104,6 @@ class DvdsController < AuthenticatedController
   end
   
   # ajax redirection
-  
   def redirect_to_home
     render :update do |page|
       page.redirect_to "/home/dvds"
