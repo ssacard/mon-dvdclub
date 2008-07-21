@@ -1,6 +1,9 @@
 .site
-  #profile.standard_form
+  #profile.standard_form    
     %h1 
-      Créez votre DVD Club       
-    
+      Créez votre DVD Club  
+    -if flash[:notice]     
+      #flash-notice= flash[:notice]  
     = render :partial => 'form'
+    
+      

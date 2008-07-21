@@ -3,17 +3,18 @@
     %label
       pseudo
       %br
-      = f.text_field :login, :class => :text
+      = f.text_field :login, :class => :text, :disabled => !@user.new_record?
+      = hidden_field_tag('user[login]', @user.login) if !@user.new_record?
   %p
     %label
       email:
       %br
-      = f.text_field :email, :class => :text
+      = f.text_field :email, :class => :text, :disabled => !@user.new_record?
   %p
     %label
       confirmer email:
       %br
-      = f.text_field :email_confirmation, :class => :text
+      = f.text_field :email_confirmation, :class => :text, :disabled => !@user.new_record?
   %p
     %label
       mot de passe:
@@ -23,31 +24,30 @@
     %label
       confirmer mot de passe:
       %br
-      = f.password_field :password_confirmation, :class => :text
+      = f.password_field :password_confirmation, :class => :text, :disabled => !@user.new_record? 
 
-  - if @user.new_record?
-    - fields_for :dvd_club do |fields|
-      %p
-        %label
-          nom de votre club:
-          %br
-          = fields.text_field :name, :class => :text, :disabled => !@dvd_club.new_record? 
-      %p
-        %label
-          type de club:
-          %br
-          = fields.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, {:prompt => true}, :class => :text, :disabled => !@dvd_club.new_record? 
-      %p
-        %label
-          comment vous identifier dans ce club?:
-          %br
-          = fields.text_area :description, :class => :text,  :disabled => !@dvd_club.new_record? 
-      %p
-        = f.check_box :accept_offers
-        j'accepte de recevoir des offres des partenaires de mon DVD Club
-      %p
-        = f.check_box :terms
-        j'accepte les conditions d'utilisations
+  - fields_for :dvd_club do |fields|
+    %p
+      %label
+        nom de votre club:
+        %br
+        = fields.text_field :name, :class => :text, :disabled => !@dvd_club.new_record? 
+    %p
+      %label
+        type de club:
+        %br
+        = fields.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, {:prompt => true}, :class => :text, :disabled => !@dvd_club.new_record? 
+    %p
+      %label
+        comment vous identifier dans ce club?:
+        %br
+        = fields.text_area :description, :class => :text,  :disabled => !@dvd_club.new_record? 
+    %p
+      = f.check_box :accept_offers
+      j'accepte de recevoir des offres des partenaires de mon DVD Club
+    %p
+      = f.check_box :terms
+      j'accepte les conditions d'utilisations
       
   = hidden_field_tag :token, @token
 
