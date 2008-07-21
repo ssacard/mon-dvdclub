@@ -30,7 +30,9 @@ class DvdClub < ActiveRecord::Base
     user_dvd_clubs.first :conditions => {:dvd_club_id => self.id, :user_id => user.id}
   end
   
-  def self.in_common(user1, user2)
-    user1.dvd_clubs & user2.dvd_clubs
+  def self.in_common(user1, user2, name_only = true)
+    dvd_clubs = user1.dvd_clubs & user2.dvd_clubs
+    name_only ? '(DVD Club: ' + dvd_clubs.map(&:name).join(' - ') + ')' : dvd_clubs
   end
+  
 end

@@ -36,7 +36,6 @@ class UserMailer < ActionMailer::Base
   
   def dvd_approve(dvd)
     content_type "text/html"
-    puts dvd.inspect
     recipients    dvd.booked_by_user.email
     from          "noreply@mondvdclub.fr"
     subject       "Confirmation de prêt"
@@ -45,7 +44,6 @@ class UserMailer < ActionMailer::Base
   
   def dvd_refuse(dvd)
     content_type "text/html"
-    puts dvd.inspect
     recipients    dvd.booked_by_user.email
     from          "noreply@mondvdclub.fr"
     subject       "Confirmation de prêt"

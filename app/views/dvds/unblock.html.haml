@@ -11,3 +11,5 @@
   Si vous souhaitez rendre ce DVD à nouveau indisponible, vous
   pouvez cliquer sur le lien suivant, ou à partir de vos DVDs:
   = button_to "rendre indisponible", {:controller => :dvds, :action => :block, :id => @dvd.id}, :method => :post
+  %br
+  = link_to 'Mes DVD', mydvds_path

@@ -77,7 +77,6 @@ class Dvd < ActiveRecord::Base
   end
   
   def self.create_record(attrs)
-    puts attrs.inspect
     dvd = Dvd.create!(:asin => attrs['asin'], 
     :details_url => attrs['url'], 
     :title => attrs['title'],

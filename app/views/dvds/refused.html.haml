@@ -12,4 +12,4 @@
   cliquant sur ce lien: 
   = link_to_remote "<input type=\"button\" value=\"rendre disponible ce DVD.\"/>", :url => {:controller => :dvds, :action => :make_available, :id => @dvd.id}, :method => :post
   %br
-  = link_to 'Retourner sur votre DVD Club. ', "home/dvds"
+  = link_to 'Retourner sur votre DVD Club. ', mydvds_path

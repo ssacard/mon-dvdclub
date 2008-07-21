@@ -1,5 +1,5 @@
-= render :partial => '/shared/menu', :locals => {:object => 'Mes demandes', :parent => 'Moi'} if logged_in?
+= render :partial => '/shared/menu', :locals => {:object => 'Mes emprunts', :parent => 'Moi'} if logged_in?
 .site
-  - @dvds.each do |dvd|
-    = render :partial => 'dvds/partials/dvd', :locals => {:dvd => dvd}
-    %br
+  .clear
+  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
+  

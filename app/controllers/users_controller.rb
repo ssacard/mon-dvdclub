@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   # render new.rhtml
   def new
     @user = User.new
-    puts session[:dvd_club_id]
     @dvd_club = session[:dvd_club_id] ? DvdClub.find(session[:dvd_club_id]) : DvdClub.new
   end
 

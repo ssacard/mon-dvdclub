@@ -4,7 +4,6 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
   msg = msg.collect {|m| m.gsub("'", "&#39;")}   
   msg = msg.join(" et ")    
   error_class = "error"
-  puts html_tag
   unless html_tag =~ /hidden/
     if html_tag =~ /checkbox/
       html_tag += "<span class='error_info'> (#{msg}) </span>"

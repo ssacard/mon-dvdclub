@@ -40,6 +40,7 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   map.root :controller => "public", :action => "index"
   map.home '/home', :controller => "home", :action => "index"
+  map.mydvds '/home/dvds', :controller => "home", :action => "dvds"
   
   # TEMPORARY !!!!!!!!!!!!!!!!
   map.reset_db '/reset_db', :controller => 'home', :action => 'reset_db'

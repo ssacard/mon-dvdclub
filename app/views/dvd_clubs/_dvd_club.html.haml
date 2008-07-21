@@ -2,7 +2,7 @@
   DVDClub : 
   = dvd_club.name
 %br
-  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => dvd_club.dvds.visible, :type => :owned}
+  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => dvd_club.dvds.visible}
 
 - if dvd_club.has_member?(current_user)
   = link_to 'Ajouter un DVD', "/dvd_clubs/#{dvd_club.id}/new_dvd" 
