@@ -5,8 +5,10 @@ class UsersController < ApplicationController
 
   # render new.rhtml
   def new
-    @user = User.new
-    @dvd_club = session[:dvd_club_id] ? DvdClub.find(session[:dvd_club_id]) : DvdClub.new
+    @token      = params[:token]
+    @invitation = @token ? Invitation.find_by_token(@token) : nil
+    @user       = User.new
+    @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new
   end
 
   def create
@@ -15,9 +17,11 @@ class UsersController < ApplicationController
     # request forgery protection.
     # uncomment at your own risk
     # reset_session
+    @token      = params[:token]
+    @invitation = @token ? Invitation.find_by_token(@token) : nil
+    @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new
+    @user       = User.new(params[:user])      
     begin
-      @dvd_club = session[:dvd_club_id] ? DvdClub.find(session[:dvd_club_id]) : DvdClub.new
-      @user = User.new(params[:user])      
       @user.save!
       if @user
         if @dvd_club.new_record?
@@ -28,11 +32,11 @@ class UsersController < ApplicationController
       end
     rescue
       @user.destroy if @user
-      @dvd_club.destroy if @dvd_club && !session[:dvd_club_id]
+      @dvd_club.destroy if @dvd_club && !@token 
       @user_dvd_club.destroy if @user_dvd_club
       render :action => 'new'    
     else
-      session[:dvd_club_id] = nil
+      session[:token] = nil
       UserMailer.deliver_signup_notification(@user)
       self.current_user = @user
       redirect_back_or_default(home_path)

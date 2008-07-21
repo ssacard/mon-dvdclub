@@ -5,5 +5,7 @@ class PublicController < ApplicationController
   
   def join_club
     @invitation = Invitation.find_by_token(params[:token])
+    @user = User.new
+    @dvd_club = @invitation.dvd_club
   end
 end

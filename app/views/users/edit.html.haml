@@ -1,8 +1,5 @@
 = render :partial => '/shared/menu', :locals => {:parent => 'Moi', :object => 'Mon compte'} if logged_in?
 .standard_form
   %h1 
-  - if flash[:notice]
-    #flash-notice
-      .content 
-        = flash[:notice]
-  = render :partial => 'form'  
+  -form_for @user do |f|
+    = render :partial => 'form', :locals => {:f => f} 

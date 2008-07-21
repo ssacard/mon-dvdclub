@@ -12,9 +12,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_dvd_clubs
   
   map.resource :session  
-  map.login  '/login',  :controller => 'sessions', :action => 'new'
-  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-  map.join '/join/:token', :controller => 'public', :action => 'join_club'
+  map.login  '/login',       :controller => 'sessions', :action => 'new'
+  map.logout '/logout',      :controller => 'sessions', :action => 'destroy'
+  map.join   '/join/:token', :controller => 'users', :action => 'new'
   
   map.connect '/dvd_clubs/:dvd_club_id/new_dvd', :controller => 'dvd_clubs', :action => 'new_dvd'
   map.connect '/dvd_clubs/:id/invite', :controller => 'dvd_clubs', :action => 'invite'
@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
     club_topic.resources :dvd_clubs
   end
   
-  map.resources :dvd_clubs, :member => {:join => :get}
+  map.resources :dvd_clubs
   
   map.resources :user_dvd_clubs
   map.resources :waiting_lists

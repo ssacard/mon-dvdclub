@@ -52,11 +52,6 @@ class DvdClubsController < AuthenticatedController
     render :action => 'invited'
   end
   
-  def join
-    session[:dvd_club_id] = params[:id]
-    redirect_to register_url
-  end
-  
 private
   def must_be_member
     redirect_to home_url unless UserDvdClub.membership(current_object, current_user)

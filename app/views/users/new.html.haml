@@ -1,10 +1,7 @@
 .site
   #profile.standard_form
     %h1 
-      - if @dvd_club
-        Rejoindre le DVD Club:
-        = @dvd_club.name
-      - else
-        Créez votre DVD Club       
+      Créez votre DVD Club       
     
-    = render :partial => 'form'  
+    -form_for @user do |f|
+      = render :partial => 'form', :locals => {:f => f} 
