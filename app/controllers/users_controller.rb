@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     # reset_session
     @token      = params[:token]
     @invitation = @token ? Invitation.find_by_token(@token) : nil
-    @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new
+    @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new(params[:dvd_club])
     @user       = User.new(params[:user])      
     begin
       @user.save!
