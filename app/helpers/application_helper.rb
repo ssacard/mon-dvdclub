@@ -12,4 +12,8 @@ module ApplicationHelper
     image_tag dvd.logo || 'dvd.png',  :class => :logo
   end
   
+  def display_flash
+    content_tag :div, flash[:notice], :id => 'flash-notice' if flash[:notice] 
+  end
+  
 end

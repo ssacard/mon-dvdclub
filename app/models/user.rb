@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   validates_confirmation_of :email
-  validates_acceptance_of   :terms
+  validates_acceptance_of   :terms, :on => :create
   
   before_save :encrypt_password
   has_many :user_dvd_clubs
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   has_many :booked_dvds, :class_name => 'Dvd', :foreign_key => 'booked_by'
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :password, :password_confirmation, :email_confirmation, :terms
+  attr_accessible :login, :email, :password, :password_confirmation, :email_confirmation, :terms, :accept_offers
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)

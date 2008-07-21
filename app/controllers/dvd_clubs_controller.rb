@@ -48,6 +48,23 @@ class DvdClubsController < AuthenticatedController
     render :action => 'invited'
   end
   
+  def join
+    @token      = params[:id]
+    @invitation = Invitation.find_by_token(@token)
+    @user       = User.find_by_email(@invitation.email)
+    @dvd_club   = @invitation.dvd_club
+    if request.post? 
+      u = User.authenticate(@user.login, params[:password])
+      if u
+        self.current_user = u
+        @user_dvd_club = UserDvdClub.create(:user_id => @user.id, :dvd_club_id => @dvd_club.id, :subscription_status => true)
+        redirect_to home_path
+      else
+        flash.now[:notice] = "Mot de passe incorrect"
+      end
+    end
+  end
+  
 private
   def must_be_member
     redirect_to home_url unless UserDvdClub.membership(current_object, current_user)

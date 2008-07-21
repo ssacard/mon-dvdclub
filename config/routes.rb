@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
     user.reset_request_done '/reset_request_done',      :action => 'reset_request_done'
     user.change_password    '/change_password/:secret', :action => 'change_password'
     user.register           '/register',                :action => 'new'
-    user.dashboard          '/settings',                :action => 'edit'
+    user.settings           '/settings',                :action => 'edit'
   end
   
   map.resources :users
@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
     club_topic.resources :dvd_clubs
   end
   
-  map.resources :dvd_clubs
+  map.resources :dvd_clubs, :member => {:join => :post}
   
   map.resources :user_dvd_clubs
   map.resources :waiting_lists

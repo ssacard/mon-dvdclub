@@ -1,9 +1,14 @@
 .site
   #profile.standard_form    
-    %h1 
-      Créez votre DVD Club  
-    -if flash[:notice]     
-      #flash-notice= flash[:notice]  
+    - if @invitation
+      %h1 
+        Rejoignez le DVD club:
+        = @dvd_club.name
+      %h3 
+        invitation envoyé par: 
+        = @invitation.user.login
+    - else
+      %h1 Créez votre DVD Club  
     = render :partial => 'form'
     
       

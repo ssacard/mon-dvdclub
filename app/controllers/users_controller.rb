@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     @invitation = @token ? Invitation.find_by_token(@token) : nil
     @user       = (User.find_by_email(@invitation.email) rescue nil) || User.new  
     @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new
+
+    # Connot join twice a club
+    redirect_to home_path and return if (@dvd_club.users.include? @user)
+    render :template => (@user.new_record? ? 'users/new' : 'dvd_clubs/join')
   end
 
   def create
@@ -88,33 +92,13 @@ class UsersController < ApplicationController
   end
   
   def update
-    token = params[:token]
-    if token
-      invitation = Invitation.find_by_token(token)
-      @user = User.find_by_email(invitation.email)
-      user = User.authenticate(params[:user][:login], params[:user][:password])
-      if user
-        UserDvdClub.create(:user_id => user.id, :dvd_club_id => invitation.dvd_club.id, :subscription_status => true)
-        self.current_user = user
-        redirect_to '/home'
-      else
-         flash[:notice] = "Invalid Username or Password"
-        redirect_to :back
-      end
+    @user = current_user
+    if current_user.update_attributes params[:user]
+      flash[:notice] = "Mise à jour éffectué"
+      redirect_to settings_path
     else
-      @user = current_user
-      if current_user.update_attributes params[:user]
-        flash[:notice] = "Mise à jour éffectué"
-        
-        redirect_to '/home'
-      else
-        notice = ""
-        @user.errors.each_full { |msg| notice += '<li>' + msg + '</li>' }
-        flash.now[:notice] = "<ul>#{notice}</ul>"
-        render :action => 'edit'
-      end    
-    end
-
+      render :action => 'edit'
+    end    
   end
   
 end

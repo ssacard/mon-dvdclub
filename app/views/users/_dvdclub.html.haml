@@ -1,0 +1,16 @@
+- fields_for :dvd_club do |fields|
+  %p
+    %label
+      nom de votre club:
+      %br
+      = fields.text_field :name, :class => :text, :disabled => !@dvd_club.new_record? 
+  %p
+    %label
+      type de club:
+      %br
+      = fields.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, {:prompt => true}, :class => :text, :disabled => !@dvd_club.new_record? 
+  %p
+    %label
+      comment vous identifier dans ce club?:
+      %br
+      = fields.text_area :description, :class => :text,  :disabled => !@dvd_club.new_record? 
