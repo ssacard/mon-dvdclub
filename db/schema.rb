@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080708191716) do
+ActiveRecord::Schema.define(:version => 20080718105046) do
 
   create_table "actors", :force => true do |t|
     t.string "name"
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(:version => 20080708191716) do
   add_index "dvds_actors", ["dvd_id"], :name => "dvds_has_actors_FKIndex1"
   add_index "dvds_actors", ["actor_id"], :name => "dvds_has_actors_FKIndex2"
 
+  create_table "invitations", :force => true do |t|
+    t.integer  "dvd_club_id", :limit => 11
+    t.integer  "user_id",     :limit => 11
+    t.string   "token"
+    t.string   "email"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "manufacturers", :force => true do |t|
     t.string "name"
   end
@@ -118,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20080708191716) do
     t.boolean  "subscription_status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "comments"
   end
 
   add_index "user_dvd_clubs", ["user_id"], :name => "user_dvd_clubs_FKIndex1"

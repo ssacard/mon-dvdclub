@@ -17,6 +17,7 @@ class UserMailer < ActionMailer::Base
   end
   
   def club_invitation(dvd_club, mail, url)
+    url = "http://mondvdclub.fr"+url
     content_type "text/html"
     recipients    mail['recipients'].split(',')
     from          "noreply@mondvdclub.fr"

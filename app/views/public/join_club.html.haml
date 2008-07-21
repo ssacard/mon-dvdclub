@@ -1,0 +1,10 @@
+.standard_form
+  %h3
+    Rejoindre un DVD Club
+    
+  %h1 
+  - if flash[:notice]
+    #flash-notice
+      .content 
+        = flash[:notice]
+  = render :partial => 'public/partials/join_form'  
