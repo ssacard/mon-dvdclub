@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   def new
     @token      = params[:token]
     @invitation = @token ? Invitation.find_by_token(@token) : nil
-    @user       = (User.find_by_email(@invitation.email) rescue nil) || User.new  
+    email      = @invitation.email rescue nil
+    @user       = (User.find_by_email(email) rescue nil) || User.new(:email => email, :email_confirmation => email)  
     @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new
 
     # Connot join twice a club

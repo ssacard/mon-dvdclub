@@ -2,27 +2,27 @@
 .site
   #login_panel.standard_form
     %h1 
-      Login 
-      = link_to '(register)', register_path
+      Connexion 
+      = link_to "(S'enregister)", register_path
   
     -if flash[:notice] 
       #flash-notice= flash[:notice]
 
     - form_tag session_path do
       %label 
-        Login
+        Identifiant
         %br
         = text_field_tag 'login', '', :class => :text
 
 
       %label 
-        Password
+        Mot de passe
         %br
         = password_field_tag 'password', '', :class => :text
 
       %label 
-        Remember me:  
+        Se souvenir de ma connexion:  
         = check_box_tag 'remember_me' 
     
-      - forgot =  link_to('(forgot password)' , forgot_password_path, :class => :forgot)
+      - forgot =  link_to('(mot de passe oublié)' , forgot_password_path, :class => :forgot)
       = render :partial => '/shared/submit_buttons', :locals => {:text => 'Se connecter', :more => forgot }
