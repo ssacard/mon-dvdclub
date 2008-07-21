@@ -1,6 +1,0 @@
-.site
-  #profile.standard_form
-    %h1
-      Rejoindre un DVD Club    
-    -form_for(:user_dvd_club, nil, :url => user_dvd_clubs_path) do |f|
-      = render :partial => 'users/form', :locals => {:f => f}  
