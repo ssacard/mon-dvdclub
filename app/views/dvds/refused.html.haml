@@ -1,5 +1,5 @@
 = render :partial => '/shared/menu', :locals => {:object => 'Mes DVD', :parent => 'Moi'} if logged_in?
-.site
+.site.center
   %h3
     Votre refus a été prise en compte
   %br  
@@ -12,5 +12,4 @@
   cliquant sur ce lien: 
   = link_to_remote "<input type=\"button\" value=\"rendre disponible ce DVD.\"/>", :url => {:controller => :dvds, :action => :make_available, :id => @dvd.id}, :method => :post
   %br
-  Vous allez être redirigé vers la page d'accueil de votre DVD Club
-  = link_to 'en cliquant ici. ', "home/dvds"
+  = link_to 'Retourner sur votre DVD Club. ', "home/dvds"

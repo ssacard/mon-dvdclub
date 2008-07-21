@@ -1,11 +1,14 @@
 = render :partial => '/shared/menu' if logged_in?
-.site
+.site.center
   %h3
     Vous allez réserver 
     = @dvd.title 
     à 
     = @dvd.owner.login
   %br
+  = avatar @dvd.owner
+  &nbsp;
+  = dvd_cover @dvd
   %br
   - form_for :dvd, :url => {:action => :register} do |form|
     = hidden_field_tag 'dvd_id', @dvd.id

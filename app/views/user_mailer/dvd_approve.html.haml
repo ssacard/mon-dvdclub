@@ -1,0 +1,19 @@
+= render :partial => '/user_mailer/header'
+
+Bonjour, 
+= @body[:requester].login
+
+%p
+  = @body[:dvd].owner.login
+  a accepté de vous prêter
+  = @body[:dvd].title
+
+%p 
+  Merci de prendre contact avec Demandeur afin de procéder à l'échange. 
+
+%p 
+  Merci 
+  = @body[:requester].login
+  , à bientôt!
+  
+= render :partial => '/user_mailer/footer'

@@ -25,6 +25,9 @@ class DvdsController < AuthenticatedController
     @dvd = Dvd.find(params[:dvd_id])
     @dvd.update_attributes!(:booked_by => self.current_user.id)
     @dvd.request!
+    UserMailer.deliver_dvd_request(@dvd, self.current_user,
+                                   url_for(:controller => :dvds, :action => :approve, :id => @dvd.id),
+                                   url_for(:controller => :dvds, :action => :refuse, :id => @dvd.id));
   end
   
   def unregister
@@ -82,6 +85,7 @@ class DvdsController < AuthenticatedController
   def approve
     @dvd = current_user.owned_dvds.find(params[:id])
     @dvd.register!
+    UserMailer.deliver_dvd_approve(@dvd)
     redirect_to "/dvds/approved/#{@dvd.id}"
   end
   
@@ -96,6 +100,7 @@ class DvdsController < AuthenticatedController
   def refuse
     @dvd = current_user.owned_dvds.find(params[:id])
     @dvd.cancel_request!
+    UserMailer.deliver_dvd_refuse(@dvd)
     redirect_to "/dvds/refused/#{@dvd.id}"
   end
 

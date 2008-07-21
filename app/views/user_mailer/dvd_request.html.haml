@@ -1,0 +1,25 @@
+= render :partial => '/user_mailer/header'
+
+Bonjour, 
+= @body[:dvd].owner.login
+
+%p
+  = @body[:requester].login
+  souhaite vous emprunter 
+  = @body[:dvd].title
+
+%p 
+  Pour confirmer ce prêt, merci de cliquer sur lien suivant pour préciser quand ce DVD peut-être disponible, et sous quelle modalité. 
+%p
+  Si toutefois vous êtes dans l'impossibilité de le prêter, cliquer sur le lien suivant pour prévenir Demandeur.
+
+  = link_to "Confirmer le prêt", @body[:accept_url]
+  = link_to "Refuser!", @body[:refuse_url]
+
+%p 
+  Merci 
+  = @body[:dvd].owner.login
+  , à bientôt! 
+  
+  
+= render :partial => '/user_mailer/footer'

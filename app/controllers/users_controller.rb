@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     # request forgery protection.
     # uncomment at your own risk
     # reset_session
-    notice = ""
     begin
       @dvd_club = session[:dvd_club_id] ? DvdClub.find(session[:dvd_club_id]) : DvdClub.new
       @user = User.new(params[:user])      
@@ -29,13 +28,9 @@ class UsersController < ApplicationController
         @user_dvd_club = UserDvdClub.create(:user_id => @user.id, :dvd_club_id => @dvd_club.id, :subscription_status => true)
       end
     rescue
-      @user.errors.each_full { |msg| notice += '<li>' + msg + '</li>' }
-      @dvd_club.errors.each_full { |msg| notice += '<li>' + msg + '</li>' } if @dvd_club
       @user.destroy if @user
       @dvd_club.destroy if @dvd_club && !session[:dvd_club_id]
       @user_dvd_club.destroy if @user_dvd_club
-      @user = User.new(params[:user])      
-      flash.now[:notice] = notice
       render :action => 'new'    
     else
       session[:dvd_club_id] = nil

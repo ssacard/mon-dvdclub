@@ -169,6 +169,10 @@ class User < ActiveRecord::Base
     booked_dvds.select{|d| d.state=='booked'}  
   end
   
+  def avatar
+    'user.jpg'
+  end
+  
   protected
     # before filter 
     def encrypt_password

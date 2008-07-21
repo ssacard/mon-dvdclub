@@ -1,5 +1,5 @@
 class HomeController < AuthenticatedController
-  skip_before_filter :login_required
+  skip_before_filter :login_required, :only => [:reset_db, :restore_db]
   
   def index
     @dvds = self.current_user.dvds.select{|d| d.available?}  

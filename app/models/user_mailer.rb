@@ -24,4 +24,35 @@ class UserMailer < ActionMailer::Base
     body          :body => {:sender => mail[:sender], :message => mail[:message], :dvd_club => dvd_club.name, :url => url}
   end
   
+  
+  def dvd_request(dvd, requester, accept_url, refuse_url)
+    content_type "text/html"
+    recipients    dvd.owner.email
+    from          "noreply@mondvdclub.fr"
+    subject       "Demande de prêt"
+    body          :body => {:dvd => dvd, :requester => requester, :accept_url => accept_url, :refuse_url => refuse_url}
+  end
+  
+  def dvd_approve(dvd)
+    content_type "text/html"
+    puts dvd.inspect
+    recipients    dvd.booked_by_user.email
+    from          "noreply@mondvdclub.fr"
+    subject       "Confirmation de prêt"
+    body          :body => {:dvd => dvd, :requester => dvd.booked_by_user}
+  end
+  
+  def dvd_refuse(dvd)
+    content_type "text/html"
+    puts dvd.inspect
+    recipients    dvd.booked_by_user.email
+    from          "noreply@mondvdclub.fr"
+    subject       "Confirmation de prêt"
+    body          :body => {:dvd => dvd, :requester => dvd.booked_by_user}
+  end
+  
+  def protect_against_forgery?
+    false
+  end
+  
 end

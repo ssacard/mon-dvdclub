@@ -1,0 +1,20 @@
+= render :partial => '/user_mailer/header'
+
+Bonjour, 
+= @body[:requester].login
+
+%p
+  = @body[:dvd].owner.login
+  a refuser de vous prêter
+  = @body[:dvd].title
+
+%p 
+  Un refus peut être motivé par différentes raisons, notamment son indisponibilité temporaire. 
+  Vous pouvez tenter votre chance avec un autre membre du club...
+  
+%p 
+  Merci 
+  = @body[:requester].login
+  , à bientôt!
+  
+= render :partial => '/user_mailer/footer'
