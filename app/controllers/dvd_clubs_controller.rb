@@ -57,7 +57,10 @@ class DvdClubsController < AuthenticatedController
       u = User.authenticate(@user.login, params[:password])
       if u
         self.current_user = u
-        @user_dvd_club = UserDvdClub.create(:user_id => @user.id, :dvd_club_id => @dvd_club.id, :subscription_status => true)
+        @user_dvd_club = UserDvdClub.create(:invited_by => @invitation.user, 
+                                            :user_id => @user.id, 
+                                            :dvd_club_id => @dvd_club.id, 
+                                            :subscription_status => true)
         redirect_to home_path
       else
         flash.now[:notice] = "Mot de passe incorrect"

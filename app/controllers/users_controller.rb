@@ -33,18 +33,18 @@ class UsersController < ApplicationController
           @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])
           @dvd_club.save!
         end
-        @user_dvd_club = UserDvdClub.create(:user_id => @user.id, :dvd_club_id => @dvd_club.id, :subscription_status => true)
+        @user_dvd_club = UserDvdClub.create!(:invited_by => @invitation.user, :user_id => @user.id, :dvd_club_id => @dvd_club.id, :subscription_status => true)
       end
-    rescue
-      @user.destroy if @user
-      @dvd_club.destroy if @dvd_club && !@token 
-      @user_dvd_club.destroy if @user_dvd_club
-      render :action => 'new'    
-    else
+    # rescue
+    #   @user.destroy if @user
+    #   @dvd_club.destroy if @dvd_club && !@token 
+    #   @user_dvd_club.destroy if @user_dvd_club
+    #   render :action => 'new'    
+    # else
       session[:token] = nil
       UserMailer.deliver_signup_notification(@user)
       self.current_user = @user
-      redirect_back_or_default(home_path)
+      redirect_to(home_path)
     end
   end
 

@@ -6,4 +6,4 @@
   %br
   %h2
     Mes Clubs
-    = render :partial => 'dvd_club', :collection => self.current_user.dvd_clubs
+    = render :partial => 'dvd_club', :collection => self.current_user.dvd_clubs, :locals => {:all_members => true}

@@ -9,6 +9,8 @@
 #  subscription_status :boolean(1)      
 #  created_at          :datetime        
 #  updated_at          :datetime        
+#  comments            :text            
+#  invited_by_id       :integer(11)     
 #
 
 --- 

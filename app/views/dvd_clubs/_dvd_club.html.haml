@@ -16,10 +16,11 @@
 %br
 %h3
   Les derniers membres de ce club (7 derniers jours)
-= render :partial => 'user', :collection => dvd_club.recent_users
+= render :partial => 'user', :collection => dvd_club.recent_users, :locals => {:dvd_club => dvd_club}
 
 .clear
 - if local_assigns[:all_members] && all_members
   %h3
     Tous les membres
-  = render :partial => 'user', :collection => dvd_club.users
+  = render :partial => 'user', :collection => dvd_club.users, :locals => {:dvd_club => dvd_club}
+.clear

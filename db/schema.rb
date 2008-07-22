@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080718105046) do
+ActiveRecord::Schema.define(:version => 20080722103902) do
 
   create_table "actors", :force => true do |t|
     t.string "name"
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(:version => 20080718105046) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "comments"
+    t.integer  "invited_by_id",       :limit => 11
   end
 
   add_index "user_dvd_clubs", ["user_id"], :name => "user_dvd_clubs_FKIndex1"
