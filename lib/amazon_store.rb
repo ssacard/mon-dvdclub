@@ -8,7 +8,7 @@ class AmazonStore
     yaml.each {|key, value| @@options[key.to_sym] = value}
     
     # Response group meduim to get more information like images
-    @@options.merge! :response_group => 'Medium'
+    @@options.merge! :response_group => 'Large'
   end
 
   # Returns an array of hash with search results
@@ -20,8 +20,6 @@ class AmazonStore
     res = Amazon::Ecs.item_search(title, @@options.merge(:item_page => page))
 
     res.items.each_with_index do |i, index|
-      puts i.inspect if index == 1
-      puts i.get('productgroup')
       item = Hash.new
       item[:asin]         = i.get('asin').to_s
       item[:url]          = i.get('detailpageurl').to_s

@@ -9,7 +9,6 @@ module ApplicationHelper
   end
   
   def dvd_cover(dvd)
-    puts dvd
     image_tag dvd.smallimage || 'dvd.png',  :class => :logo
   end
   

@@ -2,12 +2,12 @@
 .site
   = render :partial => 'shared/categories'
   #accueil
-    %h2
-      Accueil > 
-      - if @dvd_category
-        = @dvd_category.name
-        > 
-      = @dvd.title 
+    = link_to 'Accueil', home_path 
+    > 
+    - if @dvd_category
+      = @dvd_category.name
+      > 
+    = @dvd.title 
     %table
       %tr
         %td{:width => 230}

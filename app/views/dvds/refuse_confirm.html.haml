@@ -3,7 +3,7 @@
   %h3
     Vous avez refuser de prêter un DVD:
   %br
-    = image_tag @dvd.logo
+    = dvd_cover(@dvd)
   %br
     = @dvd.booked_by_user.login
     vous à demandé
