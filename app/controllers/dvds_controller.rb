@@ -50,10 +50,12 @@ class DvdsController < AuthenticatedController
   end
   
   def created
+    # TODO Check if current_user can see this dvd!!!!
     @dvd =  Dvd.find(params[:id])
   end
 
   def show
+    # TODO Check if current_user can see this dvd!!!!
     @dvd_category = DvdCategory.find(params[:dvd_category_id]) rescue nil
     @dvd = Dvd.find(params[:id])  
   end
