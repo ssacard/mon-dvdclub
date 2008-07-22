@@ -62,10 +62,6 @@ class DvdsController < AuthenticatedController
     @dvds = self.current_user.dvds_by_category(DvdCategory.find(params[:dvd_category_id])) rescue []
   end
   
-  def details
-    @dvd = Dvd.find(params[:id])  
-  end
-  
   # Disponible/Indisponible Story
   def unblock
     @dvd = current_user.owned_dvds.find(params[:id])
@@ -106,13 +102,6 @@ class DvdsController < AuthenticatedController
 
   def refused
     @dvd = current_user.owned_dvds.find(params[:id])  
-  end
-  
-  # ajax redirection
-  def redirect_to_home
-    render :update do |page|
-      page.redirect_to "/home/dvds"
-    end
   end
   
 private

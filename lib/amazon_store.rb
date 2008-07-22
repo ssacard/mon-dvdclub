@@ -20,11 +20,15 @@ class AmazonStore
     res = Amazon::Ecs.item_search(title, @@options.merge(:item_page => page))
 
     res.items.each_with_index do |i, index|
-      #puts i.inspect if index == 0
+      puts i.inspect if index == 1
+      puts i.get('productgroup')
       item = Hash.new
       item[:asin]         = i.get('asin').to_s
       item[:url]          = i.get('detailpageurl').to_s
-      item[:image]        = i.get('smallimage/url')
+      item[:description]  = i.get('editorialreviews/editorialreview/content')
+      item[:smallimage]   = i.get('smallimage/url')
+      item[:largeimage]   = i.get('largeimage/url')
+      item[:format]       = i.get('productgroup')
       
       attrs = i.search_and_convert('itemattributes')
       item[:title]        = attrs.get('title')

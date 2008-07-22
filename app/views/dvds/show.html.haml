@@ -1,6 +1,7 @@
 = render :partial => '/shared/menu' if logged_in?
 .site
-  #dvd
+  = render :partial => 'shared/categories'
+  #accueil
     %h2
       Accueil > 
       - if @dvd_category
@@ -9,24 +10,22 @@
       = @dvd.title 
     %table
       %tr
+        %td{:width => 230}
+          = image_tag(@dvd[:largeimage], :class => 'logo', :width => 200)
         %td
-          = image_tag @dvd[:image] unless @dvd[:image].nil?
-        %td
-          %b
-            Propriétaire
+          %b= @dvd.owner.login
           %br
-          DVD Club (
-          = @dvd.dvd_club.name
-          )
+          = DvdClub.in_common(@dvd.owner, current_user)
           %br
-          Status: 
-          = render :partial => '/dvds/partials/dvd_state', :locals => {:dvd => @dvd}
           %br
-          %b
-            = @dvd.title
+          = render :partial => 'dvds/partials/status', :locals => {:dvd => @dvd}
+          %br
+          %b= @dvd.title
+          = @dvd.actors.map(&:name).join(' - ')
+          %br
           format:
-          = @dvd.dvd_format.name rescue "none"
+          = @dvd.format_name
+          %br
           %br
           = @dvd.description
-    %br
-    %br
+  .clear

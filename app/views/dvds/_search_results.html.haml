@@ -2,7 +2,7 @@
   %tr
     %th
     %th
-      ASIN
+      Format
     %th
       Title
     %th
@@ -19,8 +19,11 @@
         - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :create}, :html => {:id => index+1}) do |f|
           = hidden_field_tag 'asin', i[:asin] 
           = hidden_field_tag 'url', i[:url]  
-          = hidden_field_tag 'logo', i[:image]  
+          = hidden_field_tag 'smallimage', i[:smallimage]  
+          = hidden_field_tag 'largeimage', i[:largeimage]  
           = hidden_field_tag 'title', i[:title]  
+          = hidden_field_tag 'description', i[:description]  
+          = hidden_field_tag 'format', i[:format]  
           - i[:actor].each do |a|
             = hidden_field_tag 'actors[]', a
           = hidden_field_tag 'director', i[:director] 
@@ -33,7 +36,7 @@
           = "<input type=\"button\" onclick=\"document.forms[#{index+1}].onsubmit();\" value=\"c'est ça!\" />"
           
       %td
-        = i[:asin]
+        = i[:format]
       %td
         = link_to i[:title], i[:url]
       %td
@@ -43,5 +46,5 @@
       %td
         = i[:manufacturer]
       %td
-        = image_tag i[:image] unless i[:image].nil?
+        = image_tag i[:smallimage] unless i[:smallimage].nil?
 = will_paginate @res, :renderer => 'RemoteLinkRenderer'

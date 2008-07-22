@@ -1,11 +1,6 @@
 = render :partial => '/shared/menu', :locals => {:parent => 'Mon Club', :object => false} if logged_in?
 .site 
-  #rubrique
-    %h2
-      Rubriques
-    - self.current_user.rubriques.each do |dvd_category|
-      = link_to "#{dvd_category[:rubrique].name} (#{dvd_category[:count]})", dvd_category_dvds_path(dvd_category[:rubrique]) 
-      %br
+  = render :partial => 'shared/categories'
   #accueil
     %h2
       Accueil

@@ -45,7 +45,8 @@ class DvdModel < ActiveRecord::Migration
       t.timestamp "created_at"
       t.integer   "owner_id",            :limit => 10
       t.string    "title"
-      t.string    "logo"
+      t.string    "smallimage"
+      t.string    "largeimage"
       t.text      "description"
     end
   

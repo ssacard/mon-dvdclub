@@ -1,6 +1,6 @@
 %tr{:class => cycle('even', 'odd')}
   %td.center
-    = image_tag dvd[:logo], :class => 'logo' unless dvd[:logo].nil?
+    = link_to(image_tag(dvd[:smallimage], :class => 'logo'), {:controller => :dvds, :action => :show, :id => dvd}) unless dvd[:smallimage].nil?
   %td
     - if dvd.owner == current_user
       - if dvd.booked?
@@ -14,35 +14,8 @@
       %b= dvd.title
       %br
     format:
-    = dvd.dvd_format.name rescue "non renseigné"
+    = dvd.format_name
     %br
     = truncate(dvd.description, 80)
   %td
-    - if dvd.owner == current_user
-      - if dvd.owner == current_user && (dvd.available? || dvd.blocked?)
-        -if dvd.blocked?
-          %b Indisponible
-          = button_to "rendre disponible", {:controller => :dvds, :action => :unblock, :id => dvd.id}, :method => :post
-        -else
-          %b Disponible
-          = button_to "rendre indisponible", {:controller => :dvds, :action => :block, :id => dvd.id}, :method => :post
-        
-      - elsif dvd.owner == current_user && dvd.approval?
-        = button_to "prêter",   {:controller => :dvds, :action => :approve_confirm, :id => dvd.id}, :method => :post
-        = button_to "refuser",  {:controller => :dvds, :action => :refuse_confirm, :id => dvd.id}, :method => :post
-   
-      - elsif dvd.booked?
-        Emprunté  
-    - else       
-      %span.bold= dvd.owner.login
-      %br
-      = DvdClub.in_common(dvd.owner, current_user)
-      - if dvd.booked? || (dvd.approval? && dvd.booked_by_user != current_user)
-        Emprunté
-      - elsif dvd.approval?
-        %b Demande en cours
-      - else
-        %b Disponible!
-        - form_for :dvd, :url => {:controller => :dvds, :action => :request_register} do |form|
-          = hidden_field_tag 'dvd_id', dvd.id
-          = form.submit "Réserver maintenant!"
+    = render :partial => 'dvds/partials/status', :locals => {:dvd => dvd}

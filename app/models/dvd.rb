@@ -24,7 +24,7 @@ class Dvd < ActiveRecord::Base
 	has_and_belongs_to_many :actors, :join_table => 'dvds_actors'
 	validates_presence_of :title
   belongs_to :dvd_club
-  belongs_to :dvd_format
+  belongs_to :dvd_format, :foreign_key => 'format_id'
   belongs_to :dvd_category
   belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
   has_many :waiting_lists
@@ -77,10 +77,15 @@ class Dvd < ActiveRecord::Base
   end
   
   def self.create_record(attrs)
+    puts attrs['format'].inspect
+    puts DvdFormat.find_by_name(attrs['format']).id
     dvd = Dvd.create!(:asin => attrs['asin'], 
     :details_url => attrs['url'], 
     :title => attrs['title'],
-    :logo => attrs['logo'],
+    :description => attrs['description'],
+    :smallimage => attrs['smallimage'],
+    :format_id => (DvdFormat.find_by_name(attrs['format']).id rescue nil),
+    :largeimage => attrs['largeimage'],
     :dvd_club_id => attrs[:dvd_club_id],
     :owner_id => attrs[:owner_id],
     :dvd_category_id => attrs[:dvd][:dvd_category_id])
@@ -100,6 +105,10 @@ class Dvd < ActiveRecord::Base
     dvd
     # rescue
     #   false 
+  end
+  
+  def format_name
+    dvd_format.name rescue "non précisé"
   end
 
 end

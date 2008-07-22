@@ -59,7 +59,8 @@ ActiveRecord::Schema.define(:version => 20080722103902) do
     t.datetime "created_at"
     t.integer  "owner_id",        :limit => 10
     t.string   "title"
-    t.string   "logo"
+    t.string   "smallimage"
+    t.string   "largeimage"
     t.text     "description"
     t.string   "state"
     t.integer  "booked_by",       :limit => 11
