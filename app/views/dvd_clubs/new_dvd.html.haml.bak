@@ -43,6 +43,11 @@
         = text_field_tag :director
       %p
         %label
+          Format
+        %br/
+        = f.collection_select :format, DvdFormat.find(:all), :id, :name
+      %p
+        %label
           Actors 
           = link_to_function('Add more') do |page|
             - page.insert_html :bottom, 'actors-div', "<br />" + text_field_tag('actors[]')

@@ -28,7 +28,7 @@
             = hidden_field_tag 'actors[]', a
           = hidden_field_tag 'director', i[:director] 
           = hidden_field_tag 'manufacturer', i[:manufacturer]
-          = hidden_field_tag 'dvd_club_id', dvd_club_id 
+          = hidden_field_tag 'owner_id', self.current_user.id 
           %b
             Dvd Category:
           %br

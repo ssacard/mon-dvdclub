@@ -1,5 +1,8 @@
 = render :partial => '/shared/menu', :locals => {:object => 'Mes DVD', :parent => 'Moi'} if logged_in?
 .site
+  %h2= link_to 'Ajouter un DVD', "/dvds/new" 
+  
+  
   %h2 Les DVDs que l'on veut m'emprunter
   = render :partial => 'dvds/partials/dvds', :locals => {:dvds => self.current_user.owned_dvds.select{|d| d.approval?}}
 
