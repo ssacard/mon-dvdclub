@@ -1,5 +1,5 @@
 class DvdsController < AuthenticatedController
-  before_filter :is_valid, :only => [:index, :new]
+  
   # TODO
   # Use make_resourceful and move these functions in hookup calls
   
@@ -12,6 +12,7 @@ class DvdsController < AuthenticatedController
   end
 
   def new
+    
   end
 
   def request_register
@@ -104,13 +105,6 @@ class DvdsController < AuthenticatedController
 
   def refused
     @dvd = current_user.owned_dvds.find(params[:id])  
-  end
-  
-private
-  def is_valid
-    if params[:dvd_club_id].nil? && params[:dvd_category_id].nil?
-      redirect_to '/sessions/new'
-    end
   end
   
 
