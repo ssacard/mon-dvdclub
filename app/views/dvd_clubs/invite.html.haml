@@ -4,6 +4,7 @@
     Inviter des amis au club
   %br
   %br
+  .classic_form
   - form_for :mail, :url => {:controller => 'dvd_clubs', :action => 'send_mails'} do |form|
     %p
       %label
@@ -21,7 +22,7 @@
       %label
         à:
         %br
-        = form.text_field :recipients
+        = form.text_field :recipients, :class => :text
     %p
       %label
         message:

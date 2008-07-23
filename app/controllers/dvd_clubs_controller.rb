@@ -43,25 +43,30 @@ class DvdClubsController < AuthenticatedController
                          :token => token,
                          :active => true,
                          :email => r)
-      status = UserMailer.deliver_club_invitation(@dvd_club, params[:mail], "/join/#{token}") 
+      status = UserMailer.deliver_club_invitation(@dvd_club, params[:mail], join_url(token)) 
     end
     render :action => 'invited'
   end
   
   def join
-    @token      = params[:id]
-    @invitation = Invitation.find_by_token(@token)
-    @user       = User.find_by_email(@invitation.email)
-    @dvd_club   = @invitation.dvd_club
+    @password      = params[:password]
+    @token         = params[:id]
+    @invitation    = Invitation.find_by_token(@token)
+    @user          = User.find_by_email(@invitation.email)
+    @dvd_club      = @invitation.dvd_club
+    @user_dvd_club = UserDvdClub.new(params[:user_dvd_club])
+    @user_dvd_club.pseudo = @user if @user_dvd_club.blank?
+    puts @user_dvd_club.inspect
     if request.post? 
       u = User.authenticate(@user.login, params[:password])
       if u
         self.current_user = u
-        @user_dvd_club = UserDvdClub.create(:invited_by => @invitation.user, 
-                                            :user_id => @user.id, 
-                                            :dvd_club_id => @dvd_club.id, 
-                                            :subscription_status => true)
-        redirect_to home_path
+        params[:user_dvd_club][:pseudo] = current_user.login if params[:user_dvd_club][:pseudo].blank?
+        @user_dvd_club = UserDvdClub.new(params[:user_dvd_club].merge(:invited_by          => @invitation.user, 
+                                                                      :user_id             => @user.id, 
+                                                                      :dvd_club_id         => @dvd_club.id, 
+                                                                      :subscription_status => true))
+        redirect_to home_path and return if @user_dvd_club.save
       else
         flash.now[:notice] = "Mot de passe incorrect"
       end

@@ -17,9 +17,13 @@ class UserDvdClub < ActiveRecord::Base
   belongs_to :user
   belongs_to :dvd_club
   belongs_to :invited_by, :class_name => 'User'
+  validates_presence_of :description
   
   def self.membership(dvd_club, user)
     first :conditions => ["user_id=? AND dvd_club_id=?", user.id, dvd_club.id]
   end
   
+  def login
+    read_attribute(:login) || user.login
+  end
 end

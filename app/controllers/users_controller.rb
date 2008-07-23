@@ -5,12 +5,13 @@ class UsersController < ApplicationController
 
   # render new.rhtml
   def new
-    @token      = params[:token]
-    @invitation = @token ? Invitation.find_by_token(@token) : nil
-    email      = @invitation.email rescue nil
-    @user       = (User.find_by_email(email) rescue nil) || User.new(:email => email, :email_confirmation => email)  
-    @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new
-
+    @token         = params[:token]
+    @invitation    = @token ? Invitation.find_by_token(@token) : nil
+    email          = @invitation.email rescue nil
+    @user          = (User.find_by_email(email) rescue nil) || User.new(:email => email, :email_confirmation => email)  
+    @dvd_club      = @invitation ? @invitation.dvd_club : DvdClub.new
+    @user_dvd_club = UserDvdClub.new
+    
     # Connot join twice a club
     redirect_to home_path and return if (@dvd_club.users.include? @user)
     render :template => (@user.new_record? ? 'users/new' : 'dvd_clubs/join')
@@ -26,26 +27,27 @@ class UsersController < ApplicationController
     @invitation = @token ? Invitation.find_by_token(@token) : nil
     @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new(params[:dvd_club])
     @user       = User.new(params[:user])      
-    begin
+    User.transaction do
       @user.save!
-      if @user
-        if @dvd_club.new_record?
-          @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])
-          @dvd_club.save!
-        end
-        @user_dvd_club = UserDvdClub.create!(:invited_by => @invitation.user, :user_id => @user.id, :dvd_club_id => @dvd_club.id, :subscription_status => true)
+      if @dvd_club.new_record?
+        @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])
+        @dvd_club.save!
       end
-    # rescue
-    #   @user.destroy if @user
-    #   @dvd_club.destroy if @dvd_club && !@token 
-    #   @user_dvd_club.destroy if @user_dvd_club
-    #   render :action => 'new'    
-    # else
+      params[:user_dvd_club][:pseudo] = @user.login if params[:user_dvd_club][:pseudo].blank?
+      @user_dvd_club = UserDvdClub.new(params[:user_dvd_club].merge(:invited_by          => (@invitation.user rescue nil), 
+                                                                    :user_id             => @user.id, 
+                                                                    :dvd_club_id         => @dvd_club.id, 
+                                                                    :subscription_status => true))
+      @user_dvd_club.save!                                                                    
+
       session[:token] = nil
       UserMailer.deliver_signup_notification(@user)
       self.current_user = @user
       redirect_to(home_path)
-    end
+   end
+  rescue
+   @user.id = nil
+   render :action => 'new'    
   end
 
   def forgot_password

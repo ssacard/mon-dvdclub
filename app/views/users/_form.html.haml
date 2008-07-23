@@ -1,32 +1,43 @@
 -form_for @user do |f|
   %p
     %label
-      pseudo
+      Login
       %br
       = f.text_field :login, :class => :text
   %p
     %label
-      email:
+      Email:
       %br
       = f.text_field :email, :class => :text
   %p
     %label
-      confirmer email:
+      Confirmer votre email:
       %br
       = f.text_field :email_confirmation, :class => :text
   %p
     %label
-      mot de passe:
+      Mot de passe:
       %br
       = f.password_field :password, :class => :text
   %p
     %label
-      confirmer mot de passe:
+      Confirmer votre mot de passe:
       %br
       = f.password_field :password_confirmation, :class => :text
   - if @dvd_club
     = render :partial => 'dvdclub'
     
+    - fields_for :user_dvd_club do |fields|
+      %p
+        %label
+          Votre pseudo dans ce club?:
+          %br
+          = fields.text_field :pseudo, :class => :text
+      %p
+        %label
+          Comment vous identifier dans ce club?:
+          %br
+          = fields.text_area :description, :class => :text
   %p
     = f.check_box :accept_offers
     j'accepte de recevoir des offres des partenaires de mon DVD Club

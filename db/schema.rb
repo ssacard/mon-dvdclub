@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(:version => 20080723112846) do
   create_table "user_dvd_clubs", :force => true do |t|
     t.integer  "dvd_club_id",         :limit => 11
     t.integer  "user_id",             :limit => 11
+    t.string   "pseudo"
+    t.string   "description"
     t.boolean  "subscription_status"
     t.datetime "created_at"
     t.datetime "updated_at"
