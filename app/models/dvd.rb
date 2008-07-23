@@ -77,16 +77,13 @@ class Dvd < ActiveRecord::Base
   end
   
   def self.create_record(attrs)
-    puts attrs['format'].inspect
-    puts DvdFormat.find_by_name(attrs['format']).id
     dvd = Dvd.create!(:asin => attrs['asin'], 
     :details_url => attrs['url'], 
     :title => attrs['title'],
     :description => attrs['description'],
     :smallimage => attrs['smallimage'],
-    :format_id => (DvdFormat.find_by_name(attrs['format']).id rescue nil),
+    :format_id => (attrs[:dvd][:format]),
     :largeimage => attrs['largeimage'],
-    :dvd_club_id => attrs[:dvd_club_id],
     :owner_id => attrs[:owner_id],
     :dvd_category_id => attrs[:dvd][:dvd_category_id])
     if attrs['manufacturer']

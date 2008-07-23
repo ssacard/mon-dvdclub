@@ -120,8 +120,11 @@ class User < ActiveRecord::Base
   # Using 2 sql queries approach to avoid the n+1 sql queries problem
   
   def dvds(without_mydvds = false)
-    dvd_club_ids = dvd_clubs.collect{|c| c.id}
-    Dvd.all(:conditions => ['dvd_club_id in (?) and state != ? and owner_id != ?', dvd_club_ids, 'hidden', without_mydvds ? self.id : 0])
+    #dvd_club_ids = dvd_clubs.collect{|c| c.id}
+    #Dvd.all(:conditions => ['dvd_club_id in (?) and state != ? and owner_id != ?', dvd_club_ids, 'hidden', without_mydvds ? self.id : 0])
+    # Change made after removing dvd_club_id from dvds
+    dvd_club_user_ids = user_dvd_clubs.collect{|c| c.user_id}
+    Dvd.all(:conditions => ['owner_id in (?) and state != ? and owner_id != ?', dvd_club_user_ids, 'hidden', without_mydvds ? self.id : 0 ])
   end
 
   # List all DvdCategories belonging to the subscribed DVD clubs
@@ -151,6 +154,11 @@ class User < ActiveRecord::Base
         
     rescue
     []
+  end
+  
+  def dvds_by_category(category)
+    dvd_club_user_ids = user_dvd_clubs.collect{|c| c.user_id}
+    Dvd.all(:conditions => ['owner_id in (?) and state != ? and dvd_category_id = ?', dvd_club_user_ids, 'hidden', category.id ])
   end
   
   def rubriques
