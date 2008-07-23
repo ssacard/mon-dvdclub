@@ -62,7 +62,8 @@ class DvdsController < AuthenticatedController
   end
   
   def index
-    @dvds = self.current_user.dvds_by_category(DvdCategory.find(params[:dvd_category_id])) rescue []
+    @category = DvdCategory.find(params[:dvd_category_id])
+    @dvds = self.current_user.dvds_by_category(@category) rescue []
   end
   
   # Disponible/Indisponible Story

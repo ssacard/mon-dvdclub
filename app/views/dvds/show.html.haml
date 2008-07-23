@@ -2,16 +2,11 @@
 .site
   = render :partial => 'shared/categories'
   #accueil
-    = link_to 'Accueil', home_path 
-    > 
-    - if @dvd_category
-      = @dvd_category.name
-      > 
-    = @dvd.title 
+    = render :partial => 'dvds/partials/breadcrumb'
     %table
       %tr
         %td{:width => 230}
-          = image_tag(@dvd[:largeimage], :class => 'logo', :width => 200)
+          = dvd_cover(@dvd, :large)
         %td
           %b= @dvd.owner.login
           %br

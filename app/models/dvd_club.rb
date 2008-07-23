@@ -15,7 +15,6 @@
 class DvdClub < ActiveRecord::Base
   attr_accessor :terms
   belongs_to :club_topic
-  has_many :dvds
   has_many :user_dvd_clubs
   has_many :users, :through => :user_dvd_clubs
   has_many :recent_users, :through => :user_dvd_clubs
@@ -36,5 +35,9 @@ class DvdClub < ActiveRecord::Base
     dvd_clubs = user1.dvd_clubs & user2.dvd_clubs
     name_only ? '(DVD Club: ' + dvd_clubs.map(&:name).join(' - ') + ')' : dvd_clubs
   end
-  
+
+  def dvds(exclude_user = nil)
+    dvd_club_user_ids = self.user_dvd_clubs.collect{|c| c.user_id}
+    Dvd.all(:conditions => ['owner_id in (?) and state != ? and owner_id != ?', dvd_club_user_ids, 'hidden', exclude_user.nil? ? 0 : exclude_user.id])    
+  end
 end

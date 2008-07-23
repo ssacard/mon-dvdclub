@@ -1,0 +1,8 @@
+#breadcrumb
+  = link_to 'Accueil', home_path 
+  - if @category
+    > 
+    = @category.name
+  - if @dvd
+    > 
+    = @dvd.title 

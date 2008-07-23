@@ -425,3 +425,9 @@ th.action {
 .user p {
   float: left;
 }
+
+
+/* Breadcrumb */
+#breadcrumb {
+  font-size: 1.5em;
+}

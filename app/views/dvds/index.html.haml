@@ -7,7 +7,6 @@
       = link_to "#{dvd_category[:rubrique].name} (#{dvd_category[:count]})", dvd_category_dvds_path(dvd_category[:rubrique]) 
       %br
   #accueil
-    %h2
-      Accueil
+    = render :partial => 'dvds/partials/breadcrumb'
     = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
   #clear

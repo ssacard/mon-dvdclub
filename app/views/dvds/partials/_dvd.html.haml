@@ -1,7 +1,8 @@
 %tr{:class => cycle('even', 'odd')}
   %td.center
-    = link_to(image_tag(dvd[:smallimage], :class => 'logo'), {:controller => :dvds, :action => :show, :id => dvd}) unless dvd[:smallimage].nil?
+    = link_to(dvd_cover(dvd), {:controller => :dvds, :action => :show, :id => dvd}) 
   %td
+    %b= link_to(dvd.title, {:controller => :dvds, :action => :show, :id => dvd});
     - if dvd.owner == current_user
       - if dvd.booked?
         %b= dvd.booked_by_user.login
@@ -11,11 +12,11 @@
         = distance_of_time_in_words(Time.now, dvd.created_at)
       %br
     -else
-      %b= dvd.title
       %br
     format:
     = dvd.format_name
     %br
     = truncate(dvd.description, 80)
   %td
+    = DvdClub.in_common(dvd.owner, current_user)
     = render :partial => 'dvds/partials/status', :locals => {:dvd => dvd}

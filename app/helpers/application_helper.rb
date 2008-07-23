@@ -8,8 +8,12 @@ module ApplicationHelper
     image_tag user.avatar, :class => :logo
   end
   
-  def dvd_cover(dvd)
-    image_tag dvd.smallimage || 'dvd.png',  :class => :logo
+  def dvd_cover(dvd, type = :small)
+    if type == :small
+      image_tag dvd.smallimage || 'dvd.png',  :class => :logo
+    else
+      image_tag dvd.largeimage || 'dvd.png',  :class => :logo, :width => 200
+    end
   end
   
   def display_flash
