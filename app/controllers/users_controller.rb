@@ -41,7 +41,7 @@ class UsersController < ApplicationController
       @user_dvd_club.save!                                                                    
 
       session[:token] = nil
-      UserMailer.deliver_signup_notification(@user)
+      UserMailer.deliver_signup_notification(@user, login_url)
       self.current_user = @user
       redirect_to(home_path)
    end

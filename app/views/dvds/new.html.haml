@@ -6,7 +6,7 @@
     = flash[:notice]
     %br/
     - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :search}, :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')") do |f|
-      = text_area_tag :title
+      = text_field_tag :title
       %br/ 
       %br/
       = submit_tag 'search'

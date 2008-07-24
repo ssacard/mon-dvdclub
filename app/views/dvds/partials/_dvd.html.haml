@@ -18,5 +18,4 @@
     %br
     = truncate(dvd.description, 80)
   %td
-    = DvdClub.in_common(dvd.owner, current_user)
     = render :partial => 'dvds/partials/status', :locals => {:dvd => dvd}

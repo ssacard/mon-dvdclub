@@ -5,18 +5,27 @@ class DvdClubsController < AuthenticatedController
     actions :all
   end
 
+  def new
+    @dvd_club = DvdClub.new
+    @user_dvd_club = UserDvdClub.new(:pseudo => current_user.login)
+  end
+
   def create
     before :create
-    begin
+    User.transaction do
       @dvd_club = DvdClub.new(params[:dvd_club])
-      @dvd_club.owner_id = self.current_user.id
+      @dvd_club.owner = current_user
+      @user_dvd_club = UserDvdClub.new(params[:user_dvd_club].merge(:user_id             => current_user.id, 
+                                                                    :dvd_club_id         => @dvd_club.id, 
+                                                                    :subscription_status => true))
       @dvd_club.save!
-    rescue
-      render :action => 'new'
-    else
-      self.current_user.dvd_clubs << @dvd_club
-      redirect_to dvd_clubs_path
+      @user_dvd_club.dvd_club = @dvd_club
+      @user_dvd_club.save!
+      redirect_to "/dvds/new" 
     end
+  rescue
+    @dvd_club.id = nil
+    render :action => 'new'
   end
   
   def new_dvd
@@ -45,6 +54,7 @@ class DvdClubsController < AuthenticatedController
                          :email => r)
       status = UserMailer.deliver_club_invitation(@dvd_club, params[:mail], join_url(token)) 
     end
+    @redirect_url = dvd_clubs_path
     render :action => 'invited'
   end
   

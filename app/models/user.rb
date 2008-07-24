@@ -120,45 +120,40 @@ class User < ActiveRecord::Base
   # Using 2 sql queries approach to avoid the n+1 sql queries problem
   
   def dvds(without_mydvds = false)
-    #dvd_club_ids = dvd_clubs.collect{|c| c.id}
-    #Dvd.all(:conditions => ['dvd_club_id in (?) and state != ? and owner_id != ?', dvd_club_ids, 'hidden', without_mydvds ? self.id : 0])
-    # Change made after removing dvd_club_id from dvds
-    dvd_club_user_ids = user_dvd_clubs.collect{|c| c.user_id}
-    Dvd.all(:conditions => ['owner_id in (?) and state != ? and owner_id != ?', dvd_club_user_ids, 'hidden', without_mydvds ? self.id : 0 ])
+    Dvd.all(:conditions => ['owner_id in (?) and state = ? and owner_id != ?', get_visible_user_ids, 'available', without_mydvds ? self.id : 0 ])
   end
 
   # List all DvdCategories belonging to the subscribed DVD clubs
   # Using 2 sql queries approach to avoid the n+1 sql queries problem
   
-  def dvd_categories
-    dvd_category_ids = User.find_by_sql("select dvd_club.id from users user, user_dvd_clubs user_dvd_club, dvd_clubs dvd_club, dvd_categories dvd_category, dvds dvd   
-                                   where user.id=#{self.id} AND user.id=user_dvd_club.user_id 
-                                   AND user_dvd_club.dvd_club_id=dvd_club.id 
-                                   AND dvd.dvd_club_id=dvd_club.id 
-                                   AND dvd.state != 'hidden'
-                                   AND dvd.owner_id != #{self.id}
-                                   AND dvd.dvd_category_id=dvd_category.id").collect{|c| c.id}                             
-    DvdCategory.find(dvd_category_ids) rescue []   
-  end
+  # def dvd_categories
+  #   dvd_category_ids = User.find_by_sql("select dvd_club.id from users user, user_dvd_clubs user_dvd_club, dvd_clubs dvd_club, dvd_categories dvd_category, dvds dvd   
+  #                                  where user.id=#{self.id} AND user.id=user_dvd_club.user_id 
+  #                                  AND user_dvd_club.dvd_club_id=dvd_club.id 
+  #                                  AND dvd.dvd_club_id=dvd_club.id 
+  #                                  AND dvd.state != 'hidden'
+  #                                  AND dvd.owner_id != #{self.id}
+  #                                  AND dvd.dvd_category_id=dvd_category.id").collect{|c| c.id}                             
+  #   DvdCategory.find(dvd_category_ids) rescue []   
+  # end
 
   # List all DvdCategories belonging to the subscribed DVD clubs
   # Using 2 sql queries approach to avoid the n+1 sql queries problem
   
-  def dvds_by_category(category)
-    Dvd.find_by_sql("select dvd.* from users user, user_dvd_clubs user_dvd_club, dvd_clubs dvd_club, dvds dvd
-                                where user.id=#{self.id} 
-                                AND user.id=user_dvd_club.user_id 
-                                AND user_dvd_club.dvd_club_id=dvd_club.id 
-                                AND dvd_club.id=dvd.dvd_club_id
-                                AND dvd.dvd_category_id=#{category.id}")
-        
-    rescue
-    []
-  end
+  # def dvds_by_category(category)
+  #   Dvd.find_by_sql("select dvd.* from users user, user_dvd_clubs user_dvd_club, dvd_clubs dvd_club, dvds dvd
+  #                               where user.id=#{self.id} 
+  #                               AND user.id=user_dvd_club.user_id 
+  #                               AND user_dvd_club.dvd_club_id=dvd_club.id 
+  #                               AND dvd_club.id=dvd.dvd_club_id
+  #                               AND dvd.dvd_category_id=#{category.id}")
+  #       
+  #   rescue
+  #   []
+  # end
   
   def dvds_by_category(category)
-    dvd_club_user_ids = user_dvd_clubs.collect{|c| c.user_id}
-    Dvd.all(:conditions => ['owner_id in (?) and state != ? and dvd_category_id = ?', dvd_club_user_ids, 'hidden', category.id ])
+    Dvd.all(:conditions => ['owner_id in (?) and state = ? and dvd_category_id = ?', get_visible_user_ids, 'available', category.id ])
   end
   
   def rubriques
@@ -195,6 +190,14 @@ class User < ActiveRecord::Base
     
     def email_required?
       !email.blank?
+    end
+    
+    def get_visible_user_ids
+      # TDOD: remove blocked users
+      # get club_id
+      dvd_club_ids = user_dvd_clubs.map &:dvd_club_id
+      # get user from all this dvd_club
+      dvd_club_user_ids = UserDvdClub.all(:conditions => ["dvd_club_id in (?)", dvd_club_ids], :select => "DISTINCT(user_id)").collect &:user_id
     end
     
 end

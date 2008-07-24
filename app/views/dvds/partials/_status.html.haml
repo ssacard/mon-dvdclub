@@ -1,3 +1,5 @@
+= DvdClub.in_common(dvd.owner, current_user)
+%br
 - if dvd.owner == current_user
   - if dvd.owner == current_user && (dvd.available? || dvd.blocked?)
     -if dvd.blocked?
@@ -16,7 +18,6 @@
 - else       
   %span.bold= dvd.owner.login
   %br
-  = DvdClub.in_common(dvd.owner, current_user)
   - if dvd.booked? || (dvd.approval? && dvd.booked_by_user != current_user)
     Emprunté
   - elsif dvd.approval?

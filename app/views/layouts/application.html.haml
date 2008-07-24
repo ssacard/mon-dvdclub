@@ -3,6 +3,8 @@
   %head
     %title mondvdclub.fr
     %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
+    -if @redirect_url
+      %meta{"http-equiv" => "Refresh", :content => "5;url= #{@redirect_url}"} 
     = stylesheet_link_tag 'master', 'form', 'button', 'menu'
   %body
     #main

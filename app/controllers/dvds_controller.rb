@@ -90,7 +90,8 @@ class DvdsController < AuthenticatedController
   end
   
   def approved
-    @dvd = current_user.owned_dvds.find(params[:id])  
+    @dvd          = current_user.owned_dvds.find(params[:id])  
+    @redirect_url = mydvds_path
   end
   
   def refuse_confirm
@@ -106,7 +107,6 @@ class DvdsController < AuthenticatedController
 
   def refused
     @dvd = current_user.owned_dvds.find(params[:id])  
+    @redirect_url = mydvds_path
   end
-  
-
 end
