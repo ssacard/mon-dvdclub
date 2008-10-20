@@ -20,7 +20,10 @@ class DvdClub < ActiveRecord::Base
   has_many :recent_users, :through => :user_dvd_clubs
   
   belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
-  validates_presence_of :name, :description, :owner_id, :club_topic_id
+  validates_presence_of :name,  :message => 'Vous devez donner un nom votre club'
+  validates_presence_of :description,  :message => 'Vous devez donner une description votre club'
+  validates_presence_of :owner_id, :message => ''
+  validates_presence_of :club_topic_id, :message =>  'Vous devez choisir un type de club'
   validates_acceptance_of   :terms
 
   def recent_users(date = 1.week.ago)
@@ -31,9 +34,9 @@ class DvdClub < ActiveRecord::Base
     user_dvd_clubs.first :conditions => {:dvd_club_id => self.id, :user_id => user.id}
   end
   
-  def self.in_common(user1, user2, name_only = true)
+  def self.first_in_common(user1, user2)
     dvd_clubs = user1.dvd_clubs & user2.dvd_clubs
-    name_only ? '(DVD Club: ' + dvd_clubs.map(&:name).join(' - ') + ')' : dvd_clubs
+    dvd_clubs.first
   end
 
   def dvds(exclude_user = nil)

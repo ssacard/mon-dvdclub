@@ -1,4 +1,9 @@
-= DvdClub.in_common(dvd.owner, current_user)
+propriétaire: 
+%b= dvd.owner.default_pseudo 
+%br
+Club:
+- dvd_club = DvdClub.first_in_common(dvd.owner, current_user)
+%b= dvd_club.name
 %br
 - if dvd.owner == current_user
   - if dvd.owner == current_user && (dvd.available? || dvd.blocked?)
@@ -15,8 +20,9 @@
 
   - elsif dvd.booked?
     Emprunté  
+    = button_to "rendu",   {:controller => :dvds, :action => :restore, :id => dvd.id}, :method => :post
 - else       
-  %span.bold= dvd.owner.login
+  %span.bold= dvd.owner.pseudo(dvd_club)
   %br
   - if dvd.booked? || (dvd.approval? && dvd.booked_by_user != current_user)
     Emprunté

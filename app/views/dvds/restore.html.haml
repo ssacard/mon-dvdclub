@@ -1,0 +1,9 @@
+= render :partial => '/shared/menu' if logged_in?
+.site.center
+  %h3
+    Vous avez recuperer le DVD
+    
+  = dvd_cover(@dvd) 
+
+  = button_to "Confirmer le retour",  {:controller => :dvds, :action => :restore_confirm, :id => @dvd.id}, :method => :post
+  = link_to "Annuler", :back

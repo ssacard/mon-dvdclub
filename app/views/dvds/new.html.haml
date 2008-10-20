@@ -2,11 +2,15 @@
 .site
   #dvd-search
     %h4
-      Add Dvds
+      Ajouter des DVDs
     = flash[:notice]
+    
+    %p
+      Les DVDs que vous ajoutés sont partagés entre tous vos clubs. Saisissez un titre de DVD par ligne, dans le formulaire ci-dessous: 
+    
     %br/
     - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :search}, :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')") do |f|
-      = text_field_tag :title
+      = text_area_tag :title, ''
       %br/ 
       %br/
       = submit_tag 'search'
@@ -17,7 +21,7 @@
   #search-results
   %br/
   %h4
-    = link_to_function 'Manually Add a DVD', "Element.show('dvd-form')"
+    =# link_to_function 'Manually Add a DVD', "Element.show('dvd-form')"
   #dvd-form{:style => "display:none;"}
     - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :create}, :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')") do |f|
       %p

@@ -1,4 +1,4 @@
-= render :partial => '/shared/menu', :locals => {:parent => 'Moi', :object => 'Mes Clubs'} if logged_in?
+= render :partial => '/shared/menu', :locals => {:parent => :myself, :object => :clubs} if logged_in?
 .site
   %h3
     = link_to 'Créer un nouveau club', "/dvd_clubs/new"

@@ -16,6 +16,7 @@
 #  description     :text            
 #  state           :string(255)     
 #  booked_by       :integer(11)     
+#  booked_at       :datetime        
 #
 
 class Dvd < ActiveRecord::Base
@@ -32,8 +33,10 @@ class Dvd < ActiveRecord::Base
   has_many :users, :through => :waiting_lists
   acts_as_state_machine :initial => :available
   
-  named_scope :booked,  :conditions => {:state => 'booked'}
-  named_scope :visible, :conditions => ['state != ?', 'blocked']
+  named_scope :booked,             :conditions => {:state => 'booked'}
+  named_scope :awaiting_approval,  :conditions => {:state => 'approval'}
+  named_scope :available,          :conditions => {:state => 'available'}
+  named_scope :visible,            :conditions => ['state != ?', 'blocked']
   
   ## STATE MACHINE ###########################################
   state :available
@@ -60,12 +63,6 @@ class Dvd < ActiveRecord::Base
   event :unregister do
     transitions :from => :booked, :to => :available
   end
-  
-  # # ????
-  # event :book do
-  #   transitions :from => :available, :to => :booked
-  #   transitions :from => :approval,  :to => :booked
-  # end
   
   # Block/Unblocked
   event :block do

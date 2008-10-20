@@ -4,7 +4,7 @@
     Vous allez réserver 
     = @dvd.title 
     à 
-    = @dvd.owner.login
+    = @dvd.owner.pseudo_for_user(current_user)
   %br
   = avatar @dvd.owner
   &nbsp;
@@ -13,7 +13,6 @@
   - form_for :dvd, :url => {:action => :register} do |form|
     = hidden_field_tag 'dvd_id', @dvd.id
     = form.submit 'confirmer'
-  %br
   = link_to 'annuler', :back
   %br
   %br
@@ -21,6 +20,8 @@
     Que va-t-il se passer ensuite ?
   %br
   %br
-  1) "Prêteur" va recevoir un mail l'informant de votre demande.
+  1) 
+  %b= @dvd.owner.pseudo_for_user(current_user)
+  va recevoir un mail l'informant de votre demande.
   %br
   2) Vous recevez en retour un mail vous informant de sa décision.

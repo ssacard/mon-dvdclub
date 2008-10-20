@@ -20,4 +20,16 @@ module ApplicationHelper
     content_tag :div, flash[:notice], :id => 'flash-notice' if flash[:notice] 
   end
   
+  def display_errors(*models)
+    messages = [];
+    [models].flatten.each do |model|
+      model.errors.each {|attr, message| messages << message unless message.blank?} unless model.nil?
+    end
+    if messages.empty?
+      ''
+    else
+      '<ul><li>' + messages.flatten.join('<li>') + '</ul>' 
+    end
+  end
+  
 end

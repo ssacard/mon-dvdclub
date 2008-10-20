@@ -1,11 +1,11 @@
-= render :partial => '/shared/menu', :locals => {:object => 'Mes DVD', :parent => 'Moi'} if logged_in?
+= render :partial => '/shared/menu', :locals => {:object => :dvds, :parent => :myself} if logged_in?
 .site
   %h3
     Votre acceptation a été prise en compte
   %br  
-  = @dvd.booked_by_user.login
+  = @dvd.booked_by_user.pseudo_for_user(current_user)
   va recevoir dans les prochaines minutes un mail
-  l'avertissant de votre décicision. N'oubliez pas de lui apporter le
+  l'avertissant de votre décision. N'oubliez pas de lui apporter le
   DVD prochainement !
   %br
   Vous allez être redirigé vers la page d'accueil de votre DVD Club

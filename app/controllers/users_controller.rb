@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @token         = params[:token]
     @invitation    = @token ? Invitation.find_by_token(@token) : nil
     email          = @invitation.email rescue nil
-    @user          = (User.find_by_email(email) rescue nil) || User.new(:email => email, :email_confirmation => email)  
+    @user          = (User.find_by_email(email) rescue nil) || User.new(:email => email)  
     @dvd_club      = @invitation ? @invitation.dvd_club : DvdClub.new
     @user_dvd_club = UserDvdClub.new
     
@@ -28,25 +28,28 @@ class UsersController < ApplicationController
     @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new(params[:dvd_club])
     @user       = User.new(params[:user])      
     User.transaction do
-      @user.save!
+      valid = @user.save
       if @dvd_club.new_record?
         @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])
-        @dvd_club.save!
+        valid = @dvd_club.save && valid
       end
-      params[:user_dvd_club][:pseudo] = @user.login if params[:user_dvd_club][:pseudo].blank?
       @user_dvd_club = UserDvdClub.new(params[:user_dvd_club].merge(:invited_by          => (@invitation.user rescue nil), 
                                                                     :user_id             => @user.id, 
                                                                     :dvd_club_id         => @dvd_club.id, 
                                                                     :subscription_status => true))
-      @user_dvd_club.save!                                                                    
-
+      valid = @user_dvd_club.save && valid
+      throw Exception unless valid
       session[:token] = nil
       UserMailer.deliver_signup_notification(@user, login_url)
       self.current_user = @user
       redirect_to(home_path)
    end
   rescue
-   @user.id = nil
+    unless @user.new_record?
+      @user.destroy
+      @user = User.new(params[:user])      
+    end
+   #@user       = User.new(params[:user])      
    render :action => 'new'    
   end
 
@@ -73,7 +76,7 @@ class UsersController < ApplicationController
       @user = User.find_by_password_secret(params[:secret])
       raise UserNotFoundException unless @user
       if request.post?        
-        if @user.update_attributes(params[:user]) && !params[:user][:password].blank? && !params[:user][:password_confirmation].blank?
+        if @user.update_attributes(params[:user]) && !params[:user][:password].blank?
           flash[:notice] = "Password changed successfully"
           redirect_to new_session_path
         else
@@ -91,7 +94,7 @@ class UsersController < ApplicationController
   
   def edit
     @user = current_user
-    @user.email_confirmation = @user.email
+    # @user.email_confirmation = @user.email
   end
   
   def update

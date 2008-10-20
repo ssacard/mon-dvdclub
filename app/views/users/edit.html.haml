@@ -1,4 +1,4 @@
-= render :partial => '/shared/menu', :locals => {:parent => 'Moi', :object => 'Mon compte'} if logged_in?
+= render :partial => '/shared/menu', :locals => {:parent => :myself, :object => :settings} if logged_in?
 .standard_form
   %h1 
   = display_flash

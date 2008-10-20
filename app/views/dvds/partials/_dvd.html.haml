@@ -4,12 +4,13 @@
   %td
     %b= link_to(dvd.title, {:controller => :dvds, :action => :show, :id => dvd});
     - if dvd.owner == current_user
+      - dvdclub = current_user.dvd_clubs.first
       - if dvd.booked?
-        %b= dvd.booked_by_user.login
-        = DvdClub.in_common(dvd.booked_by_user, current_user)
+        %b= dvd.booked_by_user.pseudo(dvdclub)
+        = dvdclub.name
         vous à empruntez
         %b= dvd.title
-        = distance_of_time_in_words(Time.now, dvd.created_at)
+        =distance_of_time_in_words(Time.now, dvd.booked_at)
       %br
     -else
       %br

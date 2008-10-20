@@ -2,14 +2,14 @@
 #menu.basic
   .site 
     %ul.menu
-      - if parent == 'Mon Club'
+      - if parent == :club
         %li.active 
           = link_to 'Mon Club', "/home"
       - else
         %li
           = link_to 'Mon Club', "/home"
           
-      - if parent == 'Moi'
+      - if parent == :myself
         %li.active 
           = link_to 'Moi', "/dvd_clubs"
       - else
@@ -17,30 +17,37 @@
           = link_to 'Moi', "/dvd_clubs"        
 
 .site
-  - if parent == 'Moi' 
+  - if parent == :myself
     %ul.submenu
-      - if object == 'Mes Clubs'
+      - if object == :clubs
         %li.active
           = link_to 'Mes Clubs', "/dvd_clubs"
       - else
         %li
           = link_to 'Mes Clubs', "/dvd_clubs"
         
-      - if object == 'Mes DVD'
+      - if object == :dvds
         %li.active
           = link_to 'Mes DVD', "/home/dvds"
       - else
         %li 
           = link_to 'Mes DVD', "/home/dvds"
          
-      - if object == 'Mes emprunts'
+      - if object == :requested
         %li.active
-          = link_to 'Mes emprunts', "/home/demands"
+          = link_to 'Emprunts en cours', "/home/requests"
       - else
         %li 
-          = link_to 'Mes emprunts', "/home/demands"
+          = link_to 'Emprunts en cours', "/home/requests"
         
-      - if object == 'Mon compte'
+      - if object == :pending
+        %li.active
+          = link_to 'Demandes en cours', "/home/pendings"
+      - else
+        %li 
+          = link_to 'Demandes en cours', "/home/pendings"
+
+      - if object == :settings
         %li.active
           = link_to 'Mon compte', "/settings"
       - else

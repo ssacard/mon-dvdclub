@@ -6,9 +6,6 @@
     / DVD à voir gratuitement
     .actions
       - if logged_in?
-        Bienvenue
-        %strong= current_user.login
-        |
         = link_to 'Mon Compte', '/settings'
         |
         = link_to "Se deconnecter", logout_path

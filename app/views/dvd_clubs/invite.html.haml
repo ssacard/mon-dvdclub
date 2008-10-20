@@ -1,7 +1,7 @@
-= render :partial => '/shared/menu', :locals => {:object => 'Mes Clubs', :parent => 'Moi'} if logged_in?
+= render :partial => '/shared/menu', :locals => {:object => :clubs, :parent => :myself} if logged_in?
 .site
   %h3
-    Inviter des amis au club
+    Inviter des amis
   %br
   %br
   .classic_form
@@ -9,15 +9,13 @@
     %p
       %label
         au club:
-        %br
         %b
           = @dvd_club.name
     %p
       %label
         de la part de:
-        %br
         %b
-          = self.current_user.login
+          = current_user.pseudo(@dvd_club)
     %p
       %label
         à:

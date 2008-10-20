@@ -5,7 +5,7 @@ class DvdsController < AuthenticatedController
   
   def search
     session[:search_title] = params[:title] if params[:title];
-    @res = AmazonStore.search(session[:search_title], params[:page])
+    @res = AmazonStore.search("\"#{session[:search_title]}\"", params[:page])
     render :update do |page|
       page.replace_html 'search-results', :partial => 'search_results', :locals => {:dvd_club_id => params[:dvd_club_id]}
     end
@@ -26,6 +26,7 @@ class DvdsController < AuthenticatedController
     @dvd = Dvd.find(params[:dvd_id])
     @dvd.update_attributes!(:booked_by => self.current_user.id)
     @dvd.request!
+    @redirect_url = home_path
     UserMailer.deliver_dvd_request(@dvd, self.current_user,
                                    url_for(:controller => :dvds, :action => :approve, :id => @dvd.id),
                                    url_for(:controller => :dvds, :action => :refuse, :id => @dvd.id));
@@ -85,6 +86,7 @@ class DvdsController < AuthenticatedController
   def approve
     @dvd = current_user.owned_dvds.find(params[:id])
     @dvd.register!
+    @dvd.update_attribute :booked_at, Time.now
     UserMailer.deliver_dvd_approve(@dvd)
     redirect_to "/dvds/approved/#{@dvd.id}"
   end
@@ -108,5 +110,15 @@ class DvdsController < AuthenticatedController
   def refused
     @dvd = current_user.owned_dvds.find(params[:id])  
     @redirect_url = mydvds_path
+  end
+  
+  def restore
+    @dvd = current_user.owned_dvds.find(params[:id])
+  end
+  
+  def restore_confirm
+    @dvd = current_user.owned_dvds.find(params[:id])
+    @dvd.unregister!
+    redirect_to  mydvds_path
   end
 end

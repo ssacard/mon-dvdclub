@@ -16,6 +16,7 @@
 #  description     :text            
 #  state           :string(255)     
 #  booked_by       :integer(11)     
+#  booked_at       :datetime        
 #
 
 --- {}

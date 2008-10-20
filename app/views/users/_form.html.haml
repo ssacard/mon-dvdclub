@@ -1,9 +1,6 @@
+= display_errors @user, @user_dvd_club, @dvd_club
+
 -form_for @user do |f|
-  %p
-    %label
-      Login
-      %br
-      = f.text_field :login, :class => :text
   %p
     %label
       Email:
@@ -11,19 +8,9 @@
       = f.text_field :email, :class => :text
   %p
     %label
-      Confirmer votre email:
-      %br
-      = f.text_field :email_confirmation, :class => :text
-  %p
-    %label
       Mot de passe:
       %br
       = f.password_field :password, :class => :text
-  %p
-    %label
-      Confirmer votre mot de passe:
-      %br
-      = f.password_field :password_confirmation, :class => :text
   - if @dvd_club
     = render :partial => 'dvdclub'
     

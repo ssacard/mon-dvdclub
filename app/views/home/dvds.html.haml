@@ -1,15 +1,10 @@
-= render :partial => '/shared/menu', :locals => {:object => 'Mes DVD', :parent => 'Moi'} if logged_in?
+= render :partial => '/shared/menu', :locals => {:object => :dvds, :parent => :myself} if logged_in?
 .site
   %h2= link_to 'Ajouter un DVD', "/dvds/new" 
   
   
-  %h2 Les DVDs que l'on veut m'emprunter
-  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => self.current_user.owned_dvds.select{|d| d.approval?}}
 
-  %h2 Les DVDs que j'ai prêtés    
-  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => self.current_user.owned_dvds.booked}
-
-  %h2 Tous mes DVDs 
-  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
+  %h2 Mes DVDs 
+  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => self.current_user.owned_dvds}
     
 #clear

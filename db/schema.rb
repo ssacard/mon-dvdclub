@@ -9,10 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080723112846) do
+ActiveRecord::Schema.define(:version => 20081020052159) do
 
   create_table "actors", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "blocked_users", :force => true do |t|
+    t.integer  "user_id",         :limit => 11
+    t.integer  "dvd_club_id",     :limit => 11
+    t.integer  "blocked_user_id", :limit => 11
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "club_topics", :force => true do |t|
@@ -63,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20080723112846) do
     t.text     "description"
     t.string   "state"
     t.integer  "booked_by",       :limit => 11
+    t.datetime "booked_at"
   end
 
   add_index "dvds", ["format_id"], :name => "dvds_FKIndex2"

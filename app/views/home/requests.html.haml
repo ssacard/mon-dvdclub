@@ -1,0 +1,9 @@
+= render :partial => '/shared/menu', :locals => {:object => :requested, :parent => :myself} if logged_in?
+.site
+  .clear
+  %h2 Les DVDs que j'ai empruntés
+  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
+
+  %h2 Les DVDs que j'ai prêtés
+  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @given_dvds}
+  

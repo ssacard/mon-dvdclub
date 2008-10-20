@@ -2,9 +2,9 @@
   #profile.standard_form    
     %h1 
       Bonjour 
-      = @user.login
+      = @user.default_pseudo 
       , vous venez de recevoir une invitation envoyé par: 
-      = @invitation.user.login
+      = @invitation.user.default_pseudo 
     %p 
       Saissisez votre mot de passe pour rejoindre ce club
 

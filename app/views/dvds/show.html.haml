@@ -8,9 +8,9 @@
         %td{:width => 230}
           = dvd_cover(@dvd, :large)
         %td
-          %b= @dvd.owner.login
+          %b= @dvd.owner.email
           %br
-          = DvdClub.in_common(@dvd.owner, current_user)
+          = DvdClub.first_in_common(@dvd.owner, current_user).name
           %br
           %br
           = render :partial => 'dvds/partials/status', :locals => {:dvd => @dvd}

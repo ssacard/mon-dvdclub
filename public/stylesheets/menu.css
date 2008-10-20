@@ -22,7 +22,7 @@ ul.menu li, ul.submenu li{
   display: inline;
   line-height: 2em;
   font-size: 1.2em;
-  width: 8em;
+  padding:  0 1em;
   float:left;
   text-align: center;
 }

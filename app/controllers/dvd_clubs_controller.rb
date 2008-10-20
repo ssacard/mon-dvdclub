@@ -7,7 +7,7 @@ class DvdClubsController < AuthenticatedController
 
   def new
     @dvd_club = DvdClub.new
-    @user_dvd_club = UserDvdClub.new(:pseudo => current_user.login)
+    @user_dvd_club = UserDvdClub.new(:pseudo => current_user.default_pseudo)
   end
 
   def create
@@ -68,10 +68,9 @@ class DvdClubsController < AuthenticatedController
     @user_dvd_club.pseudo = @user if @user_dvd_club.blank?
     puts @user_dvd_club.inspect
     if request.post? 
-      u = User.authenticate(@user.login, params[:password])
+      u = User.authenticate(@user.email, params[:password])
       if u
         self.current_user = u
-        params[:user_dvd_club][:pseudo] = current_user.login if params[:user_dvd_club][:pseudo].blank?
         @user_dvd_club = UserDvdClub.new(params[:user_dvd_club].merge(:invited_by          => @invitation.user, 
                                                                       :user_id             => @user.id, 
                                                                       :dvd_club_id         => @dvd_club.id, 

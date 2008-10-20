@@ -1,4 +1,4 @@
-= render :partial => '/shared/menu', :locals => {:object => 'Mes DVD', :parent => 'Moi'} if logged_in?
+= render :partial => '/shared/menu', :locals => {:object => :dvds, :parent => :myself} if logged_in?
 .site.center
   %h3
     = @dvd.title

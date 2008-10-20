@@ -6,7 +6,7 @@
         = @dvd_club.name
       %h3 
         invitation envoyé par: 
-        = @invitation.user.login
+        = @invitation.user.pseudo(@dvd_club)
     - else
       %h1 Créez votre DVD Club  
     = render :partial => 'form'

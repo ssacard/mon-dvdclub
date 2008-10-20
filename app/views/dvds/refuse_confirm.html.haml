@@ -1,15 +1,15 @@
-= render :partial => '/shared/menu', :locals => {:object => 'Mes DVD', :parent => 'Moi'} if logged_in?
+= render :partial => '/shared/menu', :locals => {:object => :dvds, :parent => :myself} if logged_in?
 .site.center
   %h3
     Vous avez refuser de prêter un DVD:
   %br
     = dvd_cover(@dvd)
   %br
-    = @dvd.booked_by_user.login
+    = @dvd.booked_by_user.pseudo_for_user(current_user)
     vous à demandé
     %b= @dvd.title
     dans le DVDclub 
-    %b= DvdClub.in_common(@dvd.booked_by_user, current_user)
+    %b= DvdClub.first_in_common(@dvd.booked_by_user, current_user).name
   %br
   %br
   = button_to "Confirmer le refus",  {:controller => :dvds, :action => :refuse, :id => @dvd.id}, :method => :post

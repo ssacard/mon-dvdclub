@@ -22,16 +22,13 @@ class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password, :terms
   
-  validates_presence_of     :login, :email
-  validates_presence_of     :password,                   :if => :password_required?
-  validates_presence_of     :password_confirmation,      :if => :password_required?
-  validates_length_of       :password, :within => 4..40, :if => :password_required?
-  validates_confirmation_of :password,                   :if => :password_required?
-  validates_length_of       :login,    :within => 3..40
-  validates_length_of       :email,    :within => 3..100
-  validates_uniqueness_of   :login, :email, :case_sensitive => false
-  validates_confirmation_of :email
-  validates_acceptance_of   :terms, :on => :create
+  validates_presence_of     :email,:message => 'Email obligatoire'
+  validates_presence_of     :password,                   :if => :password_required?,:message => 'Mot de passe obligatoire'
+  
+  # validates_length_of       :password, :within => 4..40, :if => :password_required?
+  validates_length_of       :email,    :within => 3..100, :allow_blank => true
+  validates_uniqueness_of   :email, :case_sensitive => false, :message => 'Cet email est déjà utilisé'
+  validates_acceptance_of   :terms, :on => :create, :message => 'Vous devez accepter les conditions d\'utilisation'
   
   before_save :encrypt_password
   has_many :user_dvd_clubs
@@ -43,11 +40,11 @@ class User < ActiveRecord::Base
   has_many :booked_dvds, :class_name => 'Dvd', :foreign_key => 'booked_by'
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :password, :password_confirmation, :email_confirmation, :terms, :accept_offers
+  attr_accessible :email, :password, :terms, :accept_offers
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(login, password)
-    u = find_by_login(login) # need to get the salt
+  def self.authenticate(email, password)
+    u = find_by_email(email) # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
   
@@ -60,6 +57,19 @@ class User < ActiveRecord::Base
       
       count(:conditions => ["roles.name = ?", role_name]) != 0
     end
+  end
+  
+  
+  def pseudo(dvdclub)
+    UserDvdClub.membership(dvdclub, self).pseudo
+  end
+
+  def default_pseudo 
+    user_dvd_clubs.empty? ? '' : user_dvd_clubs.first.pseudo
+  end
+  
+  def pseudo_for_user(user)
+    pseudo(DvdClub.first_in_common(user, self))
   end
   
   # Encrypts some data with the salt.
@@ -116,44 +126,19 @@ class User < ActiveRecord::Base
     save
   end
   
-  # List all DVDs belonging to the subscribed DVD clubs
-  # Using 2 sql queries approach to avoid the n+1 sql queries problem
+  def pending_requests
+    Dvd.awaiting_approval.all(:conditions => {:booked_by => id})
+  end
   
+  # List all DVDs belonging to the subscribed DVD clubs
   def dvds(without_mydvds = false)
-    Dvd.all(:conditions => ['owner_id in (?) and state = ? and owner_id != ?', get_visible_user_ids, 'available', without_mydvds ? self.id : 0 ])
+    #Dvd.all(:conditions => ['owner_id in (?) and state = ? and owner_id != ?', get_visible_user_ids, 'available', without_mydvds ? self.id : 0 ])
+    Dvd.all(:conditions => ['owner_id in (?) and state != ? && owner_id != ?', get_visible_user_ids, 'blocked', without_mydvds ? id : 0 ])
   end
 
-  # List all DvdCategories belonging to the subscribed DVD clubs
-  # Using 2 sql queries approach to avoid the n+1 sql queries problem
-  
-  # def dvd_categories
-  #   dvd_category_ids = User.find_by_sql("select dvd_club.id from users user, user_dvd_clubs user_dvd_club, dvd_clubs dvd_club, dvd_categories dvd_category, dvds dvd   
-  #                                  where user.id=#{self.id} AND user.id=user_dvd_club.user_id 
-  #                                  AND user_dvd_club.dvd_club_id=dvd_club.id 
-  #                                  AND dvd.dvd_club_id=dvd_club.id 
-  #                                  AND dvd.state != 'hidden'
-  #                                  AND dvd.owner_id != #{self.id}
-  #                                  AND dvd.dvd_category_id=dvd_category.id").collect{|c| c.id}                             
-  #   DvdCategory.find(dvd_category_ids) rescue []   
-  # end
-
-  # List all DvdCategories belonging to the subscribed DVD clubs
-  # Using 2 sql queries approach to avoid the n+1 sql queries problem
-  
-  # def dvds_by_category(category)
-  #   Dvd.find_by_sql("select dvd.* from users user, user_dvd_clubs user_dvd_club, dvd_clubs dvd_club, dvds dvd
-  #                               where user.id=#{self.id} 
-  #                               AND user.id=user_dvd_club.user_id 
-  #                               AND user_dvd_club.dvd_club_id=dvd_club.id 
-  #                               AND dvd_club.id=dvd.dvd_club_id
-  #                               AND dvd.dvd_category_id=#{category.id}")
-  #       
-  #   rescue
-  #   []
-  # end
-  
   def dvds_by_category(category)
-    Dvd.all(:conditions => ['owner_id in (?) and state = ? and dvd_category_id = ?', get_visible_user_ids, 'available', category.id ])
+    # Dvd.all(:conditions => ['owner_id in (?) and state = ? and dvd_category_id = ?', get_visible_user_ids, 'available', category.id ])
+    Dvd.all(:conditions => ['owner_id in (?) and dvd_category_id = ?', get_visible_user_ids, category.id ])
   end
   
   def rubriques
@@ -169,7 +154,7 @@ class User < ActiveRecord::Base
   end
   
   def user_booked_dvds
-    booked_dvds.select{|d| d.state=='booked'}  
+    booked_dvds.select{|d| d.state == 'booked'}  
   end
   
   def avatar
@@ -193,11 +178,15 @@ class User < ActiveRecord::Base
     end
     
     def get_visible_user_ids
-      # TDOD: remove blocked users
-      # get club_id
+      # Get club_id
       dvd_club_ids = user_dvd_clubs.map &:dvd_club_id
-      # get user from all this dvd_club
+      # Get user from all this dvd_club
       dvd_club_user_ids = UserDvdClub.all(:conditions => ["dvd_club_id in (?)", dvd_club_ids], :select => "DISTINCT(user_id)").collect &:user_id
+      
+      # Get blocked users
+      blocked_user_ids = BlockedUser.all(:conditions => {:blocked_user_id => id, :dvd_club_id => dvd_club_ids}).collect &:user_id
+      
+      dvd_club_user_ids - blocked_user_ids
     end
     
 end

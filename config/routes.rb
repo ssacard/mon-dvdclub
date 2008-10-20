@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session  
   map.login  '/login',       :controller => 'sessions', :action => 'new'
   map.logout '/logout',      :controller => 'sessions', :action => 'destroy'
-  map.join   '/join/:token', :controller => 'users', :action => 'new'
+  map.join   '/join/:token', :controller => 'users',    :action => 'new'
   
   map.connect '/dvd_clubs/:id/invite', :controller => 'dvd_clubs', :action => 'invite'
 
@@ -42,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   map.mydvds '/home/dvds', :controller => "home", :action => "dvds"
   
   # TEMPORARY !!!!!!!!!!!!!!!!
-  map.reset_db '/reset_db', :controller => 'home', :action => 'reset_db'
+  map.reset_db   '/reset_db', :controller => 'home', :action => 'reset_db'
   map.restore_db '/restore_db', :controller => 'home', :action => 'restore_db'
   
   map.connect ':controller/:action/:id'
