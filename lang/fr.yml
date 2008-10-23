@@ -1,0 +1,187 @@
+header.logout.title: Mon DVD Club - votre vidéo club local
+header.logout.create: Créer un club
+header.logout.connect: Se connecter
+header.login.home: Mon DVD Club
+header.login.welcome: Bienvenue %s
+header.login.logout: Se déconnecter
+header.login.search: Rechercher un film
+header.login.manage: Gestion
+header.login.manage.myclubs: Mes Clubs
+header.login.manage.mydvds: Mes DVDs
+header.login.manage.borrowed: Emprunts en cours
+header.login.manage.requests: Demandes en cours
+header.login.manage.account: Mon compte
+
+
+2.title: Créez votre DVD Club.
+2.subtitle: Pourquoi vous devez créer un club maintenant.
+2.form.email: e-mail
+2.form.pass: mot de passe
+2.form.clubname: nom du club
+2.form.clubname.default: mon club
+2.form.type.neighboor: club de voisins
+2.form.type.work: club de travail
+2.form.type.other: autre
+2.form.nick: pseudo dans ce club
+2.form.how: comment vous identifier dans ce club
+2.form.how.default: 2ème étage, porte de gauche ! 
+2.form.partners: J'accepte de recevoir des offres des partenaires de MonDVDClub
+2.form.cgu: J'accepte les conditions d'utilisations
+2.form.button: Création
+
+3.title: Accédez à votre DVD Club.
+3.form.email: e-mail
+3.form.pass: mot de passe
+3.form.forgot: j'ai oublié mon mot de passe
+
+4.title: Rejoindre un DVD Club.
+4.subtitle: Pourquoi rejoindre un DVD Club. 
+4.form.from: invité par
+4.form.email: votre email
+4.form.pass: votre mot de passe
+4.form.clubname: nom du club
+4.form.type: type de club
+4.form.nick: votre pseudo
+4.form.how: comment vous identifiez dans ce club
+4.form.how.default: 2ème étage, porte de gauhe !
+4.form.join: rejoindre
+
+5.categories: Catégories
+5.title: Accueil
+5.subtitle: Les 5 dernières nouveautés de mon Club
+5.element.added: ajouté {time}
+5.element.format: "format:"
+5.element.more: plus
+5.element.owner: 'Propriétaire: {name}'
+5.element.club: (Club "{club}")
+5.element.borrowed.title: déjà prêté
+5.element.borrowed.subtitle: vous ne pouvez emprunté ce DVD maintenant
+5.element.available.title: Disponible!
+5.element.available.button: Réserver maintenant
+5.element.seeall: Voir tous les ajouts
+
+6.element.list.before: Précédente
+6.element.list.after: Suivante
+6.element.list: Page %d sur %d
+
+8.title: Résultat de recherche pour \"%s\"
+
+9.with: avec
+9.element.format: format
+9.element.borrowed.title: déjà prêté
+9.element.borrowed.subtitle: vous ne pouvez emprunté ce DVD maintenant
+9.element.available.title: Disponible!
+9.element.available.button: Réserver maintenant
+
+10.title: 'Vous voulez réserver \"%s\" à \"%s\":'
+10.button: Je confirme
+10.cancel: annuler
+10.next.title: Que va-t-il se passer ensuite ?
+10.next.text: 1/ Prêteur va recevoir un email l'informant de votre demande. 2/ Vous allez recevoir en retour un mail vous informant de sa décision.
+10.next.backlink: Cliquez ici pour revenir à la page précédente
+
+10.1.title: %s va être averti de votre demande
+10.1.text: Dans les prochaines heures, n'oubliez pas de consulter votre boîte mail (et votre dossier de spam) pour lire sa réponse.  
+10.1.backlink: Cliquer ici pour revenir à la page précédente
+
+11.title: Mes clubs
+11.subtitle: Une super description pour expliquer les clubs
+11.create: Créer un nouveau club
+11.club.title: Club \"%s\"
+11.club.quit: Quitter ce club
+11.club.invite: Inviter des amis
+11.club.how: Comment vous identifier dans ce club ?
+11.club.5last: Les 5 dernières membres de ce club
+11.club.block: bloquer
+11.club.invited: invité par %s
+11.club.seeall: Voir tous les membres
+
+11.1.title: Vous allez bloquer \"%s\"
+11.1.subtitle: %s (Club \"%s\") n'aura plus accès à vos DVDs.
+11.1.button: je confirme le bloc
+11.1.cancel: Je me suis trompé
+
+11.1.1.title: \"%s\" n'a plus accès à vos DVDs.
+11.1.1.subtitle: "Si vous souhaitez donner l'accès à \"pseudo\" à vos DVDs à nouveau, vous pouvez le faire à partir de la liste des membres du club, ou en cliquant sur ce lien: débloquer ce membre. "
+11.1.1.backlink: Cliquer ici pour revenir à la page précédente
+
+11.2.title: \"%s\" a de nouveau accès à vos DVDs.
+11.2.subtitle: "'Si vous souhaitez bloquer à nouveau l\'accès à \"pseudo\" à vos DVDs, vous pouvez le faire à partir de la liste des membres du club, ou en cliquant sur ce lien: bloquer ce membre. '"
+11.2.backlink: Cliquer ici pour revenir à la page précédente
+
+11.3.title: Vous allez quitter le club \"%s\"
+11.3.subtitle: La déinscription au club est définitive, la seule possibilité de rejoindre ce club à nouveau et de vous faire inviter par un membre.
+11.3.button: je confirme
+11.3.cancel: Je me suis trompé
+
+12.title: Créer un nouveau club
+12.subtitle: Une super description
+
+13.title: Inviter des amis au club
+13.subtitle: Une super description
+13.form.at: Au club
+13.form.from: De la part de
+13.form.to: à
+13.form.message: Je te présente MonDVDClub....
+13.form.button: Inviter
+13.next.title: Que va-t-il se passer ensuite
+13.next.text: Vos amis vont recevoir un mail de votre part, les invitant à rejoindre votre club. Ils pourront à leur tour rajouter leurs DVDs, et les partager avec l'ensemble du club.  
+
+13.1.title: Vous avez invité des amis à rejoindre votre club \"%s\"
+13.1.subtitle: "Les personnes suivantes vont recevoir un e-mail les invitant à rejoindre le club \"%s\":"
+13.1.text: Une fois leur compte créé, leurs DVDs seront automatiquement disponibles dans votre Club commun. 
+13.1.backlink: Cliquez ici pour revenir à la page précédente
+
+14.title: Mes DVDs
+14.subtitle: Une super description....
+14.add: ajouter un DVD
+14.available: disponible
+14.tounavailable: rendre indisponible
+14.unavailable: indisponible
+14.toavailable: rendre disponible
+
+14.1.title: \"%s\" est maintenant disponible
+14.1.subtitle: Un DVD disponible est visible par les autres membres du DVD Club.
+14.1.subtitle2: "Si vous souhaitez rendre ce DVD à nouveau indisponible, vous pouvez cliquer sur le lien suivant, ou à partir de vos DVDs: rendre disponible ce DVD. "
+14.1.backlink: Cliquer ici pour revenir à la page précédente.
+
+14.2.title: \"%s\" est maintenant indisponible
+14.2.subtitle: Un DVD indisponible n'est plus visible par les autres membres du DVD Club.
+14.2.subtitle2: "Si vous souhaitez rendre ce DVD à nouveau disponible, vous pouvez cliquer sur le lien suivant, ou à partir de vos DVDs: rendre indisponible ce DVD. "
+14.2.backlink: Cliquer ici pour revenir à la page précédente.
+
+15.title: Ajouter des DVDs
+15.subtitle: "Les DVDs que vous ajoutés sont partagés entre tous vos clubs. Saisissez un titre de DVD par ligne, dans le formulaire ci-dessous:"
+15.form.button: Ajouter
+15.list.previous: DVD précédent
+15.list.next: DVD suivant
+15.list.title: Identification du DVD \"%s\" (%d/%d)
+15.list.matching.title: "Nous vous proposons les DVDs suivants:"
+15.list.matching.subtitle: Choisissez parmi les DVDs ci-dessous celui qui correspond à votre DVD
+15.list.thatsit: C'est ça!
+
+16.title: Ajouter manuellement un DVD
+16.subtitle: Veuillez remplir le formulaire ci-dessous afin de rajouter un DVD manuellement dans la base de données. 
+16.form.title: titre
+16.form.format: format
+16.form.category: catégorie
+16.form.upload: Télécharger une photo
+16.form.cast: acteurs
+16.form.description: description
+16.form.button: Ajouter
+
+16.1.title: \"%s\" a été ajouté à la base de données
+16.1.backlink: Cliquer ici pour revenir à la page précédente
+
+17.title1: Les DVDs que l'on veut m'emprunter
+17.element.status: %s (Club \"%s\") a demandé %s %s
+17.button.accept: prêter
+17.button.refuser: refuser
+17.title2: Les DVDs que je veux emprunter
+
+
+
+
+
+
+
