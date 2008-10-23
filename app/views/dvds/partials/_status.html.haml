@@ -1,22 +1,20 @@
-propriétaire: 
-%b= dvd.owner.default_pseudo 
+%b="5.element.owner"[:'5.element.owner', dvd.owner.default_pseudo ]
 %br
-Club:
 - dvd_club = DvdClub.first_in_common(dvd.owner, current_user)
-%b= dvd_club.name
+= "5.element.club"[:'5.element.club', dvd_club.name]
 %br
 - if dvd.owner == current_user
   - if dvd.owner == current_user && (dvd.available? || dvd.blocked?)
     -if dvd.blocked?
-      %b Indisponible
-      = button_to "rendre disponible", {:controller => :dvds, :action => :unblock, :id => dvd.id}, :method => :post
+      %b= "14.unavailable"[:'14.unavailable']
+      = button_to "14.toavailable"[:'14.toavailable'], {:controller => :dvds, :action => :unblock, :id => dvd.id}, :method => :post
     -else
-      %b Disponible
-      = button_to "rendre indisponible", {:controller => :dvds, :action => :block, :id => dvd.id}, :method => :post
+      %b= "5.element.available.title"[:'5.element.available.title']
+      = button_to "14.tounavailable"[:'14.tounavailable'], {:controller => :dvds, :action => :block, :id => dvd.id}, :method => :post
     
   - elsif dvd.owner == current_user && dvd.approval?
-    = button_to "prêter",   {:controller => :dvds, :action => :approve_confirm, :id => dvd.id}, :method => :post
-    = button_to "refuser",  {:controller => :dvds, :action => :refuse_confirm, :id => dvd.id}, :method => :post
+    = button_to "17.button.accept"[:'17.button.accept'],   {:controller => :dvds, :action => :approve_confirm, :id => dvd.id}, :method => :post
+    = button_to "17.button.refuser"[:'17.button.refuser'],  {:controller => :dvds, :action => :refuse_confirm, :id => dvd.id}, :method => :post
 
   - elsif dvd.booked?
     Emprunté  
@@ -25,11 +23,13 @@ Club:
   %span.bold= dvd.owner.pseudo(dvd_club)
   %br
   - if dvd.booked? || (dvd.approval? && dvd.booked_by_user != current_user)
-    Emprunté
+    = "5.element.borrowed.title"[:'5.element.borrowed.title']
+    %br
+    %small= "5.element.borrowed.subtitle"[:'5.element.borrowed.subtitle']
   - elsif dvd.approval?
     %b Demande en cours
   - else
     %b Disponible!
     - form_for :dvd, :url => {:controller => :dvds, :action => :request_register} do |form|
       = hidden_field_tag 'dvd_id', dvd.id
-      = form.submit "Réserver maintenant!"
+      = form.submit "5.element.available.button"[:'5.element.available.button']

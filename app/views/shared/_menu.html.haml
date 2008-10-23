@@ -4,17 +4,17 @@
     %ul.menu
       - if parent == :club
         %li.active 
-          = link_to 'Mon Club', "/home"
+          = link_to "header.login.home"[:'header.login.home'], "/home"
       - else
         %li
-          = link_to 'Mon Club', "/home"
+          = link_to "header.login.home"[:'header.login.home'], "/home"
           
       - if parent == :myself
         %li.active 
-          = link_to 'Moi', "/dvd_clubs"
+          = link_to "header.login.manage"[:'header.login.manage'], "/dvd_clubs"
       - else
         %li
-          = link_to 'Moi', "/dvd_clubs"        
+          = link_to "header.login.manage"[:'header.login.manage'], "/dvd_clubs"        
 
 .site
   - if parent == :myself

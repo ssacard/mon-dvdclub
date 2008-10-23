@@ -1,8 +1,10 @@
 %tr{:class => cycle('even', 'odd')}
   %td.center
-    = link_to(dvd_cover(dvd), {:controller => :dvds, :action => :show, :id => dvd}) 
+    = link_to(dvd_cover(dvd), dvd_path(dvd)) 
   %td
-    %b= link_to(dvd.title, {:controller => :dvds, :action => :show, :id => dvd});
+    %b= link_to(dvd.title, {:controller => :dvds, :action => :show, :id => dvd})
+    %br
+    %small= "5.element.added"[:'5.element.added', distance_of_time_in_words(Time.now, dvd.created_at)]
     - if dvd.owner == current_user
       - dvdclub = current_user.dvd_clubs.first
       - if dvd.booked?
@@ -14,9 +16,10 @@
       %br
     -else
       %br
-    format:
+    = "5.element.format"[:'5.element.format']
     = dvd.format_name
     %br
-    = truncate(dvd.description, 80)
+    = truncate(dvd.description, 160)
+    = link_to "5.element.more"[:'5.element.more'], dvd_path(dvd)
   %td
     = render :partial => 'dvds/partials/status', :locals => {:dvd => dvd}

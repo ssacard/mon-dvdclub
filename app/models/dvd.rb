@@ -38,6 +38,7 @@ class Dvd < ActiveRecord::Base
   named_scope :available,          :conditions => {:state => 'available'}
   named_scope :visible,            :conditions => ['state != ?', 'blocked']
   
+  
   ## STATE MACHINE ###########################################
   state :available
   state :approval

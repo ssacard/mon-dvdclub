@@ -131,9 +131,9 @@ class User < ActiveRecord::Base
   end
   
   # List all DVDs belonging to the subscribed DVD clubs
-  def dvds(without_mydvds = false)
+  def dvds(options= {:order => 'created_at DESC', :limit => 5}, without_mydvds = false)
     #Dvd.all(:conditions => ['owner_id in (?) and state = ? and owner_id != ?', get_visible_user_ids, 'available', without_mydvds ? self.id : 0 ])
-    Dvd.all(:conditions => ['owner_id in (?) and state != ? && owner_id != ?', get_visible_user_ids, 'blocked', without_mydvds ? id : 0 ])
+    Dvd.all(options.merge(:conditions => ['owner_id in (?) and state != ? && owner_id != ?', get_visible_user_ids, 'blocked', without_mydvds ? id : 0 ]))
   end
 
   def dvds_by_category(category)

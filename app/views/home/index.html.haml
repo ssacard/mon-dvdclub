@@ -3,7 +3,9 @@
   = render :partial => 'shared/categories'
   #accueil
     %h2
-      Accueil
+      = "5.title"[:'5.title']
+    %h3 
+      ="5.subtitle"[:'5.subtitle']
     - if @dvds.empty?
       Pas de DVD actuellement dans vos club
     - else
