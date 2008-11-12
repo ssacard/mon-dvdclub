@@ -33,6 +33,7 @@ class AmazonStore
       item[:actor]        = attrs.get_array('actor')
       item[:director]     = attrs.get('director')
       item[:manufacturer] = attrs.get('manufacturer')
+      item[:category]     = i.get('browsenodes/browsenode/name') || "Autres"
       results << item
     end
     

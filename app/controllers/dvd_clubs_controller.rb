@@ -66,7 +66,6 @@ class DvdClubsController < AuthenticatedController
     @dvd_club      = @invitation.dvd_club
     @user_dvd_club = UserDvdClub.new(params[:user_dvd_club])
     @user_dvd_club.pseudo = @user if @user_dvd_club.blank?
-    puts @user_dvd_club.inspect
     if request.post? 
       u = User.authenticate(@user.email, params[:password])
       if u

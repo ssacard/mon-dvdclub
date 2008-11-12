@@ -1,22 +1,23 @@
+#search_header
+  ="15.list.title"[:'15.list.title', @title, @index + 1, @total]
+.clear
 %table
-  %tr
-    %th
-    %th
-      Format
-    %th
-      Title
-    %th
-      Actors
-    %th
-      Director
-    %th
-      Manufacturer
-    %th
-      Image
   - @res.each_with_index do |i, index|
     %tr
       %td
+        = image_tag i[:smallimage] unless i[:smallimage].nil?
+      %td
+        %b Titre
+        %b= link_to i[:title], i[:url]
+        %br
+        %bFormat:
+        = i[:format]
+        %br
+        = truncate(i[:description], 160)
+      %td
         - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :create}, :html => {:id => index+1}) do |f|
+          %select{:name => :dvd_category_id}
+            = options_for_select(categories, i[:category] )
           = hidden_field_tag 'asin', i[:asin] 
           = hidden_field_tag 'url', i[:url]  
           = hidden_field_tag 'smallimage', i[:smallimage]  
@@ -29,22 +30,7 @@
           = hidden_field_tag 'director', i[:director] 
           = hidden_field_tag 'manufacturer', i[:manufacturer]
           = hidden_field_tag 'owner_id', self.current_user.id 
-          %b
-            Dvd Category:
-          %br
-          = f.collection_select(:dvd_category_id, DvdCategory.find(:all), :id, :name, :prompt => true)
-          = "<input type=\"button\" onclick=\"document.forms[#{index+1}].onsubmit();\" value=\"c'est ça!\" />"
-          
+        
       %td
-        = i[:format]
-      %td
-        = link_to i[:title], i[:url]
-      %td
-        = i[:actor].join(', ')
-      %td
-        = i[:director]
-      %td
-        = i[:manufacturer]
-      %td
-        = image_tag i[:smallimage] unless i[:smallimage].nil?
+        = "<input type=\"button\" onclick=\"document.forms[#{index+1}].onsubmit();\" value=\"c'est ça!\" />"
 = will_paginate @res, :renderer => 'RemoteLinkRenderer'

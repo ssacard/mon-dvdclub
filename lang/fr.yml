@@ -155,7 +155,7 @@ header.login.manage.account: Mon compte
 15.form.button: Ajouter
 15.list.previous: DVD précédent
 15.list.next: DVD suivant
-15.list.title: Identification du DVD \"%s\" (%d/%d)
+15.list.title: Identification du DVD "{title}" ({current}/{total})
 15.list.matching.title: "Nous vous proposons les DVDs suivants:"
 15.list.matching.subtitle: Choisissez parmi les DVDs ci-dessous celui qui correspond à votre DVD
 15.list.thatsit: C'est ça!

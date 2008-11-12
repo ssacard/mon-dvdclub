@@ -1,11 +1,12 @@
 class DvdsController < AuthenticatedController
   
-  # TODO
-  # Use make_resourceful and move these functions in hookup calls
-  
   def search
-    session[:search_title] = params[:title] if params[:title];
-    @res = AmazonStore.search("\"#{session[:search_title]}\"", params[:page])
+    session[:search_titles]  = params[:title].split(/\n/) if params[:title]
+    session[:search_current] ||= 0
+    @index = session[:search_current]
+    @total = session[:search_titles].length 
+    @title = session[:search_titles][@index]
+    @res = AmazonStore.search("\"#{@title}\"", params[:page])
     render :update do |page|
       page.replace_html 'search-results', :partial => 'search_results', :locals => {:dvd_club_id => params[:dvd_club_id]}
     end
@@ -40,20 +41,31 @@ class DvdsController < AuthenticatedController
   def create
     dvd = Dvd.create_record(params.merge!(:owner_id => self.current_user.id))
     if dvd
+      (session[:created_ids] ||= []) << dvd.id
       flash[:notice] = 'DVD Created Successfully'
     else
       flash[:notice] = 'Invalid Information'
     end
+    @index = session[:search_current]
+    @total = session[:search_titles].length 
 
-    render :update do |page|
-      #page.redirect_to dvd_club_path(params[:dvd_club_id])
-      page.redirect_to "/dvds/created/#{dvd.id}"
+    if session[:search_current] == session[:search_titles].length - 1
+      session[:search_current] = nil
+      session[:search_titles]  = nil
+      render :update do |page|
+        page.redirect_to "/dvds/created/last"
+      end
+    else
+      params[:title] = nil
+      session[:search_current] += 1
+      
+      search
     end
   end
   
   def created
     # TODO Check if current_user can see this dvd!!!!
-    @dvd =  Dvd.find(params[:id])
+    @dvds =  Dvd.all(:conditions => {:id => session[:created_ids]})
   end
 
   def show

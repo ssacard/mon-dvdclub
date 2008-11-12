@@ -14,10 +14,22 @@ namespace :dvdclub do
       ['Blue-Ray', 'DVD'].each do |dvd_format_name|
         DvdFormat.create(:name => dvd_format_name) 
       end
-      
-      ['Action', 'Comédie', 'Dessin Animé', 'Emotion', 'Famille & Enfant', 'Fantastique', 'Frisson', 'Grand Classique',
-      'Guerre', 'Historique & Epoque', 'Hors Film & Documentaire', 'Manga', 'Romance', 'Science-fiction', 'Série TV', 'Sport',
-      'Théâtre & Spectacle', 'Thriller', 'Western'].each do |club_type_name|
+      [ "Action, Aventure, Policier et Thriller",
+        "Cinéma asiatique",
+        "Comédie",
+        "Documentaires et Divers",
+        "Drame et Émotion",
+        "Enfants, Jeunesse et Famille",
+        "Fantastique, Horreur et Science-fiction",
+        "Grands classiques",
+        "Manga",
+        "Musique et Films musicaux",
+        "Romance",
+        "Spectacles et Humour",
+        "Séries TV",
+        "Érotisme",
+        "Autres"
+        ].each do |club_type_name|
         DvdCategory.create(:name => club_type_name) 
       end
       
@@ -33,7 +45,7 @@ namespace :dvdclub do
       Rake::Task["db:create"].invoke
       Rake::Task["db:migrate"].invoke
       Rake::Task["dvdclub:app:setup"].invoke
-      Rake::Task["db:fixtures:load"].invoke
+      #Rake::Task["db:fixtures:load"].invoke
     end
   end
   

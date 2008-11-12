@@ -6,14 +6,14 @@
     = flash[:notice]
     
     %p
-      Les DVDs que vous ajoutés sont partagés entre tous vos clubs. Saisissez un titre de DVD par ligne, dans le formulaire ci-dessous: 
+      = "15.subtitle"[:'15.subtitle']
     
     %br/
     - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :search}, :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')") do |f|
       = text_area_tag :title, ''
       %br/ 
       %br/
-      = submit_tag 'search'
+      = submit_tag "15.form.button"[:'15.form.button']
   #indicator{:style=> "display: none;"}
     =image_tag('/images/indicator.gif')
   %br/
@@ -21,43 +21,5 @@
   #search-results
   %br/
   %h4
-    =# link_to_function 'Manually Add a DVD', "Element.show('dvd-form')"
+    = link_to_function "16.title"[:'16.title'], "Element.show('dvd-form')"
   #dvd-form{:style => "display:none;"}
-    - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :create}, :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')") do |f|
-      %p
-        %label
-          Title
-        %br/
-        = text_field_tag :title
-      %p
-        %label
-          Dvd Category
-        %br
-        = f.collection_select :dvd_category_id, DvdCategory.find(:all), :id, :name
-      %p
-        %label
-          Manufacturer
-        %br/
-        = text_field_tag :manufacturer
-      %p
-        %label
-          Director
-        %br/
-        = text_field_tag :director
-      %p
-        %label
-          Format
-        %br/
-        = f.collection_select :format, DvdFormat.find(:all), :id, :name
-      %p
-        %label
-          Actors 
-          = link_to_function('Add more') do |page|
-            - page.insert_html :bottom, 'actors-div', "<br />" + text_field_tag('actors[]')
-        %br/
-        #actors-div
-          = text_field_tag 'actors[]'
-      %p
-        = submit_tag 'Create'
-
-    

@@ -362,12 +362,12 @@ textarea{
 
 
 #rubrique{
-	width: 15em;
+	width: 20em;
 	float: left;	
 }
 
 #accueil{
-	width: 60em;
+	width: 55em;
 	float:left;
 }
 
@@ -430,4 +430,16 @@ th.action {
 /* Breadcrumb */
 #breadcrumb {
   font-size: 1.5em;
+}
+
+/* Search */
+#search_header {
+  float: left;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  background: #DDD;
+  text-align: center;
+  font-size: 1.5em;
+  margin: 0 0 1em 0;
 }

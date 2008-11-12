@@ -83,7 +83,7 @@ class Dvd < ActiveRecord::Base
     :format_id => (DvdFormat.find_by_name(attrs['format']).id rescue nil),
     :largeimage => attrs['largeimage'],
     :owner_id => attrs[:owner_id],
-    :dvd_category_id => attrs[:dvd][:dvd_category_id])
+    :dvd_category_id => (DvdCategory.find_by_name(attrs['dvd_category_id']).id rescue nil))
     if attrs['manufacturer']
       manufacturer = Manufacturer.find_or_create_by_name(attrs['manufacturer']) 
       dvd.manufacturers << manufacturer

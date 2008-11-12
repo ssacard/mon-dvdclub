@@ -1,14 +1,11 @@
 = render :partial => '/shared/menu', :locals => {:object => :clubs} if logged_in?
 .site
   %h3
-    "
-    = @dvd.title
-    " 
-    a été ajouté à la base de données
+    Liste des derniers DVD ajoutés à la base de données
   %br
   %br
   #dvd
-    = render :partial => 'dvds/partials/dvds', :locals => {:dvds => [@dvd]}
+    = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
   %br
   %br
   %br

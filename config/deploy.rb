@@ -3,6 +3,9 @@ set :application, "dvdclub"
 set :scm,                   :git
 set :deploy_via,            :remote_cache
 set :git_enable_submodules, 1
+set :deploy_via, :remote_cache
+set :git_shallow_clone, 1
+set :scm_verbose, true
 
 set :deploy_to, "/var/www/railsapp/#{application}" 
 set :use_sudo,  false
@@ -14,8 +17,8 @@ role :web,       'www.xilinus.com'
 role :app,       'www.xilinus.com'
 role :db,        'www.xilinus.com', :primary => true
  
-set :repository, "/var/git/#{application}"
-set :branch,     'origin/master'
+set :repository, "git@git.xilinus.com:/var/git/#{application}"
+set :branch,     'master'
 
 desc "After update code"
 task :after_update_code do
