@@ -1,0 +1,34 @@
+-form_for :dvd_club, current_object, :url => current_object.new_record? ? objects_path : object_path, :html => { :method => current_object.new_record? ? :post : :put } do |f|
+
+  %p
+    %label
+      Nom du club:
+      %br
+      = f.text_field :name, :class => :text
+  %p
+    %label
+      Type de club:
+      %br
+      = f.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, :prompt => true, :class => :text
+  %p
+    %label
+      Description du club:
+      %br
+      = f.text_area :description, :class => :text
+
+  - fields_for :user_dvd_club do |fields|
+    %p
+      %label
+        Votre pseudo dans ce club?:
+        %br
+        = fields.text_field :pseudo, :class => :text
+    %p
+      %label
+        Comment vous identifier dans ce club?:
+        %br
+        = fields.text_area :description, :class => :text
+
+  %p
+    = f.submit current_object.new_record? ? "Add" : "Update"
+    or
+    = link_to 'Cancel', objects_path

@@ -1,0 +1,8 @@
+= render :partial => '/shared/menu' if logged_in?
+.site
+  %h4
+    Add a User
+  %h3
+    = link_to 'Users', admin_users_path
+  %br
+  = render(:partial => 'admin/users/partials/form')

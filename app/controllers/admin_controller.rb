@@ -6,4 +6,8 @@ class AdminController < AuthenticatedController
   def url_helper_prefix
     'admin_'
   end
+
+  def index
+
+  end
 end

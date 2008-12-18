@@ -3,3 +3,13 @@ schema_migrations_001:
   version: "1"
 schema_migrations_002: 
   version: "20080708191716"
+schema_migrations_003: 
+  version: "20080718105046"
+schema_migrations_004: 
+  version: "20080722103902"
+schema_migrations_005: 
+  version: "20080723112846"
+schema_migrations_006: 
+  version: "20080731053232"
+schema_migrations_007: 
+  version: "20081020052159"

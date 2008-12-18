@@ -1,0 +1,6 @@
+= render :partial => '/shared/menu' if logged_in?
+.site
+  %h4
+    Add a Club
+  %br
+  = render(:partial => 'admin/dvd_clubs/partials/form')

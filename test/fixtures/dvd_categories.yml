@@ -1,67 +1,46 @@
-# == Schema Information
-# Schema version: 20080708191716
-#
-# Table name: dvd_categories
-#
-#  id   :integer(11)     not null, primary key
-#  name :string(255)     
-#
-
 --- 
 dvd_categories_014: 
-  name: Science-fiction
+  name: "\xC3\x89rotisme"
   id: "14"
 dvd_categories_003: 
-  name: "Dessin Anim\xC3\xA9"
+  name: "Com\xC3\xA9die"
   id: "3"
 dvd_categories_015: 
-  name: "S\xC3\xA9rie TV"
+  name: Autres
   id: "15"
 dvd_categories_004: 
-  name: Emotion
+  name: Documentaires et Divers
   id: "4"
-dvd_categories_016: 
-  name: Sport
-  id: "16"
 dvd_categories_005: 
-  name: Famille & Enfant
+  name: "Drame et \xC3\x89motion"
   id: "5"
-dvd_categories_017: 
-  name: "Th\xC3\xA9\xC3\xA2tre & Spectacle"
-  id: "17"
 dvd_categories_006: 
-  name: Fantastique
+  name: Enfants, Jeunesse et Famille
   id: "6"
-dvd_categories_018: 
-  name: Thriller
-  id: "18"
 dvd_categories_007: 
-  name: Frisson
+  name: Fantastique, Horreur et Science-fiction
   id: "7"
-dvd_categories_019: 
-  name: Western
-  id: "19"
 dvd_categories_008: 
-  name: Grand Classique
+  name: Grands classiques
   id: "8"
 dvd_categories_010: 
-  name: Historique & Epoque
+  name: Musique et Films musicaux
   id: "10"
 dvd_categories_009: 
-  name: Guerre
+  name: Manga
   id: "9"
 dvd_categories_011: 
-  name: Hors Film & Documentaire
+  name: Romance
   id: "11"
 dvd_categories_012: 
-  name: Manga
+  name: Spectacles et Humour
   id: "12"
 dvd_categories_001: 
-  name: Action
+  name: Action, Aventure, Policier et Thriller
   id: "1"
 dvd_categories_013: 
-  name: Romance
+  name: "S\xC3\xA9ries TV"
   id: "13"
 dvd_categories_002: 
-  name: "Com\xC3\xA9die"
+  name: "Cin\xC3\xA9ma asiatique"
   id: "2"

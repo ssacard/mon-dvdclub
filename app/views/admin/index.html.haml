@@ -1,0 +1,15 @@
+= render :partial => '/shared/menu' if logged_in?
+.site
+  %h3
+    Admin Dashboard
+  %br
+  %div
+    = link_to 'Club Topics', admin_club_topics_path
+  %div
+    = link_to 'DVD Formats', admin_dvd_formats_path
+  %div
+    = link_to 'Users Management', admin_users_path
+  %div
+    = link_to 'Clubs Management', admin_dvd_clubs_path
+
+

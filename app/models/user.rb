@@ -117,7 +117,7 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?
-    self.roles.include?(:admin)
+    self.roles.detect {|r| r.name.to_sym == :admin} # .include?(:admin)
   end
   
   def request_password_reset

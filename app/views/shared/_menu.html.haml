@@ -15,6 +15,9 @@
       - else
         %li
           = link_to "header.login.manage"[:'header.login.manage'], "/dvd_clubs"        
+      - if current_user.is_admin?
+        %li
+          = link_to 'Admin', admin_path
 
 .site
   - if parent == :myself
