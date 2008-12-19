@@ -39,8 +39,11 @@ class DvdClubsController < AuthenticatedController
   def invite
     @dvd_club = DvdClub.find(params[:id])
     if params[:state] == 'done'
-      render :action => 'invited'  
+      render :action => 'invited'
     else
+      unless Setting.get.can_add_user_to_club?( @dvd_club )
+        @cannot_add_user_to_club_msg = %Q{Désolé, il est temporairement impossible d'ajouter de nouveaux membres au club "#{@dvd_club.name}".}
+      end
       render :action => 'invite'
     end
   end

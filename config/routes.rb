@@ -35,7 +35,7 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options :path_prefix => 'admin', :name_prefix => 'admin_' do |admin|
     admin.resources :dvd_formats, :controller => 'admin/dvd_formats'
     admin.resources :club_topics, :controller => 'admin/club_topics'
-    admin.resources :dvd_clubs  , :controller => 'admin/dvd_clubs'
+    admin.resources :dvd_clubs  , :controller => 'admin/dvd_clubs', :member => { :info => :get }
     admin.resources :users      , :controller => 'admin/users'
     admin.resources :settings   , :controller => 'admin/settings'
   end

@@ -1,5 +1,9 @@
 = render :partial => '/shared/menu', :locals => {:object => :clubs, :parent => :myself} if logged_in?
 .site
+- if @cannot_add_user_to_club_msg
+  .notice
+    = @cannot_add_user_to_club_msg
+- else
   %h3
     Inviter des amis
   %br

@@ -1,7 +1,8 @@
 = render :partial => '/shared/menu', :locals => {:object => :clubs} if logged_in?
 .site
 - if @cannot_add_club_msg
-  = @cannot_add_club_msg
+  .notice
+    = @cannot_add_club_msg
 - else
   .standard_form
     %h1 
