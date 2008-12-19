@@ -38,6 +38,23 @@ class User < ActiveRecord::Base
   has_many :waiting_lists
   has_many :dvds, :through => :waiting_lists
   has_many :booked_dvds, :class_name => 'Dvd', :foreign_key => 'booked_by'
+  
+  # Users that are members of at least one club in common with me
+  def fellow_club_members
+    fellows = []
+    self.dvd_clubs.find( :all, :include => :users ).each {|c| c.users.each {|u| fellows << u } }
+    fellows.uniq!
+    fellows.delete self
+    fellows.sort {|a,b| a.email <=> b.email }
+    fellows
+  end
+  
+  def on_my_blacklist?( user )
+    # TODO : implement ???
+    false
+  end
+  
+  
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :email, :password, :terms, :accept_offers

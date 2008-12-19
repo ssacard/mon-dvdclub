@@ -1,4 +1,11 @@
 class PublicController < ApplicationController
+
+  allow :index, :exec => :check_auth
+  
+  def check_auth
+    true
+  end
+  
   
   def index
   end

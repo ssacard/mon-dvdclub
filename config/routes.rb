@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
     club_topic.resources :dvd_clubs
   end
   
-  map.resources :dvd_clubs, :member => {:join => :post}
+  map.resources :dvd_clubs, :member => {:join => :post}, :collection => { :blacklist => :get }
   
   map.resources :user_dvd_clubs
   map.resources :waiting_lists
