@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081020052159) do
+ActiveRecord::Schema.define(:version => 20081219113156) do
 
   create_table "actors", :force => true do |t|
     t.string "name"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20081020052159) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner_id",      :limit => 10
+    t.string   "state"
   end
 
   add_index "dvd_clubs", ["club_topic_id"], :name => "dvd_clubs_FKIndex1"
@@ -130,6 +131,13 @@ ActiveRecord::Schema.define(:version => 20081020052159) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
+  create_table "settings", :force => true do |t|
+    t.integer  "max_clubs",        :limit => 11
+    t.integer  "max_club_members", :limit => 11
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_dvd_clubs", :force => true do |t|
     t.integer  "dvd_club_id",         :limit => 11
     t.integer  "user_id",             :limit => 11
@@ -157,6 +165,7 @@ ActiveRecord::Schema.define(:version => 20081020052159) do
     t.integer  "accept_offers",             :limit => 3
     t.datetime "remember_token_expires_at"
     t.datetime "deleted_at"
+    t.string   "state"
   end
 
   create_table "waiting_lists", :force => true do |t|

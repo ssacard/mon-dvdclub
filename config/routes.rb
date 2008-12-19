@@ -37,6 +37,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :club_topics, :controller => 'admin/club_topics'
     admin.resources :dvd_clubs  , :controller => 'admin/dvd_clubs'
     admin.resources :users      , :controller => 'admin/users'
+    admin.resources :settings   , :controller => 'admin/settings'
   end
 
   # Install the default routes as the lowest priority.

@@ -6,8 +6,12 @@ class DvdClubsController < AuthenticatedController
   end
 
   def new
-    @dvd_club = DvdClub.new
-    @user_dvd_club = UserDvdClub.new(:pseudo => current_user.default_pseudo)
+    if Setting.get.can_add_club?
+      @dvd_club = DvdClub.new
+      @user_dvd_club = UserDvdClub.new(:pseudo => current_user.default_pseudo)
+    else
+      @cannot_add_club_msg = 'Désolé, il est temporairement impossible de créer un nouveau club.'
+    end
   end
 
   def create

@@ -1,5 +1,6 @@
 -form_for :dvd_club, current_object, :url => current_object.new_record? ? objects_path : object_path, :html => { :method => current_object.new_record? ? :post : :put } do |f|
-
+  = f.hidden_field :owner_id, :value => current_user.id
+  = f.hidden_field :terms, :value => '1'
   %p
     %label
       Nom du club:

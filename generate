@@ -1,0 +1,40 @@
+Le script a débuté sur ven 19 déc 2008 11:15:00 CET
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ ifconfigpconfigssh ostoya@icimarche.fr[15Pipconfigfconfig[Kscript generate model AppConfig max_clubs:integer max_club_members:integer[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@/[1P
+      exists  app/models/
+      exists  test/unit/
+      exists  test/fixtures/
+      create  app/models/app_config.rb
+      create  test/unit/app_config_test.rb
+      create  test/fixtures/app_configs.yml
+      exists  db/migrate
+      create  db/migrate/20081219101533_create_app_configs.rb
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ script/generate model AppConfig max_clubs:integer max_club_members:integer[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1@c[1@o[1@n[1@t[1@r[1@o[1@l[1@l[1@e[1@r[Cifconfig[Kscript/generate controller AppConfig max_clubs:integer max_club_members:integer[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cifconfig[Kscript/generate controller AppConfig max_clubs:integer max_club_members:integer[1P[1P[1P[1P[1P[1P[1P[1P[1@d[1@e[1@s[1@t[1@r[1@o[1@y[Cifconfig[Kpconfigssh ostoya@icimarche.fr[15Pipconfigfconfigscript/destroy controller AppConfig max_clubs:integer max_club_members:integer[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kscript/destroy controller AppConfig max_clubs:integer max_club_members:integer[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[C[1P[1P[1P[1P[1@m[1@o[1@d[1@e[C[C[C[C[C[C[C[C[C[C[1@l[C[C[C[C[C[C[C[C[C[C[K
+    notempty  db/migrate
+    notempty  db
+          rm  db/migrate/20081219101533_create_app_configs.rb
+          rm  test/fixtures/app_configs.yml
+          rm  test/unit/app_config_test.rb
+          rm  app/models/app_config.rb
+    notempty  test/fixtures
+    notempty  test
+    notempty  test/unit
+    notempty  test
+    notempty  app/models
+    notempty  app
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ script/destroy model AppConfiggenerate model AppConfig max_clubs:integer max_club_members:integer[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@S[1@e[1@t[1@t[1@i[1@n[1@g
+      exists  app/models/
+      exists  test/unit/
+      exists  test/fixtures/
+      create  app/models/setting.rb
+      create  test/unit/setting_test.rb
+      create  test/fixtures/settings.yml
+      exists  db/migrate
+      create  db/migrate/20081219101803_create_settings.rb
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ script/generate model Setting max_clubs:integer max_club_members:integer[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1@c[1@o[1@n[1@t[1@r[1@o[1@l[1@l[1@e[1@r[C[1@ [1P[1@a[1@d[1@m[1@i[1@n[1@/[1@s[1P[C[C[C[C[C[C[1@s[K
+      exists  app/controllers/admin
+      exists  app/helpers/admin
+      create  app/views/admin/settings
+      exists  test/functional/admin
+      create  app/controllers/admin/settings_controller.rb
+      create  test/functional/admin/settings_controller_test.rb
+      create  app/helpers/admin/setting
