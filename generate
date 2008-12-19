@@ -37,4 +37,65 @@ Le script a débuté sur ven 19 déc 2008 11:15:00 CET
       exists  test/functional/admin
       create  app/controllers/admin/settings_controller.rb
       create  test/functional/admin/settings_controller_test.rb
-      create  app/helpers/admin/setting
+      create  app/helpers/admin/settings_helper.rb
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ rake db:migrate
+(in /home/virtualmice/Projects/mon-dvdclub)
+== 20081219101803 CreateSettings: migrating ===================================
+-- create_table(:settings)
+   -> 0.2260s
+== 20081219101803 CreateSettings: migrated (0.2264s) ==========================
+
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ script [K/generate migration add_state _ t o _ u s e r 
+      exists  db/migrate
+      create  db/migrate/20081219113136_add_state_to_user.rb
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ script/generate migration add_state_to_user [K[K[K[K[Kdvd_club
+      exists  db/migrate
+      create  db/migrate/20081219113156_add_state_to_dvd_club.rb
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ script/generate migration add_state_to_dvd_club[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Krake :[Kdb:migrate
+(in /home/virtualmice/Projects/mon-dvdclub)
+== 20081219113136 AddStateToUser: migrating ===================================
+-- add_column(:users, :state, :string)
+   -> 0.2065s
+== 20081219113136 AddStateToUser: migrated (0.2067s) ==========================
+
+== 20081219113156 AddStateToDvdClub: migrating ================================
+-- add_column(:dvd_clubs, :state, :string)
+   -> 0.0568s
+== 20081219113156 AddStateToDvdClub: migrated (0.0573s) =======================
+
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ git update
+git: 'update' is not a git-command. See 'git --help'.
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ git update[K[K[K[K[K[Kc[K[K add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ git add .
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ git add .[K[K[K[K[Kcommit -m ""m"r"e" "a"d"m"i"n" "f"a"r"[1P"[1P"e"a"t"u"r"e"s"[C[1@o
+Created commit cad201e: more admin features
+ 23 files changed, 326 insertions(+), 11 deletions(-)
+ create mode 100644 app/controllers/admin/settings_controller.rb
+ create mode 100644 app/helpers/admin/settings_helper.rb
+ create mode 100644 app/models/setting.rb
+ create mode 100644 app/views/admin/settings/index.html.haml
+ create mode 100644 app/views/admin/settings/partials/_form.html.haml
+ create mode 100644 db/migrate/20081219101803_create_settings.rb
+ create mode 100644 db/migrate/20081219113136_add_state_to_user.rb
+ create mode 100644 db/migrate/20081219113156_add_state_to_dvd_club.rb
+ create mode 100644 generate
+ create mode 100644 nbproject/private/rake-t.txt
+ create mode 100644 test/fixtures/settings.yml
+ create mode 100644 test/functional/admin/settings_controller_test.rb
+ create mode 100644 test/unit/setting_test.rb
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ git push
+Counting objects: 79, done.
+Compressing objects:   2% (1/44)   Compressing objects:   4% (2/44)   Compressing objects:   6% (3/44)   Compressing objects:   9% (4/44)   Compressing objects:  11% (5/44)   Compressing objects:  13% (6/44)   Compressing objects:  15% (7/44)   Compressing objects:  18% (8/44)   Compressing objects:  20% (9/44)   Compressing objects:  22% (10/44)   Compressing objects:  25% (11/44)   Compressing objects:  27% (12/44)   Compressing objects:  29% (13/44)   Compressing objects:  31% (14/44)   Compressing objects:  34% (15/44)   Compressing objects:  36% (16/44)   Compressing objects:  38% (17/44)   Compressing objects:  40% (18/44)   Compressing objects:  43% (19/44)   Compressing objects:  45% (20/44)   Compressing objects:  47% (21/44)   Compressing objects:  50% (22/44)   Compressing objects:  52% (23/44)   Compressing objects:  54% (24/44)   Compressing objects:  56% (25/44)   Compressing objects:  59% (26/44)   Compressing objects:  61% (27/44)   Compressing objects:  63% (28/44)   Compressing objects:  65% (29/44)   Compressing objects:  68% (30/44)   Compressing objects:  70% (31/44)   Compressing objects:  72% (32/44)   Compressing objects:  75% (33/44)   Compressing objects:  77% (34/44)   Compressing objects:  79% (35/44)   Compressing objects:  81% (36/44)   Compressing objects:  84% (37/44)   Compressing objects:  86% (38/44)   Compressing objects:  88% (39/44)   Compressing objects:  90% (40/44)   Compressing objects:  93% (41/44)   Compressing objects:  95% (42/44)   Compressing objects:  97% (43/44)   Compressing objects: 100% (44/44)   Compressing objects: 100% (44/44), done.
+Writing objects:   2% (1/48)   Writing objects:   4% (2/48)   Writing objects:   6% (3/48)   Writing objects:   8% (4/48)   Writing objects:  10% (5/48)   Writing objects:  12% (6/48)   Writing objects:  14% (7/48)   Writing objects:  16% (8/48)   Writing objects:  18% (9/48)   Writing objects:  20% (10/48)   Writing objects:  22% (11/48)   Writing objects:  25% (12/48)   Writing objects:  27% (13/48)   Writing objects:  29% (14/48)   Writing objects:  31% (15/48)   Writing objects:  33% (16/48)   Writing objects:  35% (17/48)   Writing objects:  37% (18/48)   Writing objects:  39% (19/48)   Writing objects:  41% (20/48)   Writing objects:  43% (21/48)   Writing objects:  45% (22/48)   Writing objects:  47% (23/48)   Writing objects:  50% (24/48)   Writing objects:  52% (25/48)   Writing objects:  54% (26/48)   Writing objects:  56% (27/48)   Writing objects:  58% (28/48)   Writing objects:  60% (29/48)   Writing objects:  62% (30/48)   Writing objects:  64% (31/48)   Writing objects:  66% (32/48)   Writing objects:  68% (33/48)   Writing objects:  70% (34/48)   Writing objects:  72% (35/48)   Writing objects:  75% (36/48)   Writing objects:  77% (37/48)   Writing objects:  79% (38/48)   Writing objects:  81% (39/48)   Writing objects:  83% (40/48)   Writing objects:  85% (41/48)   Writing objects:  87% (42/48)   Writing objects:  89% (43/48)   Writing objects:  91% (44/48)   Writing objects:  93% (45/48)   Writing objects:  95% (46/48)   Writing objects:  97% (47/48)   Writing objects: 100% (48/48)   Writing objects: 100% (48/48), 8.52 KiB, done.
+Total 48 (delta 24), reused 0 (delta 0)
+To git@github.com:Malacara/mon-dvdclub.git
+   655f222..cad201e  master -> master
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ [Kbach@haendel:~/Projects/mon-dvdclub$ [Kbach@haendel:~/Projects/mon-dvdclub$ [Kbach@haendel:~/Projects/mon-dvdclub$ [Kbach@haendel:~/Projects/mon-dvdclub$ [Kbach@haendel:~/Projects/mon-dvdclub$ script/d[Ksession
+bash: script/session: Aucun fichier ou dossier de ce type
+]0;bach@haendel: ~/Projects/mon-dvdclubbach@haendel:~/Projects/mon-dvdclub$ script/session[K[K[K[K[K[K[Kconsole
+Loading development environment (Rails 2.1.0)
+>> Dvd.all
+=> [#<Dvd id: 1, dvd_category_id: nil, format_id: nil, asin: nil, details_url: nil, created_at: "2008-12-19 13:31:16", owner_id: 2, title: "Vidocq", smallimage: nil, largeimage: nil, description: nil, state: "available", booked_by: nil, booked_at: nil>, #<Dvd id: 2, dvd_category_id: nil, format_id: nil, asin: nil, details_url: nil, created_at: "2008-12-19 13:33:12", owner_id: 2, title: "Vidocq", smallimage: nil, largeimage: nil, description: nil, state: "available", booked_by: nil, booked_at: nil>, #<Dvd id: 3, dvd_category_id: nil, format_id: nil, asin: nil, details_url: nil, created_at: "2008-12-19 13:39:38", owner_id: 2, title: "Vidocq", smallimage: nil, largeimage: nil, description: nil, state: "available", booked_by: nil, booked_at: nil>, #<Dvd id: 4, dvd_category_id: nil, format_id: nil, asin: nil, details_url: nil, created_at: "2008-12-19 13:42:23", owner_id: 2, title: "Vidocq", smallimage: nil, largeimage: nil, description: nil, state: "available", booked_by: nil, booked_at: nil>]
+>> Dvd.all[K
