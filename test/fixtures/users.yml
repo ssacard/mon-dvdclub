@@ -1,46 +1,27 @@
-# == Schema Information
-# Schema version: 20080708191716
-#
-# Table name: users
-#
-#  id                        :integer(11)     not null, primary key
-#  login                     :string(255)     
-#  email                     :string(255)     
-#  crypted_password          :string(40)      
-#  salt                      :string(40)      
-#  password_secret           :string(40)      
-#  remember_token            :string(255)     
-#  created_at                :datetime        
-#  updated_at                :datetime        
-#  accept_offers             :integer(3)      
-#  remember_token_expires_at :datetime        
-#  deleted_at                :datetime        
-#
-
 --- 
 users_001: 
-  salt: 1809251e340fdf3f395627fe9142955766003e3d
-  updated_at: 2008-07-12 12:38:53
-  crypted_password: b543dca78668fe5e8c881d3f383f44d2fb630e4e
-  deleted_at: 
-  accept_offers: 
+  salt: 26dd86c2ce9851f1f4794e4a38a50cd57c4165f5
+  created_at: 2008-12-17 12:28:20
   remember_token_expires_at: 
+  crypted_password: 9148860eabb37cd77e570816a68bc6d6e0fee0d8
+  deleted_at: 
+  updated_at: 2008-12-17 12:28:20
+  accept_offers: 
   id: "1"
   remember_token: 
   password_secret: 
-  login: admin@dvdclub.com
-  created_at: 2008-07-12 12:38:53
+  login: 
   email: admin@dvdclub.com
 users_002: 
-  salt: ba6a7e9869bfce4f2d4069622283978ca81891b3
-  updated_at: 2008-07-12 12:40:18
-  crypted_password: 5f9f9960fd836c098e8953cbcfa8bd7afe6c293d
-  deleted_at: 
-  accept_offers: 
+  salt: e1062d92c425696924fc145e99e18e172ba957c6
+  created_at: 2008-12-17 12:45:45
   remember_token_expires_at: 
+  crypted_password: 125c3558886099fea7e7ad06458da101fd736d94
+  deleted_at: 
+  updated_at: 2008-12-17 12:45:45
+  accept_offers: "1"
   id: "2"
   remember_token: 
   password_secret: 
-  login: demo_user
-  created_at: 2008-07-12 12:40:18
-  email: demo_user@mondvdclub.com
+  login: 
+  email: philippe.lachaise@gmail.com

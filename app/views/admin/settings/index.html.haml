@@ -1,0 +1,6 @@
+= render :partial => '/shared/menu' if logged_in?
+.site
+  %h4
+    Edit Application Settings
+  %br
+  = render(:partial => 'admin/settings/partials/form')

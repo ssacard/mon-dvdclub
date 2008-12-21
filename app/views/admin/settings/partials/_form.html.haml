@@ -1,0 +1,13 @@
+-form_for [:admin, @setting] do |f|
+  %p
+    %label
+      Max Allowed Clubs (0 for unlimited) :
+      %br
+      = f.text_field :max_clubs, :class => :text
+  %p
+    %label
+      Max Allowed Members by Clubs (0 for unlimited) :
+      %br
+      = f.text_field :max_club_members, :class => :text
+  %p
+    = f.submit "Update"

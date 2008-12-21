@@ -36,3 +36,8 @@ ul.submenu li.active, ul.submenu li.active a{
   color: #FFF;
 }
 
+.notice {
+  color: orange;  
+  font-weight: bold;
+  clear: both;
+}

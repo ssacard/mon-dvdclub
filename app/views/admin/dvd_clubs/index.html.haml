@@ -1,0 +1,22 @@
+= render :partial => '/shared/menu' if logged_in?
+.site
+  %h3
+    Club Topics
+  %br
+  %table
+    %tr
+      %th
+        Name
+      %th
+        Action
+    -current_objects.each do |object|
+      %tr
+        %td
+          = object.name
+        %td
+          = link_to 'Edit'  , edit_admin_dvd_club_path(object)
+          = link_to 'Delete', admin_dvd_club_path(object), :method => :delete, :confirm => 'Etes-vous sûr de vouloir supprimer ce club ?'
+          = link_to 'Info'  , info_admin_dvd_club_path(object)
+  %br
+  = link_to 'New', new_admin_dvd_club_path
+  

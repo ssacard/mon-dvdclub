@@ -46,10 +46,10 @@ class DvdsController < AuthenticatedController
     else
       flash[:notice] = 'Invalid Information'
     end
-    @index = session[:search_current]
-    @total = session[:search_titles].length 
+    @index = search_current = session[:search_current] or -1
+    @total = search_titles  = ( session[:search_titles] ? session[:search_titles].length : 0 )
 
-    if session[:search_current] == session[:search_titles].length - 1
+    if search_current == search_titles - 1
       session[:search_current] = nil
       session[:search_titles]  = nil
       render :update do |page|

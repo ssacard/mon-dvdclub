@@ -1,12 +1,3 @@
-# == Schema Information
-# Schema version: 20080708191716
-#
-# Table name: dvd_formats
-#
-#  id   :integer(11)     not null, primary key
-#  name :string(255)     
-#
-
 --- 
 dvd_formats_001: 
   name: Blue-Ray

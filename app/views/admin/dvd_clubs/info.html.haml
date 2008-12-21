@@ -1,0 +1,9 @@
+= render :partial => '/shared/menu' if logged_in?
+.site
+  %h4
+    Infos Club
+  .data
+    %label
+      Emails des autres membres du club
+    %br
+    = text_area_tag :emails, @dvd_club_users.join( "\n" )

@@ -43,4 +43,34 @@ class DvdClub < ActiveRecord::Base
     dvd_club_user_ids = self.user_dvd_clubs.collect{|c| c.user_id}
     Dvd.all(:conditions => ['owner_id in (?) and state != ? and owner_id != ?', dvd_club_user_ids, 'hidden', exclude_user.nil? ? 0 : exclude_user.id])    
   end
+  
+  acts_as_state_machine :initial => :active
+  state :active   , :enter => :do_activate
+  state :suspended, :enter => :do_suspend
+  state :deleted,   :enter => :do_delete
+
+  event :activate do
+    transitions :to => :active, :from => :suspended
+  end
+  
+  event :suspend do
+    transitions :to => :suspended, :from => :active
+  end
+
+  event :delete do
+    transitions :to => :deleted, :from => [:active, :suspended]
+  end
+  
+  def do_activate
+    # TODO : Send mail to owner if necessary
+  end
+  
+  def do_suspend
+    # TODO : Send mail to owner if necessary
+  end
+  
+  def do_delete
+    # TODO : Send mail to owner if necessary
+  end
+  
 end

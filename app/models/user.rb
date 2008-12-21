@@ -117,7 +117,7 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?
-    self.roles.include?(:admin)
+    self.roles.detect {|r| r.name.to_sym == :admin} # .include?(:admin)
   end
   
   def request_password_reset
@@ -159,6 +159,35 @@ class User < ActiveRecord::Base
   
   def avatar
     'user.jpg'
+  end
+
+  acts_as_state_machine :initial => :active
+  state :active   , :enter => :do_activate
+  state :suspended, :enter => :do_suspend
+  state :deleted,   :enter => :do_delete
+
+  event :activate do
+    transitions :to => :active, :from => :suspended
+  end
+  
+  event :suspend do
+    transitions :to => :suspended, :from => :active
+  end
+
+  event :delete do
+    transitions :to => :deleted, :from => [:active, :suspended]
+  end
+  
+  def do_activate
+    # TODO : Send mail if necessary
+  end
+  
+  def do_suspend
+    # TODO : Send mail if necessary
+  end
+  
+  def do_delete
+    # TODO : Send mail if necessary
   end
   
   protected

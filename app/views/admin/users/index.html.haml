@@ -1,0 +1,21 @@
+= render :partial => '/shared/menu' if logged_in?
+.site
+  %h3
+    Users
+  %br
+  %table
+    %tr
+      %th
+        Name
+      %th
+        Action
+    -current_objects.each do |object|
+      %tr
+        %td
+          = object.email
+        %td
+          = link_to 'Edit', edit_admin_user_path(object)
+          = link_to 'Delete', admin_user_path(object), :method => :delete
+  %br
+  = link_to 'New', new_admin_user_path
+  

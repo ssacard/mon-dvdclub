@@ -1,0 +1,39 @@
+.site 
+  - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :create}, :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')") do |f|
+    %p
+      %label
+        Title
+      %br/
+      = text_field_tag :title
+    %p
+      %label
+        Dvd Category
+      %br
+      = f.collection_select :dvd_category_id, DvdCategory.find(:all), :id, :name
+    %p
+      %label
+        Manufacturer
+      %br/
+      = text_field_tag :manufacturer
+    %p
+      %label
+        Director
+      %br/
+      = text_field_tag :director
+    %p
+      %label
+        Format
+      %br/
+      = f.collection_select :format, DvdFormat.find(:all), :id, :name
+    %p
+      %label
+        Actors 
+        = link_to_function('Add more') do |page|
+          - page.insert_html :bottom, 'actors-div', "<br />" + text_field_tag('actors[]')
+      %br/
+      #actors-div
+        = text_field_tag 'actors[]'
+    %p
+      = submit_tag 'Create'
+
+
