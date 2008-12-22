@@ -17,7 +17,7 @@
           = object.email
         %td
           = link_to 'Edit', edit_admin_user_path(object)
-          = link_to 'Delete', admin_user_path(object), :method => :delete, :confirm => 'Etes-vous sûr de vouloir supprimer cet utilisateur ?'
+          = link_to 'Delete', admin_user_path(object), :method => :delete, :confirm => %Q{Etes-vous sûr de vouloir supprimer cet utilisateur ?\rVous pouvez simplement le suspendre en allant sur "Edit"}
         %td
           = object.state 
   %br

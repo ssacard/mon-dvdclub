@@ -7,7 +7,7 @@ class Admin::UsersController < AdminController
       format.html { redirect_to admin_users_path }
     end
     
-    before :create, :update do
+    after :create, :update do
       if params[:active]
         @current_object.activate! unless @current_object.active?
       else

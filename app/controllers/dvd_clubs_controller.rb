@@ -90,6 +90,19 @@ class DvdClubsController < AuthenticatedController
   
   def blacklist
     @fellow_club_members = current_user.fellow_club_members
+    if request.method == :post 
+      blacklist_hash = params[:blacklisted]
+      @fellow_club_members.each do |fcm|
+        # N.B. lacklist! and whitelist! are double-submit-proof
+        if blacklist_hash and blacklist_hash[fcm.id.to_s]
+          current_user.blacklist!( fcm )
+        else  
+          current_user.whitelist!( fcm )
+        end
+      end
+      # Reload from updated lists :
+      @fellow_club_members = current_user.fellow_club_members
+    end
   end
   
 private

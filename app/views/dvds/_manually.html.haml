@@ -12,11 +12,6 @@
       = f.collection_select :dvd_category_id, DvdCategory.find(:all), :id, :name
     %p
       %label
-        Manufacturer
-      %br/
-      = text_field_tag :manufacturer
-    %p
-      %label
         Director
       %br/
       = text_field_tag :director
@@ -24,7 +19,7 @@
       %label
         Format
       %br/
-      = f.collection_select :format, DvdFormat.find(:all), :id, :name
+      = f.collection_select :format_id, DvdFormat.find(:all), :id, :name
     %p
       %label
         Actors 

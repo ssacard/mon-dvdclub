@@ -27,7 +27,7 @@
     %br
     %label
       Active (uncheck to suspend user):
-      = check_box_tag :active, :active, :checked => ( @user.active? ? :checked : '' )
+      = check_box_tag :active, :active, :checked => ( ( current_object.state and current_object.active? ) ? :checked : '' )
   %br
   %p
     = f.check_box :accept_offers

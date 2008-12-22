@@ -9,10 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081219113156) do
+ActiveRecord::Schema.define(:version => 20081222132525) do
 
   create_table "actors", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "blacklistings", :force => true do |t|
+    t.integer  "user_id",        :limit => 11
+    t.integer  "user_id_target", :limit => 11
+    t.boolean  "source_forgot"
+    t.boolean  "target_forgot"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "blocked_users", :force => true do |t|

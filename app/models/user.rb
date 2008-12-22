@@ -38,22 +38,34 @@ class User < ActiveRecord::Base
   has_many :waiting_lists
   has_many :dvds, :through => :waiting_lists
   has_many :booked_dvds, :class_name => 'Dvd', :foreign_key => 'booked_by'
+
+  # Symetrical relationship between people blacklisting each other
+  acts_as_network :blind_users, :through => :blacklistings
   
   # Users that are members of at least one club in common with me
   def fellow_club_members
-    fellows = []
-    self.dvd_clubs.find( :all, :include => :users ).each {|c| c.users.each {|u| fellows << u } }
+    fellows    = []
+    # Hiding users that blacklisted self (ego-preserving measure ;-)
+    args = { :include => :users }
+    args.merge!( :conditions => "users.user_id NOT IN (#{self.blind_users_in.collect {|u| u.id}.join(',')})" ) unless self.blind_users_in.empty?
+    self.dvd_clubs.find( :all, args ).each {|c| c.users.each {|u| fellows << u } }
     fellows.uniq!
-    fellows.delete self
+    fellows.delete self # Remove self if collected by accident
     fellows.sort {|a,b| a.email <=> b.email }
     fellows
   end
   
   def on_my_blacklist?( user )
-    # TODO : implement ???
-    false
+    self.blind_users_out.include?( user )
   end
   
+  def blacklist!( user )
+    Blacklisting.blacklist!( self, user )
+  end
+  
+  def whitelist!( user )
+    Blacklisting.whitelist!( self, user )
+  end
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.

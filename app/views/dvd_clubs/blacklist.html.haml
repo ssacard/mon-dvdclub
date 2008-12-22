@@ -3,16 +3,18 @@
   %h3
     Users
   %br
-  %table
-    %tr
-      %th
-        Email
-      %th
-        Blacklisted
-    -@fellow_club_members.each do |user|
+  -form_for :dvd_club, @dvd_club, :url => {:action => :blacklist } do |f|
+    %table
       %tr
-        %td
-          = user.email
-        %td
-          = check_box_tag :blacklisted, :blacklisted, :checked => ( :checked if current_user.on_my_blacklist?( user ) )
-  
+        %th
+          Email
+        %th
+          Blacklisted
+      -@fellow_club_members.each do |user|
+        %tr
+          %td
+            = user.email
+          %td
+            = check_box_tag "blacklisted[#{user.id}]", "blacklisted[#{user.id}]", current_user.on_my_blacklist?( user )
+    %p
+    = f.submit "Update"
