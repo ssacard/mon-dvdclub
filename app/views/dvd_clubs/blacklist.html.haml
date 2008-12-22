@@ -1,0 +1,18 @@
+= render :partial => '/shared/menu' if logged_in?
+.site
+  %h3
+    Users
+  %br
+  %table
+    %tr
+      %th
+        Email
+      %th
+        Blacklisted
+    -@fellow_club_members.each do |user|
+      %tr
+        %td
+          = user.email
+        %td
+          = check_box_tag :blacklisted, :blacklisted, :checked => ( :checked if current_user.on_my_blacklist?( user ) )
+  

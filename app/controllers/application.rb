@@ -11,9 +11,20 @@ class ApplicationController < ActionController::Base
   protect_from_forgery :secret => '7d18b0ac5d9ddaa4e0910ee1167792c0'
   
   around_filter :set_language
+  
+ allow :exec => :check_auth, :redirect_to => '/'
+ 
+ def check_auth
+   unless current_user.nil? or current_user.active?
+     flash[:notice] = %{Votre compte est désactivé !}
+     return false
+   end
+   true
+ end
 
 private 
   def authenticate
+    # TODO : Dead-code ? 
     authenticate_or_request_with_http_basic do |username, password|
       username == "DVDclub" && password == "SACARD"
     end if ENV['RAILS_ENV'] == 'production'

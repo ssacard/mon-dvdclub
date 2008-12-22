@@ -9,13 +9,17 @@
         Name
       %th
         Action
+      %th
+        Status
     -current_objects.each do |object|
       %tr
         %td
           = object.email
         %td
           = link_to 'Edit', edit_admin_user_path(object)
-          = link_to 'Delete', admin_user_path(object), :method => :delete
+          = link_to 'Delete', admin_user_path(object), :method => :delete, :confirm => 'Etes-vous sûr de vouloir supprimer cet utilisateur ?'
+        %td
+          = object.state 
   %br
   = link_to 'New', new_admin_user_path
   

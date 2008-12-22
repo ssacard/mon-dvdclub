@@ -35,6 +35,9 @@
       - else
         %li 
           = link_to 'Mes DVD', "/home/dvds"
+
+      %li 
+        = link_to 'Blacklist', blacklist_dvd_clubs_path
          
       - if object == :requested
         %li.active

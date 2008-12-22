@@ -24,6 +24,12 @@
           %br
           = fields.text_area :description, :class => :text
   %p
+    %br
+    %label
+      Active (uncheck to suspend user):
+      = check_box_tag :active, :active, :checked => ( @user.active? ? :checked : '' )
+  %br
+  %p
     = f.check_box :accept_offers
     L'utilisateur accepte de recevoir des offres des partenaires de mon DVD Club
 

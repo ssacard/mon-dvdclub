@@ -88,6 +88,10 @@ class DvdClubsController < AuthenticatedController
     end
   end
   
+  def blacklist
+    @fellow_club_members = current_user.fellow_club_members
+  end
+  
 private
   def must_be_member
     redirect_to home_url unless UserDvdClub.membership(current_object, current_user)
