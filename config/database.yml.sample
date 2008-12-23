@@ -6,9 +6,15 @@
 #  timeout: 5000
 development:
   adapter: mysql
+<<<<<<< HEAD:config/database.yml
   database: mondvdclub_development
   username: mondvdclub
   password: mondvdclub
+=======
+  database: dvdclub_development
+  username: root
+  password: 
+>>>>>>> 2f418cad2816edc82253d1bf40590662140c9311:config/database.yml.sample
   encoding: utf8
   socket: /var/run/mysqld/mysqld.sock
     

@@ -44,14 +44,14 @@ class DvdsController < AuthenticatedController
     dvd = Dvd.create_record(params.merge!(:owner_id => self.current_user.id))
     if dvd
       (session[:created_ids] ||= []) << dvd.id
-      flash[:notice] = 'DVD Created Successfully'
+      flash[:notice] = %Q{Votre DVD "#{dvd.title}" est bien enregistré} # 'DVD Created Successfully'
     else
-      flash[:notice] = 'Invalid Information'
+      flash[:notice] = %q{Une erreur est survenue lors de l'enregistrement} # 'Invalid Information'
     end
     @index = search_current = session[:search_current] or -1
     @total = search_titles  = ( session[:search_titles] ? session[:search_titles].length : 0 )
 
-    if search_current == search_titles - 1
+    if search_current == search_titles - 1 or dvd
       session[:search_current] = nil
       session[:search_titles]  = nil
       render :update do |page|
