@@ -6,10 +6,11 @@
 #  timeout: 5000
 development:
   adapter: mysql
-  database: dvdclub
-  username: root
-  password: 
+  database: mondvdclub_development
+  username: mondvdclub
+  password: mondvdclub
   encoding: utf8
+  socket: /var/run/mysqld/mysqld.sock
     
 # Warning: The database defined as 'test' will be erased and
 # re-generated from your development database when you run 'rake'.
