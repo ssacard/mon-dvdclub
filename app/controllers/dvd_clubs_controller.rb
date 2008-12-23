@@ -1,9 +1,15 @@
 class DvdClubsController < AuthenticatedController
   before_filter      :must_be_member, :only => [:show]
   skip_before_filter :login_required, :only => :join
+ 
   make_resourceful do
     actions :all
   end
+  
+  # Override so as to take blacklist into account
+#  def current_objects
+#    @current_objects ||= 
+#  end
 
   def new
     if Setting.get.can_add_club?

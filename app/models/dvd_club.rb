@@ -39,8 +39,16 @@ class DvdClub < ActiveRecord::Base
     dvd_clubs.first
   end
 
-  def dvds(exclude_user = nil)
-    dvd_club_user_ids = self.user_dvd_clubs.collect{|c| c.user_id}
+  def dvds(exclude_user = nil, blacklister = nil)
+    # TODO : my guess is that exclude_user correspond to a first attemps at blacklisting
+    # users. To stay on the safe side I coded around it (P.Lachaise - 23/12/08)
+    if blacklister and ( blacklist = blacklister.blind_users )
+      dvd_club_user_ids = self.user_dvd_clubs.collect do |c| 
+        c.user_id unless blacklist.detect {|user| user.id == c.user_id }
+      end
+    else  
+      dvd_club_user_ids = self.user_dvd_clubs.collect{|c| c.user_id}
+    end
     Dvd.all(:conditions => ['owner_id in (?) and state != ? and owner_id != ?', dvd_club_user_ids, 'hidden', exclude_user.nil? ? 0 : exclude_user.id])    
   end
   

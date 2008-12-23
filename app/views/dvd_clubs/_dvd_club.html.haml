@@ -10,7 +10,7 @@
 - else
   = link_to 'Rejoindre ce club', user_dvd_clubs_path(:user_dvd_club => {:dvd_club_id => dvd_club.id, :user_id => current_user.id}), :method => :post
 %br
-= render :partial => 'dvds/partials/dvds', :locals => {:dvds => dvd_club.dvds}
+= render :partial => 'dvds/partials/dvds', :locals => {:dvds => dvd_club.dvds( nil, current_user )}
 %h3
   Les derniers membres de ce club (7 derniers jours)
 = render :partial => 'user', :collection => dvd_club.recent_users, :locals => {:dvd_club => dvd_club}
