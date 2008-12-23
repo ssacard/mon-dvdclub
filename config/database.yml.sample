@@ -6,7 +6,7 @@
 #  timeout: 5000
 development:
   adapter: mysql
-  database: dvdclub
+  database: dvdclub_development
   username: root
   password: 
   encoding: utf8
