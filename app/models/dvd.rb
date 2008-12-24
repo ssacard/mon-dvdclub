@@ -80,14 +80,14 @@ class Dvd < ActiveRecord::Base
   
   def self.create_record(attrs)
     dvd = Dvd.create!(:asin => attrs['asin'], 
-      :details_url => attrs['url'], 
-      :title => attrs['title'],
-      :description => attrs['description'],
-      :smallimage => attrs['smallimage'],
-      :format_id => attrs['dvd']['format_id'], # ?!  (DvdFormat.find_by_name(attrs['format_id']).id rescue nil),
-      :largeimage => attrs['largeimage'],
-      :owner_id => attrs[:owner_id],
-      :dvd_category_id => attrs['dvd']['dvd_category_id']) # ?! (DvdCategory.find_by_name(attrs['dvd_category_id']).id rescue nil))
+      :details_url     => attrs['url'], 
+      :title           => attrs['title'],
+      :description     => attrs['description'],
+      :smallimage      => attrs['smallimage'],
+      :format_id       => ( attrs['dvd'] ? attrs['dvd']['format_id'] : (DvdFormat.find_by_name(attrs['format']).id rescue nil) ),
+      :largeimage      => attrs['largeimage'],
+      :owner_id        => attrs[:owner_id],
+      :dvd_category_id => ( attrs['dvd'] ? attrs['dvd']['dvd_category_id'] : (DvdCategory.find_by_name(attrs['dvd_category_id']).id rescue nil)) )
     if attrs['manufacturer']
       manufacturer = Manufacturer.find_or_create_by_name(attrs['manufacturer']) 
       dvd.manufacturers << manufacturer

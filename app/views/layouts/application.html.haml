@@ -9,7 +9,6 @@
   %body
     #main
       = render :partial => '/shared/header'
-      = ( f = [:notice, :warning, :error].detect {|f| flash[f] } ) ?  %Q{<div class="flash #{f}">#{flash[f]}</div>} : nil
       = yield
       .push
     = render :partial => '/shared/footer'
