@@ -1,28 +1,44 @@
-= render :partial => '/shared/menu' if logged_in?
-.site
-  #login_panel.standard_form
-    %h1 
-      Connexion 
-      = link_to "(S'enregister)", register_path
-  
-    -if flash[:notice] 
-      #flash-notice= flash[:notice]
+.blue-box
+  %h1
+    =link_to "Se Connecter", ''
 
-    - form_tag session_path do
-      %label 
-        Email
-        %br
+
+.rounded-box
+  .bg-bottom
+    .bg-top
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.
+
+
+.main-form
+  -if flash[:notice] 
+    #flash-notice= flash[:notice]
+
+  - form_tag session_path do
+    .row
+      .lab
+        %label
+          Email:
+      .inp.focus
         = text_field_tag 'email', '', :class => :text
 
-
-      %label 
-        Mot de passe
-        %br
+    .row.bottom-margin
+      .lab
+        %label
+          Mot de passe:
+      .inp.focus
         = password_field_tag 'password', '', :class => :text
+    .row
+      .lab
+        %label
+      .inp.focus
+        = link_to('(mot de passe oublié)' , forgot_password_path, :class => :forgot)
 
-      %label 
-        Se souvenir de ma connexion:  
+    .row
+      .check
         = check_box_tag 'remember_me' 
-    
-      - forgot =  link_to('(mot de passe oublié)' , forgot_password_path, :class => :forgot)
-      = render :partial => '/shared/submit_buttons', :locals => {:text => 'Se connecter', :more => forgot }
+      .lb
+        %label
+          Se souvenir de ma connexion
+
+
+    = render :partial => '/shared/submit_buttons', :locals => {:text => 'Se connecter'}

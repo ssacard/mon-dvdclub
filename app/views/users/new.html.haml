@@ -1,14 +1,21 @@
-.site
-  #profile.standard_form    
-    - if @invitation
-      %h1 
-        Rejoignez le DVD club:
-        = @dvd_club.name
-      %h3 
-        invitation envoyé par: 
-        = @invitation.user.pseudo(@dvd_club)
-    - else
-      %h1 Créez votre DVD Club  
-    = render :partial => 'form'
-    
+.blue-box
+  %h1
+    =link_to "Créez votre DVD Club", ''
+.rounded-box
+  .bg-bottom
+    .bg-top
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.
+
+#profile.standard_form    
+  - if @invitation
+    %h1 
+      Rejoignez le DVD club:
+      = @dvd_club.name
+    %h3 
+      invitation envoyé par: 
+      = @invitation.user.pseudo(@dvd_club)
+  - else
+  
+  = render :partial => 'form'
+  
       

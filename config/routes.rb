@@ -45,10 +45,6 @@ ActionController::Routing::Routes.draw do |map|
   map.home '/home', :controller => "home", :action => "index"
   map.mydvds '/home/dvds', :controller => "home", :action => "dvds"
   
-  # TEMPORARY !!!!!!!!!!!!!!!!
-  # map.reset_db   '/reset_db', :controller => 'home', :action => 'reset_db'
-  # map.restore_db '/restore_db', :controller => 'home', :action => 'restore_db'
-  
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

@@ -1,0 +1,24 @@
+.main-img .white-box-top {
+	background:none;
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-white-box-top.png', sizingmethod='scale');
+}
+.main-img .white-box-bottom {
+	background:none;
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-white-box-bottom.png', sizingmethod='scale');
+}
+.main-img .white-box {
+	background:none;
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-white-box.png', sizingmethod='scale');
+}
+.blue-box ul li a span strong span {
+	background:none;
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-tool.png', sizingmethod='scale');
+}
+.blue-box ul li a span strong span.left {
+	background:none;
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-tool-left.png', sizingmethod='scale');
+}
+.blue-box ul li a span strong span.right {
+	background:none;
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-tool-right.png', sizingmethod='scale');
+}

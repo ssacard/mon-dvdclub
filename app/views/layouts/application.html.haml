@@ -5,12 +5,14 @@
     %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
     -if @redirect_url
       %meta{"http-equiv" => "Refresh", :content => "5;url= #{@redirect_url}"} 
-    = stylesheet_link_tag 'master', 'form', 'button', 'menu'
+    = stylesheet_link_tag 'filter', 'all'
   %body
-    #main
-      = render :partial => '/shared/header'
-      = yield
-      .push
+    .page
+      .page-bottom
+        .page-top
+          .page-width
+            = render :partial => '/shared/header'
+            = yield
     = render :partial => '/shared/footer'
 
     = javascript_include_tag :defaults

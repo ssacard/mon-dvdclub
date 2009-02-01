@@ -1,16 +1,18 @@
 - fields_for :dvd_club do |fields|
-  %p
-    %label
-      Nom du club:
-      %br
+  .row  
+    .lab
+      %label
+        Nom du club:
+    .inp.focus
       = fields.text_field :name, :class => :text, :disabled => !@dvd_club.new_record? 
-  %p
-    %label
-      Type de club:
-      %br
-      = fields.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, {:prompt => true}, :class => :text, :disabled => !@dvd_club.new_record? 
-  %p
-    %label
-      Description du club:
-      %br
-      = fields.text_area :description, :class => :text, :disabled => !@dvd_club.new_record? 
+  .row  
+    .lab
+      %label
+        Type de club:
+    = fields.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, {:prompt => true}, :class => :text, :disabled => !@dvd_club.new_record? 
+  .row  
+    .lab
+      %label
+        Description du club:
+    .txt.focus
+      = fields.text_area :description, :disabled => !@dvd_club.new_record? 
