@@ -3,3 +3,19 @@
 	opacity:0.47;
 	filter: alpha(opacity=47);
 }
+.easyfix .main .disabled img,
+.easyfix .main .disabled .info {
+	-moz-opacity:0.2;
+	opacity:0.2;
+	filter: alpha(opacity=20);
+}
+.easyfix .main .disabled .actions {
+	-moz-opacity:0.4;
+	opacity:0.4;
+	filter: alpha(opacity=40);
+}
+.easyfix .pagination .disabled a {
+	-moz-opacity:0.6;
+	opacity:0.6;
+	filter: alpha(opacity=60);
+}

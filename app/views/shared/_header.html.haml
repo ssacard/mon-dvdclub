@@ -1,19 +1,14 @@
 #header
-  %strong= link_to "monDVD", root_path
-  .tab-holder
-    %div
-      %ul
-        %li= link_to content_tag(:span, "header.logout.create"[:'header.logout.create']), register_path, :class => :blue
-        %li= link_to  content_tag(:span, "header.logout.connect"[:'header.logout.connect']), login_path, :class => :dark
-        
-      / - if logged_in?
-      /   = link_to 'Mon Compte', settings_path
-      /   |
-      /   = link_to "Se deconnecter", logout_path
-      / - else 
-      /   = link_to "header.logout.create"[:'header.logout.create'], register_path
-      /   |  
-      /   = link_to "header.logout.connect"[:'header.logout.connect'], login_path
-      
-
+  - unless logged_in?
+    %strong= link_to "monDVD", root_path
+    .tab-holder
+      %div
+        %ul
+          %li= link_to content_tag(:span, "header.logout.create"[:'header.logout.create']), register_path, :class => :blue
+          %li= link_to  content_tag(:span, "header.logout.connect"[:'header.logout.connect']), login_path, :class => :dark
+  - else        
+    %strong= link_to "monDVD", root_path, :class => :inner
+    %ul.top-nav
+      %li.first= link_to 'Mon Compte', settings_path
+      %li= link_to "Se deconnecter", logout_path  
 

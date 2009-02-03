@@ -1,60 +1,48 @@
--parent  = false unless local_assigns[:parent]
-#menu.basic
-  .site 
-    %ul.menu
-      - if parent == :club
-        %li.active 
-          = link_to "header.login.home"[:'header.login.home'], "/home"
-      - else
-        %li
-          = link_to "header.login.home"[:'header.login.home'], "/home"
-          
-      - if parent == :myself
-        %li.active 
-          = link_to "header.login.manage"[:'header.login.manage'], "/dvd_clubs"
-      - else
-        %li
-          = link_to "header.login.manage"[:'header.login.manage'], "/dvd_clubs"        
-      - if current_user.is_admin?
-        %li
-          = link_to 'Admin', admin_path
+.blue-box
+  = '<a href="#" class="right-tab"><span><span>Gestion</span></span></a>'
+  %ul
+    %li
+      = link_to content_tag(:span, "header.login.home"[:'header.login.home']), "/home", :class => :active
+    %li
+      = link_to content_tag(:span, "header.login.manage"[:'header.login.manage']), "/dvd_clubs"
 
-.site
-  - if parent == :myself
-    %ul.submenu
-      - if object == :clubs
-        %li.active
-          = link_to 'Mes Clubs', "/dvd_clubs"
-      - else
-        %li
-          = link_to 'Mes Clubs', "/dvd_clubs"
-        
-      - if object == :dvds
-        %li.active
-          = link_to 'Mes DVD', "/home/dvds"
-      - else
-        %li 
-          = link_to 'Mes DVD', "/home/dvds"
-
-      %li 
-      - if object == :requested
-        %li.active
-          = link_to 'Emprunts en cours', "/home/requests"
-      - else
-        %li 
-          = link_to 'Emprunts en cours', "/home/requests"
-        
-      - if object == :pending
-        %li.active
-          = link_to 'Demandes en cours', "/home/pendings"
-      - else
-        %li 
-          = link_to 'Demandes en cours', "/home/pendings"
-
-      - if object == :settings
-        %li.active
-          = link_to 'Mon compte', "/settings"
-      - else
-        %li 
-          = link_to 'Mon compte', "/settings"
-      
+/ 
+/ .site
+/   - if parent == :myself
+/     %ul.submenu
+/       - if object == :clubs
+/         %li.active
+/           = link_to 'Mes Clubs', "/dvd_clubs"
+/       - else
+/         %li
+/           = link_to 'Mes Clubs', "/dvd_clubs"
+/         
+/       - if object == :dvds
+/         %li.active
+/           = link_to 'Mes DVD', "/home/dvds"
+/       - else
+/         %li 
+/           = link_to 'Mes DVD', "/home/dvds"
+/ 
+/       %li 
+/       - if object == :requested
+/         %li.active
+/           = link_to 'Emprunts en cours', "/home/requests"
+/       - else
+/         %li 
+/           = link_to 'Emprunts en cours', "/home/requests"
+/         
+/       - if object == :pending
+/         %li.active
+/           = link_to 'Demandes en cours', "/home/pendings"
+/       - else
+/         %li 
+/           = link_to 'Demandes en cours', "/home/pendings"
+/ 
+/       - if object == :settings
+/         %li.active
+/           = link_to 'Mon compte', "/settings"
+/       - else
+/         %li 
+/           = link_to 'Mon compte', "/settings"
+/       
