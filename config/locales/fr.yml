@@ -1,0 +1,8 @@
+fr:
+  # Generic label
+  email: Email
+
+  header: 
+    create: Créer un club
+    connect: Se connecter
+      

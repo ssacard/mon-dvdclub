@@ -1,0 +1,15 @@
+.flash {
+  font-size:1.4em;
+  margin:15px auto 15px auto;
+  width:824px;
+  text-align: center;
+  background: #D8D0B9;
+  border: 3px solid #99816B;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  padding: 10px 0;
+}
+
+.flash span {
+  padding: 10px;
+}

@@ -10,14 +10,12 @@
 
 
 .main-form
-  -if flash[:notice] 
-    #flash-notice= flash[:notice]
+  = display_flash
 
   - form_tag session_path do
     .row
       .lab
-        %label
-          Email:
+        %label= t(:email)
       .inp.focus
         = text_field_tag 'email', '', :class => :text
 

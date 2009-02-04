@@ -1,1 +1,0 @@
-Gibberish.current_language = :fr

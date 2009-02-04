@@ -17,7 +17,7 @@ module ApplicationHelper
   end
   
   def display_flash
-    content_tag :div, flash[:notice], :id => 'flash-notice' if flash[:notice] 
+    content_tag :div, content_tag(:span, flash[:notice]), :class => 'flash' if flash[:notice] 
   end
   
   def display_errors(*models)
