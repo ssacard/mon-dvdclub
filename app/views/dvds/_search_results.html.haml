@@ -1,36 +1,34 @@
-#search_header
-  ="15.list.title"[:'15.list.title', @title, @index + 1, @total]
-.clear
-%table
+.grey-heading
+  = t("search.title", :title => @title, :current => @index+1, :total => @total)
+
+.box-holder
   - @res.each_with_index do |i, index|
-    %tr
-      %td
-        = image_tag i[:smallimage] unless i[:smallimage].nil?
-      %td
-        %b Titre
-        %b= link_to i[:title], i[:url]
-        %br
-        %bFormat:
-        = i[:format]
-        %br
-        = truncate(i[:description], 160)
-      %td
-        - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :create}, :html => {:id => index+1}) do |f|
-          %select{:name => :dvd_category_id}
-            = options_for_select(categories, i[:category] )
-          = hidden_field_tag 'asin', i[:asin] 
-          = hidden_field_tag 'url', i[:url]  
-          = hidden_field_tag 'smallimage', i[:smallimage]  
-          = hidden_field_tag 'largeimage', i[:largeimage]  
-          = hidden_field_tag 'title', i[:title]  
-          = hidden_field_tag 'description', i[:description]  
-          = hidden_field_tag 'format', i[:format]  
-          - i[:actor].each do |a|
-            = hidden_field_tag 'actors[]', a
-          = hidden_field_tag 'director', i[:director] 
-          = hidden_field_tag 'manufacturer', i[:manufacturer]
-          = hidden_field_tag 'owner_id', self.current_user.id 
-        
-      %td
-        = "<input type=\"button\" onclick=\"document.forms[#{index+1}].onsubmit();\" value=\"c'est ça!\" />"
-= will_paginate @res, :renderer => 'RemoteLinkRenderer'
+    .box.bx
+      .bg-bottom
+        .bg-top
+          = image_tag i[:smallimage] unless i[:smallimage].nil?
+          = link_to 'DVD', i[:url], :class => 'ico-link dvd'
+          %strong= i[:category]
+          %h3= link_to i[:title], i[:url]
+          - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :create}, :html => {:id => index+1}) do |f|
+            = hidden_field_tag 'asin', i[:asin] 
+            = hidden_field_tag 'url', i[:url]  
+            = hidden_field_tag 'smallimage', i[:smallimage]  
+            = hidden_field_tag 'largeimage', i[:largeimage]  
+            = hidden_field_tag 'title', i[:title]  
+            = hidden_field_tag 'description', i[:description]  
+            = hidden_field_tag 'format', i[:format]  
+            - i[:actor].each do |a|
+              = hidden_field_tag 'actors[]', a
+            = hidden_field_tag 'director', i[:director] 
+            = hidden_field_tag 'manufacturer', i[:manufacturer]
+            = hidden_field_tag 'owner_id', self.current_user.id 
+            .btn
+              = link_to_function(content_tag(:span, content_tag(:span, "C'est ça")), 'MonDVD.Form.submit(this)')
+    - if index % 2 == 1
+      .clear
+
+= will_paginate @res, :renderer => 'RemoteLinkRenderer',:class => 'flickr_pagination'
+
+%script 
+  MonDVD.Search.initMouseEvent()

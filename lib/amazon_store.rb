@@ -17,8 +17,12 @@ class AmazonStore
     self.init if options.nil? # Development mode only as Rails reloads classes
     
     results = Array.new
-    res = Amazon::Ecs.item_search(title, @@options.merge(:item_page => page))
-
+    res = YAML.load(File.read('/tmp/kkk.yml'))
+    # res = Amazon::Ecs.item_search(title, @@options.merge(:item_page => page))
+    # f = File.open("/tmp/kkk.yml", "w")
+    # f.puts res.to_yaml
+    # f.close
+    
     res.items.each_with_index do |i, index|
       item = Hash.new
       item[:asin]         = i.get('asin').to_s

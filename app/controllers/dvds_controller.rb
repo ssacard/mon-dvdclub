@@ -1,14 +1,14 @@
 class DvdsController < AuthenticatedController
-  
-  # require 'diacritics_fu'
-  
+    
   def search
+    render :nothing => true and return if params[:title].strip.empty?
     session[:search_titles]  = params[:title].split(/\n/) if params[:title]
+
     session[:search_current] ||= 0
     @index = session[:search_current]
     @total = session[:search_titles].length 
     @title = session[:search_titles][@index]
-    @res = AmazonStore.search("\"#{DiacriticsFu::escape(@title)}\"", params[:page])
+    @res = AmazonStore.search("\"#{@title.parameterize}\"", params[:page])
     render :update do |page|
       page.replace_html 'search-results', :partial => 'search_results', :locals => {:dvd_club_id => params[:dvd_club_id]}
     end

@@ -7,13 +7,13 @@
           = '<a href="#" class="autre">Autre</a>'
           %h3= h dvd.title
         .content-text
-          = "5.element.added"[:'5.element.added', distance_of_time_in_words(Time.now, dvd.created_at)]
+          =# "5.element.added"[:'5.element.added', distance_of_time_in_words(Time.now, dvd.created_at)]
           %p= truncate(dvd.description, 160)
-          = link_to "5.element.more"[:'5.element.more'], dvd_path(dvd)
+          =# link_to "5.element.more"[:'5.element.more'], dvd_path(dvd)
       .actions
-        %h4="5.element.owner"[:'5.element.owner', dvd.owner.default_pseudo ]
+        %h4=#"5.element.owner"[:'5.element.owner', dvd.owner.default_pseudo ]
         - dvd_club = DvdClub.first_in_common(dvd.owner, current_user)
-        = "5.element.club"[:'5.element.club', dvd_club.name]
+        =# "5.element.club"[:'5.element.club', dvd_club.name]
         .yellow-btn
           - form_for :dvd, :url => {:controller => :dvds, :action => :request_register} do |form|
             = hidden_field_tag 'dvd_id', dvd.id
