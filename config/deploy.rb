@@ -18,7 +18,7 @@ role :app,       'www.mondvdclub.fr'
 role :db,        'www.mondvdclub.fr', :primary => true
  
 set :repository, "git@github.com:Malacara/mon-dvdclub.git"
-set :branch,     'master'
+set :branch,     'old_design'
 
 desc "After update code"
 task :after_update_code do
