@@ -1,42 +1,35 @@
 = render :partial => '/shared/menu', :locals => {:object => :clubs, :parent => :myself} if logged_in?
-.site
-- if @cannot_add_user_to_club_msg
-  .notice
-    = @cannot_add_user_to_club_msg
-- else
-  %h3
-    Inviter des amis
-  %br
-  %br
-  .classic_form
-  - form_for :mail, :url => {:controller => 'dvd_clubs', :action => 'send_mails'} do |form|
-    %p
-      %label
-        au club:
-        %b
+
+.main-box
+  - if @cannot_add_user_to_club_msg
+    .notice
+      = @cannot_add_user_to_club_msg
+  - else
+    %h3.center-heading
+      Inviter des amis
+
+    .main-form
+      - form_for :mail, :url => {:controller => 'dvd_clubs', :action => 'send_mails'} do |form|
+        %p
+          Au club:
           = @dvd_club.name
-    %p
-      %label
-        de la part de:
-        %b
-          = current_user.pseudo(@dvd_club)
-    %p
-      %label
-        à:
-        %br
-        = form.text_field :recipients, :class => :text
-    %p
-      %label
-        message:
-        %br
-        = form.text_area :message
-    = hidden_field_tag 'return_url', dvd_club_path(@dvd_club)
-    = hidden_field_tag 'dvd_club_id', @dvd_club.id
-    %p
-      = form.submit :inviter
-  %br
-  %h3
-    Que va-t-il se passer ensuite ?
-  Vos amis vont recevoir un mail de votre part, les invitant à
-  rejoindre votre club. Ils pourront à leur tour rajouter leurs DVDs,
-  et les partager avec l'ensemble du club.
+        %p
+          De la part de:
+          %b= current_user.pseudo(@dvd_club)
+        .row
+          .lab
+            %label A:
+          .inp= form.text_field :recipients, :class => :text
+        .row
+          .lab
+            %label Message:
+          .inp= form.text_area :message
+        = hidden_field_tag 'return_url', dvd_club_path(@dvd_club)
+        = hidden_field_tag 'dvd_club_id', @dvd_club.id
+        = form.submit :inviter
+
+  .shadow-box
+    .shadow-box-bottom
+      .shadow-box-top
+        %h3 Que va-t-il se passer ensuite ?
+        %p Vos amis vont recevoir un mail de votre part, les invitant à rejoindre votre club. Ils pourront à leur tour rajouter leurs DVDs, et les partager avec l'ensemble du club.

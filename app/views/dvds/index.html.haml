@@ -1,12 +1,21 @@
 = render :partial => '/shared/menu' if logged_in?
-.site
-  #rubrique
-    %h2
-      Rubriques
-    - self.current_user.rubriques.each do |dvd_category|
-      = link_to "#{dvd_category[:rubrique].name} (#{dvd_category[:count]})", dvd_category_dvds_path(dvd_category[:rubrique]) 
-      %br
-  #accueil
-    = render :partial => 'dvds/partials/breadcrumb'
-    = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
-  #clear
+.main-box
+  .promo-box
+    .btn
+      .bg-left
+        = link_to content_tag(:span, content_tag(:span, "Ajouter un DVD")), new_dvd_path
+    %p
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.
+
+  .top-border.easyfix
+    = render :partial => 'shared/categories'
+    .main
+      #accueil
+        %h2
+          = "5.title"[:'5.title']
+        - if @dvds.empty?
+          Pas de DVD actuellement dans vos club
+        - else
+          = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
+
+        = render :partial => 'dvds/partials/breadcrumb'
