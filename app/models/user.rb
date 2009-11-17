@@ -187,7 +187,7 @@ class User < ActiveRecord::Base
   end
   
   def avatar
-    'user.jpg'
+    'user.gif'
   end
 
   acts_as_state_machine :initial => :active
