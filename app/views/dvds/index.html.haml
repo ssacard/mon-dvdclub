@@ -4,18 +4,14 @@
     .btn
       .bg-left
         = link_to content_tag(:span, content_tag(:span, "Ajouter un DVD")), new_dvd_path
-    %p
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.
+    %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.
 
   .top-border.easyfix
     = render :partial => 'layouts/categories'
     .main
       #accueil
-        %h2
-          = "5.title"[:'5.title']
+        %h3= render :partial => 'dvds/partials/breadcrumb'
         - if @dvds.empty?
           Pas de DVD actuellement dans vos club
         - else
           = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
-
-        = render :partial => 'dvds/partials/breadcrumb'

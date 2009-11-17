@@ -578,7 +578,27 @@ h1 a {
 	color:#666;
 	padding:0 0 0 20px;
 	bottom:10px;
-	background:url(../images/bg-dvd.gif) no-repeat 0 50%;
+	background:url(../images/ico-dvd.gif) no-repeat 0 50%;
+}
+.preview-box .flex-box a.blueray {
+	position:absolute;
+	left:88px;
+	font-size:13px;
+	text-decoration:none;
+	color:#666;
+	padding:0 0 0 20px;
+	bottom:10px;
+	background:url(../images/ico-blueray.gif) no-repeat 0 50%;
+}
+.preview-box .flex-box a.autre {
+	position:absolute;
+	left:88px;
+	font-size:13px;
+	text-decoration:none;
+	color:#666;
+	padding:0 0 0 20px;
+	bottom:10px;
+	background:url(../images/ico-autre.gif) no-repeat 0 50%;
 }
 .preview-box .first {
 	padding:15px 8px 0 0;
@@ -1265,6 +1285,9 @@ h1 a {
 }
 .box a.blueray {
 	background:url(../images/ico-blueray.gif) no-repeat 0 50%;
+}
+.box a.autre {
+	background:url(../images/ico-autre.gif) no-repeat 0 50%;
 }
 .box .btn a {
 	float:right;

@@ -1,27 +1,55 @@
 = render :partial => '/layouts/menu' if logged_in?
-.site.center
-  %h3
+.main-box
+
+  / Page title
+  .center-heading
     Vous allez réserver 
     = @dvd.title 
     à 
     = @dvd.owner.pseudo_for_user(current_user)
-  %br
-  = avatar @dvd.owner
-  &nbsp;
-  = dvd_cover @dvd
-  %br
+
+  / Main rental box in the middle
+  .preview-box
+    .flex-box.first
+      = avatar @dvd.owner
+      %h2
+        %a= @dvd.owner.pseudo_for_user(current_user)
+    .flex-box
+      = dvd_cover @dvd
+      %h2
+        %a= @dvd.title
+      / Change the icon in front depending on the dvd_format name
+      - if @dvd.dvd_format.name == "DVD"
+        %a.dvd= @dvd.dvd_format.name
+      - elsif @dvd.dvd_format.name == "Blue-Ray"
+        %a.blueray= @dvd.dvd_format.name
+      - else
+        %a.autre= @dvd.dvd_format.name
+
+  / Yellow confirm button
   - form_for :dvd, :url => {:action => :register} do |form|
     = hidden_field_tag 'dvd_id', @dvd.id
-    = form.submit 'confirmer'
-  = link_to 'annuler', :back
-  %br
-  %br
-  %h3
-    Que va-t-il se passer ensuite ?
-  %br
-  %br
-  1) 
-  %b= @dvd.owner.pseudo_for_user(current_user)
-  va recevoir un mail l'informant de votre demande.
-  %br
-  2) Vous recevez en retour un mail vous informant de sa décision.
+    .button-holder
+      .button-wrapper
+        .button-box
+          %a
+            %span
+              %span
+                = form.submit "Je confirme"
+
+  .center-link
+    = link_to 'annuler', :back
+
+  / What will happen next box
+  .shadow-box
+    .shadow-box-bottom
+      .shadow-box-top
+        %h3 Que va-t-il se passer ensuite ?
+        %ul
+          %li
+            %span 1
+            %strong= @dvd.owner.pseudo_for_user(current_user)
+            va recevoir un mail l'informant de votre demande.
+          %li
+            %span 2
+            Vous recevez en retour un mail vous informant de sa décision.
