@@ -1,4 +1,4 @@
-= render :partial => '/shared/menu', :locals => {:object => :clubs} if logged_in?
+= render :partial => '/layouts/menu', :locals => {:object => :clubs} if logged_in?
 .site
 - if @cannot_add_club_msg
   .notice
@@ -40,4 +40,4 @@
         = f.check_box :terms
         j'accepte les conditions d'utilisations
 
-      = render :partial => '/shared/submit_buttons', :locals => {:text => 'Créer'}
+      = render :partial => '/layouts/submit_buttons', :locals => {:text => 'Créer'}

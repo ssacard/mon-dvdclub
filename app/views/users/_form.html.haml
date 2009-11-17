@@ -48,4 +48,4 @@
 
     = hidden_field_tag :token, @token
 
-    = render :partial => '/shared/submit_buttons', :locals => {:text => @user.new_record? ? 'Créer' : 'Valider'}
+    = render :partial => '/layouts/submit_buttons', :locals => {:text => @user.new_record? ? 'Créer' : 'Valider'}
