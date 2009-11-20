@@ -1,10 +1,13 @@
 = render :partial => '/layouts/menu', :locals => {:parent => :myself, :object => :clubs} if logged_in?
-.site
-  %h3
-    = link_to 'Créer un nouveau club', "/dvd_clubs/new"
-  %br
-  %br
-  %h2
-    Mes Clubs
-    = render :partial => 'dvd_club', :collection => self.current_user.dvd_clubs, :locals => {:all_members => true}
 
+.main-box
+  .promo-box
+    .btn
+      .bg-left
+        %a{ :href => "/dvd_clubs/new" }
+          %span
+            %span Créer un nouveau club
+    %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.</p>
+  .easyfix.top-border
+    .main
+      = render :partial => 'dvd_club', :collection => self.current_user.dvd_clubs, :locals => {:all_members => true}

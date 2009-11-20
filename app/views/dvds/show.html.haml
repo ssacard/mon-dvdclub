@@ -1,26 +1,35 @@
-= render :partial => '/layouts/menu' if logged_in?
-.site
-  = render :partial => 'layouts/categories'
-  #accueil
-    = render :partial => 'dvds/partials/breadcrumb'
-    %table
-      %tr
-        %td{:width => 230}
-          = dvd_cover(@dvd, :large)
-        %td
-          %b= @dvd.owner.email
-          %br
-          = DvdClub.first_in_common(@dvd.owner, current_user).name
-          %br
-          %br
-          = render :partial => 'dvds/partials/status', :locals => {:dvd => @dvd}
-          %br
-          %b= @dvd.title
-          = @dvd.actors.map(&:name).join(' - ')
-          %br
-          format:
-          = @dvd.format_name
-          %br
-          %br
-          = @dvd.description
-  .clear
+= render :partial => '/layouts/menu', :locals => {:parent => 'Mon Club', :object => false} if logged_in?
+.main-box
+
+  .easyfix
+    = render :partial => 'layouts/categories'
+    
+    .main
+      #accueil
+        %h3
+          = render :partial => 'dvds/partials/breadcrumb'
+        %table
+          %tr
+            %td{:width => 230}
+              = dvd_cover(@dvd, :large)
+            %td
+              %p
+                %strong Club:
+                = DvdClub.first_in_common(@dvd.owner, current_user).name
+              %p
+                %strong Propriétaire:
+                = @dvd.owner.default_pseudo
+              %p
+                %strong Status:
+                = render :partial => 'dvds/partials/status', :locals => {:dvd => @dvd}
+              %p
+                %strong Acteurs: 
+                = @dvd.actors.map(&:name).join(', ')
+              %p
+                %strong Metteurs en scene: 
+                = @dvd.directors.map(&:name).join(', ')
+              %p 
+                %strong Format:
+                = @dvd.format_name
+              %p= @dvd.description
+      .clear

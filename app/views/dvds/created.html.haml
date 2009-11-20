@@ -1,13 +1,10 @@
 = render :partial => '/layouts/menu', :locals => {:object => :clubs} if logged_in?
-.site
-  %h3
-    Liste des derniers DVD ajoutés à la base de données
-  %br
-  %br
-  #dvd
-    = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
-  %br
-  %br
-  %br
-  = link_to 'Voir le dvd club.', "/dvd_clubs"
-  %br
+
+.main-box
+  .easyfix
+    .main
+      .heading
+        %h2 Liste des derniers DVD ajoutés à la base de données
+      .row
+        = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
+      %p= link_to 'Voir le DVD clubs', "/dvd_clubs"

@@ -1,10 +1,15 @@
 = render :partial => '/layouts/menu', :locals => {:object => :dvds, :parent => :myself} if logged_in?
-.site
-  %h2= link_to 'Ajouter un DVD', "/dvds/new" 
-  
-  
 
-  %h2 Mes DVDs 
-  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => self.current_user.owned_dvds}
-    
-#clear
+.main-box
+  .promo-box
+    .btn
+      .bg-left
+        %a{:href => "/dvds/new"}
+          %span
+            %span Ajouter un DVD
+    %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.
+
+  .easyfix.top-border
+    .main
+      = render :partial => 'dvds/partials/dvds', :locals => {:dvds => self.current_user.owned_dvds}
+  

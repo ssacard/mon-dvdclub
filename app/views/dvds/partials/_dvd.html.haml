@@ -1,46 +1,36 @@
-.product-item
+/ Disable the row (gray out) when the DVD state is not available. Possible values booked, approval, available, and blocked
+- if dvd.state != "available"
+  - statecss = "disabled"
+
+%div{:class => "product-item #{statecss}"}
   .bg-bottom
     .bg-top
       = link_to(dvd_cover(dvd), dvd_path(dvd)) 
       .info
         .heading
-          = '<a href="#" class="autre">Autre</a>'
+          / Change the icon in front depending on the dvd_format name
+          - if dvd.dvd_format.name == "DVD"
+            %a.dvd= dvd.dvd_format.name
+          - elsif dvd.dvd_format.name == "Blue-Ray"
+            %a.blueray= dvd.dvd_format.name
+          - else
+            %a.autre= dvd.dvd_format.name
           %h3= h dvd.title
+        
         .content-text
-          =# "5.element.added"[:'5.element.added', distance_of_time_in_words(Time.now, dvd.created_at)]
           %p= truncate(dvd.description, 160)
-          =# link_to "5.element.more"[:'5.element.more'], dvd_path(dvd)
+      / Right part of the DVD detail box starts here, the one with the greener background
       .actions
-        %h4=#"5.element.owner"[:'5.element.owner', dvd.owner.default_pseudo ]
+        %h4
+          Propriétaire :
+          = dvd.owner.default_pseudo
         - dvd_club = DvdClub.first_in_common(dvd.owner, current_user)
-        =# "5.element.club"[:'5.element.club', dvd_club.name]
+        = dvd_club.name
+        
         .yellow-btn
           - form_for :dvd, :url => {:controller => :dvds, :action => :request_register} do |form|
             = hidden_field_tag 'dvd_id', dvd.id
-            = link_to_function("Reserver", 'MonDVD.Form.submit(this)')
-/ 
-/ %tr{:class => cycle('even', 'odd')}
-/   %td.center
-/     = link_to(dvd_cover(dvd), dvd_path(dvd)) 
-/   %td
-/     %b= link_to(dvd.title, {:controller => :dvds, :action => :show, :id => dvd})
-/     %br
-/     %small= "5.element.added"[:'5.element.added', distance_of_time_in_words(Time.now, dvd.created_at)]
-/     - if dvd.owner == current_user
-/       - dvdclub = current_user.dvd_clubs.first
-/       - if dvd.booked?
-/         %b= dvd.booked_by_user.pseudo(dvdclub)
-/         = dvdclub.name
-/         vous à empruntez
-/         %b= dvd.title
-/         =distance_of_time_in_words(Time.now, dvd.booked_at)
-/       %br
-/     -else
-/       %br
-/     = "5.element.format"[:'5.element.format']
-/     = dvd.format_name
-/     %br
-/     = truncate(dvd.description, 160)
-/     = link_to "5.element.more"[:'5.element.more'], dvd_path(dvd)
-/   %td
-/     = render :partial => 'dvds/partials/status', :locals => {:dvd => dvd}
+            - if statecss == "disabled"
+              = link_to_function("Déjà preté !", 'MonDVD.Form.submit(this)')
+            - else
+              = link_to_function("Reserver", 'MonDVD.Form.submit(this)')

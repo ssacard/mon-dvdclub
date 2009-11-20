@@ -1081,6 +1081,22 @@ h1 a {
 .easyfix .main .disabled .heading h3 {
 	color:#000;
 }
+.easyfix .main .product-item .heading a.dvd {
+	float:right;
+	background:url(../images/ico-dvd.gif) no-repeat 0 50%;
+	padding:0 0 0 18px;
+	line-height:1.6em;
+	color:#5d5d5d;
+	text-decoration:none;
+}
+.easyfix .main .product-item .heading a.blueray {
+	float:right;
+	background:url(../images/ico-blueray.gif) no-repeat 0 50%;
+	padding:0 0 0 18px;
+	line-height:1.6em;
+	color:#5d5d5d;
+	text-decoration:none;
+}
 .easyfix .main .product-item .heading a.autre {
 	float:right;
 	background:url(../images/ico-autre.gif) no-repeat 0 50%;

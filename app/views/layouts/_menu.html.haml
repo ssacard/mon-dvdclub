@@ -1,38 +1,75 @@
+/ Main menu in the dark green bar
 .blue-box
-  %a.right-tab{ :href => "/settings" }
-    %span
-      %span 
-        Gestion
-  
-/  %ul
-/    - if parent == :myself
-/      %ul.submenu
-/        - if object == :clubs
-/          %li.active
-/            = link_to '<span>Mes Clubs</span>', "/dvd_clubs"
-/        - else
-/          %li
-/            %span
-/              = link_to '<span>Mes Clubs</span>', "/dvd_clubs"
-/          
-/        - if object == :dvds
-/          %li.active
-/            = link_to '<span>Mes DVD</span>', "/home/dvds"
-/        - else
-/          %li 
-/            = link_to '<span>Mes DVD</span>', "/home/dvds"
-/    
-/        %li 
-/        - if object == :requested
-/          %li.active
-/            = link_to '<span>Emprunts en cours</span>', "/home/requests"
-/        - else
-/          %li 
-/            = link_to '<span>Emprunts en cours</span>', "/home/requests"
-/          
-/        - if object == :pending
-/          %li.active
-/            = link_to '<span>Demandes en cours</span>', "/home/pendings"
-/        - else
-/          %li 
-/            = link_to '<span>Demandes en cours</span>', "/home/pendings"
+  - if parent == :myself
+    %a.right-tab{:href => "/dvd_clubs", :class => "selected"}
+      %span
+        %span 
+          Gestion
+  - else
+    %a.right-tab{:href => "/dvd_clubs"}
+      %span
+        %span 
+          Gestion
+
+  %ul
+    - if current_user.is_admin?
+      %li
+        %a{:href => admin_path}
+          %span Admin
+    
+    %li
+      - if parent == "Mon Club"
+        %a{:href => "/home", :class => "active"}
+          %span Mon DVD Club
+      - else
+        %a{:href => "/home"}
+          %span Mon DVD Club
+
+/ Submenu with tabs on the dvd_clubs page
+- if parent == :myself
+  .tabset
+
+    - if object == :clubs
+      %a{:href => "/dvd_clubs", :class => "active"}
+        %span
+          %span Mes Clubs
+    - else
+      %a{:href => "/dvd_clubs"}
+        %span
+          %span Mes Clubs
+
+    - if object == :dvds
+      %a{:href => "/home/dvds", :class => "active"}
+        %span
+          %span Mes DVD
+    - else
+      %a{:href => "/home/dvds"}
+        %span
+          %span Mes DVD
+
+    - if object == :requested
+      %a{:href => "/home/requests", :class => "active"}
+        %span
+          %span Emprunts en cours
+    - else
+      %a{:href => "/home/requests"}
+        %span
+          %span Emprunts en cours
+
+    - if object == :pending
+      %a{:href => "/home/pendings", :class => "active"}
+        %span
+          %span Demandes en cours
+    - else
+      %a{:href => "/home/pendings"}
+        %span
+          %span Demandes en cours
+
+    - if object == :settings
+      %a{:href => "/settings", :class => "active"}
+        %span
+          %span Mon compte
+    - else
+      %a{:href => "/settings"}
+        %span
+          %span Mon compte

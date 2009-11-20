@@ -1,8 +1,10 @@
 = render :partial => '/layouts/menu', :locals => {:object => :pending, :parent => :myself} if logged_in?
-.site
-  .clear
-  %h2 Les DVDs que l'on veut m'emprunter...
-  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
 
-  %h2 Les DVDs que j'ai demandé à emprunter...
-  = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @pending_dvds}
+.main-box
+  .easyfix
+    .main
+      %h2 Les DVDs que l'on veut m'emprunter...
+      = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
+
+      %h2 Les DVDs que j'ai demandé à emprunter...
+      = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @pending_dvds}

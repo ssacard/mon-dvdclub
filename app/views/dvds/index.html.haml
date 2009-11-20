@@ -10,8 +10,8 @@
     = render :partial => 'layouts/categories'
     .main
       #accueil
-        %h3= render :partial => 'dvds/partials/breadcrumb'
+        %h2= render :partial => 'dvds/partials/breadcrumb'
         - if @dvds.empty?
-          Pas de DVD actuellement dans vos club
+          %p Pas de DVD actuellement dans vos club
         - else
           = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
