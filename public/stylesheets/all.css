@@ -215,16 +215,18 @@ h1 a {
 .blue-box ul li a.active span {
 	background:url(../images/bg-tab-left-active.gif) no-repeat;
 }
+
 .blue-box ul li a span strong {
 	position:absolute;
 	right:-24px;
 	top:-7px;
 	font-size:11px !important;
 }
-.blue-box ul li a span strong span {
+.blue-box ul li a span strong span.counter {
 	background:url(../images/bg-tool.png) repeat-x;
 	line-height:18px;
 	padding:0 0 6px 2px;
+	color: white;
 }
 .blue-box ul li a span strong span.left {
 	width:8px;

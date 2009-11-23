@@ -25,6 +25,26 @@
         %a{:href => "/home"}
           %span Mon DVD Club
 
+    %li
+      - if parent == :myself && object == :pending
+        %a{:href => "/home/pendings", :class => "active"}
+          %span
+            Demande en cours
+            - if actions_needed > 0
+              %strong
+                %span.left &nbsp;
+                %span.counter= actions_needed
+                %span.right &nbsp;
+      - else
+        %a{:href => "/home/pendings"}
+          %span 
+            Demande en cours
+            - if actions_needed > 0
+              %strong
+                %span.left &nbsp;
+                %span.counter= actions_needed
+                %span.right &nbsp;
+
 / Submenu with tabs on the dvd_clubs page
 - if parent == :myself
   .tabset
