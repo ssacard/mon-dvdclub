@@ -1,7 +1,7 @@
-= render :partial => '/layouts/menu', :locals => {:parent => 'Mon Club', :object => :clubs} if logged_in?
-.site
-  %h3
-    Vous avez invité des amis à rejoindre votre club 
+= render :partial => '/layouts/menu', :locals => {:parent => :club, :object => :clubs} if logged_in?
+
+.main-box
+  %h3 Vous avez invité des amis à rejoindre votre club 
   Les personnes suivantes vont recevoir un mail les invitant à rejoindre votre club:
   %br
   - @recipients.each do |r|    

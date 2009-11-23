@@ -1,42 +1,19 @@
-= render :partial => '/layouts/menu' if logged_in?
-/ .site
-/   #dvd-search
-/     %h4
-/       Ajouter des DVDs
-/     = flash[:notice]
-/     
-/     %p
-/       = "15.subtitle"[:'15.subtitle']
-/     
-/     %br/
-/     - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :search}, :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')") do |f|
-/       = text_area_tag :title, ''
-/       %br/ 
-/       %br/
-/       = submit_tag "15.form.button"[:'15.form.button']
-/   #indicator{:style=> "display: none;"}
-/     =image_tag('/images/indicator.gif')
-/   %br/
-/   %br/
-/   #search-results
-/   %br/
-/   %h4
-/     = link_to_function "16.title"[:'16.title'], "Element.show('dvd-form')"
-/   #dvd-form{:style => "display:none;"}
-/     = render :partial => 'manually'
-    
+= render :partial => '/layouts/menu', :locals => {:object => :dvds, :parent => :myself} if logged_in?
+
 .main-box
   .half-text
     %h2 Ajouter des DVD
-    %p
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+    %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
 
   .txt-holder
     - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :search}, :loading => "$('indicator').show()", :complete => "$('indicator').hide()") do |f|
       .txt
         = text_area_tag :title, ''
-      .expl Saisissez un titre de DVD par ligne.
-      .btn
-        = link_to_function(content_tag(:span, content_tag(:span, 'Rechercher')), 'MonDVD.Form.submit(this)')
+      .btn= link_to_function(content_tag(:span, content_tag(:span, 'Rechercher')), 'MonDVD.Form.submit(this)')
+  
+  / Placeholder for the search results, needed as JavaScript hook
   #search-results
-
+  
+  .half-text
+    %h2 Ajouter manuellement un DVD
+    = render :partial => 'manually'

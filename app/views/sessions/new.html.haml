@@ -1,42 +1,30 @@
 .blue-box
-  %h1
-    =link_to "Se Connecter", ''
-
+  %h1= link_to 'Se Connecter'
 
 .rounded-box
   .bg-bottom
     .bg-top
       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.
 
-
 .main-form
-  = display_flash
 
   - form_tag session_path do
     .row
       .lab
         %label= t(:email)
-      .inp.focus
-        = text_field_tag 'email', '', :class => :text
+      .inp.focus= text_field_tag 'email', '', :class => :text
 
     .row.bottom-margin
       .lab
-        %label
-          Mot de passe:
-      .inp.focus
-        = password_field_tag 'password', '', :class => :text
+        %label Mot de passe:
+      .inp.focus= password_field_tag 'password', '', :class => :text
     .row
       .lab
-        %label
-      .inp.focus
-        = link_to('(mot de passe oublié)' , forgot_password_path, :class => :forgot)
+      .inp.focus= link_to('mot de passe oublié' , forgot_password_path)
 
     .row
-      .check
-        = check_box_tag 'remember_me' 
+      .check= check_box_tag 'remember_me' 
       .lb
-        %label
-          Se souvenir de ma connexion
-
+        %label se souvenir de ma connexion
 
     = render :partial => '/layouts/submit_buttons', :locals => {:text => 'Se connecter'}

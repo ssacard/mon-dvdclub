@@ -1,4 +1,4 @@
-= render :partial => '/layouts/menu', :locals => {:object => :clubs, :parent => :myself} if logged_in?
+= render :partial => '/layouts/menu', :locals => {:parent => :myself, :object => :clubs} if logged_in?
 
 .main-box
   - if @cannot_add_user_to_club_msg

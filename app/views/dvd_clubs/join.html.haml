@@ -9,7 +9,6 @@
       Saissisez votre mot de passe pour rejoindre ce club
 
     - form_tag join_dvd_club_path(@token) do
-      = display_flash
       %label 
         Password
         %br
@@ -18,12 +17,12 @@
       - fields_for :user_dvd_club do |fields|
         %p
           %label
-            Votre pseudo dans ce club?:
+            Votre pseudo dans ce club:
             %br
             = fields.text_field :pseudo, :class => :text
         %p
           %label
-            Comment vous identifier dans ce club?:
+            Comment vous identifier dans ce club:
             %br
             = fields.text_area :description, :class => :text
       - forgot =  link_to('(forgot password)' , forgot_password_path, :class => :forgot)

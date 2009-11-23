@@ -1,51 +1,38 @@
 .main-form
-  = display_errors @user, @user_dvd_club, @dvd_club
 
+  / Form to change or add a username and password
   -form_for @user do |f|
     .row
       .lab
-        %label
-          Email:
-      .inp.focus
-        = f.text_field :email, :class => :text
-    .row.bottom-margin
+        %label Email:
+      .inp.focus= f.text_field :email, :class => :text
+    .row
       .lab
-        %label
-          Mot de passe:
-      .inp.focus
-        = f.password_field :password, :class => :text
+        %label Mot de passe:
+      .inp.focus= f.password_field :password, :class => :text
 
+    / Second part of the form is only shown when a new club is created by a user that did not exist yet
     - if @dvd_club
       = render :partial => 'dvdclub'
     
       - fields_for :user_dvd_club do |fields|
         .row
           .lab
-            %label
-              Votre pseudo dans ce club?:
-          .inp.focus
-            = fields.text_field :pseudo, :class => :text
+            %label  Votre pseudo dans ce club:
+          .inp.focus= fields.text_field :pseudo, :class => :text
         .row
           .lab
-            %label
-              Comment vous identifier dans ce club?:
-          .txt.focus
-            = fields.text_area :description
-
-        .row
-          .check
-            = f.check_box :accept_offers
-          .lb
-            %label
-              j'accepte de recevoir des offres des partenaires de mon DVD Club
+            %label Comment vous identifier dans ce club:
+          .txt.focus= fields.text_area :description
         - if @user.new_record?
           .row
-            .check
-              = f.check_box :terms
+            .check= f.check_box :terms
             .lb
-              %label
-                j'accepte les conditions d'utilisations
+              %label j'accepte les conditions d'utilisations
+    .row
+      .check.focus= f.check_box :accept_offers
+      .lb
+        %label j'accepte de recevoir des offres des partenaires de mon DVD Club
 
     = hidden_field_tag :token, @token
-
     = render :partial => '/layouts/submit_buttons', :locals => {:text => @user.new_record? ? 'Créer' : 'Valider'}

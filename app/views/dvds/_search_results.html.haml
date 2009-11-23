@@ -1,5 +1,6 @@
+/ Replaces the #search-results div with the search results via JavaScript
 .grey-heading
-  = t("search.title", :title => @title, :current => @index+1, :total => @total)
+  = "Identification du DVD '#{@title}' (#{@total} résultats)"
 
 .box-holder
   - @res.each_with_index do |i, index|
@@ -27,8 +28,6 @@
               = link_to_function(content_tag(:span, content_tag(:span, "C'est ça")), 'MonDVD.Form.submit(this)')
     - if index % 2 == 1
       .clear
-
-= will_paginate @res, :renderer => 'RemoteLinkRenderer',:class => 'flickr_pagination'
 
 %script 
   MonDVD.Search.initMouseEvent()

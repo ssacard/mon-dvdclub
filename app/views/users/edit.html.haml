@@ -1,6 +1,6 @@
 = render :partial => '/layouts/menu', :locals => {:parent => :myself, :object => :settings} if logged_in?
 
 .main-box
-  .easyfix
-    .main
-      = render :partial => 'form'
+  .main-form
+    %h2 Changer mon email ou mot de passe
+    = render :partial => 'form'

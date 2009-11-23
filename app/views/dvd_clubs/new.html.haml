@@ -1,43 +1,43 @@
-= render :partial => '/layouts/menu', :locals => {:object => :clubs} if logged_in?
-.site
-- if @cannot_add_club_msg
-  .notice
-    = @cannot_add_club_msg
-- else
-  .standard_form
-    %h1 
-      Créer un nouveau club
-  
-    -form_for :dvd_club, @dvd_club, :url => {:action => 'create'}  do |f|
-      %p
-        %label
-          Nom du club:
-          %br
-          = f.text_field :name, :class => :text
-      %p
-        %label
-          Type de club:
-          %br
-          = f.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, :prompt => true, :class => :text
-      %p
-        %label
-          Description du club:
-          %br
-          = f.text_area :description, :class => :text
-          
-      - fields_for :user_dvd_club do |fields|
-        %p
-          %label
-            Votre pseudo dans ce club?:
-            %br
-            = fields.text_field :pseudo, :class => :text
-        %p
-          %label
-            Comment vous identifier dans ce club?:
-            %br
-            = fields.text_area :description, :class => :text
-      %p
-        = f.check_box :terms
-        j'accepte les conditions d'utilisations
+= render :partial => '/layouts/menu', :locals => {:parent => :myself, :object => :clubs} if logged_in?
 
-      = render :partial => '/layouts/submit_buttons', :locals => {:text => 'Créer'}
+.main-box
+  .main-form
+    - if @cannot_add_club_msg
+      .notice= @cannot_add_club_msg
+    - else
+      %h2 Créer un nouveau club
+      -form_for :dvd_club, @dvd_club, :url => {:action => 'create'}  do |f|
+        .row
+          .lab
+            %label Nom du club:
+          .inp
+            = f.text_field :name, :class => :text
+        .row
+          .lab
+            %label Type de club:
+          .inp
+            = f.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, :prompt => true, :class => :text
+        .row
+          .lab
+            %label Description du club:
+          .txt
+            = f.text_area :description, :class => :text
+          
+        - fields_for :user_dvd_club do |fields|
+          .row
+            .lab
+              %label Votre pseudo dans ce club:
+            .inp
+              = fields.text_field :pseudo, :class => :text
+          .row
+            .lab
+              %label Comment vous identifier dans ce club:
+            .txt
+              = fields.text_area :description, :class => :text
+          .row
+            .check
+              = f.check_box :terms
+            .lb
+              j'accepte les conditions d'utilisations
+
+        = render :partial => '/layouts/submit_buttons', :locals => {:text => 'Créer'}

@@ -1,34 +1,26 @@
-.site 
-  - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :create}, :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')") do |f|
-    %p
-      %label
-        Title
-      %br/
-      = text_field_tag :title
-    %p
-      %label
-        Dvd Category
-      %br
-      = f.collection_select :dvd_category_id, DvdCategory.find(:all), :id, :name
-    %p
-      %label
-        Director
-      %br/
-      = text_field_tag :director
-    %p
-      %label
-        Format
-      %br/
-      = f.collection_select :format_id, DvdFormat.find(:all), :id, :name
-    %p
-      %label
-        Actors 
-        = link_to_function('Add more') do |page|
-          - page.insert_html :bottom, 'actors-div', "<br />" + text_field_tag('actors[]')
-      %br/
+- form_remote_for(:dvd, :url => {:controller => :dvds, :action => :create}, :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')") do |f|
+  .row
+    .lab
+      %label Titre
+    .input.focus= f.text_field :titre, :class => :text
+  .row
+    .lab
+      %label Catégory
+    .input= f.collection_select :dvd_category_id, DvdCategory.find(:all), :id, :name
+  .row
+    .lab
+      %label Director
+    .input.focus= text_field_tag :director
+  .row
+    .lab
+      %label Format
+    .input= f.collection_select :format_id, DvdFormat.find(:all), :id, :name
+  .row
+    .lab
+      %label Actors
+      = link_to_function('+') do |page|
+        - page.insert_html :bottom, 'actors-div', "<br />" + text_field_tag('actors[]')
       #actors-div
-        = text_field_tag 'actors[]'
-    %p
-      = submit_tag 'Create'
-
-
+        .input.focus= text_field_tag 'actors[]'
+    
+  = submit_tag 'Ajouter'

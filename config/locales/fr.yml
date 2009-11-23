@@ -5,6 +5,3 @@ fr:
   header: 
     create: Créer un club
     connect: Se connecter
-      
-  search:
-    title: Identification du DVD "{{title}}" ({{current}}/{{total}})

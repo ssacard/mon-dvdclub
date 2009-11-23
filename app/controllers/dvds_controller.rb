@@ -6,9 +6,10 @@ class DvdsController < AuthenticatedController
 
     session[:search_current] ||= 0
     @index = session[:search_current]
-    @total = session[:search_titles].length 
     @title = session[:search_titles][@index]
     @res = AmazonStore.search("\"#{@title.parameterize}\"", params[:page])
+    @total = @res.count
+
     render :update do |page|
       page.replace_html 'search-results', :partial => 'search_results', :locals => {:dvd_club_id => params[:dvd_club_id]}
     end
