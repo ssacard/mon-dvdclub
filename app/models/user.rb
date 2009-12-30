@@ -156,7 +156,7 @@ class User < ActiveRecord::Base
   end
   
   def pending_requests
-    Dvd.awaiting_approval.all(:conditions => {:booked_by => id})
+    Dvd.awaiting_approval.booked_by(User.first)
   end
   
   # List all DVDs belonging to the subscribed DVD clubs

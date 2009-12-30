@@ -3,13 +3,9 @@
 
 class ApplicationController < ActionController::Base
 
-#  before_filter :authenticate
   include AuthenticatedSystem
   helper :all
-
-  # See ActionController::RequestForgeryProtection for details
-  # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery :secret => '7d18b0ac5d9ddaa4e0910ee1167792c0'
+  protect_from_forgery
 
   before_filter :set_locale
 

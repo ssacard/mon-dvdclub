@@ -40,7 +40,8 @@ class Dvd < ActiveRecord::Base
   named_scope :awaiting_approval,  :conditions => {:state => 'approval'}
   named_scope :available,          :conditions => {:state => 'available'}
   named_scope :visible,            :conditions => ['state != ?', 'blocked']
-  named_scope :whitelist, lambda {|user| { :conditions => "owner_id NOT IN (#{user.blind_users.collect {|u| u.id}.join(',')})" } }
+  named_scope :whitelist, lambda { |user| { :conditions => "owner_id NOT IN (#{user.blind_users.collect {|u| u.id}.join(',')})" } }
+  named_scope :booked_by, lambda { |user| { :conditions => { :booked_by => user } } }
   
   
   ## STATE MACHINE ###########################################
