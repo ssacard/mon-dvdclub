@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     @token         = params[:token]
     @invitation    = @token ? Invitation.find_by_token(@token) : nil
     email          = @invitation.email rescue nil
-    @user          = (User.find_by_email(email) rescue nil) || User.new(:email => email)  
+    @user          = (User.find_by_email(email) rescue nil) || User.new(:email => email)
     @dvd_club      = @invitation ? @invitation.dvd_club : DvdClub.new
     @user_dvd_club = UserDvdClub.new
-    
+
     # Connot join twice a club
     redirect_to home_path and return if (@dvd_club.users.include? @user)
     render :template => (@user.new_record? ? 'users/new' : 'dvd_clubs/join')
@@ -19,23 +19,23 @@ class UsersController < ApplicationController
 
   def create
     cookies.delete :auth_token
-    # protects against session fixation attacks, wreaks havoc with 
+    # protects against session fixation attacks, wreaks havoc with
     # request forgery protection.
     # uncomment at your own risk
     # reset_session
     @token      = params[:token]
     @invitation = @token ? Invitation.find_by_token(@token) : nil
     @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new(params[:dvd_club])
-    @user       = User.new(params[:user])      
+    @user       = User.new(params[:user])
     User.transaction do
       valid = @user.save
       if @dvd_club.new_record?
         @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])
         valid = @dvd_club.save && valid
       end
-      @user_dvd_club = UserDvdClub.new(params[:user_dvd_club].merge(:invited_by          => (@invitation.user rescue nil), 
-                                                                    :user_id             => @user.id, 
-                                                                    :dvd_club_id         => @dvd_club.id, 
+      @user_dvd_club = UserDvdClub.new(params[:user_dvd_club].merge(:invited_by          => (@invitation.user rescue nil),
+                                                                    :user_id             => @user.id,
+                                                                    :dvd_club_id         => @dvd_club.id,
                                                                     :subscription_status => true))
       valid = @user_dvd_club.save && valid
       throw Exception unless valid
@@ -47,10 +47,10 @@ class UsersController < ApplicationController
   rescue
     unless @user.new_record?
       @user.destroy
-      @user = User.new(params[:user])      
+      @user = User.new(params[:user])
     end
-   #@user       = User.new(params[:user])      
-   render :action => 'new'    
+   #@user       = User.new(params[:user])
+   render :action => 'new'
   end
 
   def forgot_password
@@ -65,17 +65,17 @@ class UsersController < ApplicationController
     rescue
       flash[:notice] = "Email non valide"
       render :action => 'forgot_password'
-    end  
+    end
   end
-  
-  def reset_request_done    
+
+  def reset_request_done
   end
 
   def change_password
     begin
       @user = User.find_by_password_secret(params[:secret])
       raise UserNotFoundException unless @user
-      if request.post?        
+      if request.post?
         if @user.update_attributes(params[:user]) && !params[:user][:password].blank?
           flash[:notice] = "Password changed successfully"
           redirect_to new_session_path
@@ -85,18 +85,18 @@ class UsersController < ApplicationController
           flash[:notice] = notice == "" ? "Enter new password:" : notice
           redirect_to("/change_password/#{@user.password_secret}")
         end
-      end  
+      end
     rescue UserNotFoundException => e
       flash[:notice] = "Invalid URL"
       redirect_to('/')
     end
   end
-  
+
   def edit
     @user = current_user
     # @user.email_confirmation = @user.email
   end
-  
+
   def update
     @user = current_user
     if current_user.update_attributes params[:user]
@@ -104,10 +104,10 @@ class UsersController < ApplicationController
       redirect_to settings_path
     else
       render :action => 'edit'
-    end    
+    end
   end
-  
+
 end
 
-class UserNotFoundException < Exception  
+class UserNotFoundException < Exception
 end

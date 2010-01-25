@@ -1,9 +1,9 @@
 class Admin::SettingsController < AdminController
-  
+
   def index
     @setting = Setting.get
   end
-  
+
   def update
     @setting = Setting.get
     if @setting.update_attributes( params[:setting] )
@@ -12,5 +12,5 @@ class Admin::SettingsController < AdminController
       render :action => :index
     end
   end
-  
+
 end

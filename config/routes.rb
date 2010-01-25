@@ -7,16 +7,16 @@ ActionController::Routing::Routes.draw do |map|
     user.register           '/register',                :action => 'new'
     user.settings           '/settings',                :action => 'edit'
   end
-  
+
   map.resources :users
   map.resources :user_dvd_clubs
   map.resources :dvds
-  
-  map.resource :session  
+
+  map.resource :session
   map.login  '/login',       :controller => 'sessions', :action => 'new'
   map.logout '/logout',      :controller => 'sessions', :action => 'destroy'
   map.join   '/join/:token', :controller => 'users',    :action => 'new'
-  
+
   map.connect '/dvd_clubs/:id/invite', :controller => 'dvd_clubs', :action => 'invite'
 
   map.resources :dvd_categories do |dvd_category|
@@ -25,12 +25,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :club_topics do |club_topic|
     club_topic.resources :dvd_clubs
   end
-  
+
   map.resources :dvd_clubs, :member => {:join => :post}, :collection => { :blacklist => :get }
-  
+
   map.resources :user_dvd_clubs
   map.resources :waiting_lists
-  
+
   map.admin 'admin', :controller => 'admin', :action => 'index'
   map.with_options :path_prefix => 'admin', :name_prefix => 'admin_' do |admin|
     admin.resources :dvd_formats, :controller => 'admin/dvd_formats'
@@ -44,7 +44,8 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "public", :action => "index"
   map.home '/home', :controller => "home", :action => "index"
   map.mydvds '/home/dvds', :controller => "home", :action => "dvds"
-  
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
+
 end

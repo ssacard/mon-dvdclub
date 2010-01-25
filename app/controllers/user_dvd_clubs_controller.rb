@@ -1,29 +1,29 @@
 class UserDvdClubsController < ApplicationController
-  
+
   make_resourceful do
     actions :all
-    
+
 #    response_for :destroy do
 #      redirect_to dvd_club_path(current_object.dvd_club)
 #    end
-#    
+#
 #    response_for :create do
 #      redirect_to dvd_club_path(current_object.dvd_club)
 #    end
   end
-  
-  
+
+
 #  def parent_object
 #    self.current_user
 #  end
-#  
+#
 #  def parent_name
 #    'user'
 #  end
 
   def create
     cookies.delete :auth_token
-    # protects against session fixation attacks, wreaks havoc with 
+    # protects against session fixation attacks, wreaks havoc with
     # request forgery protection.
     # uncomment at your own risk
     # reset_session
@@ -34,12 +34,12 @@ class UserDvdClubsController < ApplicationController
       @dvd_club = invitation.dvd_club
       existing_user = User.find_by_email(invitation.email)
       if existing_user
-        
+
         @user = User.authenticate(params[:user][:login], params[:user][:password])
         if @user
-          @user_dvd_club = UserDvdClub.create(:user_id => existing_user.id, 
-                                              :dvd_club_id => @dvd_club.id, 
-                                              :subscription_status => true, 
+          @user_dvd_club = UserDvdClub.create(:user_id => existing_user.id,
+                                              :dvd_club_id => @dvd_club.id,
+                                              :subscription_status => true,
                                               :comments => params[:user_dvd_club][:comments])
         else
           new = false
@@ -49,14 +49,14 @@ class UserDvdClubsController < ApplicationController
           raise DvdClubCreationException
         end
       else
-        @user =  User.new(params[:user])  
+        @user =  User.new(params[:user])
         @user.save!
-        
+
         if @user
           new = true
-          @user_dvd_club = UserDvdClub.create(:user_id => @user.id, 
-                                              :dvd_club_id => @dvd_club.id, 
-                                              :subscription_status => true, 
+          @user_dvd_club = UserDvdClub.create(:user_id => @user.id,
+                                              :dvd_club_id => @dvd_club.id,
+                                              :subscription_status => true,
                                               :comments => params[:user_dvd_club][:comments])
         end
       end
@@ -71,7 +71,7 @@ class UserDvdClubsController < ApplicationController
           redirect_to :back
       else
         flash.now[:notice] = notice
-        render :action => 'new'    
+        render :action => 'new'
       end
     else
     p "normal"
@@ -82,7 +82,7 @@ class UserDvdClubsController < ApplicationController
     end
   end
 
-  
+
 end
 
 class DvdClubCreationException < Exception

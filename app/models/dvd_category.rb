@@ -4,7 +4,7 @@
 # Table name: dvd_categories
 #
 #  id   :integer(11)     not null, primary key
-#  name :string(255)     
+#  name :string(255)
 #
 
 class DvdCategory < ActiveRecord::Base

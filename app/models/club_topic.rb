@@ -4,7 +4,7 @@
 # Table name: club_topics
 #
 #  id   :integer(11)     not null, primary key
-#  name :string(255)     
+#  name :string(255)
 #
 
 class ClubTopic < ActiveRecord::Base

@@ -8,7 +8,7 @@ class Blacklisting < ActiveRecord::Base
     # Are we on each-other's blacklist (either way) ?
     if blacklisting = Blacklisting.find(:first, :conditions => ['(user_id = ? AND user_id_target = ?) OR (user_id = ? AND user_id_target = ?)',blacklister, target, target, blacklister] )
       if blacklisting.user == blacklister     # I blacklisted you first
-                                              # In case I un-blacklisted you  
+                                              # In case I un-blacklisted you
         if ( f = blacklisting.source_forgot ).nil? or f == true
           blacklisting.source_forgot = false  # I blacklist you anew !
           blacklisting.save
@@ -24,7 +24,7 @@ class Blacklisting < ActiveRecord::Base
       Blacklisting.create( :user => blacklister, :user_target => target )
     end
   end
-  
+
   def self.whitelist!( whitelister, target )
     # Are we on each-other's blacklist (either way) ?
     if blacklisting = Blacklisting.find(:first, :conditions => ['(user_id = ? AND user_id_target = ?) OR (user_id = ? AND user_id_target = ?)',whitelister, target, target, whitelister] )
@@ -53,5 +53,5 @@ class Blacklisting < ActiveRecord::Base
       end
     end
   end
-    
+
 end
