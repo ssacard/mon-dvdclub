@@ -23,9 +23,8 @@ Rails::Initializer.run do |config|
   # They can then be installed with "rake gems:install" on new installations.
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
+  #config.gem "ruby-hmac", :lib => "hmac"
   config.gem "amazon-ecs", :lib => "amazon/ecs"
-  config.gem "haml"
-  config.gem "ruby-hmac", :lib => "hmac"
   config.gem "haml"
   config.gem "will_paginate"
 
@@ -50,10 +49,10 @@ Rails::Initializer.run do |config|
   # If you change this key, all old sessions will become invalid!
   # Make sure the secret is at least 30 characters and all random,
   # no regular words or you'll be exposed to dictionary attacks.
-  # config.action_controller.session = {
-  #   :session_key => '_dvdclub_session',
-  #   :secret      => 'ee0362cc44e258f52633a274d17a14d055e879ed722c9d137bfb64002b8ac037846fb99bbcd668bae41ecea0641b73085a2020e968cb9beabcae4105d95b5fbf'
-  # }
+  config.action_controller.session = {
+    :session_key => '_dvdclub_session',
+    :secret      => 'de46fe4ff0110ab6abe26bdecc7c14167fdf8d02669a074afabfebb7305b3c780c1af631ce980a6601a29fb94a579fa2'
+  }
 
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information

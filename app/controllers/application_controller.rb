@@ -1,13 +1,8 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
 
   include AuthenticatedSystem
   helper :all
   protect_from_forgery
-
-  before_filter :set_locale
 
   allow :exec => :check_auth, :redirect_to => '/'
 
@@ -20,12 +15,5 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  def set_locale
-    # update session if passed
-    session[:locale] = params[:locale] if params[:locale]
-    # set locale based on session or default 
-    I18n.locale = session[:locale] || I18n.default_locale
-  end
 
 end
