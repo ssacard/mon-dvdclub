@@ -21,9 +21,6 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on.
   # They can then be installed with "rake gems:install" on new installations.
-  # config.gem "bj"
-  # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
-  #config.gem "ruby-hmac", :lib => "hmac"
   config.gem "amazon-ecs", :lib => "amazon/ecs"
   config.gem "haml"
   config.gem "will_paginate"
