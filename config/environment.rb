@@ -27,8 +27,6 @@ Rails::Initializer.run do |config|
   config.gem "haml"
   config.gem "ruby-hmac", :lib => "hmac"
   config.gem "haml"
-  config.gem "rspec"
-  config.gem "rspec-rails"
   config.gem "will_paginate"
 
   # Only load the plugins named here, in the order given. By default, all plugins
@@ -72,4 +70,3 @@ Rails::Initializer.run do |config|
 
   config.i18n.default_locale = :fr
 end
-
