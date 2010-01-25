@@ -21,13 +21,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # def authenticate
-  #   # TODO : Dead-code ?
-  #   authenticate_or_request_with_http_basic do |username, password|
-  #     username == "DVDclub" && password == "SACARD"
-  #   end if ENV['RAILS_ENV'] == 'production'
-  # end
-
   def set_locale
     # update session if passed
     session[:locale] = params[:locale] if params[:locale]

@@ -15,18 +15,23 @@ Rails::Initializer.run do |config|
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
   # See Rails::Configuration for more options.
-  config.gem "haml"
   # Skip frameworks you're not going to use. To use Rails without a database
   # you must remove the Active Record framework.
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
 
-  # Specify gems that this application depends on. 
+  # Specify gems that this application depends on.
   # They can then be installed with "rake gems:install" on new installations.
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   config.gem "amazon-ecs", :lib => "amazon/ecs"
+  config.gem "haml"
+  config.gem "ruby-hmac", :lib => "hmac"
+  config.gem "haml"
+  config.gem "rspec"
+  config.gem "rspec-rails"
+  config.gem "will_paginate"
 
-  # Only load the plugins named here, in the order given. By default, all plugins 
+  # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -41,21 +46,21 @@ Rails::Initializer.run do |config|
   # Make Time.zone default to the specified zone, and make Active Record store time values
   # in the database in UTC, and return them converted to the specified local zone.
   # Run "rake -D time" for a list of tasks for finding time zone names. Uncomment to use default local time.
-  config.time_zone = 'UTC'
+  config.time_zone = 'Paris'
 
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!
-  # Make sure the secret is at least 30 characters and all random, 
+  # Make sure the secret is at least 30 characters and all random,
   # no regular words or you'll be exposed to dictionary attacks.
-  config.action_controller.session = {
-    :session_key => '_dvdclub_session',
-    :secret      => 'ee0362cc44e258f52633a274d17a14d055e879ed722c9d137bfb64002b8ac037846fb99bbcd668bae41ecea0641b73085a2020e968cb9beabcae4105d95b5fbf'
-  }
+  # config.action_controller.session = {
+  #   :session_key => '_dvdclub_session',
+  #   :secret      => 'ee0362cc44e258f52633a274d17a14d055e879ed722c9d137bfb64002b8ac037846fb99bbcd668bae41ecea0641b73085a2020e968cb9beabcae4105d95b5fbf'
+  # }
 
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")
-  config.action_controller.session_store = :active_record_store
+  # config.action_controller.session_store = :active_record_store
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -64,7 +69,7 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
-  
+
   config.i18n.default_locale = :fr
 end
 

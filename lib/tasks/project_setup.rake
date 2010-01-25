@@ -1,18 +1,17 @@
-
 namespace :dvdclub do
   namespace :app do
     desc 'init dvdclub'
     task :setup => :environment do
-      admin = User.create!(:login => 'admin@dvdclub.com', 
-                          :email => 'admin@dvdclub.com', 
+      admin = User.create!(:login => 'admin@dvdclub.com',
+                          :email => 'admin@dvdclub.com',
                           :password => 'password')
       role = Role.create(:name => 'admin')
       admin.roles << role
-      
+
       role = Role.create(:name => 'user')
-    
+
       ['Blue-Ray', 'DVD'].each do |dvd_format_name|
-        DvdFormat.create(:name => dvd_format_name) 
+        DvdFormat.create(:name => dvd_format_name)
       end
       [ "Action, Aventure, Policier et Thriller",
         "Cinéma asiatique",
@@ -30,17 +29,17 @@ namespace :dvdclub do
         "Érotisme",
         "Autres"
         ].each do |club_type_name|
-        DvdCategory.create(:name => club_type_name) 
+        DvdCategory.create(:name => club_type_name)
       end
-      
+
       ["Club de voisins", "Club du bureau", "Club distant", "Autre"].each do |type_de_club|
-        ClubTopic.create(:name => type_de_club)  
-      end     
-      
+        ClubTopic.create(:name => type_de_club)
+      end
+
     end
-    
+
     desc 'Full reset'
-    task :reset => :environment do 
+    task :reset => :environment do
       Rake::Task["db:drop"].invoke
       Rake::Task["db:create"].invoke
       Rake::Task["db:migrate"].invoke
@@ -48,7 +47,7 @@ namespace :dvdclub do
       #Rake::Task["db:fixtures:load"].invoke
     end
   end
-  
+
   namespace :db do
     desc 'database related tasks'
     task :fixtures => :environment do
@@ -64,7 +63,7 @@ namespace :dvdclub do
             hash
           }.to_yaml
         end
-      end      
+      end
     end
   end
 end
