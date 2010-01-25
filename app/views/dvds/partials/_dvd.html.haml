@@ -9,12 +9,12 @@
       .info
         .heading
           / Change the icon in front depending on the dvd_format name
-          - if dvd.dvd_format.name == "DVD"
-            %a.dvd= dvd.dvd_format.name
-          - elsif dvd.dvd_format.name == "Blue-Ray"
-            %a.blueray= dvd.dvd_format.name
+          - if dvd.dvd_format.try(:name) == "DVD"
+            %a.dvd= dvd.format_name
+          - elsif dvd.dvd_format.try(:name) == "Blue-Ray"
+            %a.blueray= dvd.format_name
           - else
-            %a.autre= dvd.dvd_format.name
+            %a.autre= dvd.format_name
           %h3= h dvd.title
         
         .content-text
