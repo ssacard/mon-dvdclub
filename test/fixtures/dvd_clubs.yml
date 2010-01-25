@@ -1,9 +1,0 @@
---- 
-dvd_clubs_001: 
-  name: Le Club du Coin
-  created_at: 2008-12-17 12:45:45
-  updated_at: 2008-12-17 12:45:45
-  owner_id: "2"
-  id: "1"
-  description: Club de fans
-  club_topic_id: "1"

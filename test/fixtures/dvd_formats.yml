@@ -1,7 +1,0 @@
---- 
-dvd_formats_001: 
-  name: Blue-Ray
-  id: "1"
-dvd_formats_002: 
-  name: DVD
-  id: "2"
