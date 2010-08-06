@@ -23,7 +23,7 @@ ActionMailer::Base.smtp_settings = {
   :address        => "smtp.sendgrid.net",
   :port           => "25",
   :authentication => :plain,
-  :user_name      => 'sgruhier+twc@gmail.com',
-  :password       => 'azeaze',
+  :user_name      => 'seb.deuxzero@gmail.com',
+  :password       => 'pemdss3nd',
   :domain         => 'mondvdclucb.fr',
 }
