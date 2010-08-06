@@ -17,9 +17,13 @@ config.action_view.cache_template_loading            = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
-config.action_mailer.delivery_method = :sendmail
+#config.action_mailer.delivery_method = :sendmail
+
 ActionMailer::Base.smtp_settings = {
-  :address  => "localhost",
-  :port  => 25, 
-  :domain  => 'www.mondvdclub.fr',
+  :address        => "smtp.sendgrid.net",
+  :port           => "25",
+  :authentication => :plain,
+  :user_name      => 'USERNAME',
+  :password       => 'PASSWD',
+  :domain         => 'mondvdclucb.fr',
 }
