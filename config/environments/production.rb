@@ -25,5 +25,5 @@ ActionMailer::Base.smtp_settings = {
   :authentication => :plain,
   :user_name      => 'seb.deuxzero@gmail.com',
   :password       => 'pemdss3nd',
-  :domain         => 'mondvdclucb.fr',
+  :domain         => 'mondvdclub.fr',
 }
