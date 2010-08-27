@@ -5,4 +5,3 @@ tmp/*
 doc/api
 doc/app
 doc/coverage
-config/database.yml
