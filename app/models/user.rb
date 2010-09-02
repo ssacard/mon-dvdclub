@@ -175,6 +175,11 @@ class User < ActiveRecord::Base
     # Dvd.all(:conditions => ['owner_id in (?) and state = ? and dvd_category_id = ?', get_visible_user_ids, 'available', category.id ])
     Dvd.all(:conditions => ['owner_id in (?) and dvd_category_id = ?', get_visible_user_ids, category.id ])
   end
+ 
+## Tested at some point in the specs (but not sync with fixtures). Not used anywhere, so...  
+#  def dvd_categories 
+#    dvd_clubs.collect{|club| club.dvds}.flatten.collect{|dvd| dvd.dvd_category}.uniq
+#  end
 
   def rubriques
     attributes = Array.new

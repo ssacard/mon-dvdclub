@@ -76,13 +76,14 @@ describe User do
       @user.dvds.should_not == @dvds   
     end
 
-    it "should return the dvd_categories of dvds belonging to his clubs" do
-      @user.dvd_categories.should == [@dvd_categories[0]]  
-    end
-    
-    it "should not return the dvd_categories of dvds from the unsubscribed clubs" do
-      @user.dvd_categories.should_not == @dvd_categories  
-    end
+### Not implemented / used
+#    it "should return the dvd_categories of dvds belonging to his clubs" do
+#      @user.dvd_categories.should == [@dvd_categories[0]]  
+#    end
+#    
+#    it "should not return the dvd_categories of dvds from the unsubscribed clubs" do
+#      @user.dvd_categories.should_not == @dvd_categories  
+#    end
   end
 
   
