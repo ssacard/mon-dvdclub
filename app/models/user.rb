@@ -20,11 +20,12 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
-  attr_accessor :password, :terms
+  attr_accessor :password, :password_confirmation, :terms
 
   validates_presence_of     :login, :message => 'Login obligatoire'
   validates_presence_of     :email,:message => 'Email obligatoire'
   validates_presence_of     :password,                   :if => :password_required?,:message => 'Mot de passe obligatoire'
+  validates_presence_of     :password_confirmation,      :if => :password_confirmation_required?,:message => 'Confirmation du mot de passe obligatoire'
 
   # validates_length_of       :password, :within => 4..40, :if => :password_required?
   validates_length_of       :email,    :within => 3..100, :allow_blank => true
@@ -32,6 +33,7 @@ class User < ActiveRecord::Base
   validates_acceptance_of   :terms, :on => :create, :message => 'Vous devez accepter les conditions d\'utilisation'
 
   before_save :encrypt_password
+  
   has_many :user_dvd_clubs
   has_many :dvd_clubs, :through => :user_dvd_clubs
   has_many :owned_dvds, :class_name => 'Dvd', :foreign_key => :owner_id
@@ -70,11 +72,14 @@ class User < ActiveRecord::Base
 
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :email, :password, :terms, :accept_offers, :login
+  attr_accessible :email, :password, :password_confirmation, :terms, :accept_offers, :login
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(email, password)
     u = find_by_email(email) # need to get the salt
+    if u.nil?
+      u = find_by_login(email)
+    end
     u && u.authenticated?(password) ? u : nil
   end
 
@@ -230,6 +235,9 @@ class User < ActiveRecord::Base
 
     def password_required?
       crypted_password.blank? || !password.blank?
+    end
+    def password_confirmation_required?
+      crypted_password.blank? && !password.blank?
     end
 
     def email_required?
