@@ -13,9 +13,14 @@
 
   %ul
     - if current_user.is_admin?
-      %li
-        %a{:href => admin_path}
-          %span Admin
+      - if parent == :admin
+        %li
+          %a{:href => admin_path, :class => "selected" }
+            %span Admin
+      - else
+        %li
+          %a{:href => admin_path}
+            %span Admin
     
     %li
       - if parent == :club
