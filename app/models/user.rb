@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password, :terms
 
+  validates_presence_of     :login, :message => 'Login obligatoire'
   validates_presence_of     :email,:message => 'Email obligatoire'
   validates_presence_of     :password,                   :if => :password_required?,:message => 'Mot de passe obligatoire'
 
@@ -69,7 +70,7 @@ class User < ActiveRecord::Base
 
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :email, :password, :terms, :accept_offers
+  attr_accessible :email, :password, :terms, :accept_offers, :login
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(email, password)
