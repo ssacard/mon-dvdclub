@@ -12,11 +12,13 @@ describe UserDvdClub do
   end
   
   describe "being created" do
+    fixtures :users
     before(:each) do
-      @user_dvd_club = UserDvdClub.new
+      @user_dvd_club = UserDvdClub.new({ :user => users(:quentin), :description => "quentin"  } )
     end
   
     it "should be valid" do
+      puts @user_dvd_club.errors.inspect
       @user_dvd_club.should be_valid
     end    
   end
