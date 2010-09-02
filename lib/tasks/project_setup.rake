@@ -4,7 +4,8 @@ namespace :dvdclub do
     task :setup => :environment do
       admin = User.create!(:login => 'admin@dvdclub.com',
                           :email => 'admin@dvdclub.com',
-                          :password => 'password')
+                          :password => 'password',
+                          :password_confirmation => 'password')
       role = Role.create(:name => 'admin')
       admin.roles << role
 
