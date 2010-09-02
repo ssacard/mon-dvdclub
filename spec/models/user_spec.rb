@@ -69,7 +69,7 @@ describe User do
     end
     
     it "should return the dvds belonging to his clubs" do
-      @user.dvds.should == [@dvds[0], @dvds[1]]      
+      @user.dvds.sort {|a,b| a.id <=> b.id }.should == [@dvds[0], @dvds[1]]      
     end
     
     it "should not return the dvds from the unsubscribed clubs" do
