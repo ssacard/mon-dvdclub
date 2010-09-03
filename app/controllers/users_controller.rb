@@ -79,6 +79,8 @@ class UsersController < ApplicationController
       @user = User.find_by_password_secret(params[:secret])
       raise UserNotFoundException unless @user
       if request.post?
+        # TODO HACKALERT fake again the password confirmation
+        params[:user][:password_confirmation] = params[:user][:password]
         if @user.update_attributes(params[:user]) && !params[:user][:password].blank?
           flash[:notice] = "Password changed successfully"
           redirect_to new_session_path
