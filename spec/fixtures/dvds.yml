@@ -3,7 +3,6 @@ dvds_001:
   details_url: 
   dvd_club_id: "1"
   title: DVD 1
-  logo: 
   dvd_category_id: "1"
   asin: 
   id: "1"
@@ -16,7 +15,6 @@ dvds_002:
   details_url: 
   dvd_club_id: "1"
   title: DVD 2
-  logo: 
   dvd_category_id: "2"
   asin: 
   id: "2"
@@ -29,7 +27,6 @@ dvds_003:
   details_url: 
   dvd_club_id: "2"
   title: DVD 3
-  logo: 
   dvd_category_id: "1"
   asin: 
   id: "3"
@@ -42,7 +39,6 @@ dvds_004:
   details_url: 
   dvd_club_id: "2"
   title: DVD 4
-  logo: 
   dvd_category_id: "1"
   asin: 
   id: "4"
