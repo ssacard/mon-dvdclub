@@ -1,7 +1,6 @@
 --- 
 dvds_001: 
   details_url: 
-  dvd_club_id: "1"
   title: DVD 1
   dvd_category_id: "1"
   asin: 
@@ -13,7 +12,6 @@ dvds_001:
   created_at: 2008-07-07 08:10:20
 dvds_002: 
   details_url: 
-  dvd_club_id: "1"
   title: DVD 2
   dvd_category_id: "2"
   asin: 
@@ -25,7 +23,6 @@ dvds_002:
   created_at: 2008-07-07 08:11:12
 dvds_003: 
   details_url: 
-  dvd_club_id: "2"
   title: DVD 3
   dvd_category_id: "1"
   asin: 
@@ -37,7 +34,6 @@ dvds_003:
   created_at: 2008-07-07 08:15:25
 dvds_004: 
   details_url: 
-  dvd_club_id: "2"
   title: DVD 4
   dvd_category_id: "1"
   asin: 

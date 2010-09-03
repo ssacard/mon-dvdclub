@@ -27,10 +27,6 @@ describe Dvd do
       Dvd.reflect_on_association(:dvd_format).should_not be_nil  
     end
     
-    it "should belong  to a dvd_club" do
-      Dvd.reflect_on_association(:dvd_club).should_not be_nil  
-    end
-    
     it "should have a owner" do
       Dvd.reflect_on_association(:owner).should_not be_nil  
     end

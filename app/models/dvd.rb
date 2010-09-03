@@ -27,7 +27,6 @@ class Dvd < ActiveRecord::Base
 
   validates_presence_of :title
 
-  belongs_to :dvd_club
   belongs_to :dvd_format, :foreign_key => 'format_id'
   belongs_to :dvd_category
   belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
