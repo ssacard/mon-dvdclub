@@ -25,7 +25,8 @@
           Propriétaire :
           = dvd.owner.default_pseudo
         - dvd_club = DvdClub.first_in_common(dvd.owner, current_user)
-        = dvd_club.name
+        - if not dvd_club.nil?
+          = dvd_club.name
         
         .yellow-btn
           - form_for :dvd, :url => {:controller => :dvds, :action => :request_register} do |form|
