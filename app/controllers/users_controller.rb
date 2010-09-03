@@ -26,6 +26,9 @@ class UsersController < ApplicationController
     @token      = params[:token]
     @invitation = @token ? Invitation.find_by_token(@token) : nil
     @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new(params[:dvd_club])
+    ## TODO HACKALERT
+    params[:user][:password_confirmation] = params[:user][:password]
+    params[:user][:login] = params[:user][:email]
     @user       = User.new(params[:user])
     User.transaction do
       valid = @user.save
