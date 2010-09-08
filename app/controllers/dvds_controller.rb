@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class DvdsController < AuthenticatedController
 
   def search
@@ -47,7 +48,7 @@ class DvdsController < AuthenticatedController
       (session[:created_ids] ||= []) << dvd.id
       flash[:notice] = %Q{Votre DVD "#{dvd.title}" est bien enregistré} # 'DVD Created Successfully'
     else
-      flash[:notice] = %q{Une erreur est survenue lors de l'enregistrement} # 'Invalid Information'
+      flash[:notice] = %q{Une erreur est survenue lors de l'enregistrement} # 'Invalid Information' '
     end
     @index = search_current = session[:search_current] or -1
     @total = search_titles  = ( session[:search_titles] ? session[:search_titles].length : 0 )
@@ -95,7 +96,7 @@ class DvdsController < AuthenticatedController
 
   # Approve/Refuse Story
   def approve_confirm
-    @dvd = current_user.owned_dvds.find(params[:id])
+    @dvd = current_user.owned_dvds.find(params[:dvd_id])
   end
 
   def approve

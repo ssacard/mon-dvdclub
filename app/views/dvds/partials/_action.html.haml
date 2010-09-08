@@ -1,0 +1,4 @@
+
+- form_for :dvd, :url => {:controller => :dvds, :action => action } do |form|
+  = hidden_field_tag 'dvd_id', dvd.id
+  = link_to_function( title, 'MonDVD.Form.submit(this)')

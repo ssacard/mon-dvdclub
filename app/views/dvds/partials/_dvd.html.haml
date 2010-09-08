@@ -1,6 +1,9 @@
 / Disable the row (gray out) when the DVD state is not available. Possible values booked, approval, available, and blocked
-- if dvd.state != "available"
-  - statecss = "disabled"
+- case dvd.state 
+  - when "available", "approval"
+  - else
+    - statecss = "disabled"
+
 
 %div{:class => "product-item #{statecss}"}
   .bg-bottom
@@ -29,9 +32,17 @@
           = dvd_club.name
         
         .yellow-btn
-          - form_for :dvd, :url => {:controller => :dvds, :action => :request_register} do |form|
-            = hidden_field_tag 'dvd_id', dvd.id
-            - if statecss == "disabled"
-              = link_to_function("Déjà preté !", 'MonDVD.Form.submit(this)')
-            - else
-              = link_to_function("Reserver", 'MonDVD.Form.submit(this)')
+ 
+        - case dvd.state 
+          - when "booked"
+            = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :request_unregister, :title => "Rendre" }
+          - when "bloked"
+            = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :unblock, :title => "Débloquer"}
+          - when "available"
+            = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :request_register, :title => "Réserver"}
+            = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :block, :title => "Bloquer"}
+          - when "approval"
+            = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :approve_confirm, :title => "Accepter"}
+            = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :refuse_confirm, :title => "Refuser"}
+ 
+
