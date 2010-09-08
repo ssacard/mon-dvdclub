@@ -85,7 +85,8 @@ class DvdsController < AuthenticatedController
 
   # Disponible/Indisponible Story
   def unblock
-    @dvd = current_user.owned_dvds.find(params[:dvd_id])
+    id = params.has_key?(:dvd_id) ? params[:dvd_id] : params[:id]
+    @dvd = current_user.owned_dvds.find(id)
     @dvd.unblock!
   end
 
@@ -113,7 +114,7 @@ class DvdsController < AuthenticatedController
   end
 
   def refuse_confirm
-    @dvd = current_user.owned_dvds.find(params[:id])
+    @dvd = current_user.owned_dvds.find(params[:dvd_id])
   end
 
   def refuse
