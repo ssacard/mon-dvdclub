@@ -1,8 +1,9 @@
 / Disable the row (gray out) when the DVD state is not available. Possible values booked, approval, available, and blocked
 - case dvd.state 
   - when "available", "approval"
-  - else
-    - statecss = "disabled"
+  - when "booked"
+    - if dvd.booked_by != current_user.id
+      - statecss = "disabled"
 
 
 %div{:class => "product-item #{statecss}"}
@@ -36,7 +37,7 @@
         - case dvd.state 
           - when "booked"
             = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :request_unregister, :title => "Rendre" }
-          - when "bloked"
+          - when "blocked"
             = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :unblock, :title => "Débloquer"}
           - when "available"
             = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :request_register, :title => "Réserver"}

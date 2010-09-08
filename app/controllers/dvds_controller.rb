@@ -85,12 +85,12 @@ class DvdsController < AuthenticatedController
 
   # Disponible/Indisponible Story
   def unblock
-    @dvd = current_user.owned_dvds.find(params[:id])
+    @dvd = current_user.owned_dvds.find(params[:dvd_id])
     @dvd.unblock!
   end
 
   def block
-    @dvd = current_user.owned_dvds.find(params[:id])
+    @dvd = current_user.owned_dvds.find(params[:dvd_id])
     @dvd.block!
   end
 
