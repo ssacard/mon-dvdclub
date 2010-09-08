@@ -39,7 +39,7 @@
             - if dvd.booked_by_user == current_user
               = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :request_unregister, :title => "Rendre" }
             - else
-              Emprunté par
+              Prêté à
               = dvd.booked_by_user.default_pseudo
           - when "blocked"
             - if dvd.owner == current_user
