@@ -47,7 +47,8 @@
           - when "available"
             - if dvd.owner != current_user
               = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :request_register, :title => "Réserver"}
-            = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :block, :title => "Bloquer"}
+            - else
+              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :block, :title => "Bloquer"}
           - when "approval"
             - if dvd.owner == current_user
               = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :approve_confirm, :title => "Accepter"}
