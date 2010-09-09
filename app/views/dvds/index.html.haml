@@ -9,7 +9,7 @@
 
   .top-border.easyfix
     = render :partial => 'layouts/categories'
-    .main
+    .main.twocols
       #accueil
         %h2= render :partial => 'dvds/partials/breadcrumb'
         - if @dvds.empty?

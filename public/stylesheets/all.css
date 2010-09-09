@@ -1042,6 +1042,10 @@ h1 a {
 	width:620px;
         margin: 0 auto;
 }
+.easyfix .main.twocols {
+	width:620px;
+        float: right;
+}
 .easyfix .main h2 {
 	font-size:1.5em;
 	margin:0;
