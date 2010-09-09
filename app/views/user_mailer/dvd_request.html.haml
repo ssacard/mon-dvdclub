@@ -10,10 +10,11 @@ Bonjour,
 
 %p 
   Pour confirmer ce prêt, merci de cliquer sur lien suivant pour préciser quand ce DVD peut-être disponible, et sous quelle modalité. 
-%p
-  Si toutefois vous êtes dans l'impossibilité de le prêter, cliquer sur le lien suivant pour prévenir Demandeur.
-
   = link_to "Confirmer le prêt", @body[:accept_url]
+
+%p
+  Si toutefois vous êtes dans l'impossibilité de le prêter, cliquer sur le lien suivant pour prévenir
+  = @body[:requester].default_pseudo + "."
   = link_to "Refuser!", @body[:refuse_url]
 
 %p 
