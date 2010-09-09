@@ -1,0 +1,7 @@
+
+= render :partial => '/layouts/menu', :locals => {:parent => :myself, :object => :clubs} if logged_in?
+
+.main-box
+  .easyfix.top-border
+    .main
+      = render :partial => 'user', :collection => @users, :locals => {:dvd_club => @dvd_club}

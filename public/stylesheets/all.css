@@ -1039,8 +1039,8 @@ h1 a {
 	padding:15px 0 0;
 }
 .easyfix .main {
-	float:right;
 	width:620px;
+        margin: 0 auto;
 }
 .easyfix .main h2 {
 	font-size:1.5em;

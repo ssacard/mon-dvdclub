@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class DvdClubsController < AuthenticatedController
   before_filter      :must_be_member, :only => [:show]
   skip_before_filter :login_required, :only => :join
@@ -10,6 +11,12 @@ class DvdClubsController < AuthenticatedController
 #  def current_objects
 #    @current_objects ||=
 #  end
+
+  def all_members
+    @dvd_club = DvdClub.find(params[:id])
+    @users = @dvd_club.users
+  end
+      
 
   def new
     if Setting.get.can_add_club?
@@ -48,7 +55,7 @@ class DvdClubsController < AuthenticatedController
       render :action => 'invited'
     else
       unless Setting.get.can_add_user_to_club?( @dvd_club )
-        @cannot_add_user_to_club_msg = %Q{Désolé, il est temporairement impossible d'ajouter de nouveaux membres au club "#{@dvd_club.name}".}
+        @cannot_add_user_to_club_msg = %Q{Désolé, il est temporairement impossible d'ajouter de nouveaux membres au club "#{@dvd_club.name}".} #'
       end
       render :action => 'invite'
     end

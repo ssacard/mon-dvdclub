@@ -24,3 +24,5 @@
 - if local_assigns[:all_members] && all_members
   %h2 Tous les membres
   = render :partial => 'user', :collection => dvd_club.users, :locals => {:dvd_club => dvd_club}
+- else
+  = link_to 'Tous les membres', :controller => :dvd_clubs, :action => :all_members, :id => dvd_club.id 
