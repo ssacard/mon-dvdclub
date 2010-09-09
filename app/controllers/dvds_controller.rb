@@ -17,7 +17,10 @@ class DvdsController < AuthenticatedController
   end
 
   def new
-
+    if ! session[:created_ids].nil?
+      logger.debug "got created"
+      @dvds =  [ Dvd.last(:conditions => {:id => session[:created_ids]}) ]
+    end
   end
 
   def request_register
@@ -57,7 +60,7 @@ class DvdsController < AuthenticatedController
       session[:search_current] = nil
       session[:search_titles]  = nil
       render :update do |page|
-        page.redirect_to "/dvds/created/last"
+        page.redirect_to "/dvds/new"
       end
     else
       params[:title] = nil
