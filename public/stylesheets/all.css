@@ -1029,6 +1029,10 @@ h1 a {
 	margin:0;
 	font-size:1.5em;
 }
+#profile h3 {
+    padding-left: 340px;
+    font-size: 13pt;
+}
 .easyfix {
 	overflow:hidden;
 	height:1%;
