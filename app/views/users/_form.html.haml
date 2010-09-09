@@ -20,10 +20,6 @@
           .lab
             %label  Votre pseudo dans ce club:
           .inp.focus= fields.text_field :pseudo, :class => :text
-        .row
-          .lab
-            %label Comment vous identifier dans ce club:
-          .txt.focus= fields.text_area :description
         - if @user.new_record?
           .row
             .check= f.check_box :terms

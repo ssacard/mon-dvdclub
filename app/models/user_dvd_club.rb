@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # == Schema Information
 # Schema version: 20080708191716
 #
@@ -19,7 +20,6 @@ class UserDvdClub < ActiveRecord::Base
   belongs_to :user
   belongs_to :dvd_club
   belongs_to :invited_by, :class_name => 'User'
-  validates_presence_of :description, :message => 'Vous devez identifier au sein de ce club'
   validates_uniqueness_of :pseudo, :scope => :dvd_club_id, :message => 'Ce pseudo existe déjà dans ce DVD club'
 
   def self.membership(dvd_club, user)
