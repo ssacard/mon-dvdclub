@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
       valid = @user_dvd_club.save && valid
       throw Exception unless valid
       session[:token] = nil
-      UserMailer.deliver_signup_notification(@user, login_url)
+      UserMailer.deliver_signup_notification(@user, home_url)
       self.current_user = @user
       redirect_to(home_path)
    end

@@ -1,11 +1,12 @@
+# -*- coding: utf-8 -*-
 class UserMailer < ActionMailer::Base
 
-  def signup_notification(user, login_url)
+  def signup_notification(user, home_url)
     content_type "text/html"
     recipients    user.email
     from          "noreply@mondvdclub.fr"
     subject       "Bienvenu sur MonDVDCub.fr"
-    body          :body => {:name => user.default_pseudo, :login_url => login_url}
+    body          :body => {:name => user.default_pseudo, :home_url => home_url}
   end
 
   def request_password_change(user, url)
