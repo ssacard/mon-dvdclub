@@ -26,6 +26,10 @@
         %a.blueray= @dvd.dvd_format.name
       - else
         %a.autre= @dvd.dvd_format.name
+    .flex-box
+      = avatar current_user
+      %h2
+        %a= current_user.default_pseudo
 
   / Yellow confirm button
   - form_for :dvd, :url => {:action => :register} do |form|

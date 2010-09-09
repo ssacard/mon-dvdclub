@@ -559,15 +559,16 @@ h1 a {
 }
 .preview-box {
 	margin:20px auto 0;
-	width:624px;
+	width:925px;
 	height:107px;
 	overflow:hidden;
 	padding:0 0 0 12px;
-	background:url(../images/bg-preview-box.gif);
+	background:url(../images/bg-preview-box-wide.gif);
 }
 .preview-box .flex-box {
 	float:left;
 	height:90px;
+        width: 285px;
 	position:relative;
 	padding:15px 10px 0 20px;
 	background:url(../images/bg-flex-box.gif) no-repeat 0 1px;
@@ -614,7 +615,6 @@ h1 a {
 	border:1px solid #b7d1d7;
 }
 .preview-box .flex-box h2 {
-	float:left;
 	margin:0;
 	font-size:16px;
 	color:#00a3b1;
