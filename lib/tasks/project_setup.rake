@@ -49,6 +49,14 @@ namespace :dvdclub do
     end
   end
 
+  namespace :heroku do
+    task :reset do
+      system "heroku db:reset --app mondvdclub"
+      system "heroku rake db:migrate"
+      system "heroku rake dvdclub:app:setup"
+    end
+  end
+  
   namespace :db do
     desc 'database related tasks'
     task :fixtures => :environment do
