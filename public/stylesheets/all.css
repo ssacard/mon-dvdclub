@@ -764,6 +764,9 @@ h1 a {
 .tabset a.active span span {
 	background:url(../images/bg-tabset-left-a.gif) no-repeat;
 }
+.site.center {
+    margin-top: 30px; /* to take care of the tabset above */
+}
 .half-text {
 	color:#313132;
 	font-size:1.4em;
