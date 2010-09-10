@@ -1379,3 +1379,10 @@ h1 a {
 	margin:0 0 0 -.4em;
 	padding:0 .8em 0 .4em;
 }
+
+.standard_form h3, .main-form  h2{
+  color:#616363;
+  font-size:1.6em;
+  font-weight:normal;
+  margin:0 0 0 343px;
+}
