@@ -514,10 +514,26 @@ h1 a {
 	float:left;
 	width:325px;
 	padding:8px 15px 8px 0;
+	position:relative;
 }
 .main-form .check input {
 	float:right;
 }
+
+.main-form .check .error_info  {
+  left:339px;
+  position:absolute;
+  top:27px;
+  width:340px;
+}
+
+.main-form .error_info {
+  color:#991928;
+}
+.main-form .row_terms {
+  height:40px;
+}
+
 .main-form .lb {
 	float:left;
 	width:325px;

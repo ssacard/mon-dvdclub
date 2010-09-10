@@ -25,7 +25,7 @@
             %label Comment vous identifier dans ce club:
           .txt.focus= fields.text_area :description
         - if @user.new_record?
-          .row
+          .row.row_terms
             .check= f.check_box :terms
             .lb
               %label j'accepte les conditions d'utilisations
