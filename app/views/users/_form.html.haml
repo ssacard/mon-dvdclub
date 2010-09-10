@@ -21,7 +21,7 @@
             %label  Votre pseudo dans ce club:
           .inp.focus= fields.text_field :pseudo, :class => :text
         - if @user.new_record?
-          .row
+          .row.row_terms
             .check= f.check_box :terms
             .lb
               %label j'accepte les conditions d'utilisations
