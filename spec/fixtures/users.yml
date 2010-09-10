@@ -12,10 +12,11 @@ admin:
   login: admin@dvdclub.com
   created_at: 2008-07-07 07:57:39
   email: admin@dvdclub.com
+  state: 'active'
 quentin: 
-  salt: 9f9923b2b1a6ac3ae5c0d7889aab114cc351c743
+  salt: e39410926424549ad46c19d1a2c991fd7ad242b1
   updated_at: 2008-07-07 08:02:26
-  crypted_password: 5d9e7fa2fe52dbdb7167e9c12d518513ad7c07ad
+  crypted_password: 8c4e40434ecfd30cf53f5eb705dd275f0689841c #password = azeaze
   deleted_at: 
   accept_offers: 
   remember_token_expires_at: 
@@ -25,3 +26,4 @@ quentin:
   login: user
   created_at: 2008-07-07 08:02:26
   email: user@dvdclub.com
+  state: 'active'

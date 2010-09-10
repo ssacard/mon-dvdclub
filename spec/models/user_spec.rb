@@ -121,12 +121,12 @@ describe User do
   end
 
   it 'does not rehash password' do
-    users(:quentin).update_attributes(:login => 'quentin2')
-    User.authenticate('quentin2', 'password').should == users(:quentin)
+    users(:quentin).update_attributes(:email => 'quentin2@email.com')
+    User.authenticate('quentin2@email.com', 'azeaze').should == users(:quentin)
   end
 
   it 'authenticates user' do
-    User.authenticate('user', 'password').should == users(:quentin)
+    User.authenticate(users(:quentin).email, 'azeaze').should == users(:quentin)
   end
 
   it 'sets remember token' do

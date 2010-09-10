@@ -18,7 +18,6 @@ describe UserDvdClub do
     end
   
     it "should be valid" do
-      puts @user_dvd_club.errors.inspect
       @user_dvd_club.should be_valid
     end    
   end
