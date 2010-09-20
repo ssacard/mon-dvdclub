@@ -9,7 +9,9 @@ Bonjour,
   = @body[:dvd].title
 
 %p 
-  Merci de prendre contact avec Demandeur afin de procéder à l'échange. 
+  Merci de prendre contact avec 
+  = @body[:dvd].owner.default_pseudo
+  afin de procéder à l'échange. 
 
 %p 
   Merci 
