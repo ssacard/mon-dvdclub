@@ -12,7 +12,7 @@
         .page-top
           .page-width
             #header
-              - unless logged_in?
+              - unless logged_in? && ( !current_user.nil? && current_user.active?)
                 %strong= link_to "monDVD", root_path
                 .tab-holder
                   %div
