@@ -1,35 +1,39 @@
 .site
-  #profile.standard_form    
-    %h1 
-      Bonjour 
-      = @user.default_pseudo 
-      , vous venez de recevoir une invitation envoyé par: 
-      = @invitation.user.default_pseudo 
-    %p 
-      Saissisez votre mot de passe pour rejoindre ce club
+  #profile.main-form    
+    %div.invitation_head
+      %p 
+        Bonjour 
+        = @user.default_pseudo 
+        , vous venez de recevoir une invitation envoyé par: 
+        = @invitation.user.default_pseudo 
+        pour rejoindre le club 
+        = @dvd_club.name
+      %blockquote
+        = @dvd_club.description
+
+      %p 
+        Saisissez votre mot de passe pour rejoindre ce club
 
     - form_tag join_dvd_club_path(@token) do
-      %label 
-        Password
-        %br
-        = password_field_tag 'password', @password, :class => :text
+      %div.row
+        %div.lab
+          %label 
+            Mot de passe
+        %div.inp
+          = password_field_tag 'password', @password, :class => :text
 
       - fields_for :user_dvd_club do |fields|
-        %p
-          %label
-            Votre pseudo dans ce club:
-            %br
+        %div.row
+          %div.lab
+            %label
+              Votre pseudo dans ce club:
+          %div.inp
             = fields.text_field :pseudo, :class => :text
-        %p
-          %label
-            Comment vous identifier dans ce club:
-            %br
+        %div.row
+          %div.lab
+            %label
+              Comment vous identifier dans ce club:
+          %div.inp
             = fields.text_area :description, :class => :text
       - forgot =  link_to('(forgot password)' , forgot_password_path, :class => :forgot)
       = render :partial => '/layouts/submit_buttons', :locals => {:text => 'Accepter', :more => forgot }    
-
-    %br
-    %h1 
-      Description du club
-    = render :partial => '/users/dvdclub'
-    
