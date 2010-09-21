@@ -2,9 +2,7 @@
   #profile.main-form    
     %div.invitation_head
       %p 
-        Bonjour 
-        = @user.default_pseudo 
-        , vous venez de recevoir une invitation envoyé par: 
+        Bonjour #{ @user.default_pseudo }, vous venez de recevoir une invitation envoyée par:
         = @invitation.user.default_pseudo 
         pour rejoindre le club 
         = @dvd_club.name
