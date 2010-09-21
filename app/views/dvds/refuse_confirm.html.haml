@@ -13,5 +13,5 @@
   %br
   %br
   = button_to "Confirmer le refus",  {:controller => :dvds, :action => :refuse, :id => @dvd.id}, :method => :post
-  = button_to "je me suis trompé, j'accepte!", {:controller => :dvds, :action => :accept, :id => @dvd.id}, :method => :post
+  = button_to "je me suis trompé, j'accepte!", {:controller => :dvds, :action => :approve, :id => @dvd.id}, :method => :post
  
