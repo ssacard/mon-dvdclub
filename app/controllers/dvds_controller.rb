@@ -28,6 +28,7 @@ class DvdsController < AuthenticatedController
   end
 
   def request_unregister
+    @dvd = Dvd.find(params[:dvd_id])
   end
 
   def register
@@ -41,8 +42,9 @@ class DvdsController < AuthenticatedController
   end
 
   def unregister
-    dvd = Dvd.find(params[:id])
-    dvd.unregister!
+    @dvd = Dvd.find(params[:dvd_id])
+    UserMailer.deliver_dvd_return(@dvd)
+    @dvd.unregister!
   end
 
   def create

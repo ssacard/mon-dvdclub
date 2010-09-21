@@ -49,6 +49,15 @@ class UserMailer < ActionMailer::Base
     subject       "Confirmation de prêt"
     body          :body => {:dvd => dvd, :requester => dvd.booked_by_user}
   end
+  
+  def dvd_return(dvd)
+    content_type "text/html"
+    recipients dvd.owner.email
+    from "noreply@mondvdclub.fr"
+    subject "Demande de restitution"
+    body :body => { :dvd => dvd }
+  end
+      
 
   def protect_against_forgery?
     false

@@ -1,0 +1,15 @@
+= render :partial => '/layouts/menu', :locals => {:object => :dvds, :parent => :myself}  if logged_in?
+.main-box
+
+  / Page title
+  .center-heading
+    %p
+      = @dvd.owner.default_pseudo
+      va être averti de votre demande
+
+  / Confirmation text
+  .promo-box
+    %p Dans les prochaines heures, n'oubliez pas de consulter votre boîte mail (et votre dossier de spam) pour lire sa réponse.
+    %p 
+      Vous allez être redirigé vers la page d'où vous avez faite votre demande dans les prochaines secondes, ou
+      = link_to 'en cliquant ici.', home_path
