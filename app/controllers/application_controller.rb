@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class ApplicationController < ActionController::Base
 
   include AuthenticatedSystem
@@ -7,7 +8,13 @@ class ApplicationController < ActionController::Base
   allow :exec => :check_auth, :redirect_to => '/'
 
   def check_auth
-    unless current_user.nil? or current_user.active?
+    if current_user.nil?
+      return false
+    elsif ! current_user.active?
+      self.current_user.forget_me
+      self.current_user = nil
+      cookies.delete :auth_token
+      reset_session
       flash[:notice] = %{Votre compte est désactivé !}
       return false
    end
