@@ -36,6 +36,25 @@ describe UserDvdClub do
       membership.destroy
       Dvd.awaiting_approval.count.should == 0
     end
+    it "should remove all shared dvds if no other dvd club is shared" do
+      @dvd.register!
+      Dvd.booked.count.should == 1
+      membership = user_dvd_clubs(:user_dvd_clubs_003)
+      membership.destroy
+      Dvd.booked.count.should == 0
+    end
+    it "should remove all pending requests from others if no other dvd club is shared" do
+      Dvd.awaiting_approval.count.should == 1
+      membership = user_dvd_clubs(:user_dvd_clubs_001)
+      membership.destroy
+      Dvd.awaiting_approval.count.should == 0
+    end
+    it "should remove all shared dvds with others if no other dvd club is shared" do
+      @dvd.register!
+      Dvd.booked.count.should == 1
+      membership = user_dvd_clubs(:user_dvd_clubs_001)
+      membership.destroy
+      Dvd.booked.count.should == 0
+    end
   end
-
 end
