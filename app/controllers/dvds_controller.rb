@@ -20,8 +20,8 @@ class DvdsController < AuthenticatedController
 
   def new
     if ! session[:created_ids].nil?
-      logger.debug "got created"
       @dvds =  [ Dvd.last(:conditions => {:id => session[:created_ids]}) ]
+      session[:created_ids] = nil
     end
   end
 
