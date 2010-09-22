@@ -22,4 +22,20 @@ describe UserDvdClub do
     end    
   end
 
+  describe "destroying" do
+    fixtures :users, :dvds, :user_dvd_clubs
+    before do
+      @dvd = dvds(:dvds_001)
+      @requester = users(:donald)
+      @dvd.update_attributes!(:booked_by => @requester.id)
+      @dvd.request!
+    end
+    it "should remove all pending requests if no other dvd club is shared" do
+      Dvd.awaiting_approval.count.should == 1
+      membership = user_dvd_clubs(:user_dvd_clubs_003)
+      membership.destroy
+      Dvd.awaiting_approval.count.should == 0
+    end
+  end
+
 end

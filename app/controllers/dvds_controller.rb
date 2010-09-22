@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 class DvdsController < AuthenticatedController
 
+  before_filter :request_consistency, :only => [ :approve_confirm, :refuse_confirm ]
+
   def search
     render :nothing => true and return if params[:title].strip.empty?
     session[:search_titles]  = params[:title].split(/\n/) if params[:title]
@@ -143,4 +145,19 @@ class DvdsController < AuthenticatedController
     @dvd.unregister!
     redirect_to  mydvds_path
   end
+
+  private
+  def request_consistency
+    dvd_id = params.has_key?(:id) ? params[:id] : params[:dvd_id]
+    dvd = current_user.owned_dvds.find(dvd_id)
+    if dvd.nil?
+      redirect_to mydvds_path
+    else
+      dvd_club = DvdClub.first_in_common( dvd.booked_by_user, current_user )
+      if dvd_club.nil?
+        redirect_to mydvds_path
+      end
+    end
+  end
+      
 end

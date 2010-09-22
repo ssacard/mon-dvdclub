@@ -1,4 +1,4 @@
---- 
+---
 user_dvd_clubs_001: 
   updated_at: 2008-07-07 08:02:26
   dvd_club_id: "1"
@@ -13,3 +13,10 @@ user_dvd_clubs_002:
   user_id: "1"
   subscription_status: "1"
   created_at: 2008-07-07 08:14:43
+user_dvd_clubs_003: 
+  updated_at: 2008-07-07 08:02:26
+  dvd_club_id: "1"
+  id: "3"
+  user_id: "3"
+  subscription_status: "1"
+  created_at: 2008-07-07 08:02:26
