@@ -12,9 +12,9 @@
   / Main rental box in the middle
   .preview-box
     .flex-box.first
-      = avatar @dvd.owner
+      = avatar current_user
       %h2
-        %a= @dvd.owner.pseudo_for_user(current_user)
+        %a= current_user.default_pseudo
     .flex-box
       = dvd_cover @dvd
       %h2
@@ -27,9 +27,9 @@
       - else
         %a.autre= @dvd.dvd_format.name
     .flex-box
-      = avatar current_user
+      = avatar @dvd.owner
       %h2
-        %a= current_user.default_pseudo
+        %a= @dvd.owner.pseudo_for_user(current_user)
 
   / Yellow confirm button
   - form_for :dvd, :url => {:action => :unregister} do |form|

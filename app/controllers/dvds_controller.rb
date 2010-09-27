@@ -47,6 +47,7 @@ class DvdsController < AuthenticatedController
     @dvd = Dvd.find(params[:dvd_id])
     UserMailer.deliver_dvd_return(@dvd)
     @dvd.unregister!
+    redirect_to dvd_clubs_path
   end
 
   def create
