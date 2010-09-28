@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # == Schema Information
 # Schema version: 20080708191716
 #
@@ -79,9 +80,10 @@ class Dvd < ActiveRecord::Base
   end
 
   def self.create_record(attrs)
+    logger.debug "attributs: " + attrs.inspect
     dvd = Dvd.create!(:asin => attrs['asin'],
       :details_url     => attrs['url'],
-      :title           => attrs['title'],
+      :title           => ( attrs['dvd'] ? attrs['dvd']['titre'] : attrs['title'] ),
       :description     => attrs['description'],
       :smallimage      => attrs['smallimage'],
       :format_id       => ( attrs['dvd'] ? attrs['dvd']['format_id'] : (DvdFormat.find_by_name(attrs['format']).id rescue nil) ),
