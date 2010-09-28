@@ -48,7 +48,7 @@ class UserDvdClub < ActiveRecord::Base
   end
   def is_single_link?(dvd)
     common_clubs = ( dvd.owner.dvd_clubs & user.dvd_clubs )
-    return ( common_clubs.count == 1 ) && common_clubs[0] == self.dvd_club
+    return ( common_clubs.size == 1 ) && common_clubs[0] == self.dvd_club
   end
       
 end
