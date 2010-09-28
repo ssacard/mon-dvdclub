@@ -27,11 +27,5 @@
               Votre pseudo dans ce club:
           %div.inp
             = fields.text_field :pseudo, :class => :text
-        %div.row
-          %div.lab
-            %label
-              Comment vous identifier dans ce club:
-          %div.inp
-            = fields.text_area :description, :class => :text
       - forgot =  link_to('(forgot password)' , forgot_password_path, :class => :forgot)
       = render :partial => '/layouts/submit_buttons', :locals => {:text => 'Accepter', :more => forgot }    
