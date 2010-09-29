@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(:version => 20081222132525) do
     t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "accept_offers",             :limit => 3
+    t.integer  "accept_offers"
     t.datetime "remember_token_expires_at"
     t.datetime "deleted_at"
     t.string   "state"

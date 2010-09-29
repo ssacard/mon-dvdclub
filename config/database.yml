@@ -6,7 +6,7 @@ development:
   database: dvdclub_development
   pool: 5
   username: root
-  password: 
+  password: pemdsm4c
 
 
 # Warning: The database defined as "test" will be erased and
