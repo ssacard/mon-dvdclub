@@ -25,6 +25,8 @@ Rails::Initializer.run do |config|
   config.gem "haml"
   config.gem "will_paginate"
   config.gem "mysql"
+  config.gem "rspec", :lib => false, :version => ">= 1.3.0"
+  config.gem "rspec-rails", :lib => false, :version => ">= 1.3.2"
 
   # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
