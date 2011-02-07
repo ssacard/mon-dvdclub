@@ -32,15 +32,16 @@ class UsersController < ApplicationController
     params[:user][:login] = params[:user][:email]
     @user       = User.new(params[:user])
     User.transaction do
+      #debugger
       valid = @user.save
       if @dvd_club.new_record?
         @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])
         valid = @dvd_club.save && valid
       end
-      @user_dvd_club = UserDvdClub.new(params[:user_dvd_club].merge(:invited_by          => (@invitation.user rescue nil),
-                                                                    :user_id             => @user.id,
-                                                                    :dvd_club_id         => @dvd_club.id,
-                                                                    :subscription_status => true))
+      @user_dvd_club = UserDvdClub.new(:invited_by          => (@invitation.user rescue nil),
+                                       :user_id             => @user.id,
+                                       :dvd_club_id         => @dvd_club.id,
+                                       :subscription_status => true)
       valid = @user_dvd_club.save && valid
       throw Exception unless valid
       session[:token] = nil

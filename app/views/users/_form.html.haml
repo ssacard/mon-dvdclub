@@ -4,11 +4,11 @@
   -form_for @user do |f|
     .row
       .lab
-        %label Email:
+        %label{ :for => 'user_email' } Email:
       .inp.focus= f.text_field :email, :class => :text
     .row
       .lab
-        %label Mot de passe:
+        %label{ :for => 'user_password' } Mot de passe:
       .inp.focus= f.password_field :password, :class => :text
 
     / Second part of the form is only shown when a new club is created by a user that did not exist yet
@@ -16,19 +16,15 @@
       = render :partial => 'dvdclub'
     
       - fields_for :user_dvd_club do |fields|
-        .row
-          .lab
-            %label  Votre pseudo dans ce club:
-          .inp.focus= fields.text_field :pseudo, :class => :text
         - if @user.new_record?
           .row.row_terms
             .check= f.check_box :terms
             .lb
-              %label j'accepte les conditions d'utilisations
+              %label{ :for => 'user_terms' } j'accepte les conditions d'utilisations
     .row
       .check.focus= f.check_box :accept_offers
       .lb
-        %label j'accepte de recevoir des offres des partenaires de mon DVD Club
+        %label{ :for => 'user_accept_offers' } j'accepte de recevoir des offres des partenaires de mon DVD Club
 
     = hidden_field_tag :token, @token
     = render :partial => '/layouts/submit_buttons', :locals => {:text => @user.new_record? ? 'Créer' : 'Valider'}

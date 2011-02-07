@@ -20,7 +20,7 @@ class UserDvdClub < ActiveRecord::Base
   belongs_to :user
   belongs_to :dvd_club
   belongs_to :invited_by, :class_name => 'User'
-  validates_uniqueness_of :pseudo, :scope => :dvd_club_id, :message => 'Ce pseudo existe déjà dans ce DVD club'
+  #validates_uniqueness_of :pseudo, :scope => :dvd_club_id, :message => 'Ce pseudo existe déjà dans ce DVD club'
 
   before_destroy :invalidate_sharing_through_this_club
 

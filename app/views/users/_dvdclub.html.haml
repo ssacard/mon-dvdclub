@@ -1,18 +1,7 @@
 - fields_for :dvd_club do |fields|
   .row  
     .lab
-      %label
+      %label{ :for => 'dvd_club_name' }
         Nom du club:
     .inp.focus
       = fields.text_field :name, :class => :text, :disabled => !@dvd_club.new_record? 
-  .row  
-    .lab
-      %label
-        Type de club:
-    .inp.focus= fields.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, {:prompt => true}, :class => :text, :disabled => !@dvd_club.new_record?
-  .row  
-    .lab
-      %label
-        Description du club:
-    .txt.focus
-      = fields.text_area :description, :disabled => !@dvd_club.new_record? 

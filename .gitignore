@@ -6,3 +6,24 @@ doc/api
 doc/app
 doc/coverage
 .rvmrc
+
+# olivier
+.*.swp
+.app.screenrc
+.bash_history
+.cache/
+.config
+.gem/
+.gitconfig
+.kde/
+.pki/
+.profile
+.vim/
+.viminfo
+.vimrc
+.irb-history
+.mysql_history
+.rdebug_hist
+.rvm/
+.vim
+
