@@ -8,13 +8,12 @@ Fonctionnalité: Authentification
 	Scénario: S'inscrire directement depuis le site
 		Soit je suis sur la page d'accueil
 		Lorsque je suis le lien "Ouvrir un club"
-		Alors montre-moi la page
 		Et que je remplis "Email" avec "test@example.com"
 		Et que je remplis "Mot de passe" avec "testpass"
 		Et que je remplis "Nom du club:" avec "test club"
 		Et que je coche "j'accepte les conditions d'utilisations"
 		Et que j'appuie sur "Créer"
-		Alors je dois être sur la page d'accueil
+		Alors je dois être sur la page d'accueil de mon club
 		Et je dois voir "Voici votre DVDCLub. Commencez par ajouter des DVD !"
 		Et je dois voir "Pas de DVD actuellement dans vos club"
 		Et je dois recevoir un mail de confirmation de mon inscription
@@ -28,7 +27,7 @@ Fonctionnalité: Authentification
 		Et que je coche "j'accepte les conditions d'utilisations"
 		Et que j'appuie sur "M'inscrire"
 		Et que je confirme l'autorisation sur facebook
-		Alors je dois être sur la page d'accueil
+		Alors je dois être sur la page d'accueil de mon club
 		Et je dois voir "Voici votre DVDCLub. Commencez par ajouter des DVD !"
 		Et je dois voir "Pas de DVD actuellement dans vos club"
 		Et je dois recevoir un mail de confirmation de mon inscription
@@ -41,7 +40,7 @@ Fonctionnalité: Authentification
 		Et que je remplis "Votre pseudo dans ce club" avec "test nick 2"
 		Et que je coche "j'accepte les conditions d'utilisations"
 		Et que j'appuie sur "Créer"
-		Alors je dois être sur la page d'accueil
+		Alors je dois être sur la page d'accueil de mon club
 		Et je dois voir "Voici votre DVDCLub. Commencez par ajouter des DVD !"
 		Et je dois recevoir un mail de confirmation de mon inscription
 
@@ -53,7 +52,7 @@ Fonctionnalité: Authentification
 		Et que je coche "j'accepte les conditions d'utilisations"
 		Et que j'appuie sur "M'inscrire"
 		Et que je confirme l'autorisation sur facebook
-		Alors je dois être sur la page d'accueil
+		Alors je dois être sur la page d'accueil de mon club
 		Et je dois voir "Voici votre DVDCLub. Commencez par ajouter des DVD !"
 		Et je dois voir "Pas de DVD actuellement dans vos club"
 		Et je dois recevoir un mail de confirmation de mon inscription
@@ -70,7 +69,7 @@ Fonctionnalité: Authentification
 		Et que j'appuie sur "Se connecter"
 		Alors je dois voir "Mon compte"
 		Et je dois voir "Se déconnecter"
-		Et je dois être sur la page d'accueil
+		Et je dois être sur la page d'accueil de mon club
 
 
 	Scénario: Se connecter avec facebook
@@ -82,7 +81,7 @@ Fonctionnalité: Authentification
 		Et que je suis le lien "Connexion avec Facebook"
 		Alors je dois voir "Mon compte"
 		Et je dois voir "Se déconnecter"
-		Et je dois être sur la page d'accueil
+		Et je dois être sur la page d'accueil de mon club
 
 
 	Scénario: Se déconnecter
@@ -91,7 +90,7 @@ Fonctionnalité: Authentification
 		|test|test@example.com|test_password|active|
 		Et je suis connecté en tant que "test"
 		Lorsque je suis le lien "Se déconnecter"
-		Alors je dois être sur la page d'accueil
+		Alors je dois être sur la page d'accueil de mon club
 		Et je dois voir "Créer un club"
 		Et je dois voir "Se connecter"
 
@@ -101,7 +100,7 @@ Fonctionnalité: Authentification
 		|login|email|password|state|
 		|test|test@example.com|test_password|active|
 		Et je suis connecté en tant que "test"
-		Et je suis sur la page d'accueil
+		Et je suis sur la page d'accueil de mon club
 		Lorsque je suis le lien "J'invite des amis"
 		Et que je remplis "A" avec "test2@example.com"
 		Et que je remplis "Message" avec "Message test"
