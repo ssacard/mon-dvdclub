@@ -1,10 +1,8 @@
 .row
-  = link_to_function(content_tag(:span, content_tag(:span, local_assigns[:text] ? text : 'Ok', '')), 'MonDVD.Form.submit(this)', :class => :btn)
-
-/ %p.buttons
-/   %button{:type => :submit, :class => :positive}
-/     = image_tag 'tick.png'
-/     = local_assigns[:text] ? text : 'Ok'
-/   = link_to(image_tag('cross.png') + content_tag(:span, 'Annuler'), logged_in? ? '/home': root_path)
-/ = more if local_assigns[:more]
-/ %br.clear
+  %p.buttons
+    %span.positive
+      %span
+        %button{:type => :submit}
+          = local_assigns[:text] ? text : 'Ok'
+  = more if local_assigns[:more]
+  %br.clear
