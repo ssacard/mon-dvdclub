@@ -94,19 +94,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
-  def pseudo(dvdclub)
-    UserDvdClub.membership(dvdclub, self).pseudo
-  end
-
-  def default_pseudo
-    user_dvd_clubs.empty? ? '' : user_dvd_clubs.first.pseudo
-  end
-
-  def pseudo_for_user(user)
-    pseudo(DvdClub.first_in_common(user, self))
-  end
-
   # Encrypts some data with the salt.
   def self.encrypt(password, salt)
     Digest::SHA1.hexdigest("--#{salt}--#{password}--")

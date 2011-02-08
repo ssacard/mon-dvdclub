@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081222132525) do
+ActiveRecord::Schema.define(:version => 20110208003513) do
 
   create_table "actors", :force => true do |t|
     t.string "name"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(:version => 20081222132525) do
   create_table "dvd_clubs", :force => true do |t|
     t.integer  "club_topic_id"
     t.string   "name"
-    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner_id"
@@ -150,7 +149,6 @@ ActiveRecord::Schema.define(:version => 20081222132525) do
   create_table "user_dvd_clubs", :force => true do |t|
     t.integer  "dvd_club_id"
     t.integer  "user_id"
-    t.string   "pseudo"
     t.string   "description"
     t.boolean  "subscription_status"
     t.datetime "created_at"
@@ -171,7 +169,7 @@ ActiveRecord::Schema.define(:version => 20081222132525) do
     t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "accept_offers"
+    t.integer  "accept_offers",             :limit => 3
     t.datetime "remember_token_expires_at"
     t.datetime "deleted_at"
     t.string   "state"
