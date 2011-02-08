@@ -13,7 +13,7 @@
       = @dvd_club.name
     %h3 
       invitation envoyé par: 
-      = @invitation.user.pseudo(@dvd_club)
+      = @invitation.user.login
   - else
   
   = render :partial => 'form'
