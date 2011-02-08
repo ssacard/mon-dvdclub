@@ -4,8 +4,3 @@
       Nom du club:
       %br
       = fields.text_field :name, :class => :text, :disabled => !@dvd_club.new_record? 
-  %p
-    %label
-      Type de club:
-      %br
-      = fields.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, {:prompt => true}, :class => :text, :disabled => !@dvd_club.new_record? 

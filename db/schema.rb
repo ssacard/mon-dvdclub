@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110208003513) do
+ActiveRecord::Schema.define(:version => 20110208012120) do
 
   create_table "actors", :force => true do |t|
     t.string "name"
@@ -32,10 +32,6 @@ ActiveRecord::Schema.define(:version => 20110208003513) do
     t.datetime "updated_at"
   end
 
-  create_table "club_topics", :force => true do |t|
-    t.string "name"
-  end
-
   create_table "directors", :force => true do |t|
     t.string "name"
   end
@@ -53,15 +49,12 @@ ActiveRecord::Schema.define(:version => 20110208003513) do
   end
 
   create_table "dvd_clubs", :force => true do |t|
-    t.integer  "club_topic_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner_id"
     t.string   "state"
   end
-
-  add_index "dvd_clubs", ["club_topic_id"], :name => "dvd_clubs_FKIndex1"
 
   create_table "dvd_formats", :force => true do |t|
     t.string "name"

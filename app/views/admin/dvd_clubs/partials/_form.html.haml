@@ -8,11 +8,6 @@
       = f.text_field :name, :class => :text
   %p
     %label
-      Type de club:
-      %br
-      = f.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, :prompt => true, :class => :text
-  %p
-    %label
       Description du club:
       %br
       = f.text_area :description, :class => :text

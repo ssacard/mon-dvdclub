@@ -22,9 +22,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :dvd_categories do |dvd_category|
     dvd_category.resources :dvds
   end
-  map.resources :club_topics do |club_topic|
-    club_topic.resources :dvd_clubs
-  end
 
   map.resources :dvd_clubs, :member => {:join => :post}, :collection => { :blacklist => :get }
 
@@ -34,7 +31,6 @@ ActionController::Routing::Routes.draw do |map|
   map.admin 'admin', :controller => 'admin', :action => 'index'
   map.with_options :path_prefix => 'admin', :name_prefix => 'admin_' do |admin|
     admin.resources :dvd_formats, :controller => 'admin/dvd_formats'
-    admin.resources :club_topics, :controller => 'admin/club_topics'
     admin.resources :dvd_clubs  , :controller => 'admin/dvd_clubs', :member => { :info => :get }
     admin.resources :users      , :controller => 'admin/users'
     admin.resources :settings   , :controller => 'admin/settings'
