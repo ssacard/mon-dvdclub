@@ -27,3 +27,5 @@ ActionMailer::Base.smtp_settings = {
   :password       => 'pemdss3nd',
   :domain         => 'mondvdclub.fr',
 }
+
+config.gem "mysql"

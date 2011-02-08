@@ -22,3 +22,9 @@ ActionMailer::Base.smtp_settings = {
   :port => 1025,
   :domain => "www.mondvdclub.com"
 }
+
+config.gem "rspec", :lib => false, :version => ">= 1.3.0"
+config.gem "rspec-rails", :lib => false, :version => ">= 1.3.2"
+config.gem "cucumber"
+config.gem "capybara", :version => '0.3.9'
+config.gem "sqlite3-ruby", :lib => 'sqlite3'
