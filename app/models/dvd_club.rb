@@ -21,7 +21,6 @@ class DvdClub < ActiveRecord::Base
 
   belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
   validates_presence_of :name,  :message => 'Vous devez donner un nom votre club'
-  #validates_presence_of :description,  :message => 'Vous devez donner une description votre club'
   validates_presence_of :owner_id, :message => ''
   #validates_presence_of :club_topic_id, :message =>  'Vous devez choisir un type de club'
   validates_acceptance_of   :terms, :on => :create, :message => 'Vous devez accepter les conditions d\'utilisation'

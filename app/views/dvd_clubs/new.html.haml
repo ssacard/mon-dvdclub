@@ -17,11 +17,6 @@
             %label Type de club:
           .inp
             = f.select :club_topic_id, ClubTopic.find(:all).collect{|t| [t.name, t.id]}, :prompt => true, :class => :text
-        .row
-          .lab
-            %label Description du club:
-          .txt
-            = f.text_area :description, :class => :text
           
         - fields_for :user_dvd_club do |fields|
           .row
