@@ -27,7 +27,7 @@
       .actions
         %h4
           Propriétaire :
-          = dvd.owner.default_pseudo
+          = dvd.owner.login
         - dvd_club = DvdClub.first_in_common(dvd.owner, current_user)
         - if not dvd_club.nil?
           = dvd_club.name
@@ -40,7 +40,7 @@
               = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :request_unregister, :title => "Rendre" }
             - else
               Prêté à
-              = dvd.booked_by_user.default_pseudo
+              = dvd.booked_by_user.login
           - when "blocked"
             - if dvd.owner == current_user
               = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :unblock, :title => "Débloquer"}

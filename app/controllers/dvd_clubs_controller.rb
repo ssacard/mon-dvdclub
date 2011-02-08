@@ -21,7 +21,7 @@ class DvdClubsController < AuthenticatedController
   def new
     if Setting.get.can_add_club?
       @dvd_club = DvdClub.new
-      @user_dvd_club = UserDvdClub.new(:pseudo => current_user.default_pseudo)
+      @user_dvd_club = UserDvdClub.new
     else
       @cannot_add_club_msg = 'Désolé, il est temporairement impossible de créer un nouveau club.'
     end
@@ -85,7 +85,6 @@ class DvdClubsController < AuthenticatedController
     @user          = User.find_by_email(@invitation.email)
     @dvd_club      = @invitation.dvd_club
     @user_dvd_club = UserDvdClub.new(params[:user_dvd_club])
-    @user_dvd_club.pseudo = @user if @user_dvd_club.blank?
     if request.post?
       u = User.authenticate(@user.email, params[:password])
       if u

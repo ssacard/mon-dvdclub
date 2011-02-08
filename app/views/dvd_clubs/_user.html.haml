@@ -1,12 +1,12 @@
 .user
   = avatar user
   %p
-    %b= user.pseudo(dvd_club)
+    %b= user.login
     - membership = UserDvdClub.membership(dvd_club, user)
     - if membership.invited_by
       .clear
       Invité par
-      %b= membership.invited_by.pseudo(dvd_club)
+      %b= membership.invited_by.login
     / %br
     / = link_to 'blacklister', '#'
     / %br

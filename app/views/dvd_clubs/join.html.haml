@@ -2,8 +2,8 @@
   #profile.main-form    
     %div.invitation_head
       %p 
-        Bonjour #{ @user.default_pseudo }, vous venez de recevoir une invitation envoyée par:
-        = @invitation.user.default_pseudo 
+        Bonjour #{ @user.login }, vous venez de recevoir une invitation envoyée par:
+        = @invitation.user.login 
         pour rejoindre le club 
         = @dvd_club.name
 
@@ -18,12 +18,5 @@
         %div.inp
           = password_field_tag 'password', @password, :class => :text
 
-      - fields_for :user_dvd_club do |fields|
-        %div.row
-          %div.lab
-            %label
-              Votre pseudo dans ce club:
-          %div.inp
-            = fields.text_field :pseudo, :class => :text
       - forgot =  link_to('(forgot password)' , forgot_password_path, :class => :forgot)
       = render :partial => '/layouts/submit_buttons', :locals => {:text => 'Accepter', :more => forgot }    

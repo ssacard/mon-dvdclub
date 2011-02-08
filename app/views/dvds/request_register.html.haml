@@ -7,14 +7,14 @@
     Vous allez réserver 
     = @dvd.title 
     à 
-    = @dvd.owner.pseudo_for_user(current_user)
+    = @dvd.owner.login
 
   / Main rental box in the middle
   .preview-box
     .flex-box.first
       = avatar @dvd.owner
       %h2
-        %a= @dvd.owner.pseudo_for_user(current_user)
+        %a= @dvd.owner.login
     .flex-box
       = dvd_cover @dvd
       %h2
@@ -29,7 +29,7 @@
     .flex-box
       = avatar current_user
       %h2
-        %a= current_user.default_pseudo
+        %a= current_user.login
 
   / Yellow confirm button
   - form_for :dvd, :url => {:action => :register} do |form|
@@ -53,7 +53,7 @@
         %ul
           %li
             %span 1
-            %strong= @dvd.owner.pseudo_for_user(current_user)
+            %strong= @dvd.owner.login
             va recevoir un mail l'informant de votre demande.
           %li
             %span 2

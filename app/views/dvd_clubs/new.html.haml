@@ -21,11 +21,6 @@
         - fields_for :user_dvd_club do |fields|
           .row
             .lab
-              %label Votre pseudo dans ce club:
-            .inp
-              = fields.text_field :pseudo, :class => :text
-          .row
-            .lab
               %label Comment vous identifier dans ce club:
             .txt
               = fields.text_area :description, :class => :text

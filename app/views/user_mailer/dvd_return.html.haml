@@ -1,21 +1,21 @@
 = render :partial => '/user_mailer/header'
 
 Bonjour, 
-= @body[:dvd].owner.default_pseudo
+= @body[:dvd].owner.login
 
 %p
-  = @body[:dvd].booked_by_user.default_pseudo
+  = @body[:dvd].booked_by_user.login
   souhaite vous rendre
   = @body[:dvd].title
 
 %p 
   Merci de prendre contact avec 
-  = @body[:dvd].booked_by_user.default_pseudo
+  = @body[:dvd].booked_by_user.login
   afin de procéder à l'échange. 
 
 %p 
   Merci 
-  = @body[:dvd].owner.default_pseudo
+  = @body[:dvd].owner.login
   , à bientôt!
   
 = render :partial => '/user_mailer/footer'

@@ -18,7 +18,7 @@
                 = DvdClub.first_in_common(@dvd.owner, current_user).name
               %p
                 %strong Propriétaire:
-                = @dvd.owner.default_pseudo
+                = @dvd.owner.login
               %p
                 %strong Status:
                 = render :partial => 'dvds/partials/status', :locals => {:dvd => @dvd}
