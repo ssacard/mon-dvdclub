@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20110208012120) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "owner_id"
+    t.integer  "owner_id",   :limit => 10
     t.string   "state"
   end
 
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(:version => 20110208012120) do
     t.string   "asin"
     t.text     "details_url"
     t.datetime "created_at"
-    t.integer  "owner_id"
+    t.integer  "owner_id",        :limit => 10
     t.string   "title"
     t.string   "smallimage"
     t.string   "largeimage"
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(:version => 20110208012120) do
     t.datetime "booked_at"
   end
 
-  add_index "dvds", ["dvd_category_id"], :name => "dvds_FKIndex3"
-  add_index "dvds", ["format_id"], :name => "dvds_FKIndex2"
+  add_index "dvds", ["dvd_category_id"], :name => "altered_dvds_FKIndex3"
+  add_index "dvds", ["format_id"], :name => "altered_dvds_FKIndex2"
 
   create_table "dvds_actors", :id => false, :force => true do |t|
     t.integer "actor_id"
@@ -111,15 +111,15 @@ ActiveRecord::Schema.define(:version => 20110208012120) do
 
   create_table "roles", :force => true do |t|
     t.string   "authorizable_type", :limit => 100
-    t.integer  "authorizable_id"
+    t.integer  "authorizable_id",   :limit => 10
     t.string   "name",              :limit => 100
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "roles_users", :id => false, :force => true do |t|
-    t.integer "role_id", :null => false
-    t.integer "user_id", :null => false
+    t.integer "role_id", :limit => 10, :null => false
+    t.integer "user_id", :limit => 10, :null => false
   end
 
   create_table "sessions", :force => true do |t|
@@ -150,8 +150,8 @@ ActiveRecord::Schema.define(:version => 20110208012120) do
     t.integer  "invited_by_id"
   end
 
-  add_index "user_dvd_clubs", ["dvd_club_id"], :name => "user_dvd_clubs_FKIndex2"
-  add_index "user_dvd_clubs", ["user_id"], :name => "user_dvd_clubs_FKIndex1"
+  add_index "user_dvd_clubs", ["dvd_club_id"], :name => "altered_user_dvd_clubs_FKIndex2"
+  add_index "user_dvd_clubs", ["user_id"], :name => "altered_user_dvd_clubs_FKIndex1"
 
   create_table "users", :force => true do |t|
     t.string   "login"

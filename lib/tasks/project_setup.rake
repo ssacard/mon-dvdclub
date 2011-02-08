@@ -32,11 +32,6 @@ namespace :dvdclub do
         ].each do |club_type_name|
         DvdCategory.create(:name => club_type_name)
       end
-
-      ["Club de voisins", "Club du bureau", "Club distant", "Autre"].each do |type_de_club|
-        ClubTopic.create(:name => type_de_club)
-      end
-
     end
 
     desc 'Full reset'
