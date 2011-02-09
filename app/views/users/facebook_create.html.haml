@@ -6,19 +6,7 @@
     .bg-top
       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.
 
-#profile.standard_form    
-  - if @invitation
-    %h1 
-      Rejoignez le DVD club:
-      = @dvd_club.name
-    %h3 
-      invitation envoyé par: 
-      = @invitation.user.login
-  - else
-  
-  .fb-register
-    =link_to "M'inscrire avec Facebook", facebook_register_path
+#profile.fb-registration    
+  #fb-root
+  = @params.inspect
 
-  = render :partial => 'form'
-  
-      

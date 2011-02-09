@@ -146,6 +146,8 @@ describe UsersController do
     end
   end
 
+
+
   describe 'POST create' do
     describe 'without invitation' do
       describe 'with valid user and dvd_club' do
@@ -262,4 +264,35 @@ describe UsersController do
       end
     end
   end
+
+
+  describe 'GET facebook_register' do
+    before :each do
+      get :facebook_register
+    end
+
+    it 'should render facebook_register template' do
+      response.should render_template :facebook_register
+    end
+  end
+
+  describe 'POST facebook_create' do
+    before :each do
+      post :facebook_create, :signed_request => "f6Zep8PgW1_zqQzv7UHCOBhfJZ2NUDvMaL-Dmaj2KTE.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjEyOTcyMTMyMDAsImlzc3VlZF9hdCI6MTI5NzIwOTE5MSwib2F1dGhfdG9rZW4iOiIxODQzOTMyNzQ5MTY1NDZ8Mi4xcVFfN19rOGFIYVhxNDRHSUN2UmRRX18uMzYwMC4xMjk3MjEzMjAwLTEwMDAwMDc0NTM2MzY0Nnx1N2tubkotSkRwY05DblFtbkd5YlhDZXZkWlkiLCJyZWdpc3RyYXRpb24iOnsibmFtZSI6IktpayBUaGVraWsiLCJlbWFpbCI6Im9saXZpZXJcdTAwNDBlbC1tZWtraS5jb20iLCJkdmRfY2x1Yl9uYW1lIjoidGVzdCIsInVzZXJfdGVybXMiOnRydWUsInVzZXJfYWNjZXB0X29mZmVycyI6ZmFsc2V9LCJyZWdpc3RyYXRpb25fbWV0YWRhdGEiOnsiZmllbGRzIjoiW3snbmFtZSc6ICduYW1lJyB9LCB7J25hbWUnOiAnZW1haWwnfSwgeyduYW1lJzonZHZkX2NsdWJfbmFtZScsICdkZXNjcmlwdGlvbic6J05vbSBkdSBjbHViJywgJ3R5cGUnOid0ZXh0JywgJ2RlZmF1bHQnOiAnJ30sIHsnbmFtZSc6ICd1c2VyX3Rlcm1zJywgJ2Rlc2NyaXB0aW9uJzogXCJqJ2FjY2VwdGUgbGVzIGNvbmRpdGlvbnMgZCd1dGlsaXNhdGlvbnNcIiwgJ3R5cGUnOiAnY2hlY2tib3gnfSwgeyduYW1lJzogJ3VzZXJfYWNjZXB0X29mZmVycycsICdkZXNjcmlwdGlvbic6IFwiaidhY2NlcHRlIGRlIHJlY2V2b2lyIGRlcyBvZmZyZXMgZGVzIHBhcnRlbmFpcmVzIGRlIG1vbiBEVkQgQ2x1YlwiLCAndHlwZSc6ICdjaGVja2JveCd9IF0ifSwidXNlciI6eyJjb3VudHJ5IjoiZnIiLCJsb2NhbGUiOiJlbl9VUyJ9LCJ1c2VyX2lkIjoiMTAwMDAwNzQ1MzYzNjQ2In0"
+    end
+
+    it 'should create user' do
+      User.find_by_login( 'Kik Thekik' ).should_not be_nil
+    end
+
+    it 'should create dvd club' do
+      DvdClub.find_by_name( 'test' ).should_not be_nil
+    end
+
+    it 'should redirect to home page' do
+      response.should redirect_to( home_path )
+    end
+  end
 end
+
+

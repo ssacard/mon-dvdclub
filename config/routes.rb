@@ -5,6 +5,8 @@ ActionController::Routing::Routes.draw do |map|
     user.reset_request_done '/reset_request_done',      :action => 'reset_request_done'
     user.change_password    '/change_password/:secret', :action => 'change_password'
     user.register           '/register',                :action => 'new'
+    user.facebook_register  '/facebook_register',       :action => 'facebook_register', :conditions => { :method => :get }
+    user.facebook_create_user '/facebook_create',       :action => 'facebook_create', :conditions => { :method => :post }
     user.settings           '/settings',                :action => 'edit'
   end
 

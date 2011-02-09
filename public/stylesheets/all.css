@@ -1428,3 +1428,23 @@ div.invitation_head blockquote {
     font-size: 1.4em;
     margin-left: 150px;
 }
+.fb-register a {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+  width: 200px;
+  height: 25px;
+  margin: 25px auto;
+  padding: 7px 5px 0px 5px;
+  color: #fff;
+  background: #5B74A8;
+  border: 1px solid #29447E;
+  border-bottom: 1px solid #1A356E;
+  text-decoration: none;
+}
+
+.fb-registration {
+  width: 600px;
+  margin: 50px auto;
+}

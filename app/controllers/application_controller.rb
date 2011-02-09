@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   include AuthenticatedSystem
   helper :all
-  protect_from_forgery
+  protect_from_forgery :except => [ :facebook_create ]
 
   allow :exec => :check_auth, :redirect_to => '/'
 
