@@ -8,7 +8,6 @@
 
 #profile.fb-registration    
   - if @user and @user.errors.any?
-    %pre= @user.errors.inspect
     #error_explanation
       %ul
         - @user.errors.full_messages.each do |msg|
@@ -16,11 +15,6 @@
       
   #fb-root
   = javascript_include_tag 'http://connect.facebook.net/fr_FR/all.js'
-  :javascript
-    FB.init({ 
-      appId: '184393274916546',
-      cookie: true,
-      status: true,
-      xfbml: true
-    });
-  %fb:registration{ :fields => "[{'name': 'name' }, {'name': 'email'}, {'name':'dvd_club_name', 'description':'Nom du club', 'type':'text', 'default': '#{@dvd_club.name}'}, {'name': 'user_terms', 'description': \"j'accepte les conditions d'utilisations\", 'type': 'checkbox'}, {'name': 'user_accept_offers', 'description': \"j'accepte de recevoir des offres des partenaires de mon DVD Club\", 'type': 'checkbox'} ]", 'redirect-uri' => facebook_create_user_url }
+  = javascript_include_tag 'facebook_register.js'
+  %fb:registration{ :fields => "[{'name': 'name' }, {'name': 'email'}, {'name':'dvd_club_name', 'description':'Nom du club', 'type':'text', 'default': '#{@dvd_club.name}'}, {'name': 'user_terms', 'description': \"j'accepte les conditions d'utilisations\", 'type': 'checkbox'}, {'name': 'user_accept_offers', 'description': \"j'accepte de recevoir des offres des partenaires de mon DVD Club\", 'type': 'checkbox'} ]", 'redirect-uri' => facebook_create_user_url, 'onvalidate' => 'validate_async' }
+
