@@ -125,7 +125,12 @@ class UsersController < ApplicationController
   def facebook_create
     respond_to do |format|
       format.html do
-        signed_request              = params[ 'signed_request' ]
+        if params.is_a? Hash
+          signed_request = params.delete 'signed_request'
+        else
+          signed_request = params
+        end
+
         signature, signed_params    = signed_request.split('.')
         signed_params               = Yajl::Parser.new.parse(base64_url_decode(signed_params))
         attrs                       = signed_params[ 'registration' ]
@@ -135,6 +140,7 @@ class UsersController < ApplicationController
         password                    = Digest::SHA1.hexdigest( attrs[ 'login' ] )
         @user.password              = password
         @user.password_confirmation = password
+        @user.facebook_id           = signed_params[ 'user_id' ]
 
         User.transaction do
           valid = @user.save
