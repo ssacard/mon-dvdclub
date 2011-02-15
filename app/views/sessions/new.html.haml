@@ -6,6 +6,13 @@
     .bg-top
       Veuillez saisir votre email et votre mot de passe afin de vous connectez à votre DVDClub. 
 
+.facebook-connect
+  #fb-root
+  = fb_login_button 'window.location.href = "/home"', 'registration-url' => facebook_register_url
+
+.connect-or
+  Ou:
+
 .main-form
 
   - form_tag session_path do

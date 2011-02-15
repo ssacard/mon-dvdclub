@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-require 'openssl'
-require 'base64'
-
 class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
+  include FacebookData
+
   before_filter :login_required, :only => [:edit, :udpate]
 
   # render new.rhtml
@@ -125,14 +124,9 @@ class UsersController < ApplicationController
   def facebook_create
     respond_to do |format|
       format.html do
-        if params.is_a? Hash
-          signed_request = params.delete 'signed_request'
-        else
-          signed_request = params
-        end
-
-        signature, signed_params    = signed_request.split('.')
-        signed_params               = Yajl::Parser.new.parse(base64_url_decode(signed_params))
+        facebook                    = get_facebook_params params
+        signature                   = facebook[ :signature ]
+        signed_params               = facebook[ :signed_params ]
         attrs                       = signed_params[ 'registration' ]
         dvd_club_name               = attrs.delete 'dvd_club_name'
         attrs[ 'login' ]            = attrs.delete 'name'
@@ -143,9 +137,9 @@ class UsersController < ApplicationController
         @user.facebook_id           = signed_params[ 'user_id' ]
 
         User.transaction do
-          valid = @user.save
+          valid     = @user.save
           @dvd_club = @user.owned_dvd_clubs.new( :name => dvd_club_name )
-          valid = @dvd_club.save && valid
+          valid     = @dvd_club.save && valid
 
           @user_dvd_club = UserDvdClub.new :invited_by          => nil,
                                            :user_id             => @user.id,
@@ -155,7 +149,7 @@ class UsersController < ApplicationController
           valid = @user_dvd_club.save && valid
           throw Exception unless valid
 
-          UserMailer.deliver_signup_notification(@user, home_url)
+          UserMailer.deliver_signup_notification @user, home_url 
           self.current_user = @user
           redirect_to home_path 
         end
@@ -173,19 +167,6 @@ class UsersController < ApplicationController
 
   rescue
     render :facebook_register
-  end
-
-  private
-
-  def signed_request_is_valid?(secret, signature, params)
-    signature = base64_url_decode(signature)
-    expected_signature = OpenSSL::HMAC.digest('SHA256', secret, params.tr("-_", "+/"))
-    signature == expected_signature
-  end
-
-  def base64_url_decode(str)
-    str = str + "=" * (6 - str.size % 6) unless str.size % 6 == 0
-    Base64.decode64(str.tr("-_", "+/"))
   end
 end
 

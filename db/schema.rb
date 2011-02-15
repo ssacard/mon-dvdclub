@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110208012120) do
+ActiveRecord::Schema.define(:version => 20110211063340) do
 
   create_table "actors", :force => true do |t|
     t.string "name"
@@ -166,6 +166,7 @@ ActiveRecord::Schema.define(:version => 20110208012120) do
     t.datetime "remember_token_expires_at"
     t.datetime "deleted_at"
     t.string   "state"
+    t.string   "facebook_id"
   end
 
   create_table "waiting_lists", :force => true do |t|

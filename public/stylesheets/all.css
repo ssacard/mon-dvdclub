@@ -1448,3 +1448,13 @@ div.invitation_head blockquote {
   width: 600px;
   margin: 50px auto;
 }
+
+.facebook-connect {
+  margin: 50px 0 25px 340px;
+}
+
+.connect-or {
+  margin-left:340px;
+  font-size: 24px;
+  color: #888;
+}

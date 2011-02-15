@@ -23,7 +23,7 @@
                 %strong= link_to "monDVD", home_path, :class => :inner
                 %ul.top-nav
                   %li.first= link_to 'Mon Compte', settings_path
-                  %li= link_to "Se deconnecter", logout_path
+                  %li= link_to "Se deconnecter", logout_path, :class => ( facebook_session ? 'logout_fb': '' )
 
             = yield
 
@@ -39,6 +39,11 @@
 
     = javascript_include_tag :defaults
     = javascript_include_tag 'main'
+    - if request.params[ :action ] != 'facebook_register' and request.params[ :action ] != 'facebook_create'
+      = fb_connect_javascript_tag :lang => 'fr_FR'
+      = init_fb_connect "XFBML"
+    = yield :javascript
+    = javascript_include_tag 'facebook_logout'
 	
 :javascript
   var uservoiceOptions = {
