@@ -31,7 +31,6 @@ class ApplicationController < ActionController::Base
 
   def login_from_fb
     if facebook_session
-      logger.debug facebook_session.inspect
       self.current_user = User.find_by_facebook_id(facebook_session.user.uid )
     end
   end
