@@ -9,7 +9,6 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
-require 'facebook_data'
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -26,7 +25,7 @@ Rails::Initializer.run do |config|
   config.gem "haml"
   config.gem "will_paginate"
   config.gem "yajl-ruby", :lib => 'yajl'
-  config.gem 'facebooker'
+  config.gem 'facebooker2'
 
   # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.

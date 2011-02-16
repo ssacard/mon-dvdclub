@@ -8,7 +8,11 @@
 
 .facebook-connect
   #fb-root
-  = fb_login_button 'window.location.href = "/home"', 'registration-url' => facebook_register_url
+    - fb_login :perms => 'email', :text => "Me connecter avec Facebook" do 
+      new DvdBook( arguments[2] );
+
+  - content_for :javascript do
+    = javascript_include_tag 'DvdBook'
 
 .connect-or
   Ou:

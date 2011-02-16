@@ -16,9 +16,16 @@
       = @invitation.user.login
   - else
   
-  .fb-register
-    =link_to "M'inscrire avec Facebook", facebook_register_path
+
+  .facebook-connect
+    #fb-root
+    - fb_login :perms => 'email', :text => "M'inscrire avec facebook" do 
+      new DvdBook( arguments[2] );
+
+  .connect-or
+    Ou:
 
   = render :partial => 'form'
-  
+  - content_for :javascript do
+    = javascript_include_tag 'DvdBook'
       

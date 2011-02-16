@@ -3,7 +3,6 @@
 class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-  include FacebookData
 
   before_filter :login_required, :only => [:edit, :udpate]
 
@@ -118,56 +117,33 @@ class UsersController < ApplicationController
     end
   end
 
-  def facebook_register
-    @user = User.new
-    @dvd_club = DvdClub.new
-  end
-
-  def facebook_create
+  def facebook_connect
     respond_to do |format|
-      format.html do
-        facebook                    = get_facebook_params params
-        signature                   = facebook[ :signature ]
-        signed_params               = facebook[ :signed_params ]
-        attrs                       = signed_params[ 'registration' ]
-        dvd_club_name               = attrs.delete 'dvd_club_name'
-        attrs[ 'login' ]            = attrs.delete 'name'
-        @user                       = User.new attrs
-        password                    = Digest::SHA1.hexdigest( attrs[ 'login' ] )
-        @user.password              = password
-        @user.facebook_id           = signed_params[ 'user_id' ]
+      format.json do
+        if current_user.nil?
+          unless fb_user
+            password = Digest::SHA1.hexdigest( params[ :login ] + Time.now.to_s )
+            user = User.new :email => params[ :email ], :password => password
+            user.login = params[ :login ]
+            user.facebook_id = params[ :facebook_id ]
+            valid = user.save
+          end
+        else
+          user = current_user
+          user.facebook_id = params[ :facebook_id ]
+          valid = user.save
+        end
 
-        User.transaction do
-          valid     = @user.save
-          @dvd_club = @user.owned_dvd_clubs.new( :name => dvd_club_name )
-          valid     = @dvd_club.save && valid
-
-          @user_dvd_club = UserDvdClub.new :invited_by          => nil,
-                                           :user_id             => @user.id,
-                                           :dvd_club_id         => @dvd_club.id,
-                                           :subscription_status => true 
-
-          valid = @user_dvd_club.save && valid
-          throw Exception unless valid
-
-          UserMailer.deliver_signup_notification @user, home_url 
-          self.current_user = @user
-          redirect_to home_path 
+        if valid
+          render :json => { :status => 'ok' }
+        else
+          render :json => { :status => 'error', :errors => user.errors.full_messages }
         end
       end
 
-      format.json do
-        errors = Hash.new
-        errors[ 'dvd_club_name' ] = 'Vous devez donner un nom à votre club' if params[ 'dvd_club_name' ].empty?
-        errors[ 'dvd_club_name' ] = 'Ce nom de dvd club est déjà pris' if DvdClub.find_by_name( params[ 'dvd_club_name' ] )
-        errors[ 'user_terms' ] = 'Vous devez accepter les conditions d\'utilisation' unless params[ 'user_terms' ] == "true"
-        resp = ( errors.any? ? { 'status' => 'error', 'errors' => errors } : { 'status' => 'valid' } )
-        render :json => resp.to_json
-      end
+      format.html { redirect_to home_path }
     end
 
-  rescue
-    render :facebook_register
   end
 end
 

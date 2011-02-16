@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   AppSecretFacebook = 'f182ee8dcb0e50247f9f90cc0bb4ed19'
 
   include AuthenticatedSystem
+  include Facebooker2::Rails::Controller
   helper :all
-  before_filter :set_facebook_session
-  helper_method :facebook_session
+  helper_method :fb_user
 
-  protect_from_forgery :except => [ :facebook_create ]
+  protect_from_forgery
 
   allow :exec => :check_auth, :redirect_to => '/'
 
@@ -23,18 +23,13 @@ class ApplicationController < ActionController::Base
     true
   end
 
+  def fb_user
+    @fb_user ||= current_facebook_user && User.find_by_facebook_id( current_facebook_user.id )
+  end
+
   protected
 
   def current_user
-    @current_user ||= (login_from_session || login_from_basic_auth || login_from_cookie || login_from_fb ) unless @current_user == false
+    @current_user ||= (login_from_session || login_from_basic_auth || login_from_cookie || fb_user ) unless @current_user == false
   end
-
-  def login_from_fb
-    if facebook_session
-      self.current_user = User.find_by_facebook_id(facebook_session.user.uid )
-    end
-  end
-
-  private
-
 end
