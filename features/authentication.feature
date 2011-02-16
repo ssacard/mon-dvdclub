@@ -10,8 +10,6 @@ Fonctionnalité: Authentification
 		Lorsque je suis le lien "Ouvrir un club"
 		Et que je remplis "Email" avec "test@example.com"
 		Et que je remplis "Mot de passe" avec "testpass"
-		Et que je remplis "Nom du club:" avec "test club"
-		Et que je coche "j'accepte les conditions d'utilisations"
 		Et que j'appuie sur "Créer"
 		Alors je dois être sur la page d'accueil de mon club
 		Et je dois voir "Voici votre DVDCLub. Commencez par ajouter des DVD !"
@@ -22,10 +20,7 @@ Fonctionnalité: Authentification
 	Scénario: S'inscrire avec Facebook
 		Soit je suis sur la page d'accueil
 		Lorsque je suis le lien "Ouvrir un club"
-		Et que je suis le lien "M'inscrire avec Facebook"
-		Et que je remplis "Nom du club" avec "test club"
-		Et que je coche "j'accepte les conditions d'utilisations"
-		Et que j'appuie sur "M'inscrire"
+		Et que j'appuie sur le bouton de connexion facebook
 		Et que je confirme l'autorisation sur facebook
 		Alors je dois être sur la page d'accueil de mon club
 		Et je dois voir "Voici votre DVDCLub. Commencez par ajouter des DVD !"
@@ -37,24 +32,9 @@ Fonctionnalité: Authentification
 		Soit j'ai reçu un mail d'invitation
 		Lorsque je suis le lien qu'il contient
 		Et que je remplis "Mot de passe" avec "testpass"
-		Et que je remplis "Votre pseudo dans ce club" avec "test nick 2"
-		Et que je coche "j'accepte les conditions d'utilisations"
 		Et que j'appuie sur "Créer"
 		Alors je dois être sur la page d'accueil de mon club
 		Et je dois voir "Voici votre DVDCLub. Commencez par ajouter des DVD !"
-		Et je dois recevoir un mail de confirmation de mon inscription
-
-
-	Scénario: S'inscrire avec une invitation et Facebook
-		Soit j'ai reçu un mail d'invitation
-		Lorsque je suis le lien qu'il contient
-		Et que je suis le lien "M'inscrire avec Facebook"
-		Et que je coche "j'accepte les conditions d'utilisations"
-		Et que j'appuie sur "M'inscrire"
-		Et que je confirme l'autorisation sur facebook
-		Alors je dois être sur la page d'accueil de mon club
-		Et je dois voir "Voici votre DVDCLub. Commencez par ajouter des DVD !"
-		Et je dois voir "Pas de DVD actuellement dans vos club"
 		Et je dois recevoir un mail de confirmation de mon inscription
 
 
@@ -74,11 +54,11 @@ Fonctionnalité: Authentification
 
 	Scénario: Se connecter avec facebook
 		Soit les utilisateurs suivant :
-		|login|email|password|state|
-		|test|test@example.com|test_password|active|
+		|login|email|password|state|facebook_id|
+		|test|test@example.com|test_password|active|1|
 		Et je suis sur la page d'accueil
 		Lorsque je suis le lien "Se connecter"
-		Et que je suis le lien "Connexion avec Facebook"
+		Et que j'appuie sur le bouton de connexion facebook
 		Alors je dois voir "Mon compte"
 		Et je dois voir "Se déconnecter"
 		Et je dois être sur la page d'accueil de mon club
