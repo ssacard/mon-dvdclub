@@ -16,7 +16,7 @@ var DvdBook = Class.create({
   },
 
   connected: function( response ){
-    console.log( resp );
+    var resp = response.responseJSON;
     if ( resp.status == 'ok' ){
       window.location.href = window.location.href.replace( /(http?:\/\/.*?\/).*/, '$1' ) + 'home';
     }
