@@ -14,11 +14,16 @@ class UsersController < ApplicationController
     email          = @invitation.email rescue nil
     @user          = (User.find_by_email(email) rescue nil) || User.new(:email => email)
     @dvd_club      = @invitation ? @invitation.dvd_club : DvdClub.new
-    @user_dvd_club = UserDvdClub.new
 
     # Connot join twice a club
-    redirect_to home_path and return if (@dvd_club.users.include? @user)
-    render :template => (@user.new_record? ? 'users/new' : 'dvd_clubs/join')
+    if @invitation and @invitation.dvd_club.users.include?( @user )
+      redirect_to home_path and return if (@dvd_club.users.include? @user)
+    end
+
+    unless @user.new_record?
+      @user_dvd_club = UserDvdClub.new
+      render :template => 'dvd_clubs/join'
+    end
   end
 
   def create
@@ -29,21 +34,21 @@ class UsersController < ApplicationController
     # reset_session
     @token      = params[:token]
     @invitation = @token ? Invitation.find_by_token(@token) : nil
-    @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new(params[:dvd_club])
-    ## TODO HACKALERT
-    params[:user][:password_confirmation] = params[:user][:password]
-    params[:user][:login] = params[:user][:email]
+    @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new( :name => 'Club Principal' )
     @user       = User.new(params[:user])
     User.transaction do
       valid = @user.save
+
       if @dvd_club.new_record?
-        @dvd_club = @user.owned_dvd_clubs.new(params[:dvd_club])
-        valid = @dvd_club.save && valid
+        @dvd_club = @user.owned_dvd_clubs.new( :name => 'Club Principal' )
+        valid     = @dvd_club.save && valid
       end
+
       @user_dvd_club = UserDvdClub.new(:invited_by          => (@invitation.user rescue nil),
                                        :user_id             => @user.id,
                                        :dvd_club_id         => @dvd_club.id,
                                        :subscription_status => true)
+
       valid = @user_dvd_club.save && valid
       throw Exception unless valid
       session[:token] = nil
@@ -83,8 +88,6 @@ class UsersController < ApplicationController
       @user = User.find_by_password_secret(params[:secret])
       raise UserNotFoundException unless @user
       if request.post?
-        # TODO HACKALERT fake again the password confirmation
-        params[:user][:password_confirmation] = params[:user][:password]
         if @user.update_attributes(params[:user]) && !params[:user][:password].blank?
           flash[:notice] = "Password changed successfully"
           redirect_to new_session_path
@@ -103,7 +106,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
-    # @user.email_confirmation = @user.email
   end
 
   def update
@@ -133,7 +135,6 @@ class UsersController < ApplicationController
         @user                       = User.new attrs
         password                    = Digest::SHA1.hexdigest( attrs[ 'login' ] )
         @user.password              = password
-        @user.password_confirmation = password
         @user.facebook_id           = signed_params[ 'user_id' ]
 
         User.transaction do

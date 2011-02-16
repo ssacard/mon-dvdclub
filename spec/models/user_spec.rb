@@ -87,24 +87,10 @@ describe User do
   end
 
   
-  it 'requires login' do
-    lambda do
-      u = create_user(:login => nil)
-      u.errors.on(:login).should_not be_nil
-    end.should_not change(User, :count)
-  end
-
   it 'requires password' do
     lambda do
       u = create_user(:password => nil)
       u.errors.on(:password).should_not be_nil
-    end.should_not change(User, :count)
-  end
-
-  it 'requires password confirmation' do
-    lambda do
-      u = create_user(:password_confirmation => nil)
-      u.errors.on(:password_confirmation).should_not be_nil
     end.should_not change(User, :count)
   end
 
@@ -116,7 +102,7 @@ describe User do
   end
 
   it 'resets password' do
-    users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
+    users(:quentin).update_attributes(:password => 'new password')
     User.authenticate('user', 'new password').should == users(:quentin)
   end
 
@@ -168,9 +154,14 @@ describe User do
     users(:quentin).remember_token_expires_at.between?(before, after).should be_true
   end
 
+  it 'should set username from email if not given' do
+    user = User.create! :email => 'username@example.com', :password => 'test'
+    user.login.should == 'username'
+  end
+
 protected
   def create_user(options = {})
-    record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire', :password_confirmation => 'quire' }.merge(options))
+    record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire' }.merge(options))
     record.save
     record
   end

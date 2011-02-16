@@ -23,3 +23,15 @@ production:
     local_port: 3000
     server_alive_interval: 0
 
+test:
+  api_key: 5c2a76ec631a085a8ef58f3dfe721ece
+  secret_key: f182ee8dcb0e50247f9f90cc0bb4ed19
+  callback_url: http://0.0.0.0:3000/
+  pretty_errors: true
+  set_asset_host_to_callback_url: false
+  tunnel:
+    public_host_username:
+    public_host:
+    public_port: 4007
+    local_port: 3000
+    server_alive_interval: 0

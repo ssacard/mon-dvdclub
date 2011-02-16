@@ -23,7 +23,7 @@ describe UserDvdClub do
   end
 
   describe "destroying" do
-    fixtures :users, :dvds, :user_dvd_clubs
+    fixtures :users, :dvds, :user_dvd_clubs, :dvd_clubs
     before do
       @dvd = dvds(:dvds_001)
       @requester = users(:donald)

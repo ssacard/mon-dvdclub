@@ -20,19 +20,21 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
-  attr_accessor :password, :password_confirmation, :terms, :accept_offers
+  attr_accessor :password
 
-  validates_presence_of     :login, :message => 'Login obligatoire'
+  # prevents a user from submitting a crafted form that bypasses activation
+  # anything else you want your user to change should be added here.
+  attr_accessible :email, :password
+
   validates_presence_of     :email,:message => 'Email obligatoire'
   validates_presence_of     :password,                   :if => :password_required?,:message => 'Mot de passe obligatoire'
-  validates_presence_of     :password_confirmation,      :if => :password_confirmation_required?,:message => 'Confirmation du mot de passe obligatoire'
 
   # validates_length_of       :password, :within => 4..40, :if => :password_required?
   validates_length_of       :email,    :within => 3..100, :allow_blank => true
   validates_uniqueness_of   :email, :case_sensitive => false, :message => 'Cet email est déjà utilisé'
   validates_acceptance_of   :terms, :on => :create, :message => 'Vous devez accepter les conditions d\'utilisation'
 
-  before_save :encrypt_password
+  before_save :encrypt_password, :set_username
   
   has_many :user_dvd_clubs
   has_many :dvd_clubs, :through => :user_dvd_clubs
@@ -69,10 +71,6 @@ class User < ActiveRecord::Base
   def whitelist!( user )
     Blacklisting.whitelist!( self, user )
   end
-
-  # prevents a user from submitting a crafted form that bypasses activation
-  # anything else you want your user to change should be added here.
-  attr_accessible :email, :password, :password_confirmation, :terms, :accept_offers, :login
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(email, password)
@@ -218,34 +216,36 @@ class User < ActiveRecord::Base
   end
 
   protected
-    # before filter
-    def encrypt_password
-      return if password.blank?
-      self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
-      self.crypted_password = encrypt(password)
+  # before filter
+  def encrypt_password
+    return if password.blank?
+    self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
+    self.crypted_password = encrypt(password)
+  end
+
+  def password_required?
+    crypted_password.blank? || !password.blank?
+  end
+
+  def email_required?
+    !email.blank?
+  end
+
+  def get_visible_user_ids
+    # Get club_id
+    dvd_club_ids = user_dvd_clubs.map &:dvd_club_id
+    # Get user from all this dvd_club
+    dvd_club_user_ids = UserDvdClub.all(:conditions => ["dvd_club_id in (?)", dvd_club_ids], :select => "DISTINCT(user_id)").collect &:user_id
+
+    # Get blocked users
+    blocked_user_ids = BlockedUser.all(:conditions => {:blocked_user_id => id, :dvd_club_id => dvd_club_ids}).collect &:user_id
+
+    dvd_club_user_ids - blocked_user_ids
+  end
+
+  def set_username
+    unless login
+      self.login = email.split( '@' )[0]
     end
-
-    def password_required?
-      crypted_password.blank? || !password.blank?
-    end
-    def password_confirmation_required?
-      crypted_password.blank? && !password.blank?
-    end
-
-    def email_required?
-      !email.blank?
-    end
-
-    def get_visible_user_ids
-      # Get club_id
-      dvd_club_ids = user_dvd_clubs.map &:dvd_club_id
-      # Get user from all this dvd_club
-      dvd_club_user_ids = UserDvdClub.all(:conditions => ["dvd_club_id in (?)", dvd_club_ids], :select => "DISTINCT(user_id)").collect &:user_id
-
-      # Get blocked users
-      blocked_user_ids = BlockedUser.all(:conditions => {:blocked_user_id => id, :dvd_club_id => dvd_club_ids}).collect &:user_id
-
-      dvd_club_user_ids - blocked_user_ids
-    end
-
+  end
 end
