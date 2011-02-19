@@ -150,6 +150,7 @@ class UsersController < ApplicationController
         end
 
         throw Exception.new unless @valid
+        UserMailer.deliver_signup_notification( @user, home_url )
         render :json => { :status => 'ok' }
       end
 
