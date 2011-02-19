@@ -232,6 +232,61 @@ describe UsersController do
       end
     end
   end
+
+
+  describe "POST facebook_connect" do
+    describe "without logged in user" do
+      before :each do
+        post 'facebook_connect', :login => 'test name', :email => @valid_user_attrs[ :email ], :facebook_id => "12345"
+      end
+
+      it 'should create user' do
+        User.count.should == 1
+      end
+
+      it 'should set facebook name as login name' do
+        User.first.login.should == 'test name'
+      end
+
+      it 'should set facebook id' do
+        User.first.facebook_id.should == "12345"
+      end
+
+      it 'should create dvd_club with "Club Principal" as name' do
+        DvdClub.count.should == 1
+        DvdClub.first.name.should == 'Club Principal'
+      end
+
+      it 'should associate user to dvd_club' do
+        User.last.dvd_clubs.should include( DvdClub.last )
+      end
+
+      it 'should render json ok' do
+        response.body.should == { :status => 'ok' }.to_json
+      end
+    end
+
+    describe "with already logged in user" do
+      before :each do
+        @user                      = User.create! @valid_user_attrs
+        @request.session[:user_id] = @user.id
+
+        post 'facebook_connect', :login => 'test name', :email => @valid_user_attrs[ :email ], :facebook_id => "12345"
+      end
+
+      it 'should set facebook id' do
+        User.first.facebook_id.should == "12345"
+      end
+
+      it 'should not create new user' do
+        User.count.should == 1
+      end
+
+      it 'should render json ok' do
+        response.body.should == { :status => 'ok' }.to_json
+      end
+    end
+  end
 #
 #
 # describe 'GET facebook_register' do

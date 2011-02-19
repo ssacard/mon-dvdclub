@@ -122,28 +122,42 @@ class UsersController < ApplicationController
       format.json do
         if current_user.nil?
           unless fb_user
-            password = Digest::SHA1.hexdigest( params[ :login ] + Time.now.to_s )
-            user = User.new :email => params[ :email ], :password => password
-            user.login = params[ :login ]
-            user.facebook_id = params[ :facebook_id ]
-            valid = user.save
+            User.transaction do
+              password          = Digest::SHA1.hexdigest( params[ :login ] + Time.now.to_s )
+              @user             = User.new :email => params[ :email ], :password => password
+              @user.login       = params[ :login ]
+              @user.facebook_id = params[ :facebook_id ]
+              @valid            = @user.save
+              
+              dvd_club = @user.owned_dvd_clubs.new( :name => 'Club Principal' )
+              @valid   = @valid && dvd_club.save
+
+              user_dvd_club = UserDvdClub.new( :user_id             => @user.id,
+                                               :dvd_club_id         => dvd_club.id,
+                                               :subscription_status => true)
+
+              @valid = @valid && user_dvd_club.save
+
+              unless @valid or @user.new_record?
+                @user.destroy
+              end
+            end
           end
         else
-          user = current_user
-          user.facebook_id = params[ :facebook_id ]
-          valid = user.save
+          @user             = current_user
+          @user.facebook_id = params[ :facebook_id ]
+          @valid            = @user.save
         end
 
-        if valid
-          render :json => { :status => 'ok' }
-        else
-          render :json => { :status => 'error', :errors => user.errors.full_messages }
-        end
+        throw Exception.new unless @valid
+        render :json => { :status => 'ok' }
       end
 
       format.html { redirect_to home_path }
     end
 
+  rescue
+    render :json => { :status => 'error', :errors => @user.errors.full_messages }
   end
 end
 
