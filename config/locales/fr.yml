@@ -6,7 +6,7 @@ fr:
     create: Créer une liste
     connect: Se connecter
     
-  home:
+  public:
     h2: 1,2,3... Prêtez !
     task1: Créez une ou plusieurs listes
     task2: Ajoutez vos DVDs
@@ -43,3 +43,5 @@ fr:
     pass: Mot de passe
     create: Créer
     validate: Valider
+    
+    
