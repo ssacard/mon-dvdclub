@@ -55,3 +55,17 @@ fr:
     pending_out: Emprunts en cours
     account: Mon compte
     
+  home:
+    banner: Votre compte est créé ! Commencez par ajouter des DVDs à votre première liste.
+    button: Ajouter un DVD
+    noDVDs: Votre DVD Club ne contient pas de DVD.  
+    breadcrumb:
+      home: Mon DVD Club
+    categories: Catégories
+    owner: propriétaire
+    
+  button:
+    states:
+      block: Retirer de la liste
+      unblock: Rendre disponible
+    

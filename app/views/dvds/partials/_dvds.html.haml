@@ -1,5 +1,5 @@
 .product-holder
   - if dvds.empty?
-    Aucun DVD
+    =t 'home.noDVDs' 
   - else
     = render :partial => '/dvds/partials/dvd', :collection => dvds

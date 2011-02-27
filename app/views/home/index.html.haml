@@ -4,9 +4,9 @@
   .promo-box
     .btn
       .bg-left
-        = link_to content_tag(:span, content_tag(:span, "Ajouter un DVD")), new_dvd_path
+        = link_to content_tag(:span, content_tag(:span, t('home.button'))), new_dvd_path
     %p
-      Voici votre DVDCLub. Commencez par ajouter des DVD ! 
+      =t 'home.banner'  
 
   .top-border.easyfix
     = render :partial => 'layouts/categories'
@@ -14,6 +14,7 @@
       #accueil
         %h2= render :partial => 'dvds/partials/breadcrumb'
         - if @dvds.empty?
-          %p Pas de DVD actuellement dans vos club
+          %p
+            =t 'home.noDVDs' 
         - else
           = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}

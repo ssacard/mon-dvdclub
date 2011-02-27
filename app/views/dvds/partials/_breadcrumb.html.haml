@@ -1,5 +1,5 @@
 #breadcrumb
-  = link_to 'Accueil', home_path 
+  = link_to t(:'home.breadcrumb.home'), home_path 
   - if @category
     &gt;
     = @category.name

@@ -26,7 +26,7 @@
       / Right part of the DVD detail box starts here, the one with the greener background
       .actions
         %h4
-          Propriétaire :
+          =t 'home.owner'   
           = dvd.owner.login
         - dvd_club = DvdClub.first_in_common(dvd.owner, current_user)
         - if not dvd_club.nil?
@@ -37,22 +37,22 @@
         - case dvd.state 
           - when "booked"
             - if dvd.booked_by_user == current_user
-              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :request_unregister, :title => "Rendre" }
+              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :request_unregister, :title => t(:'button.states.giveback') }
             - else
               Prêté à
               = dvd.booked_by_user.login
           - when "blocked"
             - if dvd.owner == current_user
-              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :unblock, :title => "Débloquer"}
+              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :unblock, :title => t(:'button.states.unblock')}
           - when "available"
             - if dvd.owner != current_user
-              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :request_register, :title => "Réserver"}
+              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :request_register, :title => t(:'button.states.book')}
             - else
-              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :block, :title => "Bloquer"}
+              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :block, :title => t(:'button.states.block')}
           - when "approval"
             - if dvd.owner == current_user
-              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :approve_confirm, :title => "Accepter"}
-              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :refuse_confirm, :title => "Refuser"}
+              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :approve_confirm, :title => t(:'button.states.accept')}
+              = render :partial => '/dvds/partials/action', :locals => { :dvd => dvd, :action => :refuse_confirm, :title => t(:'button.states.refuse')}
             - else
-              <a>En attente</a>
+              <a>t(:'button.states.onhold')</a>
 

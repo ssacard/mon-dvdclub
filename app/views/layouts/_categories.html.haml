@@ -1,6 +1,7 @@
 .side
   .bg-top
-    %h3 Catégories
+    %h3
+      =t 'home.categories' 
     %ul
       - self.current_user.rubriques.each do |dvd_category|
         %li= link_to "#{dvd_category[:rubrique].name} (#{dvd_category[:count]})", dvd_category_dvds_path(dvd_category[:rubrique]) 
