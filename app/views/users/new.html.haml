@@ -1,10 +1,10 @@
 .blue-box
   %h1
-    =link_to "Créez votre DVD Club", ''
+    =link_to t(:'register.title'), ''
 .rounded-box
   .bg-bottom
     .bg-top
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.
+      =t :'register.banner'
 
 #profile.standard_form    
   - if @invitation
@@ -19,12 +19,12 @@
 
   .facebook-connect
     #fb-root
-    - fb_login :perms => 'email', :text => "M'inscrire avec facebook" do 
+    - fb_login :perms => 'email', :text => t(:'register.facebook') do 
       new DvdBook( arguments[2] );
 
   .connect-or
-    Ou:
-
+    =t :'register.or'
+    
   = render :partial => 'form'
   - content_for :javascript do
     = javascript_include_tag 'DvdBook'

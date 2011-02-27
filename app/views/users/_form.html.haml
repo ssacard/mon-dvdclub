@@ -4,13 +4,13 @@
   -form_for @user do |f|
     .row
       .lab
-        %label{ :for => 'user_email' } Email:
+        %label{ :for => 'user_email' } t(:'form.email') &nbsp;:
       .inp.focus= f.text_field :email, :class => :text
     .row
       .lab
-        %label{ :for => 'user_password' } Mot de passe:
+        %label{ :for => 'user_password' } t(:'form.pass') &nbsp;:
       .inp.focus= f.password_field :password, :class => :text
 
 
     = hidden_field_tag :token, @token
-    = render :partial => '/layouts/submit_buttons', :locals => {:text => @user.new_record? ? 'Créer' : 'Valider'}
+    = render :partial => '/layouts/submit_buttons', :locals => {:text => @user.new_record? ? t(:'form.create') : t(:'form.validate')}

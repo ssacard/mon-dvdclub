@@ -32,3 +32,14 @@ fr:
     
     lastnews: Les dernières nouvelles
     
+  register:
+      title: Inscription
+      banner: La création d'une première liste nécessite votre inscription sur le site. Vous pouvez utiliser votre compte Facebook, ou utiliser votre email et un mot de passe de votre choix.
+      facebook : M'inscrire via Facebook
+      or: ou
+      
+  form:
+    email: Votre email
+    pass: Mot de passe
+    create: Créer
+    validate: Valider
