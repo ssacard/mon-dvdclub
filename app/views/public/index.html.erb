@@ -2,54 +2,54 @@
 	<div class="white-box-holder">
 		<span class="white-box-top">&nbsp;</span>
 		<div class="white-box">
-			<h2>1,2,3... Prêtez !</h2>
+			<h2><%=t 'home.h2' %></h2>
 			<ul>
-				<li><span>1 </span>Ouvrez un DVD club</li>
-				<li><span>2 </span>Créez une liste de DVD</li>
-				<li><span>3 </span>Partagez-la avec vos proches</li>
+				<li><span>1 </span><%=t 'home.task1' %></li>
+				<li><span>2 </span><%=t 'home.task2' %></li>
+				<li><span>3 </span><%=t 'home.task3' %></li>
 			</ul>
-			<%= link_to "Ouvrir un club", register_path, :class => :btn %>
+			<%= link_to t(:'home.action'), register_path, :class => :btn %>
 		</div>
 		<span class="white-box-bottom">&nbsp;</span>
 	</div>
-	<img src="images/dvdgrid.jpg" alt=""/>
+	<img src="images/dvdgrid.jpg" alt="<%=t 'home.claim' %>"/>
 </div>
 <div class="columns-wrapper">
 	<div class="columns-holder">
 		<div class="promo-text">
 			<div class="promo">
-				<p>MonDVDClub est la façon la plus simple de prêter des DVDs entre amis.</p>
+				<p><%=t 'home.claim' %></p>
 				<!-- <a href="#" class="more">en savoir plus</a> -->
 			</div>
 			<div class="dual-columns">
 				<div class="dual-column">
 					<div class="heading">
-						<h3>top 5 des avantages</h3>
+						<h3><%=t 'home.avantages.title' %></h3>
 					</div>
 					<ul>
-						<li>entièrement <strong>gratuit</strong> et <strong>légal</strong></li>
-						<li>adieu les DVDs prêtés et égarés !</li>
-						<li>un choix plus varié que dans un video club</li>
-						<li>découvrez des affinités votre entourage</li>
-						<li>(re)découvrez des films inconnus</li>
+						<li><%=t 'home.avantages.top1' %></li>
+						<li><%=t 'home.avantages.top2' %></li>
+						<li><%=t 'home.avantages.top3' %></li>
+						<li><%=t 'home.avantages.top4' %></li>
+						<li><%=t 'home.avantages.top5' %></li>
 					</ul>
 				</div>
 				<div class="dual-column">
 					<div class="heading">
-						<h3>top 5 des fonctionnalités</h3>
+						<h3><%=t 'home.features.title' %></h3>
 					</div>
 					<ul>
-						<li>créer autant de clubs qu'on veut (voisins, travail, club de sport)</li>
-						<li>accès privé à la liste des DVD réservés aux membres du club</li>
-						<li>être alerté par email d'une demande de prêt</li>
-						<li>savoir à qui on a prêté un DVD, et quand</li>
-						<li>supprimer l'accès à votre liste pour une ou plusieurs personnes</li>
+						<li><%=t 'home.features.top1' %></li>
+						<li><%=t 'home.features.top2' %></li>
+						<li><%=t 'home.features.top3' %></li>
+						<li><%=t 'home.features.top4' %></li>
+						<li><%=t 'home.features.top5' %></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="news-column">
-			<h2>Les dernières nouvelles</h2>
+			<h2><%=t 'home.lastnews'%></h2>
 			<p></p>
 			<div class="plus">
 				<!-- <a href="#">voir plus...</a> -->

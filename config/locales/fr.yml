@@ -3,5 +3,32 @@ fr:
   email: Email
 
   header:
-    create: Créer un club
+    create: Créer une liste
     connect: Se connecter
+    
+  home:
+    h2: 1,2,3... Prêtez !
+    task1: Créez une ou plusieurs listes
+    task2: Ajoutez vos DVDs
+    task3: Invitez vos amis !
+    action: Créer ma première liste
+    claim: MonDVDClub est la façon la plus simple de prêter des DVDs entre amis.
+    
+    avantages:
+      title: top 5 des avantages
+      top1: entièrement <em>gratuit</em> et <em>légal</em>
+      top2: permet de ne plus égarer ses DVDs
+      top3: un choix plus varié que dans un video club
+      top4: découvrez des affinités votre entourage
+      top5: (re)découvrez des films inconnus
+      
+    features:
+      title: top 5 des fonctionnalités
+      top1: créer plusieurs listes (voisins, collègues, amis)
+      top2: listes privées, accessible à chaque groupe
+      top3: alerte email des demandes de prêt
+      top4: savoir à qui on a prêté un DVD, et quand
+      top5: fermer l'accès à vos liste à une ou plusieurs personnes
+    
+    lastnews: Les dernières nouvelles
+    
