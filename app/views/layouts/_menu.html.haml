@@ -4,37 +4,41 @@
     %a.right-tab{:href => "/dvd_clubs", :class => "selected"}
       %span
         %span 
-          Gestion
+          =t :'menu.management'
   - else
     %a.right-tab{:href => "/dvd_clubs"}
       %span
         %span 
-          Gestion
+          =t :'menu.management'
 
   %ul
     - if current_user.is_admin?
       - if parent == :admin
         %li
           %a{:href => admin_path, :class => "selected" }
-            %span Admin
+            %span 
+              =t :'menu.admin'
       - else
         %li
           %a{:href => admin_path}
-            %span Admin
+            %span
+              =t :'menu.admin'
     
     %li
       - if parent == :club
         %a{:href => "/home", :class => "active"}
-          %span Mon DVD Club
+          %span
+            =t :'menu.home'
       - else
         %a{:href => "/home"}
-          %span Mon DVD Club
+          %span
+            =t :'menu.home'
 
     %li
       - if parent == :myself && object == :pending
         %a{:href => "/home/pendings", :class => "active"}
           %span
-            Demande en cours
+            =t :'menu.pending'
             - if actions_needed > 0
               %strong
                 %span.left &nbsp;
@@ -43,7 +47,7 @@
       - else
         %a{:href => "/home/pendings"}
           %span 
-            Demande en cours
+            =t :'menu.pending'
             - if actions_needed > 0
               %strong
                 %span.left &nbsp;
@@ -57,44 +61,54 @@
     - if object == :clubs
       %a{:href => "/dvd_clubs", :class => "active"}
         %span
-          %span Mes Clubs
+          %span
+            =t :'menu.lists'
     - else
       %a{:href => "/dvd_clubs"}
         %span
-          %span Mes Clubs
+          %span
+            =t :'menu.lists'
 
     - if object == :dvds
       %a{:href => "/home/dvds", :class => "active"}
         %span
-          %span Mes DVD
+          %span
+            =t :'menu.dvds'
     - else
       %a{:href => "/home/dvds"}
         %span
-          %span Mes DVD
+          %span
+            =t :'menu.dvds'
 
     - if object == :requested
       %a{:href => "/home/requests", :class => "active"}
         %span
-          %span Emprunts en cours
+          %span
+            =t :'menu.pending_out'
     - else
       %a{:href => "/home/requests"}
         %span
-          %span Emprunts en cours
+          %span
+            =t :'menu.pending_out'
 
     - if object == :pending
       %a{:href => "/home/pendings", :class => "active"}
         %span
-          %span Demandes en cours
+          %span
+            =t :'menu.pending_in'
     - else
       %a{:href => "/home/pendings"}
         %span
-          %span Demandes en cours
+          %span
+            =t :'menu.pending_in'
 
     - if object == :settings
       %a{:href => "/settings", :class => "active"}
         %span
-          %span Mon compte
+          %span
+            =t :'menu.account'
     - else
       %a{:href => "/settings"}
         %span
-          %span Mon compte
+          %span
+            =t :'menu.account'

@@ -44,4 +44,14 @@ fr:
     create: Créer
     validate: Valider
     
+  menu:
+    management: Gestion
+    admin: Administration
+    home: Mon DVD Club
+    pending: Demandes en cours
+    lists: mes listes
+    dvds: mes DVDs
+    pending_in: Demandes en cours
+    pending_out: Emprunts en cours
+    account: Mon compte
     
