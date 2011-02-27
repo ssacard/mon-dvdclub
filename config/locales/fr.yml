@@ -69,3 +69,17 @@ fr:
       block: Retirer de la liste
       unblock: Rendre disponible
     
+  new:
+    title: Ajouter des DVDs à votre liste
+    addmanually: Vous ne trouvez pas votre DVD ? Ajoutez-le manuellement
+    subtitle: Saisissez le titre ou des mots du titre du DVD que vous voulez ajouter, puis choisissez parmi les résultats proposés.
+    button-search: Rechercher et ajouter
+    justadded: Ce DVD vient d'être ajouté à votre liste
+    
+    manually: 
+      title: Titre
+      category: Catégorie
+      format: Format
+      director: Réalisateur
+      actors: Acteurs
+      button: Créer et ajouter

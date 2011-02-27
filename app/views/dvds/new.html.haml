@@ -4,21 +4,28 @@
   - if ! @dvds.nil?
     .easyfix
       .main
-        %h2 Vous venez d'ajouter
+        %h2
+        =t :'new.justadded'
         = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
   .half-text
-    %h2 Ajouter des DVD
-    %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+    %h2
+      =t :'new.title'
+    %p
+      =t :'new.subtitle' 
 
   .txt-holder
     - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :search}, :loading => "$('indicator').show()", :complete => "$('indicator').hide()") do |f|
       .txt
         = text_area_tag :title, ''
-      .btn= link_to_function(content_tag(:span, content_tag(:span, 'Rechercher')), 'MonDVD.Form.submit(this)')
+      .btn= link_to_function(content_tag(:span, content_tag(:span, t(:'new.button-search'))), 'MonDVD.Form.submit(this)')
   
   / Placeholder for the search results, needed as JavaScript hook
   #search-results
   
+  %hr
+
   .half-text
-    %h2 Ajouter manuellement un DVD
+    %h2
+      =t :'new.addmanually'
+
     = render :partial => 'manually'
