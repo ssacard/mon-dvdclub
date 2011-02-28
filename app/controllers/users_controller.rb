@@ -33,13 +33,13 @@ class UsersController < ApplicationController
     # reset_session
     @token      = params[:token]
     @invitation = @token ? Invitation.find_by_token(@token) : nil
-    @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new( :name => 'Club Principal' )
+    @dvd_club   = @invitation ? @invitation.dvd_club : DvdClub.new( :name => 'Liste principale' )
     @user       = User.new(params[:user])
     User.transaction do
       valid = @user.save
 
       if @dvd_club.new_record?
-        @dvd_club = @user.owned_dvd_clubs.new( :name => 'Club Principal' )
+        @dvd_club = @user.owned_dvd_clubs.new( :name => 'Liste principale' )
         valid     = @dvd_club.save && valid
       end
 
@@ -129,7 +129,7 @@ class UsersController < ApplicationController
               @user.facebook_id = params[ :facebook_id ]
               @valid            = @user.save
               
-              dvd_club = @user.owned_dvd_clubs.new( :name => 'Club Principal' )
+              dvd_club = @user.owned_dvd_clubs.new( :name => 'Liste principale' )
               @valid   = @valid && dvd_club.save
 
               user_dvd_club = UserDvdClub.new( :user_id             => @user.id,

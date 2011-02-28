@@ -83,3 +83,7 @@ fr:
       director: Réalisateur
       actors: Acteurs
       button: Créer et ajouter
+  
+  dvdclub:
+    invite: J'invite des amis
+    close: Je quitte cette liste

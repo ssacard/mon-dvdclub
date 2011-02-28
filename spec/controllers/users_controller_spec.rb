@@ -147,9 +147,9 @@ describe UsersController do
           User.count.should == 1
         end
  
-        it 'should create dvd_club with "Club Principal" as name' do
+        it 'should create dvd_club with "Liste principale" as name' do
           DvdClub.count.should == 1
-          DvdClub.first.name.should == 'Club Principal'
+          DvdClub.first.name.should == 'Liste principale'
         end
  
         it 'should associate user to dvd_club' do
@@ -252,9 +252,9 @@ describe UsersController do
         User.first.facebook_id.should == "12345"
       end
 
-      it 'should create dvd_club with "Club Principal" as name' do
+      it 'should create dvd_club with "Liste principale" as name' do
         DvdClub.count.should == 1
-        DvdClub.first.name.should == 'Club Principal'
+        DvdClub.first.name.should == 'Liste principale'
       end
 
       it 'should associate user to dvd_club' do
