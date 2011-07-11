@@ -16,7 +16,7 @@
   .txt-holder
     - form_remote_for(:dvd, :url => {:controller => :dvds, :action => :search}, :loading => "$('indicator').show()", :complete => "$('indicator').hide()") do |f|
       .txt
-        = text_area_tag :title, ''
+        = text_field_tag :title, '', :size=>70
       .btn= link_to_function(content_tag(:span, content_tag(:span, t(:'new.button-search'))), 'MonDVD.Form.submit(this)')
   
   / Placeholder for the search results, needed as JavaScript hook

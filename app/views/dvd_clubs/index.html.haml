@@ -6,8 +6,10 @@
       .bg-left
         %a{ :href => "/dvd_clubs/new" }
           %span
-            %span Créer un nouveau club
-    %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.</p>
+            %span{}=t 'home.createnew'
+
+    %p{}=t 'home.banner'
+
   .easyfix.top-border
     .main
       = render :partial => 'dvd_club', :collection => self.current_user.dvd_clubs, :locals => {:all_members => false}

@@ -5,24 +5,23 @@
     - if @cannot_add_club_msg
       .notice= @cannot_add_club_msg
     - else
-      %h2 Créer un nouveau club
+      %h2{}=t 'lists.create.title'
       -form_for :dvd_club, @dvd_club, :url => {:action => 'create'}  do |f|
         .row
           .lab
-            %label Nom du club:
+            %label{}=t 'lists.create.name'
           .inp
             = f.text_field :name, :class => :text
           
         - fields_for :user_dvd_club do |fields|
           .row
             .lab
-              %label Comment vous identifier dans ce club:
+              %label{}=t 'lists.create.identify'
             .txt
               = fields.text_area :description, :class => :text
           .row.row_terms
             .check
               = f.check_box :terms
-            .lb
-              j'accepte les conditions d'utilisations
+            .lb{}=t 'lists.create.accept_terms'
 
-        = render :partial => '/layouts/submit_buttons', :locals => {:text => 'Créer'}
+        = render :partial => '/layouts/submit_buttons', :locals => {:text => t('lists.create.button')}

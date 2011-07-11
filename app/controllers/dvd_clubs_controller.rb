@@ -23,7 +23,7 @@ class DvdClubsController < AuthenticatedController
       @dvd_club = DvdClub.new
       @user_dvd_club = UserDvdClub.new
     else
-      @cannot_add_club_msg = 'Désolé, il est temporairement impossible de créer un nouveau club.'
+      @cannot_add_club_msg = 'Désolé, il est temporairement impossible de créer une nouvelle liste.'
     end
   end
 

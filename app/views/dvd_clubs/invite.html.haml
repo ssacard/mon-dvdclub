@@ -11,7 +11,7 @@
     .main-form
       - form_for :mail, :url => {:controller => 'dvd_clubs', :action => 'send_mails'} do |form|
         %p
-          Au club:
+          A la liste:
           = @dvd_club.name
         %p
           De la part de:
@@ -31,5 +31,5 @@
   .shadow-box
     .shadow-box-bottom
       .shadow-box-top
-        %h3 Que va-t-il se passer ensuite ?
-        %p Vos amis vont recevoir un mail de votre part, les invitant à rejoindre votre club. Ils pourront à leur tour rajouter leurs DVDs, et les partager avec l'ensemble du club.
+        %h3{}=t 'invite.nextstep.title'
+        %p{}=t 'invite.nextstep.text'

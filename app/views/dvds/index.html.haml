@@ -5,7 +5,7 @@
     .btn
       .bg-left
         = link_to content_tag(:span, content_tag(:span, "Ajouter un DVD")), new_dvd_path
-    %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed.
+    %p{}=t 'dvds.banner'
 
   .top-border.easyfix
     = render :partial => 'layouts/categories'

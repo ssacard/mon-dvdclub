@@ -4,7 +4,7 @@
       %a{:href => "/dvd_clubs/#{dvd_club.id}/invite", :class => "yellow"}
         %span
           %span
-            =t 'dvdclub.invite'
+            =t 'list.invite'
     
     / Join or quit the current club
     %li
@@ -15,15 +15,12 @@
             
   %h2= dvd_club.name
 
-/ The DVD details partial
-= render :partial => 'dvds/partials/dvds', :locals => {:dvds => dvd_club.dvds( nil, current_user )}
-
-/ This club members list
-%h2 Les derniers membres de ce club (7 derniers jours)
+/ This list members
+%p{}=t 'list.lastmembers'
 = render :partial => 'user', :collection => dvd_club.recent_users, :locals => {:dvd_club => dvd_club}
 
 - if local_assigns[:all_members] && all_members
-  %h2 Tous les membres
+  %h2{}=t 'list.seeallmembers'
   = render :partial => 'user', :collection => dvd_club.users, :locals => {:dvd_club => dvd_club}
 - else
-  = link_to 'Tous les membres', :controller => :dvd_clubs, :action => :all_members, :id => dvd_club.id 
+  = link_to t('list.seeallmembers'), :controller => :dvd_clubs, :action => :all_members, :id => dvd_club.id 

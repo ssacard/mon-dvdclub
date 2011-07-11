@@ -48,33 +48,37 @@ fr:
   menu:
     management: Gestion
     admin: Administration
-    home: Mon DVD Club
+    home: Votre DVD Club
     pending: Demandes en cours
-    lists: mes listes
-    dvds: mes DVDs
+    lists: Vos listes
+    dvds: Vos DVDs
     pending_in: Demandes en cours
     pending_out: Emprunts en cours
-    account: Mon compte
+    account: Votre compte
     
   home:
     banner: Votre compte est créé ! Commencez par ajouter des DVDs à votre première liste.
     button: Ajouter un DVD
-    noDVDs: Votre DVD Club ne contient pas de DVD.  
+    noDVDs: Votre DVD Club ne contient aucun DVD.  
     breadcrumb:
-      home: Mon DVD Club
+      home: Votre DVD Club
     categories: Catégories
     owner: propriétaire
     
+    createnew: Créer une nouvelle liste
+    banner: Accédez ci-dessous à toutes vos listes, ou créez une nouvelle liste ci-contre.
+    
+    
   button:
     states:
-      block: Retirer de la liste
+      block: Rendre indisponible
       unblock: Rendre disponible
     
   new:
-    title: Ajouter des DVDs à votre liste
+    title: Ajoutez des DVDs dans votre DVD Club
     addmanually: Vous ne trouvez pas votre DVD ? Ajoutez-le manuellement
-    subtitle: Saisissez le titre ou des mots du titre du DVD que vous voulez ajouter, puis choisissez parmi les résultats proposés.
-    button-search: Rechercher et ajouter
+    subtitle: Saisissez le titre compet ou partiel du DVD que vous voulez ajouter, puis choisissez parmi les résultats proposés. Les DVDs sont ajoutés à l'ensemble de vos listes.
+    button-search: Rechercher
     justadded: Ce DVD vient d'être ajouté à votre liste
     
     manually: 
@@ -84,11 +88,7 @@ fr:
       director: Réalisateur
       actors: Acteurs
       button: Créer et ajouter
-  
-  dvdclub:
-    invite: J'invite des amis
-    close: Je quitte cette liste
-    
+
   login:
     title: Se connecter
     banner: Saisissez votre identifiant et votre mot de passe, ou utilisez votre compte Facebook.
@@ -98,3 +98,27 @@ fr:
     remember: Me conserver connecté sur cet ordinateur
     forgotten: mot de passe oublié
     connect: Se connecter
+    
+  list:
+    lastmembers: Les dernières personnes ayant rejoint cette liste
+    seeallmembers: Voir tous les membres
+    invite: J'invite des amis
+    close: Je quitte cette liste
+
+  dvds:
+      banner: Gérez ci-dessous vos DVDs, ou ajoutez un DVD ci-contre
+      add: Ajouter un DVD
+  
+  lists:
+    create:
+      title: Créer une nouvelle liste
+      name: Nom de la liste
+      identify: Comment vous identifier dans cette liste
+      accept_terms: J'accepte les conditions d'utilisation
+      button : Créer
+ 
+  invite:
+    nextstep:
+      title: Que va-t'il se passer ensuite ?
+      text: Vos amis vont recevoir un mail de votre part, les invitant à partager votre liste sur MonDVDClub.fr. Ils pourront à leur tour ajouter leurs DVDs, et les partager avec l'ensemble des membres de cette liste.     
+         
