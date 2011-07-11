@@ -1,6 +1,7 @@
 fr:
   # Generic label
   email: Email
+  or: ou
 
   header:
     create: Créer une liste
@@ -87,3 +88,13 @@ fr:
   dvdclub:
     invite: J'invite des amis
     close: Je quitte cette liste
+    
+  login:
+    title: Se connecter
+    banner: Saisissez votre identifiant et votre mot de passe, ou utilisez votre compte Facebook.
+    facebook: Utiliser mon compte Facebook
+    email: Votre Email
+    pass: Votre mot de passe
+    remember: Me conserver connecté sur cet ordinateur
+    forgotten: mot de passe oublié
+    connect: Se connecter

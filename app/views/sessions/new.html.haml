@@ -1,41 +1,39 @@
 .blue-box
-  %h1= link_to 'Se Connecter'
+  %h1= link_to t('login.title')
 
 .rounded-box
   .bg-bottom
-    .bg-top
-      Veuillez saisir votre email et votre mot de passe afin de vous connectez à votre DVDClub. 
+    .bg-top=t 'login.banner' 
 
 .facebook-connect
   #fb-root
-    - fb_login :perms => 'email', :text => "Me connecter avec Facebook" do 
+    - fb_login :perms => 'email', :text => t('login.facebook') do 
       new DvdBook( arguments[2] );
 
   - content_for :javascript do
     = javascript_include_tag 'DvdBook'
 
-.connect-or
-  Ou:
+.connect-or{}= t 'or'
 
 .main-form
 
   - form_tag session_path do
     .row
       .lab
-        %label= t(:email)
+        %label= t('login.email')
       .inp.focus= text_field_tag 'email', '', :class => :text
 
     .row.bottom-margin
       .lab
-        %label Mot de passe:
+        %label= t('login.pass')
       .inp.focus= password_field_tag 'password', '', :class => :text
     .row
       .lab
-      .inp.focus= link_to('mot de passe oublié' , forgot_password_path)
+      .inp.focus= link_to(t('login.forgotten') , forgot_password_path)
 
     .row
       .check= check_box_tag 'remember_me' 
       .lb
-        %label se souvenir de ma connexion
+        %label{}=t 'login.remember'
 
-    = render :partial => '/layouts/submit_buttons', :locals => {:text => 'Se connecter'}
+    = render :partial => '/layouts/submit_buttons', :locals => {:text => t('login.connect')}
