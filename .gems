@@ -3,5 +3,5 @@ haml
 ruby-hmac
 haml
 rspec
-rspec-rails
+rspec-rails --ignore-depedencies
 will_paginate
