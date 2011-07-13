@@ -86,6 +86,7 @@ DEPENDENCIES
   cucumber
   facebooker2
   haml
+  json
   rails (= 2.3.5)
   rake (= 0.8.7)
   rspec-rails (= 1.2)
