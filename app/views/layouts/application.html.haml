@@ -23,11 +23,11 @@
               - else        
                 %strong= link_to "monDVD", home_path, :class => :inner
                 %ul.top-nav
-                  %li.first= link_to 'Mon Compte', settings_path
+                  %li.first= link_to t('header.account'), settings_path
                   - if fb_user
-                    %li= fb_logout_link 'Se déconnecter', '/'
+                    %li= fb_logout_link t('header.disconnect'), '/'
                   - else
-                    %li= link_to "Se deconnecter", logout_path
+                    %li= link_to t('header.disconnect'), logout_path
 
             = yield
   /

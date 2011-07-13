@@ -4,8 +4,10 @@ fr:
   or: ou
 
   header:
+    account: Votre DVDClub
     create: Créer une liste
     connect: Se connecter
+    disconnect: Se déconnecter
     
   public:
     h2: 1,2,3... Prêtez !
@@ -121,4 +123,17 @@ fr:
     nextstep:
       title: Que va-t'il se passer ensuite ?
       text: Vos amis vont recevoir un mail de votre part, les invitant à partager votre liste sur MonDVDClub.fr. Ils pourront à leur tour ajouter leurs DVDs, et les partager avec l'ensemble des membres de cette liste.     
-         
+     
+  lostpassword:
+    title: Retrouvez votre mot de passe
+    banner: Un email de confirmation a été envoyé à cette adresse. Cliquez sur lien pour générer un nouveau mot de passe. 
+    
+  requests:
+    incoming: Les DVDs que l'on veut m'emprunter...
+    sent: Les DVDs que j'ai demandé à emprunter...
+    nodvds: aucune demande en cours.
+    
+  borrows:
+    in: Les DVDs que j'ai empruntés
+    out: Les DVDs que j'ai prêtés
+    nodvds: aucun emprunt en cours.

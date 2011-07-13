@@ -3,8 +3,8 @@
 .main-box
   .easyfix
     .main
-      %h2 Les DVDs que j'ai empruntés
-      %p= render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
+      %h2{}=t 'borrows.in'
+      %p= render :partial => 'dvds/partials/borrows', :locals => {:dvds => @dvds}
       
-      %h2 Les DVDs que j'ai prêtés
-      %p= render :partial => 'dvds/partials/dvds', :locals => {:dvds => @given_dvds}    
+      %h2{}=t 'borrows.out'
+      %p= render :partial => 'dvds/partials/borrows', :locals => {:dvds => @given_dvds}    

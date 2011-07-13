@@ -1,7 +1,6 @@
 .blue-box
-  %h1= link_to 'Mot de passe oublié'
+  %h1= link_to(t:'lostpassword.title')
 
 .rounded-box
   .bg-bottom
-    .bg-top
-      A confirmation mail is sent to your email address. Please click on the url in the mail to proceed for password reset.
+    .bg-top{}=t 'lostpassword.banner'
