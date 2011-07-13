@@ -121,4 +121,7 @@ fr:
     nextstep:
       title: Que va-t'il se passer ensuite ?
       text: Vos amis vont recevoir un mail de votre part, les invitant à partager votre liste sur MonDVDClub.fr. Ils pourront à leur tour ajouter leurs DVDs, et les partager avec l'ensemble des membres de cette liste.     
-         
+     
+  lostpassword:
+    title: Retrouvez votre mot de passe
+    banner: Un email de confirmation a été envoyé à cette adresse. Cliquez sur lien pour générer un nouveau mot de passe. 
