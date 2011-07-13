@@ -4,6 +4,7 @@ gem 'rails', '2.3.5'
 gem 'rake', '0.8.7'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'json'
+gem 'mysql2', '<0.3'
 
 gem 'amazon-ecs'
 gem 'haml'
