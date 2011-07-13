@@ -1,0 +1,5 @@
+.product-holder
+  - if dvds.empty?
+    =t 'borrows.nodvds' 
+  - else
+    = render :partial => '/dvds/partials/dvd', :collection => dvds

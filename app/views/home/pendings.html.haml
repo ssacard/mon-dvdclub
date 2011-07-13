@@ -3,8 +3,8 @@
 .main-box
   .easyfix
     .main
-      %h2 Les DVDs que l'on veut m'emprunter...
-      = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @dvds}
+      %h2{}=t 'requests.incoming' 
+      = render :partial => 'dvds/partials/requests', :locals => {:dvds => @dvds}
 
-      %h2 Les DVDs que j'ai demandé à emprunter...
-      = render :partial => 'dvds/partials/dvds', :locals => {:dvds => @pending_dvds}
+      %h2{}=t 'requests.sent'
+      = render :partial => 'dvds/partials/requests', :locals => {:dvds => @pending_dvds}
