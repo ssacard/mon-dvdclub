@@ -6,7 +6,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'json'
 gem 'mysql'
 
-gem 'amazon-ecs'
+gem 'amazon-ecs', '0.5.7'
 gem 'haml'
 gem 'ruby-hmac'
 gem 'will_paginate'

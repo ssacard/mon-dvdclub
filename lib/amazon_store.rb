@@ -7,8 +7,8 @@ class AmazonStore
     @@options = {}
     yaml.each {|key, value| @@options[key.to_sym] = value}
     
-    # Response group medium to get more information like images
-    @@options.merge! :response_group => 'Medium'
+    # Response group meduim to get more information like images
+    @@options.merge! :response_group => 'Large'
   end
 
   # Returns an array of hash with search results
@@ -25,19 +25,19 @@ class AmazonStore
     
     res.items.each_with_index do |i, index|
       item = Hash.new
-      item[:asin]         = i.get('ASIN').to_s
-      item[:url]          = i.get('DetailPageURL').to_s
-      item[:description]  = i.get('EditorialReviews/EditorialReview/Content')
-      item[:smallimage]   = i.get('SmallImage/URL')
-      item[:largeimage]   = i.get('LargeImage/URL')
-      item[:format]       = i.get('ProductGroup')
+      item[:asin]         = i.get('asin').to_s
+      item[:url]          = i.get('detailpageurl').to_s
+      item[:description]  = i.get('editorialreviews/editorialreview/content')
+      item[:smallimage]   = i.get('smallimage/url')
+      item[:largeimage]   = i.get('largeimage/url')
+      item[:format]       = i.get('productgroup')
       
-      attrs = i.get_element('ItemAttributes')
-      item[:title]        = attrs.get('Title')
-      item[:actor]        = attrs.get_array('Actor')
-      item[:director]     = attrs.get('Director')
-      item[:manufacturer] = attrs.get('Manufacturer')
-      item[:category]     = i.get('BrowseNodes/BrowseNode/Name') || "Autres"
+      attrs = i.search_and_convert('itemattributes')
+      item[:title]        = attrs.get('title')
+      item[:actor]        = attrs.get_array('actor')
+      item[:director]     = attrs.get('director')
+      item[:manufacturer] = attrs.get('manufacturer')
+      item[:category]     = i.get('browsenodes/browsenode/name') || "Autres"
       results << item
     end
     
