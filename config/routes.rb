@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.connect '/page/:page_name', :controller => 'static', :action => 'page'
 
   map.with_options :controller => 'users' do |user|
     user.forgot_password    '/forgot_password',         :action => 'forgot_password'
