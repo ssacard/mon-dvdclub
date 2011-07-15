@@ -1,7 +1,7 @@
 development:
-  app_id: 184393274916546
-  api_key: 5c2a76ec631a085a8ef58f3dfe721ece
-  secret: f182ee8dcb0e50247f9f90cc0bb4ed19
+  app_id: 244576852238149
+  api_key: 244576852238149
+  secret: 5f3e0f3cdadf7c9a64187ec1f8476ad8
 
 production:
   app_id: 184393274916546
