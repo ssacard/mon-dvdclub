@@ -5,7 +5,6 @@
 # ENV['RAILS_ENV'] ||= 'production'
 #
 require 'thread'
-require "#{RAILS_ROOT}/lib/facebooker2"
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
