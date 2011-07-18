@@ -38,7 +38,9 @@ class SessionsController < AuthenticatedController
 
   def destroy
     self.current_user.forget_me if logged_in?
-    cookies.delete :auth_token
+    cookies.each do |cookie|
+      cookies.delete cookie
+    end
     reset_session
     flash[:notice] = "You have been logged out."
     redirect_back_or_default(root_path)

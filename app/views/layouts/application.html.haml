@@ -19,17 +19,13 @@
                   %div
                     %ul
                       %li= link_to content_tag(:span, t("header.create")), register_path, :class => :blue
-                      - if fb_user
-                        %li= fb_logout_link content_tag(:span, t("header.connect")), home_path, :class => :dark
-                      - else
-                        %li= link_to  content_tag(:span, t("header.connect")), login_path, :class => :dark
+                      %li= link_to  content_tag(:span, t("header.connect")), login_path, :class => :dark
               - else        
                 %strong= link_to "monDVD", home_path, :class => :inner
                 %ul.top-nav
                   %li.first= link_to t('header.account'), settings_path
                   - if fb_user
-                    %li
-                      %a{'href' => '#', 'onclick' => "document.cookie = '#{get_fb_cookie}='; window.location.reload(); return false;"}= t('header.disconnect')
+                    %li= fb_logout_link t('header.disconnect'), '/'
                   - else
                     %li= link_to t('header.disconnect'), logout_path
 
