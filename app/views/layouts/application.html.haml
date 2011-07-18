@@ -31,7 +31,6 @@
                     %li= fb_logout_link t('header.disconnect'), '/facebook_logout'
                   - else
                     %li= link_to t('header.disconnect'), logout_path
-                  %li= get_fb_cookie
 
             = yield
   /
