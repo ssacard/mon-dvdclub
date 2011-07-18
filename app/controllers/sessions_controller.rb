@@ -2,7 +2,7 @@
 class SessionsController < AuthenticatedController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-  skip_before_filter :login_required, :only => [ :new, :create ]
+  skip_before_filter :login_required, :only => [ :new, :create, :logout_facebook ]
 
   # don't check auth, else we won't be able to logout if inactive
   def check_auth
@@ -44,5 +44,12 @@ class SessionsController < AuthenticatedController
     reset_session
     flash[:notice] = "You have been logged out."
     redirect_back_or_default(root_path)
+  end
+
+  def logout_facebook
+    #clear_facebook_session_information
+    self.current_user.forget_me if logged_in?
+    reset_session
+    redirect_to root_path
   end
 end
