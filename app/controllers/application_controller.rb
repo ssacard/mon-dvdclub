@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include Facebooker2::Rails::Controller
   helper :all
-  helper_method :fb_user
+  helper_method :fb_user, :get_fb_cookie
 
   protect_from_forgery
 
@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
       return false
     end
     true
+  end
+
+  def get_fb_cookie
+    fb_cookie_name
   end
 
   def fb_user

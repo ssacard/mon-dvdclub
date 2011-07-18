@@ -28,7 +28,8 @@
                 %ul.top-nav
                   %li.first= link_to t('header.account'), settings_path
                   - if fb_user
-                    %li= fb_logout_link t('header.disconnect'), '/'
+                    %li
+                      %a{'href' => '#', 'onclick' => "document.cookie = '#{get_fb_cookie}='; window.location.reload(); return false;"}= t('header.disconnect')
                   - else
                     %li= link_to t('header.disconnect'), logout_path
 
