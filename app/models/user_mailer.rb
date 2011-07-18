@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
     content_type "text/html"
     recipients    user.email
     from          "noreply@mondvdclub.fr"
-    subject       "Bienvenu sur MonDVDCub.fr"
+    subject       "Bienvenue sur MonDVDCub.fr"
     body          :body => {:name => user.login, :home_url => home_url}
   end
 
