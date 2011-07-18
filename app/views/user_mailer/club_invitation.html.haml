@@ -1,21 +1,19 @@
 Bonjour,
 
 %br
-%br
 
-Vous venez d'être invité par 
-= @body[:sender] 
-pour rejoindre le DVDClub: 
-= @body[:dvd_club]
+Un ami vous propose de le rejoindre sur MonDVDClub.fr, un service qui permet de se prêter facilement des DVDs entre amis.
 
 %br
-%br
 
-Clicker 
-= link_to 'ici', @body[:url]
-pour vous inscrire.
+Cliquez 
+= link_to 'sur ce lien', @body[:url]
+pour créer votre compte !
 
+Voici son message personnel : 
 %br
 %br
 = @body[:message].gsub(/\n/, '<br/>')
+
+A tout de suite sur MonDVDClub ! 
 

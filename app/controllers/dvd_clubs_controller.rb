@@ -105,7 +105,7 @@ class DvdClubsController < AuthenticatedController
     if request.method == :post
       blacklist_hash = params[:blacklisted]
       @fellow_club_members.each do |fcm|
-        # N.B. lacklist! and whitelist! are double-submit-proof
+        # N.B. blacklist! and whitelist! are double-submit-proof
         if blacklist_hash and blacklist_hash[fcm.id.to_s]
           current_user.blacklist!( fcm )
         else

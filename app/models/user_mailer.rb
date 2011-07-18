@@ -13,7 +13,7 @@ class UserMailer < ActionMailer::Base
     content_type "text/html"
     recipients    user.email
     from         "noreply@mondvdclub.fr"
-    subject      "Demande de changement de mot de passe:"
+    subject      "Changement de mot de passe pour MonDVDClub"
     body         :body => {:url => url}
   end
 
@@ -21,7 +21,7 @@ class UserMailer < ActionMailer::Base
     content_type "text/html"
     recipients    mail['recipients'].split(',')
     from          "noreply@mondvdclub.fr"
-    subject       "DVD Club invitation"
+    subject       "Invitation à partager nos DVDs"
     body          :body => {:sender => mail[:sender], :message => mail[:message], :dvd_club => dvd_club.name, :url => url}
   end
 
@@ -30,7 +30,7 @@ class UserMailer < ActionMailer::Base
     content_type "text/html"
     recipients    dvd.owner.email
     from          "noreply@mondvdclub.fr"
-    subject       "Demande de prêt"
+    subject       "Demande de prêt de DVD"
     body          :body => {:dvd => dvd, :requester => requester, :accept_url => accept_url, :refuse_url => refuse_url}
   end
 
@@ -38,7 +38,7 @@ class UserMailer < ActionMailer::Base
     content_type "text/html"
     recipients    dvd.booked_by_user.email
     from          "noreply@mondvdclub.fr"
-    subject       "Confirmation de prêt"
+    subject       "Confirmation de prêt de DVD"
     body          :body => {:dvd => dvd, :requester => dvd.booked_by_user}
   end
 
@@ -46,7 +46,7 @@ class UserMailer < ActionMailer::Base
     content_type "text/html"
     recipients    dvd.booked_by_user.email
     from          "noreply@mondvdclub.fr"
-    subject       "Confirmation de prêt"
+    subject       "Confirmation de prêt de DVD"
     body          :body => {:dvd => dvd, :requester => dvd.booked_by_user}
   end
   
@@ -54,7 +54,7 @@ class UserMailer < ActionMailer::Base
     content_type "text/html"
     recipients dvd.owner.email
     from "noreply@mondvdclub.fr"
-    subject "Demande de restitution"
+    subject "Demande de restitution de DVD"
     body :body => { :dvd => dvd }
   end
       
