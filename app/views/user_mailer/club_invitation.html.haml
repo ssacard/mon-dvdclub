@@ -1,19 +1,19 @@
 Bonjour,
 
-%br
+%br%br
 
 Un ami vous propose de le rejoindre sur MonDVDClub.fr, un service qui permet de se prêter facilement des DVDs entre amis.
 
-%br
+%br%br
 
 Cliquez 
 = link_to 'sur ce lien', @body[:url]
 pour créer votre compte !
-
+%br%br
 Voici son message personnel : 
 %br
 %br
 = @body[:message].gsub(/\n/, '<br/>')
-
+%br%br
 A tout de suite sur MonDVDClub ! 
 
