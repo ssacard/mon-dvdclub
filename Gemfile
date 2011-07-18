@@ -12,7 +12,7 @@ gem 'ruby-hmac'
 gem 'will_paginate'
 
 gem 'yajl-ruby'
-gem 'facebooker2'
+gem 'mogli'
 
 group :development, :test do
   gem 'rspec-rails', '1.2'

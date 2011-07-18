@@ -48,7 +48,8 @@ class SessionsController < AuthenticatedController
 
   def logout_facebook
     #clear_facebook_session_information
-    self.current_user.forget_me
+    delete_fb_cookie!
+    self.current_user.forget_me if logged_in?
     reset_session
     redirect_to root_path
   end
