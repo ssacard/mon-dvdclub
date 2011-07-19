@@ -136,7 +136,9 @@ class UsersController < ApplicationController
                                                :dvd_club_id         => dvd_club.id,
                                                :subscription_status => true)
 
+              puts "BEFORE VALID"
               @valid = @valid && user_dvd_club.save
+              puts "VALID : #{@valid}"
 
               unless @valid or @user.new_record?
                 @user.destroy
