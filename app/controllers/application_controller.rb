@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def fb_user
+    puts "FACEBOOK USER ID: #{current_facebook_user.id}"
     @fb_user ||= current_facebook_user && User.find_by_facebook_id( current_facebook_user.id )
   end
 
