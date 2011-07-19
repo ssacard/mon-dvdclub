@@ -118,15 +118,10 @@ class UsersController < ApplicationController
   end
 
   def facebook_connect
-    puts "FACEBOOK_CONNECT"
-
     respond_to do |format|
       format.json do
-        puts "FACEBOOK_CONNECT 1"
         if current_user.nil?
-          puts "FACEBOOK_CONNECT 2"
           unless fb_user
-            puts "FACEBOOK_CONNECT 3"
             User.transaction do
               password          = Digest::SHA1.hexdigest( params[ :login ] + Time.now.to_s )
               @user             = User.new :email => params[ :email ], :password => password
@@ -141,37 +136,31 @@ class UsersController < ApplicationController
                                                :dvd_club_id         => dvd_club.id,
                                                :subscription_status => true)
 
-              puts "BEFORE VALID"
               @valid = @valid && user_dvd_club.save
-              puts "VALID : #{@valid}"
 
               unless @valid or @user.new_record?
                 @user.destroy
               end
-
-              puts "FACEBOOK_CONNECT 4"
             end
           end
+
+          UserMailer.deliver_signup_notification( @user, home_url )
         else
           @user             = current_user
           @user.facebook_id = params[ :facebook_id ]
           @valid            = @user.save
         end
-        puts "FACEBOOK_CONNECT 5"
 
         throw Exception.new unless @valid
-        UserMailer.deliver_signup_notification( @user, home_url )
         render :json => { :status => 'ok' }
       end
 
       format.html do
-        puts "FACEBOOK_CONNECT 6"
         redirect_to home_path
       end
     end
 
   rescue
-    puts "FACEBOOK_CONNECT ERROR"
     render :json => { :status => 'error', :errors => @user.errors.full_messages }
   end
 end
