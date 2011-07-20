@@ -8,7 +8,7 @@
 				<li><span>2 </span><%=t 'public.task2' %></li>
 				<li><span>3 </span><%=t 'public.task3' %></li>
 			</ul>
-			<%= link_to t(:'public.action'), register_path, :class => :btn %>
+			<%= link_to t(:'public.action'), current_user ? new_dvd_club_path : register_path, :class => :btn %>
 		</div>
 		<span class="white-box-bottom">&nbsp;</span>
 	</div>
