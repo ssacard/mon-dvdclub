@@ -9,7 +9,7 @@
     / Join or quit the current club
     %li
       - if dvd_club.has_member?(current_user)
-        = link_to '<span><span>Je quitte cette liste</span></span>', user_dvd_club_path(UserDvdClub.membership(dvd_club, current_user)), :method => :delete, :confirm => 'Are you sure?'
+        = link_to '<span><span>Je quitte ce cercle</span></span>', user_dvd_club_path(UserDvdClub.membership(dvd_club, current_user)), :method => :delete, :confirm => 'Are you sure?'
       - else
         = link_to '<span><span>Rejoindre ce club</span></span>', user_dvd_clubs_path(:user_dvd_club => {:dvd_club_id => dvd_club.id, :user_id => current_user.id}), :method => :post
             

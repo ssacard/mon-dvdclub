@@ -20,7 +20,7 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
 end    
 
 # ActiveRecord::Errors.default_error_messages = {
-#   :inclusion => "pas inclus dans la liste",
+#   :inclusion => "pas inclus dans le cercle",
 #   :exclusion => "mot réservé",
 #   :invalid => "invalide",
 #   :confirmation => "n'est pas égale à la confirmation",

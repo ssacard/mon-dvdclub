@@ -5,16 +5,16 @@ fr:
 
   header:
     account: Votre DVDClub
-    create: Créer une liste
+    create: Créer un cercle
     connect: Se connecter
     disconnect: Se déconnecter
     
   public:
     h2: 1,2,3... Prêtez !
-    task1: Créez une ou plusieurs listes
+    task1: Créez un ou plusieurs cercles
     task2: Ajoutez vos DVDs
     task3: Invitez vos amis !
-    action: Créer ma première liste
+    action: Créer mon premier cercle
     claim: MonDVDClub est la façon la plus simple de prêter des DVDs entre amis.
     
     avantages:
@@ -27,17 +27,17 @@ fr:
       
     features:
       title: top 5 des fonctionnalités
-      top1: créer plusieurs listes (voisins, collègues, amis)
-      top2: listes privées, accessible à chaque groupe
+      top1: créer plusieurs cercles (voisins, collègues, amis)
+      top2: cercles privés
       top3: alerte email des demandes de prêt
       top4: savoir à qui on a prêté un DVD, et quand
-      top5: fermer l'accès à vos liste à une ou plusieurs personnes
+      top5: fermer l'accès à vos cercles à une ou plusieurs personnes
     
     lastnews: Les dernières nouvelles
     
   register:
       title: Inscription
-      banner: La création d'une première liste nécessite votre inscription sur le site. Vous pouvez utiliser votre compte Facebook, ou utiliser votre email et un mot de passe de votre choix.
+      banner: La création d'une premier cercle nécessite votre inscription sur le site. Vous pouvez utiliser votre compte Facebook, ou utiliser votre email et un mot de passe de votre choix.
       facebook : M'inscrire via Facebook
       or: ou
       
@@ -52,14 +52,14 @@ fr:
     admin: Administration
     home: Votre DVD Club
     pending: Demandes en cours
-    lists: Vos listes
+    lists: Vos cercles
     dvds: Vos DVDs
     pending_in: Demandes en cours
     pending_out: Emprunts en cours
     account: Votre compte
     
   home:
-    banner: Votre compte est créé ! Commencez par ajouter des DVDs à votre première liste.
+    banner: Votre compte est créé ! Commencez par ajouter des DVDs à votre premier cercle.
     button: Ajouter un DVD
     noDVDs: Votre DVD Club ne contient aucun DVD.  
     breadcrumb:
@@ -67,8 +67,8 @@ fr:
     categories: Catégories
     owner: propriétaire
     
-    createnew: Créer une nouvelle liste
-    banner: Accédez ci-dessous à toutes vos listes, ou créez une nouvelle liste ci-contre.
+    createnew: Créer une nouveau cercle
+    banner: Accédez ci-dessous à tous vos cercles, ou créez une nouveau cercle ci-contre.
     
     
   button:
@@ -79,9 +79,9 @@ fr:
   new:
     title: Ajoutez des DVDs dans votre DVD Club
     addmanually: Vous ne trouvez pas votre DVD ? Ajoutez-le manuellement
-    subtitle: Saisissez le titre compet ou partiel du DVD que vous voulez ajouter, puis choisissez parmi les résultats proposés. Les DVDs sont ajoutés à l'ensemble de vos listes.
+    subtitle: Saisissez le titre compet ou partiel du DVD que vous voulez ajouter, puis choisissez parmi les résultats proposés. Les DVDs sont ajoutés à l'ensemble de vos cercles.
     button-search: Rechercher
-    justadded: Ce DVD vient d'être ajouté à votre liste
+    justadded: Ce DVD vient d'être ajouté à votre cercle
     
     manually: 
       title: Titre
@@ -102,10 +102,10 @@ fr:
     connect: Se connecter
     
   list:
-    lastmembers: Les dernières personnes ayant rejoint cette liste
+    lastmembers: Les dernières personnes ayant rejoint ce cercle
     seeallmembers: Voir tous les membres
     invite: J'invite des amis
-    close: Je quitte cette liste
+    close: Je quitte ce cercle
 
   dvds:
       banner: Gérez ci-dessous vos DVDs, ou ajoutez un DVD ci-contre
@@ -113,16 +113,16 @@ fr:
   
   lists:
     create:
-      title: Créer une nouvelle liste
-      name: Nom de la liste
-      identify: Comment vous identifier dans cette liste
+      title: Créer une nouveau cercle
+      name: Nom du cercle
+      identify: Comment vous identifier dans ce cercle
       accept_terms: J'accepte les conditions d'utilisation
       button : Créer
  
   invite:
     nextstep:
       title: Que va-t'il se passer ensuite ?
-      text: Vos amis vont recevoir un mail de votre part, les invitant à partager votre liste sur MonDVDClub.fr. Ils pourront à leur tour ajouter leurs DVDs, et les partager avec l'ensemble des membres de cette liste.     
+      text: Vos amis vont recevoir un mail de votre part, les invitant à rejoindre votre cercle sur MonDVDClub.fr. Ils pourront à leur tour ajouter leurs DVDs, et les partager avec l'ensemble des membres de ce cercle.     
      
   lostpassword:
     title: Retrouvez votre mot de passe
