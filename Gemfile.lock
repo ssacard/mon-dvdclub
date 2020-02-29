@@ -57,7 +57,7 @@ GEM
       activeresource (= 2.3.5)
       activesupport (= 2.3.5)
       rake (>= 0.8.3)
-    rake (0.8.7)
+    rake (12.3.3)
     rspec (1.2.0)
     rspec-rails (1.2.0)
       rack (>= 0.4.0)
@@ -88,7 +88,7 @@ DEPENDENCIES
   mogli
   mysql
   rails (= 2.3.5)
-  rake (= 0.8.7)
+  rake (= 12.3.3)
   rspec-rails (= 1.2)
   ruby-hmac
   sqlite3-ruby
